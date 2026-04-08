@@ -4,6 +4,14 @@ This directory contains the released `Next Analytic Move` benchmark package.
 
 Use this directory from the `code-repo/` root. The scripts in this folder assume paths such as `next-analytic-move-benchmark/data/...`.
 
+## Benchmark At A Glance
+
+- `30` benchmark samples (test examples)
+- `15` analytic cases
+- `10` source papers
+- each sample asks the model to predict the next analytic move from a prefix of prior episodes
+- each sample includes gold next-goal, next-view, and next-capability annotations for evaluation
+
 ## What Is Included
 
 - `data/benchmark_model_records.jsonl`: the main benchmark input records used for model runs
@@ -16,6 +24,14 @@ Use this directory from the `code-repo/` root. The scripts in this folder assume
 
 This release includes the minimal benchmark data needed to run and evaluate the released benchmark package. It does not include benchmark construction scripts.
 The released package is self-contained: the retained benchmark files depend only on the released episode composite images and do not depend on an external knowledge base.
+
+## Coverage And Structure
+
+- coverage spans `10` visualization/analysis papers and `15` analytic cases derived from them
+- the released package contains `30` scored samples in total, or about `2` samples per case on average
+- each sample is defined by a prefix of one or more prior episodes plus a held-out target episode
+- sample metadata retains paper name, case title, figure reference, segmentation mode, and episode-composite paths
+- the benchmark includes released composite images for both prefix and target episodes, so the package is runnable without additional asset recovery
 
 ## Basic Workflow
 
