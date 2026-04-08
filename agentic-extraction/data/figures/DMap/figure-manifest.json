@@ -1,0 +1,236 @@
+{
+  "paper_name": "DMap",
+  "interface_figure_id": "fig_1",
+  "needs_manual_review": true,
+  "interface_selection_reason": "Selected fig_1 as the unique interface figure because it has the highest interface score (1.00); next best score is 0.90. Manual review is recommended because the interface selection is weak or ambiguous.",
+  "figures": [
+    {
+      "fig_id": "fig_1",
+      "caption": "Figure 1: System Interface: Source Weibo Table View (a), for selecting different groups of source weibos; Source Weibo Distribution View (b), including Documents View (b1) and Keywords View (b2); D-Map View (c), summarizing the social interaction among participating people of a central user; Community Radar View (d), showing the high dimensional features of communities with a Radar View (d1) and a Statistics Information Window (d2); Hierarchical View (e), illustrating the reposting structures; Timeline View (f), highlighting the temporal trends of the diffusion; Small Multiple View (g), identifying key time frames of D-Map’s snapshots.",
+      "image_path": "data/figures/DMap/crops/fig_1.png",
+      "primary_role": "interface",
+      "role_scores": {
+        "interface": 1.0,
+        "view": 0.0,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure shows the complete full system interface, displaying all multiple coordinated views/panels of the system as labeled, matching the definition of an interface figure.",
+      "interface_rank": 1,
+      "is_interface_figure": true,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_2",
+      "caption": "Figure 2: An illustration of the weibo data. People play different roles in one central user’s reposting network with multiple behaviors.",
+      "image_path": "data/figures/DMap/crops/fig_2.png",
+      "primary_role": "other",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.0,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 1.0
+      },
+      "rationale": "This figure is a background concept illustration of the structure of a central user's Weibo reposting network data, which does not fall into any of the other categories, so it is classified as other.",
+      "interface_rank": 3,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_3",
+      "caption": "Figure 3: Conceptual model illustrating the diffusion process. Starting from a central user, information diffuses within and across multiple communities through a series of reposting behaviors.",
+      "image_path": "data/figures/DMap/crops/fig_3.png",
+      "primary_role": "other",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.0,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 1.0
+      },
+      "rationale": "This figure is a conceptual model illustrating the background information diffusion process concept, which does not fit into any other defined category.",
+      "interface_rank": 4,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_4",
+      "caption": "Figure 4: Visual encodings of D-Map of a central user. Each node represents a group of people, participating in the diffusion process by reposting weibos.",
+      "image_path": "data/figures/DMap/crops/fig_4.png",
+      "primary_role": "view",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.9,
+        "intended_workflow": 0.0,
+        "case_study": 0.1,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure displays a single D-Map visualization view and explains its visual encodings, it is a single view component rather than the complete full system interface, so it is classified as view.",
+      "interface_rank": 5,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_5",
+      "caption": "Figure 5: Color decision for D-Map. Four series of color encode the high-dimensional features of the community. The radar visualization shows the distribution of each dimension of selected communities.",
+      "image_path": "data/figures/DMap/crops/fig_5.png",
+      "primary_role": "view",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.9,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 0.1
+      },
+      "rationale": "This figure shows multiple radar visualization components (local views) that demonstrate the distribution of community feature dimensions for color encoding in D-Map, and it is not the complete full system interface.",
+      "interface_rank": 6,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_6",
+      "caption": "Figure 6: D-Map construction process. With the input of a series of source weibos from a central user and the reposting trees of these source weibos, we can merge them into a graph, compact the layout and reorder nodes in each community based on chronological order.",
+      "image_path": "data/figures/DMap/crops/fig_6.png",
+      "primary_role": "intended_workflow",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.0,
+        "intended_workflow": 0.95,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 0.05
+      },
+      "rationale": "This figure illustrates the sequential step-by-step construction process of D-Map, showing the full workflow from input reposting trees to the final output D-Map, which fits the definition of an intended workflow/process.",
+      "interface_rank": 7,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_7",
+      "caption": "Figure 7: Merging thresholds for the size control. (a) Set the hex-bin number as 1000. (b) Maximize the number ( 9,000 in this case).",
+      "image_path": "data/figures/DMap/crops/fig_7.png",
+      "primary_role": "view",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.9,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 0.1
+      },
+      "rationale": "This figure displays two instances of a single hexbin visualization view component, demonstrating how the output changes at different merging threshold settings for size control, and it is not the complete full system interface of the overall tool.",
+      "interface_rank": 8,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_8",
+      "caption": "Figure 8: Visual analysis pipeline, illustrating how to explore users’ D-Map with the augmented trend, hierarchy and high dimensional analysis. Diffusion path, social interactions and people impact can be found.",
+      "image_path": "data/figures/DMap/crops/fig_8.png",
+      "primary_role": "intended_workflow",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.0,
+        "intended_workflow": 1.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure illustrates the complete step-by-step analysis pipeline that explains how the system should be used to explore D-Map diffusion data, which matches the definition of intended_workflow.",
+      "interface_rank": 9,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_9",
+      "caption": "Figure 9: Weibo sources analysis with (a) reposting people distribution distance and (c) document distance. Interactions including (b) brushing and (c) keyword filtering are supported.",
+      "image_path": "data/figures/DMap/crops/fig_9.png",
+      "primary_role": "case_study",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.2,
+        "intended_workflow": 0.1,
+        "case_study": 0.8,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure shows a concrete real-data analysis example and walkthrough of Weibo sources analysis, demonstrating the system's supported interactions on a concrete use case, which matches the case study role. It does not display the full complete system interface, experimental evaluation results, or a general intended workflow diagram.",
+      "interface_rank": 10,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_10",
+      "caption": "Figure 10: Dynamic diffusion pattern analysis. (a) Multiple diffusion stages are shown in the small multiples and the timeline. (b) By interactively exploring the communities, we find key players and summarize diffusion patterns.",
+      "image_path": "data/figures/DMap/crops/fig_10.png",
+      "primary_role": "case_study",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.1,
+        "intended_workflow": 0.0,
+        "case_study": 0.9,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure shows a concrete analysis walkthrough of dynamic diffusion pattern analysis, demonstrating exploring diffusion stages and identifying key players in communities, which matches the definition of a case study. It is not a full system interface, general usage workflow, experimental evaluation result, or single isolated view component.",
+      "interface_rank": 11,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_11",
+      "caption": "Figure 11: Community analysis on D-Map. Users can have an overview on the (a) D-Map and (b) Community Radar View. By selecting the community, users can explore the characteristics (e, f). (d) Timeline View, (c) Hierarchical View and (g) Small Multiple View are provided to investigate different aspects of the diffusion process. Users can explore the detailed (h) inter-community behaviors and (i) key player behaviors.",
+      "image_path": "data/figures/DMap/crops/fig_11.png",
+      "primary_role": "interface",
+      "role_scores": {
+        "interface": 0.9,
+        "view": 0.0,
+        "intended_workflow": 0.1,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure displays all multiple coordinated views that form the complete system interface for community diffusion analysis on D-Map, showing every core panel and component of the full system.",
+      "interface_rank": 2,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_12",
+      "caption": "Figure 12: People portrait visualization from D-Map. We can differentiate people from multiple dimensions. Two dimensions showing here are the split community number and inter-community influence. We can see from the top-left, where there is merely communications among a few communities, to the bottom-right with the influence pattern in multiple, evenly-distributed communities.",
+      "image_path": "data/figures/DMap/crops/fig_12.png",
+      "primary_role": "view",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.9,
+        "intended_workflow": 0.0,
+        "case_study": 0.05,
+        "evaluation": 0.0,
+        "other": 0.05
+      },
+      "rationale": "This figure shows multiple examples of the people portrait visualization, a single view/component from D-Map, not the complete full system interface of the visual analytics system.",
+      "interface_rank": 12,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    }
+  ]
+}

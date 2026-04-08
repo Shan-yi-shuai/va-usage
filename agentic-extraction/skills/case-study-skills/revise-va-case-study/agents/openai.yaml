@@ -1,0 +1,4 @@
+interface:
+  display_name: "VA Case Revise"
+  short_description: "Revise a VA case study draft"
+  default_prompt: "Use $revise-va-case-study to repair a PaperUsageSpec draft using review findings."

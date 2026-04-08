@@ -1,0 +1,121 @@
+[{
+  "caption": "Fig. 4: Activation-similarity matrix visualization: Left: Well-explained feature with correlation between activation strength and semantic similarity (samples align along diagonal). Right: Poorly explained feature showing discrepancies - high-activation samples with low similarity (upper left) and high-similarity samples with low activation (lower right), revealing explanation limitations.",
+  "captionBoundary": {
+    "x1": 307.35699462890625,
+    "x2": 559.3265380859375,
+    "y1": 578.572509765625,
+    "y2": 630.8289794921875
+  },
+  "figType": "Figure",
+  "imageText": ["1", "Act.", "Low", "Act.", "High", "Low", "High", "1", "Match", "Dismatch", "Match", "Dismatch", "41", "36", "31", "26", "21", "145", "ur", "e", "Fe", "at", "To", "p", "48", "97", "193", "242", "Similarity", "Rank", "Activation", "33", "28", "24", "20", "17", "15", "30", "45", "76", "60", "ur", "e", "Fe", "at", "To", "p", "Similarity", "Rank", "Text", "Segment", "Samples", "Text", "Segment", "Samples", "Activation"],
+  "name": "4",
+  "page": 5,
+  "regionBoundary": {
+    "x1": 309.12,
+    "x2": 556.3199999999999,
+    "y1": 447.35999999999996,
+    "y2": 566.88
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/ConceptViz-Figure4-1.png"
+}, {
+  "caption": "Fig. 2: SAEs address the polysemanticity problem in LLM neurons by projecting neuron activations into sparse, interpretable features. Each SAE feature corresponds to more specific human-understandable concepts (e.g., Duck, Yellow), enabling clearer semantic distinctions than the original neurons which may activate for multiple unrelated concepts.",
+  "captionBoundary": {
+    "x1": 307.6199951171875,
+    "x2": 559.3236694335938,
+    "y1": 165.29649353027344,
+    "y2": 208.0880126953125
+  },
+  "figType": "Figure",
+  "imageText": ["Flower", "(-1.6,", "0.1,", ",", "0.3)", "House", "(6.5,", "-7.4,", ",", "2.2)", "(1.1,", "-3.4,", ",", "-3.3)", "(-2.5,", "4.1,", ",", "1.3)", "River", "Yellow", "Duck", "Concepts", "(-0.5,", "3.1,", ",", "4.3)", "Neuron", "Activations", "SAE", "Features"],
+  "name": "2",
+  "page": 1,
+  "regionBoundary": {
+    "x1": 309.12,
+    "x2": 556.3199999999999,
+    "y1": 50.879999999999995,
+    "y2": 153.12
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/ConceptViz-Figure2-1.png"
+}, {
+  "caption": "Fig. 5: A user exploring plant-related features: (A) The user queries “plant”, receives an optimized suggestion, then examines SAE relevance rankings with Layer 4 showing higher relevance. (B) While browsing feature clusters, the user identifies a relevant feature near the environmental region. (C) After selecting feature 983, the user examines its vocabulary space and activation matrix, revealing plant-related associations. (D) The user analyzes activations and validates through steering, observing effects on garden text generation.",
+  "captionBoundary": {
+    "x1": 54.0,
+    "x2": 566.9979248046875,
+    "y1": 208.6894989013672,
+    "y2": 242.0159912109375
+  },
+  "figType": "Figure",
+  "imageText": ["B", "C", "D", "Enter", "prompt...", "references", "to", "the", "word", "\"plant\"", "and", "its", "associations", "with", "botany", ",", "cultivation", ",", "agriculture", ",", "ecological", "systems", ",", "and", "environmental", "science", "across", "academic", "research", ",", "industry", "practices", ",", "and", "global", "sustainability", "studies", "Text", "Segment", "Samples", "0", "1", "43", "1", "5", "43", "scientiﬁc", "5", "0", "1", "29", "4", "3", "Layer", "Top", "10", "Top", "100", "Top", "1000", "0", "1", "182", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "19", "2420", "21", "22", "23", "25", "Original", "Query", "Optimized", "Query", "Similarity", "t", "Co", "un", "Enter", "your", "query", "“plant”", "to", "leave", "it", "with", "a", "piece", "of", "it.", "I", "found", "a", "beautiful", "blue", "flower", "...", "to", "cry.", "I’m", "not", "sure", "why", "I", "had", "wanted", "to", "cry,", "...", "ﬁnd", "a", "way", "to", "grow", "it.", "I", "was", "looking", "for", "a", "plant", "that", "...", "……", "biological", "scientiﬁc", "medical", "I", "walked", "into", "the", "most", "beautiful", "garden", "in", "the", "world", "and", "wanted", "the", "steel", "plant", "Plant", "-", "based", "beverages", "plantedI", "a", "flower", "Vocabulary", "Space", "Max", "Tokensfeature", "983", "feature", "983", "_plant", "_plants", "plant", "_Weiner", "_Soro", ")\\}$", "_plant", "_plants", "_planted", "_Plant", "28", "5", "4", "4", "decreased", "usage", "and", "higher", "costs", "leading", "to", "deterioration", "of", "plant", "3", "feature:", "983", "references", "to", "plants", "and", "plant-related", "topics", "research", "environmental", "technical", "biological", "health", "food", "academic", "A", "sports", "……"],
+  "name": "5",
+  "page": 6,
+  "regionBoundary": {
+    "x1": 53.76,
+    "x2": 567.36,
+    "y1": 48.96,
+    "y2": 199.2
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/ConceptViz-Figure5-1.png"
+}, {
+  "caption": "Fig. 6: A user investigating superhero-related features: (A) The user identifies feature 6610 within the individuals cluster, referencing superhero characters. (B) Input activation shows strong responses to superhero names, while steering demonstrates control over character generation. (C) Most related features are distant with poor labels, but feature 9638’s proximity captures user interest. (D) Validation reveals feature 9638 activates for",
+  "captionBoundary": {
+    "x1": 45.0,
+    "x2": 558.5366821289062,
+    "y1": 213.4535369873047,
+    "y2": 237.31597900390625
+  },
+  "figType": "Figure",
+  "imageText": ["_Wars", "_Potter", "5", "4", "2", "2", "2", "5", "Max", "Tokens", "_Evil", "_Trek", "_Academia", "_Hunter", "A", "B", "C", "D", "...", "Star", "Trek", ":", "The", "Next", "Generation", "...", "...", "My", "Hero", "Academia", "...", "...", "Harry", "Potter", "and", "the", "Cursed", "Child", "...", "...", "Resident", "Evil", "4", "...", "...", "Monster", "Hunter", ":", "World", "...", "...", "Star", "Wars", "...", "look", "at", "their", "listeners", "directly", "in", "the", "eye", "when", "delivering", "their", "message", ".", "During", "the", "recent", "conﬁrmation", "hearings", "for", "U", ".", "S", "Chief", "Justice", "nominee", "John", "Roberts", ",", "newspapers", "praised", "him", "for", "\"", "looking", "self-", "assured", ".\"", "...", "...", "speciﬁc", "references", "to", "medical", "and", "scientiﬁc", "terminology...", "speciﬁc", "references", "to", "popular", "franchises,", "especially", "within", "the", "science", "ﬁction", "and", "adventure", "genres...", "Powerful", "business", "leaders", "Text", "Segment", "Samples", "Sun", "W", "uk", "ong", "Hercules", "Sun", "W", "uk", "ong", "feature:12945", "feature:", "9638", "Hercules", "feature:", "922", "terms", "and", "concepts", "related", "to", "database", "technologies", "and", "programming", "frameworks", "Potter", "Harry", "Potter", "The", "Three", "Mus", "keteers", "My", "favorite", "hero", "is", "Batman", "Superman", "feature", "9638", "feature", "6610", "1", "feature:", "6610", "feature:", "11705", "terms", "related", "to", "web", "services", "and", "eCommerce", "platforms", "names", "scientiﬁc", "technical", "medical", "G.W.F", "Hegel", "Batman", "Dr.", "Strange", "My", "favorite", "hero", "is", "Potter", "Harry", "Potter", "The", "Three", "Mus", "keteers", "My", "favorite", "hero", "is", "Batman", "Superman", "Enter", "prompt...", "feature", "6610", "ﬁlm", "power", "political�", "individuals", "personal", "relationships", "spiritual", "1", "feature:", "6610", "references", "to", "superhero", "characters", "and", "their", "narratives"],
+  "name": "6",
+  "page": 7,
+  "regionBoundary": {
+    "x1": 44.64,
+    "x2": 559.1999999999999,
+    "y1": 48.96,
+    "y2": 202.07999999999998
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/ConceptViz-Figure6-1.png"
+}, {
+  "caption": "Fig. 7: The results of the questionnaire regarding the effectiveness and usability of the visual system and workflow.",
+  "captionBoundary": {
+    "x1": 54.0,
+    "x2": 304.3818054199219,
+    "y1": 261.8315124511719,
+    "y2": 276.22998046875
+  },
+  "figType": "Figure",
+  "imageText": ["4.67", "4.58", "4.33", "4.67", "4.58", "4.42", "4.42", "4.50", "4.58", "4.50", "4", "8", "5", "7", "48", "4", "8", "3", "81", "3", "72", "57", "4", "71", "6", "6", "5", "7", "Strongly", "Disagree", "Disagree", "Neutral", "Agree", "Strongly", "Agree", "Avg.", "Score", "Distribution", "The", "SAE", "Discovery", "View", "helps", "me", "identify", "SAE", "models", "most", "relevant", "to", "my", "concepts.", "The", "Concept", "Query", "View", "effectively", "helps", "me", "build", "and", "reﬁne", "my", "concept", "queries.", "I", "will", "use", "this", "system", "again.", "It", "is", "easy", "to", "use", "the", "system.", "It", "is", "easy", "to", "learn", "the", "system.", "The", "workflow", "supports", "analysis", "process", "from", "feature", "discovery", "to", "validation.", "The", "Output", "Steering", "View", "allows", "me", "to", "observe", "feature", "causal", "impact", "on", "model", "outputs.", "The", "Input", "Activation", "View", "helps", "me", "verify", "the", "correspondence", "between", "features", "and", "concepts.", "The", "Feature", "Details", "View", "helps", "me", "understand", "the", "semantic", "meaning", "of", "features.", "The", "Feature", "Explorer", "View", "helps", "me", "understand", "feature", "distribution", "in", "concept", "space.", "Question", "Q10.", "Q9.", "Q8.", "Q4.", "Q3.", "Q2.", "Q1.", "No.", "Q7.", "Q6.", "Q5."],
+  "name": "7",
+  "page": 8,
+  "regionBoundary": {
+    "x1": 54.72,
+    "x2": 303.36,
+    "y1": 50.879999999999995,
+    "y2": 248.16
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/ConceptViz-Figure7-1.png"
+}, {
+  "caption": "Fig. 3: Our system’s three technical components: (A) Concept-based SAE Model Retrieval identifies relevant models by matching user queries with feature explanations, computing multi-threshold similarity rankings, and prioritizing consistently high-performing SAEs. (B) Feature Abstraction and Semantic Interpretation provides both global context through hierarchical clustering and topic visualization (B1), and detailed feature understanding through vocabulary projection and activation pattern analysis (B2). (C) Activation Analysis and Steering enables empirical validation through custom input testing and causal verification by manipulating feature activations to observe resulting output changes.",
+  "captionBoundary": {
+    "x1": 54.0,
+    "x2": 567.0020141601562,
+    "y1": 289.6025085449219,
+    "y2": 332.3940124511719
+  },
+  "figType": "Figure",
+  "imageText": ["...", "...", "...", "Smile", "Feature", "...", "A2", "A1", "......", "...", "......", "...", "...", "...", "...", "...", "...", "25", "Transformer", "Neuron", "SAE", "Feature", "Activation", "Level", "i", "Input", "Activation", "feature", "j", "0", "SAE", "i", "...", "bright", "smile", "Transformer", "Layers", "bright", "smile", "Output", "Input", "Activation", "Strength", "Positive", "Negative", "laughed", "was", "slient", "Everyone", "at", "the", "table", "_____", "Output", "Steering", "Input", "Activation", "C2", "C1", "B2", "feature", "j", "happiness", "and", "joy", "Hierarchical", "Clustering", "Embed", "Activation", "Text", "Segment", "Samples", "text", "segment", "1", "text", "segment", "n", "Activation", "sam", "pling", "interval", "text", "segment", "2", "explanation", "j", "Calculate", "Similarity", "similarity", "0", "similarity", "1", "similarity", "n", "similarity", "2", "text", "segment", "0", "B1", "Animal", "Heat", "Color", "Emotion", "cluster", "0", "cluster", "1", "Reduce", "Dimension", "embedding", "n", "embedding", "0", "SAE", "i", "1Rank", "1", "24", "36", "5", "6", "SAE", "in", "Layer", "2", "Retrieval", "query", "embedding", "embedding", "n", "embedding", "0", "embedding", "n", "embedding", "0", "explanation", "n", "explanation", "0", "explanation", "n", "explanation", "0", "Embed", "feature", "n", "feature", "0", "feature", "n", "feature", "0", "SAE", "Model", "RetrievalA", "Feature", "Abstraction", "and", "Semantic", "InterpretationB", "Activation", "Analysis", "and", "SteeringC", "1.37To", "p", "10", "Bo", "tt", "om", "1", "0", "1.65", "sad", "-0.51", "laugh", "Token", "Logits", "smile", "feature", "j", "Vocabulary", "Space", "Projection", "Color", "Design", "Designer", "Emotion", "Emotional", "Passion", "Auto-Interp", "Extract", "Topics", "Ranking", "Top100", "ScoreTop10", "Score", "Top1000", "Score", "0", "1", "3", "4", "5", "6", "25", "Unembedding", "SAE", "25", "SAE", "0", "Concept", "Query"],
+  "name": "3",
+  "page": 4,
+  "regionBoundary": {
+    "x1": 53.76,
+    "x2": 568.3199999999999,
+    "y1": 48.96,
+    "y2": 278.4
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/ConceptViz-Figure3-1.png"
+}]

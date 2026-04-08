@@ -1,0 +1,122 @@
+[
+  {
+    "index": 1,
+    "file_name": "1.png",
+    "view_id": "A",
+    "short_label": "Concept Query View",
+    "description": "View for building and refining concept queries",
+    "confidence": 0.99,
+    "bbox_normalized": {
+      "left": 16,
+      "top": 166,
+      "right": 229,
+      "bottom": 386
+    },
+    "bbox_pixels": {
+      "left": 31,
+      "top": 205,
+      "right": 441,
+      "bottom": 476
+    }
+  },
+  {
+    "index": 2,
+    "file_name": "2.png",
+    "view_id": "B",
+    "short_label": "SAE Discovery View",
+    "description": "View for identifying relevant SAE models",
+    "confidence": 0.99,
+    "bbox_normalized": {
+      "left": 16,
+      "top": 390,
+      "right": 229,
+      "bottom": 964
+    },
+    "bbox_pixels": {
+      "left": 31,
+      "top": 480,
+      "right": 441,
+      "bottom": 1188
+    }
+  },
+  {
+    "index": 3,
+    "file_name": "3.png",
+    "view_id": "C",
+    "short_label": "Feature Explorer View",
+    "description": "View for browsing SAE features in concept space",
+    "confidence": 0.99,
+    "bbox_normalized": {
+      "left": 235,
+      "top": 166,
+      "right": 769,
+      "bottom": 620
+    },
+    "bbox_pixels": {
+      "left": 453,
+      "top": 205,
+      "right": 1482,
+      "bottom": 764
+    }
+  },
+  {
+    "index": 4,
+    "file_name": "4.png",
+    "view_id": "D",
+    "short_label": "Feature Details View",
+    "description": "View for examining semantic meaning of SAE features",
+    "confidence": 0.99,
+    "bbox_normalized": {
+      "left": 235,
+      "top": 625,
+      "right": 764,
+      "bottom": 964
+    },
+    "bbox_pixels": {
+      "left": 453,
+      "top": 770,
+      "right": 1472,
+      "bottom": 1188
+    }
+  },
+  {
+    "index": 5,
+    "file_name": "5.png",
+    "view_id": "E",
+    "short_label": "Input Activation View",
+    "description": "View for verifying activation response between features and concepts",
+    "confidence": 0.99,
+    "bbox_normalized": {
+      "left": 770,
+      "top": 166,
+      "right": 982,
+      "bottom": 560
+    },
+    "bbox_pixels": {
+      "left": 1484,
+      "top": 205,
+      "right": 1892,
+      "bottom": 690
+    }
+  },
+  {
+    "index": 6,
+    "file_name": "6.png",
+    "view_id": "F",
+    "short_label": "Output Steering View",
+    "description": "View for observing feature causal impact on model outputs",
+    "confidence": 0.99,
+    "bbox_normalized": {
+      "left": 770,
+      "top": 555,
+      "right": 982,
+      "bottom": 964
+    },
+    "bbox_pixels": {
+      "left": 1484,
+      "top": 684,
+      "right": 1892,
+      "bottom": 1188
+    }
+  }
+]

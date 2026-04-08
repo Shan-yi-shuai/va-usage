@@ -1,0 +1,162 @@
+[
+  {
+    "index": 1,
+    "file_name": "1.png",
+    "view_id": "4",
+    "short_label": "Search Bar",
+    "description": "Search bar to filter matches using keywords",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 350,
+      "top": 30,
+      "right": 635,
+      "bottom": 95
+    },
+    "bbox_pixels": {
+      "left": 672,
+      "top": 26,
+      "right": 1219,
+      "bottom": 82
+    }
+  },
+  {
+    "index": 2,
+    "file_name": "2.png",
+    "view_id": "1A",
+    "short_label": "Shortcut Panel",
+    "description": "Shortcut panel for managing matching candidates, undo/redo, importing datasets, and exporting results",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 16,
+      "top": 102,
+      "right": 166,
+      "bottom": 176
+    },
+    "bbox_pixels": {
+      "left": 31,
+      "top": 88,
+      "right": 319,
+      "bottom": 151
+    }
+  },
+  {
+    "index": 3,
+    "file_name": "3.png",
+    "view_id": "1B",
+    "short_label": "Filter Control Panel",
+    "description": "Control panel for filtering matching candidates",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 16,
+      "top": 178,
+      "right": 166,
+      "bottom": 588
+    },
+    "bbox_pixels": {
+      "left": 31,
+      "top": 153,
+      "right": 319,
+      "bottom": 505
+    }
+  },
+  {
+    "index": 4,
+    "file_name": "4.png",
+    "view_id": "1C",
+    "short_label": "User Action Timeline",
+    "description": "Timeline graph showing the history of user actions",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 16,
+      "top": 590,
+      "right": 166,
+      "bottom": 976
+    },
+    "bbox_pixels": {
+      "left": 31,
+      "top": 506,
+      "right": 319,
+      "bottom": 837
+    }
+  },
+  {
+    "index": 5,
+    "file_name": "5.png",
+    "view_id": "2A",
+    "short_label": "Interactive Heatmap Panel",
+    "description": "Interactive heatmap panel displaying matching candidates with source attributes on the y-axis and target attributes in a space-filling treemap layout on the x-axis; selected matches expand to show value distributions",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 168,
+      "top": 102,
+      "right": 819,
+      "bottom": 718
+    },
+    "bbox_pixels": {
+      "left": 323,
+      "top": 88,
+      "right": 1572,
+      "bottom": 616
+    }
+  },
+  {
+    "index": 6,
+    "file_name": "6.png",
+    "view_id": "2B",
+    "short_label": "Source-Target Analysis Panel",
+    "description": "Panel containing an UpSet plot, value comparisons, and parallel coordinates for understanding source-target relationships",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 168,
+      "top": 720,
+      "right": 819,
+      "bottom": 976
+    },
+    "bbox_pixels": {
+      "left": 323,
+      "top": 618,
+      "right": 1572,
+      "bottom": 837
+    }
+  },
+  {
+    "index": 7,
+    "file_name": "7.png",
+    "view_id": "3A",
+    "short_label": "Agent Explanation Panel",
+    "description": "Agent explanation panel showing LLM validation results with reasoning (semantic match, shared tokens/values, historical references)",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 821,
+      "top": 102,
+      "right": 981,
+      "bottom": 743
+    },
+    "bbox_pixels": {
+      "left": 1576,
+      "top": 88,
+      "right": 1884,
+      "bottom": 637
+    }
+  },
+  {
+    "index": 8,
+    "file_name": "8.png",
+    "view_id": "3B",
+    "short_label": "Target Attribute Properties Panel",
+    "description": "Display of target attribute properties, including node name, category, type, descriptions, and value distributions",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 821,
+      "top": 745,
+      "right": 981,
+      "bottom": 976
+    },
+    "bbox_pixels": {
+      "left": 1576,
+      "top": 639,
+      "right": 1884,
+      "bottom": 837
+    }
+  }
+]

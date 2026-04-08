@@ -1,0 +1,162 @@
+[
+  {
+    "index": 1,
+    "file_name": "1.png",
+    "view_id": "a",
+    "short_label": "cluster_view",
+    "description": "Cluster view (top-level UI component a showing clustered retweet thread hierarchy)",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 15,
+      "top": 40,
+      "right": 155,
+      "bottom": 580
+    },
+    "bbox_pixels": {
+      "left": 32,
+      "top": 39,
+      "right": 329,
+      "bottom": 561
+    }
+  },
+  {
+    "index": 2,
+    "file_name": "2.png",
+    "view_id": "c",
+    "short_label": "threads_view",
+    "description": "Threads view (top-level UI component c showing timelines of retweeting threads)",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 156,
+      "top": 40,
+      "right": 592,
+      "bottom": 740
+    },
+    "bbox_pixels": {
+      "left": 331,
+      "top": 39,
+      "right": 1257,
+      "bottom": 716
+    }
+  },
+  {
+    "index": 3,
+    "file_name": "3.png",
+    "view_id": "h",
+    "short_label": "context_menu_tooltip",
+    "description": "Context menu/tooltip (component h showing full tweet content information)",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 675,
+      "top": 160,
+      "right": 882,
+      "bottom": 490
+    },
+    "bbox_pixels": {
+      "left": 1433,
+      "top": 155,
+      "right": 1872,
+      "bottom": 474
+    }
+  },
+  {
+    "index": 4,
+    "file_name": "4.png",
+    "view_id": "b",
+    "short_label": "mds_view",
+    "description": "MDS view (top-level UI component b showing multidimensional scaling projection of clusters)",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 15,
+      "top": 581,
+      "right": 155,
+      "bottom": 915
+    },
+    "bbox_pixels": {
+      "left": 32,
+      "top": 562,
+      "right": 329,
+      "bottom": 885
+    }
+  },
+  {
+    "index": 5,
+    "file_name": "5.png",
+    "view_id": "e",
+    "short_label": "states_view",
+    "description": "States view (subview e of the detail information panel, showing distribution of clustering states)",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 533,
+      "top": 610,
+      "right": 977,
+      "bottom": 780
+    },
+    "bbox_pixels": {
+      "left": 1132,
+      "top": 590,
+      "right": 2074,
+      "bottom": 754
+    }
+  },
+  {
+    "index": 6,
+    "file_name": "6.png",
+    "view_id": "d",
+    "short_label": "features_view",
+    "description": "Features view (subview d of the detail information panel, showing feature heatmap matrix)",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 156,
+      "top": 741,
+      "right": 432,
+      "bottom": 918
+    },
+    "bbox_pixels": {
+      "left": 331,
+      "top": 717,
+      "right": 917,
+      "bottom": 888
+    }
+  },
+  {
+    "index": 7,
+    "file_name": "7.png",
+    "view_id": "f",
+    "short_label": "tweets_view",
+    "description": "Tweets view (subview f of the detail information panel, showing detailed tweet content and metadata)",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 453,
+      "top": 800,
+      "right": 912,
+      "bottom": 975
+    },
+    "bbox_pixels": {
+      "left": 962,
+      "top": 774,
+      "right": 1936,
+      "bottom": 943
+    }
+  },
+  {
+    "index": 8,
+    "file_name": "8.png",
+    "view_id": "g",
+    "short_label": "informative_tooltip",
+    "description": "Informative tooltip (component g showing thread metadata and keyword information)",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 45,
+      "top": 820,
+      "right": 153,
+      "bottom": 975
+    },
+    "bbox_pixels": {
+      "left": 96,
+      "top": 793,
+      "right": 325,
+      "bottom": 943
+    }
+  }
+]

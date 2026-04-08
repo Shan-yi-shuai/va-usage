@@ -1,0 +1,647 @@
+[
+  {
+    "type": "title",
+    "order": 0,
+    "text": "Abstract"
+  },
+  {
+    "type": "paragraph",
+    "order": 1,
+    "text": "Large language models (LLMs) have achieved remarkable performance across a wide range of natural language tasks. Understanding how LLMs internally represent knowledge remains a significant challenge. Despite Sparse Autoencoders (SAEs) have emerged as a promising technique for extracting interpretable features from LLMs, SAE features do not inherently align with human-understandable concepts, making their interpretation cumbersome and labor-intensive. To bridge the gap between SAE features and human concepts, we present ConceptViz, a visual analytics system designed for exploring concepts in LLMs. ConceptViz implements a novel Identification ⇒Interpretation ⇒Validation pipeline, enabling users to query SAEs using concepts of interest, interactively explore concept-to-feature alignments, and validate the correspondences through model behavior verification. We demonstrate the effectiveness of ConceptViz through two usage scenarios and a user study. Our results show that ConceptViz enhances interpretability research by streamlining the discovery and validation of meaningful concept representations in LLMs, ultimately aiding researchers in building more accurate mental models of LLM features. Our code and user guide are publicly available at https://github.com/Happy-Hippo209/ConceptViz."
+  },
+  {
+    "type": "paragraph",
+    "order": 2,
+    "text": "Fig. 1: Our system for exploring and interpreting SAE features in LLMs consists of six interconnected views: (A) Concept Query View for building and refining queries, (B) SAE Discovery View for identifying relevant SAE models, (C) Feature Explorer View for browsing SAE features in concept space, (D) Feature Details View for examining semantic meaning of features, (E) Input Activation View for verifying response between features and concepts, and (F) Output Steering View for observing feature causal impact on model outputs."
+  },
+  {
+    "type": "title",
+    "order": 3,
+    "text": "INTRODUCTION"
+  },
+  {
+    "type": "paragraph",
+    "order": 4,
+    "text": "• Haoxuan Li, Zhen Wen, Qiqi Jiang, Yuwei Wu, Yuchen Yang, Yiyao Wang Large language models (LLMs) have demonstrated remarkable capabilities in language generation, translation, and complex reasoning through massive parameter scaling and extensive training data [1,2,20]. However, their black-box nature raises interpretability concerns. Traditional interpretability methods [42,57,58,71] focus on understanding how neural networks utilize internal knowledge and calculate their outputs. But they struggle with handling polysemanticity [16,22,44], where individual neurons usually activate for multiple unrelated concepts. Recent approaches in Sparse Autoencoders (SAEs) [22,33,50] by decomposing dense neuron activations into sparse and interpretable features (see Fig. 2). These SAE features form a concept space with clearer semantic boundaries, which reduces polysemanticity, offering new opportunities for the interpretability of LLMs."
+  },
+  {
+    "type": "paragraph",
+    "order": 5,
+    "text": "Limitations. However, SAE features remain difficult for humans to interpret directly, as they do not inherently align with discrete and welldefined human concepts. Existing explanation approaches attempt to bridge this gap through quantitative metrics and qualitative descriptions, but still exhibit critical limitations. On the one hand, proxy metrics such as sparsity, reconstruction quality, and supervised probing tasks [28,33] provide indirect performance assessment of SAE features, but fail to establish a clear mapping between features and human-understandable concepts. On the other hand, while automated interpretability techniques can leverage text segments that maximally activate specific SAE features [22,28] to provide quick but non-robust [19,67] feature explanations, they still require manual inspection of vast numbers of features through text segments for verification, leading to cognitive overload and explanation bottlenecks. Although existing open-source tools [6,70] provide dashboards for browsing features, the abstract proxy metrics or fragmented text segments scant systematic workflows to connect conceptual analysis with concrete model behaviors. These limitations indicate that the SAE feature explanation process is timeconsuming and lacks intuitive interactivity, highlighting the need for more user-centric visual analytics systems."
+  },
+  {
+    "type": "paragraph",
+    "order": 6,
+    "text": "Challenges. Designing effective visual analytics systems for SAE explanation confronts three major challenges. ① Cross-Layer SAE Recommendation: Given the vast number of SAE models trained across different transformer layers of an LLM, selecting the most relevant model for a target concept is non-trivial. Researchers often lack systematic guidance on which SAE model best aligns with their interested concepts. ② Multi-Scale Feature Navigation: Even within a chosen SAE model, identifying features that best correspond to a given concept remains challenging due to the high-dimensional nature of feature representations. Effective visualization techniques must maintain both the global structure of the feature space and the fine-grained insights between individual features. ③ Interactive Concept Validation: Establishing trust in selected SAE features that consistently reflect the intended concept requires thorough validation. Researchers need interactive tools that facilitate seamless transitions between high-level conceptual exploration and instance-level verification, confirming feature interpretations through steering model behaviors. Dealing with these challenges is essential for developing effective visual analytics systems that support the interpretability of SAE features in LLMs."
+  },
+  {
+    "type": "paragraph",
+    "order": 7,
+    "text": "Key Technologies. To address these challenges, we propose Con-ceptViz, a concept-driven visual analytics system for exploring SAE features. Our system introduces an interactive analysis pipeline that guides researchers through a three-phase workflow: Identification ⇒ Interpretation ⇒ Validation. First, to efficiently identify relevant SAE models (Identification), we enable concept-based queries combined with structural information about model architecture, helping users discover SAE models that most strongly align with their concepts of interest. Second, to explore the alignment between feature space and human concepts in-depth (Interpretation), we introduce interactive visualizations that project sparse features into a concept space, enabling detailed semantic matching and insightful feature interpretation. Third, to verify the alignment between features and human concepts at the instance level (Validation), we provide input and output-based validation, ensuring that the extracted features consistently correspond to human-defined concepts throughout the LLM's processing pipeline. This integrated approach ensures a seamless transition from model discovery to detailed analysis and empirical validation, empowering researchers to conduct comprehensive and interactive SAE exploration."
+  },
+  {
+    "type": "paragraph",
+    "order": 8,
+    "text": "Contributions. In summary, the main contributions are as follows: • We design an Identification-Interpretation-Validation workflow that enables concept-based SAE identification, interactive feature interpretation, and thorough instance-level validation, supporting indepth exploration of SAE features."
+  },
+  {
+    "type": "paragraph",
+    "order": 9,
+    "text": "• We present ConceptViz, a novel concept-driven visual analytics system that implements this pipeline, bridging the gap between complex model representations and human-understandable concepts."
+  },
+  {
+    "type": "paragraph",
+    "order": 10,
+    "text": "• We evaluate ConceptViz through two usage scenarios and a user study, demonstrating its effectiveness, usability, and potential to advance interpretability research."
+  },
+  {
+    "type": "title",
+    "order": 11,
+    "text": "RELATED WORK"
+  },
+  {
+    "type": "title",
+    "order": 12,
+    "text": "LLM Interpretability"
+  },
+  {
+    "type": "paragraph",
+    "order": 13,
+    "text": "Research on LLM interpretability has increasingly focused on feature analysis, which primarily involves three aspects: feature extraction, feature interpretation and evaluation, and feature application. In feature extraction, researchers initially focused on studying LLM hidden representations directly. Meng et al. [42] located neuron sets critical for factual prediction. Wang et al. [58] and Olsson et al. [18] focused on analyzing attention mechanisms. However, it is non-trivial to achieve that because of the polysemantic nature [16,22,44]. To address this challenge, researchers developed various decomposition techniques. Millidge et al. [43] applied singular value decomposition to separate semantic components of neurons; Wu et al. [66] combined matrix decomposition with human instructions to improve feature interpretability. SAEs, as a more advanced technique, produce more monosemantic feature representations by enforcing sparsity constraints that encourage selective activation. Bricken et al. [22] and Cunningham et al. [33] demonstrated the effectiveness of SAEs on language models of different scales. Subsequent researchers proposed various SAE variants [28,35,46,47,49] to improve feature quality. Recent studies [17,23] managed to extend SAE techniques to larger LLMs with tens of billions of parameters."
+  },
+  {
+    "type": "paragraph",
+    "order": 14,
+    "text": "For feature interpretation and evaluation, researchers adopted various strategies. The most direct approach is collecting text segments that maximally activate specific features. Bricken et al. [22] analyzed Ngram activation patterns of features across large corpora. For auto interpretation, Foote et al. [27] developed the N2G method, while Bills et al. [5] and Paulo et al. [45] utilized LLMs, to transform Ngram sequences into natural language explanations. Another category of evaluation methods is based on feature performance metrics such as sparsity and reconstruction error [28,33]. Karvonen et al. [34] systematically reviewed prior evaluation methods [5,8,9,24,40] and proposed a comprehensive evaluation framework."
+  },
+  {
+    "type": "paragraph",
+    "order": 15,
+    "text": "The interpretable features have been applied in various downstream tasks. For instance, tracking activations of these features can be used to reveal internal model circuits [41] and interpret model mechanisms [39]. Further, a number of studies manage to edit and control models by steering activations of SAE features. Wendler et al. [63] studied the application of SAE features in multilingual translation. Templeton et al. [17] demonstrated how to use these features for model editing to intervene on specific concepts. Wu et al. [67] and Durmus et al. [19] leverage features to steer language models for mitigating social biases and enhancing jailbreak defenses. Compared to prior work, ConceptViz bridges feature extraction and interpretation through organized feature mapping and borrowing the feature application technology of activation steering, enabling semantic validation of SAE features."
+  },
+  {
+    "type": "title",
+    "order": 16,
+    "text": "Visual Analytics for LLM Interpretability"
+  },
+  {
+    "type": "paragraph",
+    "order": 17,
+    "text": "As machine learning models become increasingly complex, visual analytics has emerged as an essential tool for understanding and explaining these models [30,38,68]. In the context of LLM interpretability, visual analytics approaches generally fall into two complementary paradigms: internal representation visualization and interaction-based external exploration. Internal representation visualization focuses on revealing the model's structure and computational processes. Early works such as CNNExplainer [62], Seq2Seq-Vis [51], and LSTM-Vis [52] visualized the internal mechanisms of different neural network architectures. With the rise of Transformer architectures, research shifted toward visualizing attention mechanisms, with tools like ExBERT [55] and BertViz [57], along with related works [15,61,69], displaying selfattention distributions. However, the academic community remains divided on the reliability of attention weights as a source of explanation [3,12,64]. For overall LLM architecture, Gao et al. [29] and Cho et al. [11] designed interactive visualization tutorials for non-experts, while Tufanov et al.'s LM-TT toolkit [26,56] made the prediction process transparent, and Woodman et al. [65] visualized the LLM parameter space from a neuron-based perspective."
+  },
+  {
+    "type": "paragraph",
+    "order": 18,
+    "text": "Interaction-based external exploration understands model behavior by manipulating inputs and analyzing outputs. PromptIDE [54] supports visual experimentation with prompt engineering, while LMDiff [53] compares response differences between models given the same prompt. Recent research introduces more methods. Kahng et al. [21] enable interactive analysis of LLM side-by-side evaluation results, while Boggust et al. [7] apply comparative assessment techniques to examine the impacts of model compression on LLM behavior. Coscia et al. [13] proposed methods for model explainability through fill-in-the-blank prompts and later extended this approach to LLM scoring explainability in educational contexts [14]. Wang et al. [60] explores model reasoning capabilities using external knowledge bases. These methods combine visualization with specific application scenarios, helping users build a comprehensive understanding of LLM capabilities and limitations. While concept-based visualization approaches [31,32,59,72] have shown success in computer vision tasks, they have not been applied to LLM interpretability. Unlike prior work, ConceptViz is the first to visualize SAE-decomposed discrete semantic features from LLM representations, enabling bidirectional concept-feature exploration while supporting validation on user-defined prompts, bridging both visualization paradigms for concept-to-feature analysis."
+  },
+  {
+    "type": "title",
+    "order": 19,
+    "text": "BACKGROUND AND TASKS"
+  },
+  {
+    "type": "title",
+    "order": 20,
+    "text": "Background on SAEs"
+  },
+  {
+    "type": "paragraph",
+    "order": 21,
+    "text": "LLMs process text through transformer layers composed of attention mechanisms and feed-forward networks (MLPs). Attention heads capture contextual relationships between tokens, while MLPs apply nonlinear transformations. The residual stream serves as the information pathway connecting these components throughout the network. Activations from attention heads, MLP layer, and residual stream all encode semantic information relevant to model interpretability."
+  },
+  {
+    "type": "paragraph",
+    "order": 22,
+    "text": "SAEs [22,33,50] function as an interpretability tool for these internal representations by decomposing dense neural activations into sparse, interpretable features. A typical SAE consists of an encoder (W enc ), a decoder (W dec ), and corresponding biases (b enc and b dec ). Given an input activation x, the SAE computes a hidden feature representation z and reconstruction x through:"
+  },
+  {
+    "type": "paragraph",
+    "order": 23,
+    "text": "where f is a nonlinear activation function, typically ReLU or its variants [47]. SAEs attempt to reconstruct input activations by projecting them into a sparse, overcomplete feature basis using sparsity-inducing constraints. These constraints can be enforced either through L 1 regularization on the hidden activations or by directly limiting the number of non-zero features (L 0 sparsity)."
+  },
+  {
+    "type": "paragraph",
+    "order": 24,
+    "text": "The sparsity constraint is fundamental in encouraging the model to learn disentangled, mono-semantic features that potentially correspond to distinct concepts. While SAEs learn feature decompositions in an unsupervised manner, the interpretability and faithfulness of these learned features to the underlying LLM computation require systematic validation and analysis."
+  },
+  {
+    "type": "title",
+    "order": 25,
+    "text": "Data Description"
+  },
+  {
+    "type": "paragraph",
+    "order": 26,
+    "text": "This section describes the foundational models and interpretive data resources used in ConceptViz, detailing both the technical infrastructure and methodological approaches for feature analysis."
+  },
+  {
+    "type": "paragraph",
+    "order": 27,
+    "text": "Model Information of LLMs and SAEs. To support our study, we utilize GemmaScope, an open-source suite of SAEs trained on the Gemma 2 series, including Gemma-2-2b, Gemma-2-9b, and Gemma-2-2b-it, Gemma-2-9b-it (instruction-tuned version). Specifically, we use the SAEs trained on the residual stream activations across Gemma-2-2b's 26 layers, as researchers typically focus on residual stream features for more meaningful insights into model behavior [17]. The residual stream in Gemma-2-2b has an embedding dimension of 2304, which SAEs decompose into a 16384-dimensional sparse feature. This focused approach allows us to test our visualization system with the most relevant components for interpretability research, representing typical workflows in current LLM analysis."
+  },
+  {
+    "type": "paragraph",
+    "order": 28,
+    "text": "Max Activation Text Segments and Automated Feature Explanations. Our system utilizes pre-processed data from the Neuronpedia platform [70] derived from the Monology/Pile-Uncopyrighted dataset, which contains 36,864 text segments of 128 tokens each. For all Gem-maScope SAE features, Neuronpedia calculates token-level activation values across these segments and provides representative text samples at different activation thresholds. The platform also supplies feature explanations generated by GPT-4o-mini [5] based on patterns observed in top-activating text samples, offering preliminary insights into potential feature meanings and functions."
+  },
+  {
+    "type": "title",
+    "order": 29,
+    "text": "Task Analysis"
+  },
+  {
+    "type": "paragraph",
+    "order": 30,
+    "text": "Our work aims to support LLM experts who are interested in exploring concepts within LLMs through SAE techniques. Through a systematic task analysis based on an extensive literature review and in-depth exploration of existing interpretability tools [6,70], we formulate the concept exploration task into a three-phase workflow. In this workflow, users first formulate and refine queries to identify potentially relevant SAE models. They then navigate through feature spaces to discover and interpret meaningful features related to their concepts of interest. Finally, users validate their understanding by examining how these features activate across different inputs and testing how steering these features affects model outputs. We present the analysis of tasks that support users in exploring concepts throughout the workflow, which will serve as the design goals of ConceptViz. Identification of Valuable SAE. At the start of concept exploration, researchers often need to carefully phrase the concept query and select a valuable SAE that well captures the concept [70]. This process requires laborious trials for refinement of the concept query and cross validation between numerous candidate SAEs."
+  },
+  {
+    "type": "paragraph",
+    "order": 31,
+    "text": "T1 Query Optimization for Concept Search. Concept queries need to be rephrased as they are vague or ambiguous [25]. Users struggle with formulating effective queries for polysemous concepts, leading to either overly broad or excessively narrow search results. For instance, when exploring polysemous concepts like \"interest\" (which could refer to financial rates, personal hobbies, or attention), users must experiment with multiple phrasings to capture the intended meaning, a process that is time-consuming and lacks immediate feedback. The system should provide intuitive visual feedback on query quality and suggest optimization alternatives, helping users understand how different formulations impact search results."
+  },
+  {
+    "type": "paragraph",
+    "order": 32,
+    "text": "T2 Concept-based SAE Model Discovery. Candidate SAEs vary from their position in the LLM architecture. Users lack efficient methods to identify which layers best represent their concepts of interest, forcing trial-and-error exploration across dozens of layer-specific SAE models without a coherent view of cross-layer concept evolution [4,23,36]. This results in missed insights and inefficient exploration processes. The system should visualize similarity distributions between queries and SAE models across the entire network architecture, enabling users to identify the most relevant models and understand how concepts are represented at different abstraction levels."
+  },
+  {
+    "type": "paragraph",
+    "order": 33,
+    "text": "Interpretation of SAE Features. Upon selecting a SAE, researchers need to interpret its features related to the concept query. As the SAE features are numerous and cover various concepts, researchers typically initiate the process by filtering these features based on semantic similarity, subsequently conducting a thorough examination for detailed interpretation [17,22]."
+  },
+  {
+    "type": "paragraph",
+    "order": 34,
+    "text": "T3 Global Feature Visualization in Concept Space. SAE features lack intuitive spatial organization in concept space [22]. Researchers struggle with understanding how thousands of SAE features relate to each other and distribute across the human concept space. Without proper visualization support, users must mentally track connections between features, which becomes overwhelming as the feature count increases. The system should provide an intuitive spatial representation of features with highlighted regions relevant to user queries, enabling researchers to efficiently navigate the semantic landscape and identify feature clusters worthy of deeper investigation."
+  },
+  {
+    "type": "paragraph",
+    "order": 35,
+    "text": "T4 Detailed Feature Interpretation at Instance Level. Feature explanations require verification against actual activation patterns [5,45]. When examining specific features, researchers face challenges in verifying the accuracy of feature explanations against actual behavior in text. The process of manually reviewing hundreds of activation examples is time-consuming and lacks structure, often leading to incomplete understanding of feature semantics. The system should provide organized presentation of activation examples, enabling researchers to discover nuanced feature behaviors and semantic patterns that might otherwise be missed."
+  },
+  {
+    "type": "paragraph",
+    "order": 36,
+    "text": "Validation of Interpreted Concepts. After developing initial understandings of feature semantics, researchers need to empirically validate their hypotheses about SAE features [17]. As the inherent complexities of high-dimensional, noisy feature spaces, initial interpretations sometimes contain biases or overgeneralizations [16]. This validation process is essential for confirming that identified features genuinely represent the concepts of interest and behave consistently across diverse contexts."
+  },
+  {
+    "type": "paragraph",
+    "order": 37,
+    "text": "T5 Feature Activations Validation with Custom Inputs. Feature interpretations require testing against diverse real-world examples."
+  },
+  {
+    "type": "paragraph",
+    "order": 38,
+    "text": "Researchers often struggle to verify whether identified features consistently respond to targeted concepts across diverse examples. Without systematic validation, users risk developing incorrect or overgeneralized interpretations based on limited samples. The system should display activation strengths for each token relative to target features and recommend alternative features with similar activation patterns when expected features fail to respond as anticipated."
+  },
+  {
+    "type": "paragraph",
+    "order": 39,
+    "text": "T6 Causal Relationships Verification with Output Steer. Correlation between features and concepts does not guarantee causation."
+  },
+  {
+    "type": "paragraph",
+    "order": 40,
+    "text": "Establishing causal relationships between features and concepts presents a significant challenge, as correlation alone doesn't confirm that a feature truly represents a concept [49]. Researchers need mechanisms to test whether manipulating specific features produces predictable changes in model outputs related to the concept of interest. The system should enable users to dynamically adjust input samples and feature activations while observing resulting changes in model behavior."
+  },
+  {
+    "type": "title",
+    "order": 41,
+    "text": "METHODS"
+  },
+  {
+    "type": "paragraph",
+    "order": 42,
+    "text": "As illustrated in Fig. 3, our system consists of three components: (A) a concept-based SAE model retrieval mechanism that identifies relevant representations, (B) a multi-level feature abstraction and semantic interpretation framework that organizes and explains features, and (C) an interactive activation analysis and steering approach that enables empirical validation of feature behaviors."
+  },
+  {
+    "type": "title",
+    "order": 43,
+    "text": "SAE Model Retrieval"
+  },
+  {
+    "type": "paragraph",
+    "order": 44,
+    "text": "Our model retrieval system enables efficient concept-driven selection of SAE models (Fig. 3A). We calculate semantic similarity between user queries and SAE features using OpenAI's text-embedding-3-large model, which encodes both feature explanations and queries into 3072dimensional vectors (Fig. 3A 1 ). The system identifies the most conceptrelevant SAE models through a multi-level ranking approach (Fig. 3A 2 )."
+  },
+  {
+    "type": "paragraph",
+    "order": 45,
+    "text": "For each query, we compute cosine similarity scores between the query embedding and all feature embeddings across all SAE models. We then identify which SAE models contribute the most features to the Top-K most similar features, where K = {10, 100, 1000}. This multithreshold approach ensures we capture both highly specific matches (K=10) and broader semantic relationships (K=1000). Our ranking algorithm computes a balanced recommendation score by averaging each SAE model's rank position across these different thresholds:"
+  },
+  {
+    "type": "paragraph",
+    "order": 46,
+    "text": "This approach prioritizes SAE models that consistently rank well across different thresholds, mitigating the influence of any single metric and providing robust recommendations that balance precision and recall in matching user concepts to SAE feature spaces."
+  },
+  {
+    "type": "title",
+    "order": 47,
+    "text": "Feature Abstraction and Semantic Interpretation"
+  },
+  {
+    "type": "paragraph",
+    "order": 48,
+    "text": "To facilitate exploration of thousands of SAE features, we developed two complementary approaches (Fig. 3B): a hierarchical semantic clustering method for organizing features into concept-related groups (Fig. 3B 1 ), and a detailed feature analysis method (Fig. 3B 2 ) for interpreting individual feature semantics. The clustering approach helps users navigate the feature landscape efficiently, while the semantic interpretation techniques provide deeper insights into feature behaviors and meanings. Together, these methods support comprehensive feature interpretation from both macro and micro perspectives. Dimensionality Reduction. We apply UMAP to reduce the 3072dimensional feature embeddings to a 2D space, using cosine distance as the metric (n neighbors = 15, min dist = 0.3). UMAP preserves both local relationships and global topological structure while providing computational efficiency. Hierarchical Clustering. For each SAE model, we employ Agglomerative Hierarchical Clustering at multiple granularity levels (10, 30, and 90 clusters) to construct a semantic organization of features. We select Ward linkage as our clustering criterion, which minimizes withincluster variance:"
+  },
+  {
+    "type": "paragraph",
+    "order": 49,
+    "text": "where u is a new cluster formed by merging clusters s and t, v is any other cluster, T = |v| + |s| + |t|, and | • | denotes the number of samples in a cluster. Ward's method creates balanced clusters of similar sizes, avoiding the chaining effect problem of single-linkage clustering. Topic Extraction. To enhance interpretability, we leveraged a classbased TF-IDF approach to extract representative keywords for each cluster. Our method treats all feature explanations within each cluster as a composite document: where f t,c is the frequency of term t in cluster c, and |C| is the total number of clusters. We extract the top 5 terms with highest c-TF-IDF scores as conceptual labels for each cluster after filtering domainspecific stop words. Semantic Interpretation. Our feature semantic interpretation addresses limitations in current automatic explanation methods by providing vocabulary space projections and text segments activation patterns (Fig. 3B 2 ). We extract feature projections in vocabulary space by computing W u • W dec [ f eature] (where W u is the unembedding matrix), revealing token prediction preferences during feature activation. Leveraging pre-computed activation data with stratified sampling, we analyze high-activation instances and samples across various activation intensities. Inspired by EleutherAI's explanation scoring method [45], we compute cosine similarities between text embeddings and feature explanation embeddings to quantify semantic alignment. This similarity metric, when examined alongside activation values, helps identify potential explanation-behavior discrepancies, particularly instances exhibiting mismatches between activation values and semantic similarity."
+  },
+  {
+    "type": "title",
+    "order": 50,
+    "text": "Activation Analysis and Steering"
+  },
+  {
+    "type": "paragraph",
+    "order": 51,
+    "text": "Custom Input Activation Analysis. Our verification method analyzes how features respond to user-defined text (Fig. 3C 1 ). Following the same approach used to compute feature activations on pre-collected text segments, we implemented this method for user-defined text. When users input text, the system performs a forward pass through the model to obtain intermediate activations, maps them to the feature space via the SAE encoder, and records the activation strength of target features at each token position. This process reveals how features respond to specific linguistic contexts in real-time. Beyond single feature analysis, we provide a co-activation feature retrieval function that calculates activation values of all features for user-selected tokens and returns other features that similarly exhibit high activation for the same tokens. This capability helps users discover functionally related feature sets that may respond to similar semantic or syntactic patterns. Causal Verification through Activation Steering. To establish causal relationships between features and concepts, we implement Activation Steering techniques that precisely control feature activation (Fig. 3C 2 ). We extract the steering vector for a feature from SAE (W dec [ f eature]) and selectively adjust the activations of the target layer during model inference:"
+  },
+  {
+    "type": "paragraph",
+    "order": 52,
+    "text": "This method allows users to observe the causal impact of feature activation changes on model output by setting different steering strengths (positive values enhance feature influence, negative values suppress it). By comparing outputs with and without steering, users can verify the association between features and hypothesized concepts through direct causal intervention, providing empirical evidence of feature semantics."
+  },
+  {
+    "type": "title",
+    "order": 53,
+    "text": "SYSTEM DESIGN"
+  },
+  {
+    "type": "paragraph",
+    "order": 54,
+    "text": "We have developed a visual analytics system that leverages Sparse Autoencoder (SAE) models and their feature explanations to help researchers explore the SAE feature space based on concepts and validate concept-feature matches. In this section, we introduce the system interface and detail the key components supporting the analytical workflow."
+  },
+  {
+    "type": "title",
+    "order": 55,
+    "text": "User Interface"
+  },
+  {
+    "type": "paragraph",
+    "order": 56,
+    "text": "The system interface (Fig. 1) consists of six coordinated views that form a complete analytical workflow. The Concept Query View and SAE Discovery View help users locate SAE models with features related to target concepts. The Feature Explorer View and Feature Details View enable exploration of feature distributions and detailed semantic information. The Input Activation View and Output Steering View support the validation of connections between features and concepts. Concept Query View (Fig. 1A) serves as the entry point for feature exploration (T1). Users describe concepts of interest using natural language, and the system calculates semantic similarity between all feature explanations and the query. A similarity distribution chart of the top 2,000 features provides an initial overview of the match between the concept query and feature semantics. This view supports query refinement through suggestions by GPT-4o, helping users address ambiguity and optimize search effectiveness. SAE Discovery View (Fig. 1B) enables users to select appropriate SAE models based on concept-relevance metrics (T2). The overview bar above in this view displays the distribution of concept-relevant features across different network layers, presenting Top 10, Top 100, and Top 1000 scores for each layer in the list below. This layer-based organization helps users identify SAEs that balance model architectural considerations with concept relevance, allowing them to select the most suitable SAE for their specific analysis needs. Users can directly select the SAE of interest from this view to proceed with feature exploration. Feature Explorer View (Fig. 1C) presents a global visualization of SAE features (T3). Through embedding and dimensionality reduction, all feature explanation vectors are mapped to a two-dimensional semantic space. The system highlights query-relevant features and represents the query's position with a red pin. Hierarchical clustering results are displayed as a color-coded map with representative topic terms at cluster centers. We employ HexBin techniques for cluster semantics and level transitions through zooming, offering multi-granularity semantic views. HexBin aggregation reduces visual clutter from thousands of feature points while maintaining interactive performance. Feature Details View (Fig. 1D) presents comprehensive information about selected features (T4). The left panel (D1) shows the feature's projection in vocabulary space, mapping words with the highest and lowest probabilities. The right panel (D2) displays an activationsimilarity matrix of sampled text segments, highlighting cases where activation patterns differ from explanation predictions. Adjacent to this matrix, a bar chart summarizes the maximum activation tokens for each text segment, supporting interactive selection. When users select regions in the matrix, the bar chart updates to show token distributions from the selected segments. Users can also view complete sentences for context through the View Details option. This multi-faceted approach reveals discrepancies between explanations and actual feature behavior."
+  },
+  {
+    "type": "paragraph",
+    "order": 57,
+    "text": "Input Activation View (Fig. 1E) allows users to verify feature responses to custom inputs (T5). Users can enter text samples, and the system displays the activation distribution across tokens for the target feature. For selected tokens with high activation, the system recommends other features with similar activation patterns by highlighting bubble sets displayed in the Feature Explorer View. This enables users to discover functionally related feature sets that respond to similar semantic or syntactic patterns. The view supports instance-level validation of whether features activate as expected for specific concepts."
+  },
+  {
+    "type": "paragraph",
+    "order": 58,
+    "text": "Output Steering View (Fig. 1F) enables causal verification of featureconcept relationships (T6). The Activation Steer module allows users to input prompts and generate multiple output variants with different feature activation strengths simultaneously. By comparing outputs across different steering branches, users can observe how manipulating feature activations affects model outputs. This view facilitates empirical verification of whether steering features toward or away from specific concepts produces corresponding changes in model behavior, establishing causal relationships between features and concepts."
+  },
+  {
+    "type": "title",
+    "order": 59,
+    "text": "Hierarchical Feature Visualization"
+  },
+  {
+    "type": "paragraph",
+    "order": 60,
+    "text": "In the Feature Explorer View, we implement a hierarchical color coordination scheme to support seamless exploration across different granularity levels and address the color consistency challenge in multilevel cluster visualization (see Fig. 1C). When users switch between clustering levels through zooming, color assignment continuity is crucial for maintaining cognitive coherence. Assigning colors to clusters independently at different levels results in excessive color differences between parent and child clusters that increase cognitive load. Inspired by Liu et al. [10], we implement a hierarchical color coordination mechanism operating in HSL color space. This approach assigns a base hue to each top-level cluster, with child clusters inheriting and controllably varying their parent's hue. Specifically, child cluster hues are determined by:"
+  },
+  {
+    "type": "paragraph",
+    "order": 61,
+    "text": "where ∆h is a controlled random variation ensuring child cluster hues remain close to their parent's. Simultaneously, we enhance discriminability between child clusters by adjusting lightness, allowing child clusters to maintain similar hues to their parents while exhibiting sufficient visual distinction."
+  },
+  {
+    "type": "paragraph",
+    "order": 62,
+    "text": "To prevent excessive similarity between same-level clusters, we introduce a minimum color difference constraint, ensuring the Euclidean distance between any two same-level clusters in HSL space exceeds a preset threshold:"
+  },
+  {
+    "type": "paragraph",
+    "order": 63,
+    "text": "where τ is the minimum color difference threshold, and c i and c j represent HSL color triplets."
+  },
+  {
+    "type": "title",
+    "order": 64,
+    "text": "Anomalous Activation Text Segments Visualization"
+  },
+  {
+    "type": "paragraph",
+    "order": 65,
+    "text": "To help users understand feature behavior beyond automatic explanations, we designed an activation-similarity matrix that reveals potential inconsistencies between feature activations and explanations. In the Feature Details View, we compare each sampled sentence's maximum activation value with the cosine similarity between the sentence's text embedding and the feature explanation embedding (see Fig. 1D)."
+  },
+  {
+    "type": "paragraph",
+    "order": 66,
+    "text": "Ideally, activation strength should correlate positively with semantic similarity-high-activation sentences should exhibit high semantic relevance to the explanation. This matrix is visualized as a two-dimensional plot as shown in Fig. 4. The x-axis represents the ranking of sentences by semantic similarity to the feature explanation, while the y-axis represents their ranking by maximum activation value. Each cell represents a sampled text segment, with its position revealing the degree of match between activation strength and semantic relevance rankings. The matrix uses a background color gradient from blue (high activation) to red (low activation) to encode activation value regions, as indicated by the color legend. Text segments falling along the color-emphasized diagonal regions, where high activation corresponds to high semantic similarity, indicate cases where activation and semantic similarity rankings approximately align, as shown in the left figure. This alignment suggests the feature explanation reasonably captures activation behavior. Deviations from the diagonal represent potential anomalies. Segments in the upper left region (blue background, high activation) with low semantic similarity potentially indicate feature behaviors not captured by the automatic explanation. Conversely, segments in the lower right show high semantic relevance but low activation (red background), suggesting the explanation covers concepts that don't consistently trigger the feature."
+  },
+  {
+    "type": "title",
+    "order": 67,
+    "text": "USAGE SCENARIOS"
+  },
+  {
+    "type": "paragraph",
+    "order": 68,
+    "text": "To demonstrate our system's analytical capabilities, we present two usage scenarios completed by two domain experts using the datasets described in Sec 3.2. First, the user explores plant-related features, showcasing how our system helps understand concept and feature semantic associations. Second, the user investigates the superhero concept, highlighting our system's ability to reveal meaningful tokenfeature associations while distinguishing semantically relevant features from coincidental activations."
+  },
+  {
+    "type": "title",
+    "order": 69,
+    "text": "Exploring and Validating Plant-Related Features"
+  },
+  {
+    "type": "paragraph",
+    "order": 70,
+    "text": "In this scenario, the user begins by entering \"plant\" in the Concept Query View (Fig. 5A). The system calculates semantic similarity between feature explanations and both original and optimized queries, displaying the distribution graph. Observing higher similarity counts with the optimized query, the user refines their search to \"words related to plant and its associations with cultivation, agriculture\". After finalizing the query, the user examines the SAE Model Retrieval View (Fig. 5A), which displays a heat map of semantic similarity across all SAE layers. The visualization reveals stronger semantic matches (darker blue bars) concentrated in the earlier layers. Based on this insight, the user selects the fourth layer SAE for detailed exploration."
+  },
+  {
+    "type": "paragraph",
+    "order": 71,
+    "text": "In the Feature Explorer View, the user observes query-relevant features (blue points) distributed across several semantic regions in the concept space (Fig. 5B). Starting at a high-level view, user identify broad conceptual areas like scientific and sports. Drilling down into the scientific region reveals intermediate clusters focused on food concepts. Further exploration uncovers finer-grained semantic groups including environmental and research topics. Within the environmental cluster, the user discovers a highlighted feature with the description \"references to plants and plant-related topics\". The user selects this point for detailed analysis(Fig. 5C). The Feature Details View displays vocabulary space projections and maximum token activation statistics on the left, both confirming the feature's association with lexical variations such as \"plant\", \"plants\", \"planted\". The overview of activation-similarity matrix further validates this semantic alignment. However, in the activation-similarity matrix, a gray point indicating high activation but low semantic similarity suggests potential limitations in the automated feature explanation. Upon inspection, the user discovers that this sample contains the word \"plant\" referring to a factory rather than vegetation, indicating that the feature primarily recognizes the lexical token plant while associating it with botanical meanings."
+  },
+  {
+    "type": "paragraph",
+    "order": 72,
+    "text": "To validate this hypothesis(Fig. 5D), the user proceeds to the Custom Input Activation View, inputting text containing token plant . The activation pattern analysis confirms the earlier findings. The user then employs the Activation Steering View with the prompt \"I walked into the most beautiful garden in the world and wanted\" and observes completion results across different feature activation levels. The experiments reveal that increasing feature activation produces outputs focused on plants and botanical vocabulary; neutral activation maintains garden-related content with fewer specific plant references; while suppressing activation shifts away from plant-related content toward environmental and emotional experiences. Through this analysis process, the user validates that the feature indeed correlates with both the word \"plant\" and its botanical meaning, while discovering nuanced activation patterns beyond the scope of the automated explanation."
+  },
+  {
+    "type": "title",
+    "order": 73,
+    "text": "Exploring Superhero-Related Features"
+  },
+  {
+    "type": "paragraph",
+    "order": 74,
+    "text": "In this scenario, the user begins by querying \"superhero\" in the Concept Query View (Fig. 1A) and selects an appropriate SAE model from layer 11 (Fig. 1B). The Feature Explorer View (Fig. 6A) displays query-relevant features distributed across clusters labeled as power, spiritual, and individuals. Feature 6610, described as \"references to superhero characters and their narratives\", captures the user's attention due to its position within the individuals cluster."
+  },
+  {
+    "type": "paragraph",
+    "order": 75,
+    "text": "In the Input Activation View (Fig. 6B), the user tests this feature with various superhero-related prompts. The visualization reveals strong activation for superhero names, demonstrating the feature's ability to recognize popular superhero characters. For validation, the user employs the Output Steering View with the prompt \"My favorite hero is\" and observes how different activation strengths influence completions: high activation generates superhero names like \"Dr. Strange\" while lower activation produces more general character references."
+  },
+  {
+    "type": "paragraph",
+    "order": 76,
+    "text": "The user then selects superhero tokens (e.g., Superman , Batman ) to identify other features with similar activation patterns (Fig. 6C). While three other features show activation for these superhero tokens, their semantic cluster labels (technical, medical, and scientific) immediately suggest they may not represent superhero concepts coherently. Upon examining feature 12945, the user confirms it exhibits poor activationto-semantic coherence, with text segments triggering highest activation spanning diverse, unrelated concepts, indicating this feature lacks clear semantic specificity. However, feature 9638's proximity to feature 6610 in the feature space captures the user's attention. Through maximum token activation statistics, the user observes this feature relates to heroic movies, demonstrating its connection to superhero concepts."
+  },
+  {
+    "type": "paragraph",
+    "order": 77,
+    "text": "For more detailed validation (Fig. 6D), the user discovers that feature 9638 activates for entertainment franchises like Harry Potter but shows no response to traditional heroes from mythology and folklore like Hercules and Sun Wukong . Based on this key finding, the user concludes that feature 6610 captures a general heroic concept, while feature 9638 is specific to characters from entertainment franchises."
+  },
+  {
+    "type": "title",
+    "order": 78,
+    "text": "USER STUDY"
+  },
+  {
+    "type": "paragraph",
+    "order": 79,
+    "text": "We conducted a formal user study to evaluate ConceptViz. Specifically, we aimed to evaluate (1) the effectiveness of each system component (Fig. 1A-F) in helping users understand and explore features, and (2) the overall usability and workflow design of the system."
+  },
+  {
+    "type": "title",
+    "order": 80,
+    "text": "Participants"
+  },
+  {
+    "type": "paragraph",
+    "order": 81,
+    "text": "We recruited 12 participants (P1-P12) from a local university through campus forums and online channels. All participants were undergraduate and master's students in computer science who had previously participated in LLM research. Three of them had experience in AI explainability research. All participants had some understanding of SAEs, with most having a solid grasp of SAE fundamental knowledge. Each participant received $20 as compensation for their time."
+  },
+  {
+    "type": "title",
+    "order": 82,
+    "text": "Procedure and Tasks"
+  },
+  {
+    "type": "paragraph",
+    "order": 83,
+    "text": "Training Phase (20 minutes): We first introduced the research background and motivation to the participants. We then collected demographic information from participants and obtained their consent to record their system usage, results, and responses for further analysis. Following this, we demonstrated the system operation and gave participants sufficient time to familiarize themselves with the various functions and interaction methods of the system. Targeted Task (20 minutes): To ensure all participants could evaluate the system on an equal basis, we asked them to complete a standardized guided task: using the system to identify the one feature most relevant to \"negative emotions\". This task was designed to test the basic functionality of the system and the participants' proficiency with it."
+  },
+  {
+    "type": "paragraph",
+    "order": 84,
+    "text": "Open-ended Exploration (20 minutes): In this phase, we encouraged participants to choose a concept domain of interest (e.g., food, history, or media) and freely explore using the ConceptViz system. The participants' goal was to discover and validate at least one meaningful feature related to their chosen concept. This task was designed to evaluate the system's capability to support open-ended exploration and discovery."
+  },
+  {
+    "type": "paragraph",
+    "order": 85,
+    "text": "Questionnaire and Interview (20 minutes): After the experiment, participants completed questionnaires based on a 5-point Likert scale, evaluating the system's effectiveness, usability, and overall satisfaction (Fig. 7). Subsequently, we conducted semi-structured interviews to collect detailed feedback from participants regarding the effectiveness of each system component, the overall workflow, and the system usability."
+  },
+  {
+    "type": "title",
+    "order": 86,
+    "text": "Results Analysis"
+  },
+  {
+    "type": "paragraph",
+    "order": 87,
+    "text": "Based on the collected feedback and questionnaire ratings (Fig. 7), we analyzed the effectiveness of each system component (Sec. 7.3.1), and summarized the overall usability along with notable user behavior patterns and potential areas for improvement (Sec. 7.3.2)."
+  },
+  {
+    "type": "title",
+    "order": 88,
+    "text": "Effectiveness of System Components"
+  },
+  {
+    "type": "paragraph",
+    "order": 89,
+    "text": "Overall, all of our system components received ratings higher than 4 on average (Q1-Q6), showing users' satisfaction on their effectiveness."
+  },
+  {
+    "type": "paragraph",
+    "order": 90,
+    "text": "Identification. Participants found the Concept Query View (Fig. 1A) helpful for building and refining concept queries (Q1, µ = 4.50). P6 highlighted that \"it provides valuable query improvement suggestions when concepts are ambiguous.\" For the SAE Discovery View (Fig. 1B), participants generally found the suggestions effective (Q2, µ = 4.58), with P3 noting that \"it allows me to quickly identify the SAE layer most relevant to my query concept,\" significantly reducing the time needed to find appropriate features. In addition, P9 mentioned that effectively using this functionality requires understanding how different SAE layers capture semantics, noting that \"lower-level SAEs detect concrete patterns while higher-level ones capture abstract concepts.\""
+  },
+  {
+    "type": "paragraph",
+    "order": 91,
+    "text": "Interpretation. The Feature Explorer View (Fig. 1C) received high ratings for helping users understand the semantic distribution of features within SAEs (Q3, µ = 4.50). P3 indicated it clearly partitions different concept areas through semantic clustering, making it easier to identify feature groups related to specific topic, while P10 found the topic modeling functionality intuitively displays feature semantic categories through meaningful spatial organization. Some participants suggested improvements to the visualization aspects, with P7 noting \"color transitions between feature clusters could be smoother to better indicate semantic relationships,\" and P4 observing that in certain cases, queryrelevant and irrelevant features (blue and gray points) aren't sufficiently separated in the spatial layout', suggesting that \"the dimensionality reduction might benefit from incorporating query information.\" Participants acknowledged the Feature Details View (Fig. 1D) helpful for understanding feature semantics (Q4, µ = 4.42). P10 valued observing text segment samples where activation values significantly diverge from similarity, which reveals discrepancies between feature activation patterns and feature explanations, while P8 appreciated how the combination of vocabulary space visualization and max activation token statistics enables rapid comprehension of feature semantics. P6 suggested future versions could benefit from more automatically recommending feature explanations and representative sentences to accelerate the feature understanding process, especially for complex cases."
+  },
+  {
+    "type": "paragraph",
+    "order": 92,
+    "text": "Validation. The Input Activation View (Fig. 1E) and Output Steering View (Fig. 1F) received positive feedback for their functionalities. Input Activation View was rated highly for verifying feature-concept relationships (Q5, µ = 4.42), with P9 praising its highly interactive interface design that allows direct testing of features against different input samples and P3 noting the benefits of combining token-associated features bubble sets with the Feature Explorer View to efficiently validate semantic alignment. Output Validation was appreciated for observing feature impacts on model generation (Q6, µ = 4.58), with P1 describing it as \"the system's most excellently designed component for revealing how features influence text generation outcomes,\" and P6 indicating it helps verify feature function at the model level by showing how activated features alter the LLM output. P4 suggested that the Activation Steer component was promising with further optimization, as users sometimes need multiple attempts to discover meaningful insights."
+  },
+  {
+    "type": "title",
+    "order": 93,
+    "text": "Overall Workflow and System Usability"
+  },
+  {
+    "type": "paragraph",
+    "order": 94,
+    "text": "Participants were overall satisfied with workflow and system usability. Workflow. Participants considered the three-stage workflow design reasonable (Q7, µ = 4.67), supporting complete analysis from SAE identification to validation. P4 praised its \"macro-to-micro analysis path,\" while P9 noted the workflow has \"clear logical transitions between stages.\" P6 evaluated that \"the views form a tightly complementary analysis loop rather than merely sequential relationships.\""
+  },
+  {
+    "type": "title",
+    "order": 95,
+    "text": "Question"
+  },
+  {
+    "type": "paragraph",
+    "order": 96,
+    "text": "The Feature Explorer View helps me understand feature distribution in concept space."
+  },
+  {
+    "type": "paragraph",
+    "order": 97,
+    "text": "The Feature Details View helps me understand the semantic meaning of features."
+  },
+  {
+    "type": "paragraph",
+    "order": 98,
+    "text": "The Input Activation View helps me verify the correspondence between features and concepts."
+  },
+  {
+    "type": "paragraph",
+    "order": 99,
+    "text": "The Output Steering View allows me to observe feature causal impact on model outputs."
+  },
+  {
+    "type": "paragraph",
+    "order": 100,
+    "text": "The workflow supports analysis process from feature discovery to validation."
+  },
+  {
+    "type": "paragraph",
+    "order": 101,
+    "text": "It is easy to learn the system."
+  },
+  {
+    "type": "paragraph",
+    "order": 102,
+    "text": "It is easy to use the system. I will use this system again."
+  },
+  {
+    "type": "paragraph",
+    "order": 103,
+    "text": "The Concept Query View effectively helps me build and refine my concept queries."
+  },
+  {
+    "type": "paragraph",
+    "order": 104,
+    "text": "The SAE Discovery View helps me identify SAE models most relevant to my concepts. System Usability. Regarding learnability (Q8), most participants found the system easy to learn (µ = 4.33), despite requiring some prerequisite knowledge. P4 considered the interface intuitive and easily mastered, while P8 suggested providing an overview visualization of Transformer model architecture to help users connect interface elements with underlying concepts. In terms of usability (Q9), participants found the system easy to use (µ = 4.58). Most participants mentioned the exploration process was engaging and enjoyable. P8 noted that the system could be valuable beyond professional researchers, extending to language model enthusiasts who want to understand how these models work. Overall, all participants indicated a willingness to use the system again (Q10, µ = 4.67), suggesting significant value in supporting the exploration of internal features and learning meaningful concepts in LLMs."
+  },
+  {
+    "type": "title",
+    "order": 105,
+    "text": "Avg. Score Distribution"
+  },
+  {
+    "type": "title",
+    "order": 106,
+    "text": "DISCUSSION"
+  },
+  {
+    "type": "paragraph",
+    "order": 107,
+    "text": "In this section, we discuss insights gathered from our user study, the limitations of our system, and directions for future work."
+  },
+  {
+    "type": "title",
+    "order": 108,
+    "text": "Lessons Learned"
+  },
+  {
+    "type": "paragraph",
+    "order": 109,
+    "text": "Based on the results of our study, we identified several key insights about feature interpretation in large language models:"
+  },
+  {
+    "type": "paragraph",
+    "order": 110,
+    "text": "Fusing Automated and Activation-Based Analyses for Robust Feature Interpretation. Our study revealed that users highly value tools that help reconcile discrepancies between feature activations and feature explanations. The ability to examine anomalous samples where activation values significantly diverge from similarity provides crucial insights into feature behavior. This suggests the importance of incorporating multiple perspectives when interpreting model components, rather than relying solely on single explanations or activation patterns."
+  },
+  {
+    "type": "paragraph",
+    "order": 111,
+    "text": "Bridging Low-Level Mechanics and High-Level Behaviors for Holistic Feature Analysis. Participants consistently emphasized the value of analyzing features from two complementary perspectives. They validated features at the level of low-level mechanics through input validation, which helped verify feature-concept relationships by examining internal activation patterns. Concurrently, they assessed the high-level behaviors of features through output validation, which demonstrated their concrete impact on the final model generations. This bi-directional approach, which effectively bridges these mechanics and behaviors, allowed users to perform a more holistic feature analysis and build a complete mental model of a feature interpretation."
+  },
+  {
+    "type": "paragraph",
+    "order": 112,
+    "text": "Facilitating User-Driven Discovery and Engagement through Interactive Exploration. Most participants mentioned that the exploration process was engaging and enjoyable. The ability to fluidly move between selecting, browsing, and validation encouraged serendipitous discovery of unexpected feature properties. The interactive nature of our system supported diverse exploration styles: some users preferred a more structured approach starting from concept queries, while others found value in browsing the feature space more freely and following connections between related features. This flexibility allowed users to adapt the system to their own investigative preferences, leading to higher engagement. Many participants reported instances where they discovered novel feature behaviors and unexpected insights they were not actively seeking, highlighting how the interactive design facilitated unexpected insights about model internals."
+  },
+  {
+    "type": "title",
+    "order": 113,
+    "text": "Limitation and Future Work"
+  },
+  {
+    "type": "paragraph",
+    "order": 114,
+    "text": "Despite the positive feedback from users, our system has several limitations that represent opportunities for future research:"
+  },
+  {
+    "type": "paragraph",
+    "order": 115,
+    "text": "Reliability. The reliability of ConceptViz relies on the robustness of underlying SAEs and their automated explanations. We design our system with this in mind, aiming to help users navigate potential imperfections. Instead of requiring users to blindly trust these automated outputs, ConceptViz encourages a workflow of exploration and verification, empowering users to confirm or challenge initial findings through direct interaction, thereby building a more robust and evidence-based understanding. Furthermore, as the research community makes continuous progress in developing more powerful SAEs and explanation techniques, these advancements can be seamlessly integrated into our system, further enhancing its reliability and ease of use."
+  },
+  {
+    "type": "paragraph",
+    "order": 116,
+    "text": "Scalability. Our current implementation was tested on SAEs with 16, 384 features for each residual layer of the language model. As feature spaces scale towards hundreds of thousands or more, the primary computational cost lies in UMAP dimension reduction during data preprocessing. In contrast, the interactive components, including vector database queries and frontend rendering, still remain responsive and fluid when tested with up to one million features. To efficiently support much larger scales, future work should explore methods like distributed dimension reduction for preprocessing, while further enhancing interactive performance through multi-GPU parallel processing for database queries and adaptive, hierarchical rendering strategies."
+  },
+  {
+    "type": "paragraph",
+    "order": 117,
+    "text": "Generalizability. Our pipeline operates on the embeddings of feature explanations from SAEs, making it independent of any specific LLM architecture. Although the case studies in this paper utilize the Gemma-2 model, we have also applied our approach to SAEs trained on GPTseries models. This demonstrates the potential to extend ConceptViz to a wider range of LLMs and various emerging SAE architectures. Moreover, as multimodal large language models become increasingly prevalent, an exciting direction for future research is to adapt our system for cross-modal feature analysis [37,48], exploring how concepts are represented across modalities like text and images."
+  },
+  {
+    "type": "paragraph",
+    "order": 118,
+    "text": "Experiment Setting. Our experiment setting is constrained by the participant pool, which consisted solely of users with prior SAE knowledge. Consequently, our usability findings may not fully capture the challenges faced by novices. Meanwhile, the guided tasks were designed to demonstrate core functionality and may not fully represent the complexities of open-ended, real-world research. Future work should therefore engage a more diverse user base in more ecologically valid analytical tasks to better assess the system's effectiveness in practice."
+  },
+  {
+    "type": "title",
+    "order": 119,
+    "text": "CONCLUSION"
+  },
+  {
+    "type": "paragraph",
+    "order": 120,
+    "text": "This paper presents a visual analytics system, ConceptViz, for exploring and interpreting SAE features in large language models. The system integrates identification, interpretation, and validation capabilities in a unified workflow, enabling users to effectively discover, examine, and verify feature behaviors across different contexts. Through two usage scenarios and a comprehensive user study, we demonstrate that ConceptViz successfully bridges the gap between automated feature explanations and user understanding. By making feature-level analysis more accessible and intuitive, our work contributes to the broader effort of opening the black box of large language models and supports advancements in model interpretability, safety, and alignment."
+  },
+  {
+    "type": "caption",
+    "order": 121,
+    "text": "address this obtaining reprints of this article, please send e-mail to: reprints@ieee.org. Digital Object Identifier: xx.xxxx/TVCG.201x.xxxxxxx arXiv:2509.20376v1 [cs.CL] 20 Sep 2025"
+  },
+  {
+    "type": "caption",
+    "order": 122,
+    "text": "Fig.2: SAEs address the polysemanticity problem in LLM neurons by projecting neuron activations into sparse, interpretable features. Each SAE feature corresponds to more specific human-understandable concepts (e.g., Duck, Yellow), enabling clearer semantic distinctions than the original neurons which may activate for multiple unrelated concepts."
+  },
+  {
+    "type": "caption",
+    "order": 123,
+    "text": "Fig. 3: Our system's three technical components: (A) Concept-based SAE Model Retrieval identifies relevant models by matching user queries with feature explanations, computing multi-threshold similarity rankings, and prioritizing consistently high-performing SAEs. (B) Feature Abstraction and Semantic Interpretation provides both global context through hierarchical clustering and topic visualization (B1), and detailed feature understanding through vocabulary projection and activation pattern analysis (B2). (C) Activation Analysis and Steering enables empirical validation through custom input testing and causal verification by manipulating feature activations to observe resulting output changes."
+  },
+  {
+    "type": "caption",
+    "order": 124,
+    "text": "Fig. 4: Activation-similarity matrix visualization: Left: Well-explained feature with correlation between activation strength and semantic similarity (samples align along diagonal). Right: Poorly explained feature showing discrepancies -high-activation samples with low similarity (upper left) and high-similarity samples with low activation (lower right), revealing explanation limitations."
+  },
+  {
+    "type": "caption",
+    "order": 125,
+    "text": "Fig. 5: A user exploring plant-related features: (A) The user queries \"plant\", receives an optimized suggestion, then examines SAE relevance rankings with Layer 4 showing higher relevance. (B) While browsing feature clusters, the user identifies a relevant feature near the environmental region. (C) After selecting feature 983, the user examines its vocabulary space and activation matrix, revealing plant-related associations. (D) The user analyzes activations and validates through steering, observing effects on garden text generation."
+  },
+  {
+    "type": "caption",
+    "order": 126,
+    "text": "Fig. 6: A user investigating superhero-related features: (A) The user identifies feature 6610 within the individuals cluster, referencing superhero characters. (B) Input activation shows strong responses to superhero names, while steering demonstrates control over character generation. (C) Most related features are distant with poor labels, but feature 9638's proximity captures user interest. (D) Validation reveals feature 9638 activates for entertainment franchises like Harry Potter but not traditional heroes like Hercules ."
+  },
+  {
+    "type": "caption",
+    "order": 127,
+    "text": "Fig.7: The results of the questionnaire regarding the effectiveness and usability of the visual system and workflow."
+  },
+  {
+    "type": "caption",
+    "order": 128,
+    "text": ", Xiuqi Huang, and Wei Chen are with the State Key Lab of CAD&CG, Zhejiang University. E-mail: {lihaoxuan | wenzhen | qiqijiang348284 | 22451008 | yyc_yang | wangyiyao | chenvis}@zju.edu.cn. • Chenxiao Li and Minfeng Zhu are with Zhejiang University. E-mail: {3220101835 | minfeng_zhu}@zju.edu.cn. • Haoxuan Li and Zhen Wen contributed equally to this work. • Minfeng Zhu, Xiuqi Huang and Wei Chen are the corresponding authors."
+  }
+]

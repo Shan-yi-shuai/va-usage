@@ -1,0 +1,1051 @@
+{
+  "paperName": "BDIViz",
+  "systemName": "BDIViz",
+  "systemSpecPath": "data/agentic/extract-results/BDIViz/system-spec/output/system-spec.json",
+  "caseStudies": [
+    {
+      "caseId": "dou-to-gdc-harmonization",
+      "caseTitle": "Harmonizing the Dou Endometrial Carcinoma Dataset to the GDC Schema",
+      "caseStudyKind": "RealWorldCase",
+      "analyst": {
+        "role": "DomainExpert",
+        "domainExpertise": "Expert",
+        "toolExpertise": "Unknown",
+        "description": "A biomedical researcher using BDIViz to harmonize the Dou dataset with the GDC schema."
+      },
+      "scenario": {
+        "domainProblem": "Mapping a large endometrial-carcinoma dataset to the GDC schema while confirming prior correspondences and detecting missed matches.",
+        "analysisGoal": "Verify known Dou-to-GDC attribute mappings and identify additional valid correspondences using BDIViz.",
+        "datasetContext": "The Dou source dataset contains 179 attributes from an endometrial carcinoma study and is harmonized against the GDC schema in the CPTAC context.",
+        "stakes": "Accurate schema harmonization is needed so biomedical datasets can be integrated reliably for downstream analysis and sharing.",
+        "initialQuestion": "Which Dou attributes can be confidently aligned to the GDC schema, including correspondences that manual mapping may have missed?"
+      },
+      "questions": [
+        {
+          "questionId": "dou-to-gdc-harmonization.which-dou-attributes-can-be-confidently-aligned-to-the-gdc-schema-including-missed-correspondences",
+          "questionText": "Which Dou attributes can be confidently aligned to the GDC schema, including correspondences that manual mapping may have missed?",
+          "status": "Answered",
+          "description": "The case centers on both validating the existing mapping set and extending it with additional trustworthy matches.",
+          "evidence": {
+            "passageIds": [
+              54,
+              55
+            ],
+            "figureRefs": [
+              "Fig. 9"
+            ],
+            "quotes": [
+              "verify the 19 matches as well as identify 10 additional matches",
+              "Among the newly-identified mappings was the match from Num_full_term_pregnancies to pregnancy_count"
+            ],
+            "reasoning": "The narrative repeatedly frames the case as a validation-and-discovery task over candidate Dou-to-GDC mappings.",
+            "confidence": 0.94
+          },
+          "inferenceType": "StrongInference"
+        }
+      ],
+      "episodes": [
+        {
+          "episodeId": "dou-to-gdc-harmonization.verify-known-and-easy-matches",
+          "episodeTitle": "Verify Known and Easy Matches",
+          "localGoal": "Quickly confirm accepted high-confidence matches before moving on to harder cases.",
+          "focusQuestionIds": [
+            "dou-to-gdc-harmonization.which-dou-attributes-can-be-confidently-aligned-to-the-gdc-schema-including-missed-correspondences"
+          ],
+          "strategyCanonical": [
+            "OverviewFirst",
+            "EvidenceAccumulation"
+          ],
+          "strategyText": "The analyst starts with accepted matches that can be validated quickly through visible correspondence and value alignment.",
+          "steps": [
+            {
+              "stepId": "dou-to-gdc-harmonization.verify-known-and-easy-matches.step-1",
+              "stepIndex": 1,
+              "rawNarrative": "Using BDIViz, the biomedical researcher verified the existing accepted matches and quickly validated easy correspondences in the curated candidate set.",
+              "questionsAddressed": [
+                "dou-to-gdc-harmonization.which-dou-attributes-can-be-confidently-aligned-to-the-gdc-schema-including-missed-correspondences"
+              ],
+              "intentCanonical": [
+                "Browse",
+                "Validate"
+              ],
+              "intentText": "Review the accepted candidate set and confirm which existing mappings are clearly valid.",
+              "strategyCanonical": [
+                "OverviewFirst"
+              ],
+              "strategyText": "Begin with easy, already accepted candidates to establish trustworthy progress quickly.",
+              "operationCanonical": [
+                "InspectDetails",
+                "SelectItem"
+              ],
+              "operationText": "Inspect accepted candidates in the heatmap to confirm which known mappings appear trustworthy.",
+              "usedViews": [
+                {
+                  "viewId": "heatmap-panel",
+                  "subViewId": "heatmap-panel.interactive-heatmap"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "heatmap-panel",
+                  "subViewId": "heatmap-panel.interactive-heatmap",
+                  "capabilityId": "heatmap-panel.interactive-heatmap.browse-candidate-matches"
+                }
+              ],
+              "targetDataDescription": [
+                "accepted Dou-to-GDC candidate matches",
+                "the 19 manually identified correspondences"
+              ],
+              "observations": [
+                {
+                  "observationType": "Comparison",
+                  "description": "Many accepted matches are easy to validate because the source and target attributes align directly.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "heatmap-panel",
+                      "subViewId": "heatmap-panel.interactive-heatmap"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      54
+                    ],
+                    "figureRefs": [
+                      "Fig. 9"
+                    ],
+                    "quotes": [
+                      "it was easy to validate the accepted matches"
+                    ],
+                    "reasoning": "The narrative explicitly characterizes this initial portion of the case as easy validation.",
+                    "confidence": 0.97
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "outcomeSummary": "The analyst confirms that the previously identified accepted mappings are largely trustworthy.",
+              "inferenceType": "CrossModalSynthesis",
+              "evidence": {
+                "passageIds": [
+                  54
+                ],
+                "figureRefs": [
+                  "Fig. 9"
+                ],
+                "quotes": [
+                  "within 15 minutes, a biomedical researcher was able to verify the 19 matches"
+                ],
+                "reasoning": "This step captures the initial review of the previously known mapping set without committing to a specific acceptance control path.",
+                "confidence": 0.96
+              }
+            },
+            {
+              "stepId": "dou-to-gdc-harmonization.verify-known-and-easy-matches.step-2",
+              "stepIndex": 2,
+              "rawNarrative": "For an easy accepted match such as FIGO_stage to figo_stage, the researcher checks that the values line up directly, for example IA to Stage IA and IB to Stage IB.",
+              "questionsAddressed": [
+                "dou-to-gdc-harmonization.which-dou-attributes-can-be-confidently-aligned-to-the-gdc-schema-including-missed-correspondences"
+              ],
+              "intentCanonical": [
+                "Compare",
+                "Validate"
+              ],
+              "intentText": "Confirm a straightforward categorical correspondence by reading aligned source and target values.",
+              "strategyCanonical": [
+                "InspectThenCompare"
+              ],
+              "operationCanonical": [
+                "InspectDetails",
+                "CompareAlternatives"
+              ],
+              "operationText": "Inspect the selected match and compare the source and target value labels side by side.",
+              "usedViews": [
+                {
+                  "viewId": "heatmap-panel",
+                  "subViewId": "heatmap-panel.value-comparisons-table"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "heatmap-panel",
+                  "subViewId": "heatmap-panel.value-comparisons-table",
+                  "capabilityId": "heatmap-panel.value-comparisons-table.compare-source-target-values"
+                }
+              ],
+              "targetDataDescription": [
+                "FIGO_stage",
+                "figo_stage",
+                "categorical stage codes such as IA and IB"
+              ],
+              "observations": [
+                {
+                  "observationType": "Comparison",
+                  "description": "The FIGO_stage values line up cleanly with the target figo_stage values.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "heatmap-panel",
+                      "subViewId": "heatmap-panel.value-comparisons-table"
+                    }
+                  ],
+                  "targetDataDescription": [
+                    "IA -> Stage IA",
+                    "IB -> Stage IB"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      54
+                    ],
+                    "figureRefs": [
+                      "Fig. 9"
+                    ],
+                    "quotes": [
+                      "FIGO_stage and figo_stage, whose values could be easily aligned"
+                    ],
+                    "reasoning": "The paper gives a concrete value-level confirmation example for this match.",
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "CandidateIdentified",
+                  "description": "FIGO_stage is a valid accepted match to figo_stage because the source and target stage values align directly.",
+                  "relatedQuestionIds": [
+                    "dou-to-gdc-harmonization.which-dou-attributes-can-be-confidently-aligned-to-the-gdc-schema-including-missed-correspondences"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "heatmap-panel",
+                      "subViewId": "heatmap-panel.value-comparisons-table"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      54
+                    ],
+                    "figureRefs": [
+                      "Fig. 9"
+                    ],
+                    "quotes": [
+                      "\"IA\" to \"Stage IA\", \"IB\" to \"Stage IB\""
+                    ],
+                    "reasoning": "The aligned categorical values justify the match acceptance.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "outcomeSummary": "A straightforward categorical match is confirmed through direct value alignment.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  54
+                ],
+                "figureRefs": [
+                  "Fig. 9"
+                ],
+                "quotes": [
+                  "whose values could be easily aligned"
+                ],
+                "reasoning": "This step is explicitly described as a concrete easy-match validation example.",
+                "confidence": 0.98
+              }
+            }
+          ],
+          "transitions": [
+            {
+              "sourceStepId": "dou-to-gdc-harmonization.verify-known-and-easy-matches.step-1",
+              "targetStepId": "dou-to-gdc-harmonization.verify-known-and-easy-matches.step-2",
+              "transitionType": "Confirm",
+              "rationale": "After surveying accepted matches, the analyst confirms one representative easy match through direct value comparison.",
+              "evidence": {
+                "passageIds": [
+                  54
+                ],
+                "figureRefs": [
+                  "Fig. 9"
+                ],
+                "quotes": [
+                  "which included easy matches, for example the attributes FIGO_stage and figo_stage"
+                ],
+                "reasoning": "The narrative moves from the general accepted-match set to a specific easy-match confirmation example.",
+                "confidence": 0.95
+              },
+              "inferenceType": "Explicit"
+            }
+          ],
+          "episodeOutcomeSummary": "The analyst quickly validates the existing easy matches and establishes confidence in the accepted portion of the candidate set.",
+          "evidence": {
+            "passageIds": [
+              54
+            ],
+            "figureRefs": [
+              "Fig. 9"
+            ],
+            "quotes": [
+              "verify the 19 matches",
+              "it was easy to validate the accepted matches"
+            ],
+            "reasoning": "Both steps belong to the initial confirmation phase over already accepted matches.",
+            "confidence": 0.97
+          },
+          "inferenceType": "CrossModalSynthesis"
+        },
+        {
+          "episodeId": "dou-to-gdc-harmonization.investigate-missed-and-numerical-matches",
+          "episodeTitle": "Investigate Missed and Numerical Matches",
+          "localGoal": "Use detailed evidence views to validate additional mappings beyond the previously known set.",
+          "focusQuestionIds": [
+            "dou-to-gdc-harmonization.which-dou-attributes-can-be-confidently-aligned-to-the-gdc-schema-including-missed-correspondences"
+          ],
+          "strategyCanonical": [
+            "EvidenceAccumulation",
+            "InspectThenCompare"
+          ],
+          "strategyText": "The analyst accumulates attribute-description and value evidence to confirm harder or newly surfaced candidate matches.",
+          "steps": [
+            {
+              "stepId": "dou-to-gdc-harmonization.investigate-missed-and-numerical-matches.step-1",
+              "stepIndex": 1,
+              "rawNarrative": "To assess numerical attributes, the analyst reads the GDC target-attribute description and inspects the corresponding value distributions.",
+              "questionsAddressed": [
+                "dou-to-gdc-harmonization.which-dou-attributes-can-be-confidently-aligned-to-the-gdc-schema-including-missed-correspondences"
+              ],
+              "intentCanonical": [
+                "Inspect",
+                "Validate"
+              ],
+              "intentText": "Gather enough semantic and numeric evidence to judge whether a numerical candidate mapping is valid.",
+              "strategyCanonical": [
+                "EvidenceAccumulation"
+              ],
+              "operationCanonical": [
+                "InspectDetails",
+                "CompareAlternatives"
+              ],
+              "operationText": "Inspect target metadata and compare source-target value distributions for numerical fields.",
+              "usedViews": [
+                {
+                  "viewId": "heatmap-panel",
+                  "subViewId": "heatmap-panel.value-distribution-histograms"
+                },
+                {
+                  "viewId": "agent-panel",
+                  "subViewId": "agent-panel.target-attribute-properties"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "heatmap-panel",
+                  "subViewId": "heatmap-panel.value-distribution-histograms",
+                  "capabilityId": "heatmap-panel.value-distribution-histograms.compare-value-distributions"
+                },
+                {
+                  "viewId": "agent-panel",
+                  "subViewId": "agent-panel.target-attribute-properties",
+                  "capabilityId": "agent-panel.target-attribute-properties.inspect-target-attribute-properties"
+                }
+              ],
+              "targetDataDescription": [
+                "numerical candidate matches",
+                "GDC attribute descriptions",
+                "source and target value distributions"
+              ],
+              "observations": [
+                {
+                  "observationType": "Distribution",
+                  "description": "Numerical candidate assessment depends on combining the target attribute description with value-distribution evidence rather than relying only on similarity scores.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "heatmap-panel",
+                      "subViewId": "heatmap-panel.value-distribution-histograms"
+                    },
+                    {
+                      "viewId": "agent-panel",
+                      "subViewId": "agent-panel.target-attribute-properties"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      54
+                    ],
+                    "figureRefs": [
+                      "Fig. 9"
+                    ],
+                    "quotes": [
+                      "they leveraged the GDC attribute description and the comparisons of value distributions"
+                    ],
+                    "reasoning": "The paper explicitly names the two evidence sources used for harder numerical matches.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "outcomeSummary": "The analyst gathers detailed semantic and distributional evidence for evaluating nontrivial numerical candidates.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  54
+                ],
+                "figureRefs": [
+                  "Fig. 9"
+                ],
+                "quotes": [
+                  "To assess matches with numerical attributes, they leveraged the GDC attribute description and the comparisons of value distributions"
+                ],
+                "reasoning": "This is an explicit local analytic move to gather evidence for numerical candidates.",
+                "confidence": 0.99
+              }
+            },
+            {
+              "stepId": "dou-to-gdc-harmonization.investigate-missed-and-numerical-matches.step-2",
+              "stepIndex": 2,
+              "rawNarrative": "The analyst validates a newly identified mapping from Num_full_term_pregnancies to pregnancy_count by checking that the source values align with the GDC description of pregnancy_count.",
+              "questionsAddressed": [
+                "dou-to-gdc-harmonization.which-dou-attributes-can-be-confidently-aligned-to-the-gdc-schema-including-missed-correspondences"
+              ],
+              "intentCanonical": [
+                "Compare",
+                "Validate"
+              ],
+              "intentText": "Confirm that a newly surfaced candidate mapping is semantically valid.",
+              "strategyCanonical": [
+                "EvidenceAccumulation"
+              ],
+              "operationCanonical": [
+                "InspectDetails",
+                "CompareAlternatives"
+              ],
+              "operationText": "Compare the source attribute values with the target attribute definition and value semantics.",
+              "usedViews": [
+                {
+                  "viewId": "heatmap-panel",
+                  "subViewId": "heatmap-panel.value-comparisons-table"
+                },
+                {
+                  "viewId": "agent-panel",
+                  "subViewId": "agent-panel.target-attribute-properties"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "heatmap-panel",
+                  "subViewId": "heatmap-panel.value-comparisons-table",
+                  "capabilityId": "heatmap-panel.value-comparisons-table.compare-source-target-values"
+                },
+                {
+                  "viewId": "agent-panel",
+                  "subViewId": "agent-panel.target-attribute-properties",
+                  "capabilityId": "agent-panel.target-attribute-properties.inspect-target-attribute-properties"
+                }
+              ],
+              "targetDataDescription": [
+                "Num_full_term_pregnancies",
+                "pregnancy_count",
+                "source values 1, 2, 3, 4 or more"
+              ],
+              "observations": [
+                {
+                  "observationType": "Relationship",
+                  "description": "The source values for Num_full_term_pregnancies are consistent with the GDC definition of pregnancy_count.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "heatmap-panel",
+                      "subViewId": "heatmap-panel.value-comparisons-table"
+                    },
+                    {
+                      "viewId": "agent-panel",
+                      "subViewId": "agent-panel.target-attribute-properties"
+                    }
+                  ],
+                  "targetDataDescription": [
+                    "The number of times an individual has become pregnant"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      55
+                    ],
+                    "figureRefs": [
+                      "Fig. 9"
+                    ],
+                    "quotes": [
+                      "the unique values for the source attribute (1, 2, 3, 4 or more) was consistent with the GDC description"
+                    ],
+                    "reasoning": "The paper explicitly reports the value-to-description consistency used to validate this match.",
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "CandidateIdentified",
+                  "description": "Num_full_term_pregnancies is a valid additional mapping to pregnancy_count.",
+                  "relatedQuestionIds": [
+                    "dou-to-gdc-harmonization.which-dou-attributes-can-be-confidently-aligned-to-the-gdc-schema-including-missed-correspondences"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "heatmap-panel",
+                      "subViewId": "heatmap-panel.value-comparisons-table"
+                    },
+                    {
+                      "viewId": "agent-panel",
+                      "subViewId": "agent-panel.target-attribute-properties"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      55
+                    ],
+                    "figureRefs": [
+                      "Fig. 9"
+                    ],
+                    "quotes": [
+                      "Among the newly-identified mappings was the match from Num_full_term_pregnancies to pregnancy_count"
+                    ],
+                    "reasoning": "The narrative explicitly names this newly validated correspondence.",
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "decision": {
+                "description": "Accept Num_full_term_pregnancies as a new mapping to pregnancy_count.",
+                "rationale": "The source values are consistent with the target attribute's semantic description.",
+                "targetQuestionIds": [
+                  "dou-to-gdc-harmonization.which-dou-attributes-can-be-confidently-aligned-to-the-gdc-schema-including-missed-correspondences"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    55
+                  ],
+                  "figureRefs": [
+                    "Fig. 9"
+                  ],
+                  "quotes": [
+                    "Among the newly-identified mappings was the match from Num_full_term_pregnancies to pregnancy_count"
+                  ],
+                  "reasoning": "The paper presents this mapping as successfully verified by the expert.",
+                  "confidence": 0.98
+                },
+                "inferenceType": "Explicit"
+              },
+              "outcomeSummary": "A previously missed pregnancy-related mapping is validated and added to the curated set.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  55
+                ],
+                "figureRefs": [
+                  "Fig. 9"
+                ],
+                "quotes": [
+                  "Among the newly-identified mappings was the match from Num_full_term_pregnancies to pregnancy_count"
+                ],
+                "reasoning": "This step captures the successful validation of one newly identified mapping.",
+                "confidence": 0.99
+              }
+            }
+          ],
+          "transitions": [
+            {
+              "sourceStepId": "dou-to-gdc-harmonization.investigate-missed-and-numerical-matches.step-1",
+              "targetStepId": "dou-to-gdc-harmonization.investigate-missed-and-numerical-matches.step-2",
+              "transitionType": "Confirm",
+              "rationale": "After assembling attribute-description and value evidence, the analyst confirms a specific newly surfaced mapping.",
+              "evidence": {
+                "passageIds": [
+                  54,
+                  55
+                ],
+                "figureRefs": [
+                  "Fig. 9"
+                ],
+                "quotes": [
+                  "To assess matches with numerical attributes",
+                  "Among the newly-identified mappings was the match from Num_full_term_pregnancies to pregnancy_count"
+                ],
+                "reasoning": "The narrative moves from general evidence-gathering for numerical attributes to one concrete validated example.",
+                "confidence": 0.95
+              },
+              "inferenceType": "CrossModalSynthesis"
+            }
+          ],
+          "episodeOutcomeSummary": "Detailed descriptions and value evidence help the analyst validate missed or nontrivial mappings that were not captured reliably by manual mapping alone.",
+          "evidence": {
+            "passageIds": [
+              54,
+              55
+            ],
+            "figureRefs": [
+              "Fig. 9"
+            ],
+            "quotes": [
+              "identify 10 additional matches that had been missed in the manual schema mapping process",
+              "they leveraged the GDC attribute description and the comparisons of value distributions"
+            ],
+            "reasoning": "This episode covers the move from previously known matches to additional validated mappings supported by richer evidence.",
+            "confidence": 0.97
+          },
+          "inferenceType": "CrossModalSynthesis"
+        },
+        {
+          "episodeId": "dou-to-gdc-harmonization.disambiguate-semantic-near-matches",
+          "episodeTitle": "Reject Semantically Misleading Candidate",
+          "localGoal": "Use explanation evidence to reject a semantically misleading candidate match.",
+          "focusQuestionIds": [
+            "dou-to-gdc-harmonization.which-dou-attributes-can-be-confidently-aligned-to-the-gdc-schema-including-missed-correspondences"
+          ],
+          "strategyCanonical": [
+            "HypothesisTesting",
+            "EvidenceAccumulation"
+          ],
+          "strategyText": "The analyst reads explanation evidence to distinguish a misleading age-related candidate from the intended match.",
+          "steps": [
+            {
+              "stepId": "dou-to-gdc-harmonization.disambiguate-semantic-near-matches.step-1",
+              "stepIndex": 1,
+              "rawNarrative": "When comparing similar age-related candidates, the analyst consults the detailed agent explanations and rejects age_at_onset because it refers specifically to the onset of exposure.",
+              "questionsAddressed": [
+                "dou-to-gdc-harmonization.which-dou-attributes-can-be-confidently-aligned-to-the-gdc-schema-including-missed-correspondences"
+              ],
+              "intentCanonical": [
+                "Explain",
+                "Validate"
+              ],
+              "intentText": "Use explanation evidence to differentiate between two semantically similar candidates.",
+              "strategyCanonical": [
+                "HypothesisTesting"
+              ],
+              "operationCanonical": [
+                "RequestExplanation",
+                "InspectDetails"
+              ],
+              "operationText": "Read detailed agent explanations for competing age-related candidates and use that semantic evidence to reject the misleading alternative.",
+              "usedViews": [
+                {
+                  "viewId": "agent-panel",
+                  "subViewId": "agent-panel.match-explanations"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "agent-panel",
+                  "subViewId": "agent-panel.match-explanations",
+                  "capabilityId": "agent-panel.match-explanations.inspect-match-explanations"
+                }
+              ],
+              "targetDataDescription": [
+                "age_at_diagnosis",
+                "age_at_onset"
+              ],
+              "observations": [
+                {
+                  "observationType": "ContextualCue",
+                  "description": "The explanation for age_at_onset indicates that it refers to the onset of exposure rather than the intended diagnosis-related meaning.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "agent-panel",
+                      "subViewId": "agent-panel.match-explanations"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      55
+                    ],
+                    "figureRefs": [
+                      "Fig. 9"
+                    ],
+                    "quotes": [
+                      "The system rejected age_at_onset due to its specific reference to the onset of exposure"
+                    ],
+                    "reasoning": "The narrative directly attributes the rejection to explanation-guided semantic differentiation.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "decision": {
+                "description": "Reject age_at_onset as the incorrect semantic match.",
+                "rationale": "Its meaning refers to exposure onset rather than the intended diagnosis-related concept.",
+                "targetQuestionIds": [
+                  "dou-to-gdc-harmonization.which-dou-attributes-can-be-confidently-aligned-to-the-gdc-schema-including-missed-correspondences"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    55
+                  ],
+                  "figureRefs": [
+                    "Fig. 9"
+                  ],
+                  "quotes": [
+                    "The system rejected age_at_onset"
+                  ],
+                  "reasoning": "The paper explicitly states the rejection and why it happened.",
+                  "confidence": 0.99
+                },
+                "inferenceType": "Explicit"
+              },
+              "outcomeSummary": "Agent explanations help eliminate a semantically misleading age-related candidate.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  55
+                ],
+                "figureRefs": [
+                  "Fig. 9"
+                ],
+                "quotes": [
+                  "the expert relied on detailed agent explanations to differentiate between them"
+                ],
+                "reasoning": "This step is directly described as an explanation-driven rejection event.",
+                "confidence": 0.98
+              }
+            }
+          ],
+          "transitions": null,
+          "episodeOutcomeSummary": "The analyst eliminates a misleading age-related candidate by relying on the semantic explanation evidence.",
+          "evidence": {
+            "passageIds": [
+              55
+            ],
+            "figureRefs": [
+              "Fig. 9"
+            ],
+            "quotes": [
+              "the expert relied on detailed agent explanations to differentiate between them",
+              "The system rejected age_at_onset due to its specific reference to the onset of exposure"
+            ],
+            "reasoning": "The remaining step in this episode is directly supported as an explanation-guided rejection event.",
+            "confidence": 0.96
+          },
+          "inferenceType": "CrossModalSynthesis"
+        }
+      ],
+      "finalOutcome": {
+        "finalInsights": [
+          {
+            "insightType": "ReportProduced",
+            "description": "The expert verifies the previously known 19 matches and identifies 10 additional valid matches that had been missed by manual schema mapping.",
+            "relatedQuestionIds": [
+              "dou-to-gdc-harmonization.which-dou-attributes-can-be-confidently-aligned-to-the-gdc-schema-including-missed-correspondences"
+            ],
+            "evidence": {
+              "passageIds": [
+                54
+              ],
+              "figureRefs": [
+                "Fig. 9"
+              ],
+              "quotes": [
+                "verify the 19 matches as well as identify 10 additional matches"
+              ],
+              "reasoning": "This is the main concrete case-level outcome reported for the Dou-to-GDC harmonization story.",
+              "confidence": 0.99
+            },
+            "inferenceType": "Explicit"
+          }
+        ],
+        "finalDecisions": [
+          {
+            "description": "Retain the validated mappings and reject misleading alternatives such as age_at_onset or mismatched Tumor stage candidates.",
+            "rationale": "The analyst uses explanation and value evidence to separate valid correspondences from semantically incorrect ones.",
+            "targetQuestionIds": [
+              "dou-to-gdc-harmonization.which-dou-attributes-can-be-confidently-aligned-to-the-gdc-schema-including-missed-correspondences"
+            ],
+            "evidence": {
+              "passageIds": [
+                55
+              ],
+              "figureRefs": [
+                "Fig. 9"
+              ],
+              "quotes": [
+                "The system rejected age_at_onset",
+                "indicating a mismatch"
+              ],
+              "reasoning": "The case reports both positive validation and explicit rejection of incorrect alternatives.",
+              "confidence": 0.95
+            },
+            "inferenceType": "CrossModalSynthesis"
+          }
+        ],
+        "claimedSystemValue": "BDIViz helps experts handle large biomedical schemas by quickly validating straightforward matches, surfacing missed correspondences, and resolving subtle semantic ambiguities through coordinated evidence views.",
+        "evidence": {
+          "passageIds": [
+            54,
+            55
+          ],
+          "figureRefs": [
+            "Fig. 9"
+          ],
+          "quotes": [
+            "identify 10 additional matches that had been missed in the manual schema mapping process",
+            "This example underscores BDI-Viz's capability to handle subtle attribute differences"
+          ],
+          "reasoning": "The case narrative explicitly ties the system's value to additional match discovery and better ambiguity resolution.",
+          "confidence": 0.96
+        },
+        "inferenceType": "CrossModalSynthesis"
+      },
+      "overallStrategySummary": "The expert begins with easy accepted matches, then accumulates richer semantic and value evidence for harder candidates, and finally disambiguates near-matches through explanation and vertical-comparison evidence.",
+      "caseNarrativeSummary": "In the CPTAC Dou-to-GDC use case, a biomedical researcher uses BDIViz to validate the existing manual mapping set, confirm easy categorical matches, inspect numerical and newly surfaced candidates through attribute descriptions and value evidence, and use agent explanations to reject a semantically misleading alternative. The resulting curated set verifies 19 prior matches and adds 10 more valid correspondences.",
+      "evidence": {
+        "passageIds": [
+          52,
+          53,
+          54,
+          55,
+          76
+        ],
+        "figureRefs": [
+          "Fig. 9"
+        ],
+        "quotes": [
+          "Using BDIViz for Large-Scale Dataset-to-Schema Matching Tasks for CPTAC",
+          "verify the 19 matches as well as identify 10 additional matches",
+          "Case Study 1: Heatmap visualization of curated matching candidates"
+        ],
+        "reasoning": "These passages and the figure define one coherent real-world case centered on Dou-to-GDC schema harmonization.",
+        "confidence": 0.97
+      },
+      "inferenceType": "CrossModalSynthesis"
+    },
+    {
+      "caseId": "luad-cross-dataset-integration",
+      "caseTitle": "Integrating Two LUAD Datasets",
+      "caseStudyKind": "RealWorldCase",
+      "analyst": {
+        "role": "DomainExpert",
+        "domainExpertise": "Expert",
+        "toolExpertise": "Unknown",
+        "description": "An expert using BDIViz to integrate two distinct lung adenocarcinoma datasets."
+      },
+      "scenario": {
+        "domainProblem": "Identifying correspondences between two distinct lung adenocarcinoma study datasets for integration.",
+        "analysisGoal": "Use BDIViz to find cross-dataset matches between the Xu et al. and Gillette et al. LUAD datasets.",
+        "datasetContext": "The source dataset from Xu et al. comprises 40 attributes and the target dataset from Gillette et al. contains 74 attributes.",
+        "initialQuestion": "Which attributes correspond between the two LUAD datasets strongly enough to support integration?"
+      },
+      "questions": [
+        {
+          "questionId": "luad-cross-dataset-integration.which-attributes-correspond-between-the-two-luad-datasets-strongly-enough-to-support-integration",
+          "questionText": "Which attributes correspond between the two LUAD datasets strongly enough to support integration?",
+          "status": "Answered",
+          "evidence": {
+            "passageIds": [
+              78
+            ],
+            "figureRefs": [
+              "caption-78"
+            ],
+            "quotes": [
+              "Within 10 minutes, the expert identified 13 matches"
+            ],
+            "reasoning": "The caption frames the case around finding cross-dataset correspondences efficiently.",
+            "confidence": 0.86
+          },
+          "inferenceType": "StrongInference"
+        }
+      ],
+      "episodes": [
+        {
+          "episodeId": "luad-cross-dataset-integration.identify-cross-dataset-matches",
+          "episodeTitle": "Identify Cross-Dataset Matches",
+          "localGoal": "Find and confirm correspondences between the two LUAD study datasets.",
+          "focusQuestionIds": [
+            "luad-cross-dataset-integration.which-attributes-correspond-between-the-two-luad-datasets-strongly-enough-to-support-integration"
+          ],
+          "strategyText": "The expert uses BDIViz to perform a rapid pass over the two schemas and identify viable correspondences for integration.",
+          "steps": [
+            {
+              "stepId": "luad-cross-dataset-integration.identify-cross-dataset-matches.step-1",
+              "stepIndex": 1,
+              "rawNarrative": "An expert used BDIViz to integrate datasets from two distinct LUAD studies published on PubMed. The source dataset from Xu et al. comprises 40 attributes, while the target dataset from Gillette et al. contains 74 attributes. Within 10 minutes, the expert identified 13 matches, compared with 8 attributes previously identified through manual matching.",
+              "questionsAddressed": [
+                "luad-cross-dataset-integration.which-attributes-correspond-between-the-two-luad-datasets-strongly-enough-to-support-integration"
+              ],
+              "intentCanonical": [
+                "Browse",
+                "Validate"
+              ],
+              "intentText": "Identify viable cross-dataset correspondences quickly enough to support integration.",
+              "operationCanonical": [
+                "CompareAlternatives"
+              ],
+              "operationText": "Inspect candidate correspondences across the two LUAD datasets and retain the viable matches.",
+              "targetDataDescription": [
+                "Xu et al. LUAD dataset",
+                "Gillette et al. LUAD dataset",
+                "13 identified matches"
+              ],
+              "observations": [
+                {
+                  "observationType": "Comparison",
+                  "description": "Using BDIViz, the expert identifies more matches than the prior manual process in less time.",
+                  "targetDataDescription": [
+                    "13 matches with BDIViz",
+                    "8 attributes from manual matching"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      78
+                    ],
+                    "figureRefs": [
+                      "caption-78"
+                    ],
+                    "quotes": [
+                      "Within 10 minutes, the expert identified 13 matches; this is in contrast to the 8 attributes previously identified through manual matching."
+                    ],
+                    "reasoning": "The caption directly contrasts BDIViz-enabled matching with prior manual matching.",
+                    "confidence": 0.94
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "ReportProduced",
+                  "description": "BDIViz enables the expert to identify 13 cross-dataset matches, exceeding the 8 previously found manually.",
+                  "relatedQuestionIds": [
+                    "luad-cross-dataset-integration.which-attributes-correspond-between-the-two-luad-datasets-strongly-enough-to-support-integration"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      78
+                    ],
+                    "figureRefs": [
+                      "caption-78"
+                    ],
+                    "quotes": [
+                      "Within 10 minutes, the expert identified 13 matches"
+                    ],
+                    "reasoning": "The caption states the main case-level result directly.",
+                    "confidence": 0.93
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "outcomeSummary": "The expert rapidly identifies a larger cross-dataset mapping set than the prior manual baseline.",
+              "evidence": {
+                "passageIds": [
+                  78
+                ],
+                "figureRefs": [
+                  "caption-78"
+                ],
+                "quotes": [
+                  "expert used BDIViz to integrate datasets from two distinct lung adenocarcinoma (LUAD) studies",
+                  "Within 10 minutes, the expert identified 13 matches"
+                ],
+                "reasoning": "Although this case is only lightly described, the caption supports one coarse usage step and its outcome.",
+                "confidence": 0.9
+              },
+              "inferenceType": "FigureGroundedInference"
+            }
+          ],
+          "episodeOutcomeSummary": "The expert completes a rapid cross-dataset matching pass and finds more correspondences than the earlier manual effort.",
+          "evidence": {
+            "passageIds": [
+              78
+            ],
+            "figureRefs": [
+              "caption-78"
+            ],
+            "quotes": [
+              "Within 10 minutes, the expert identified 13 matches"
+            ],
+            "reasoning": "The case evidence is sparse but sufficient for a single coarse episode focused on the reported outcome.",
+            "confidence": 0.88
+          },
+          "inferenceType": "FigureGroundedInference"
+        }
+      ],
+      "finalOutcome": {
+        "finalInsights": [
+          {
+            "insightType": "ReportProduced",
+            "description": "In the LUAD dataset-integration case, BDIViz supports identification of 13 matches versus 8 previously identified manually.",
+            "relatedQuestionIds": [
+              "luad-cross-dataset-integration.which-attributes-correspond-between-the-two-luad-datasets-strongly-enough-to-support-integration"
+            ],
+            "evidence": {
+              "passageIds": [
+                78
+              ],
+              "figureRefs": [
+                "caption-78"
+              ],
+              "quotes": [
+                "Within 10 minutes, the expert identified 13 matches; this is in contrast to the 8 attributes previously identified through manual matching."
+              ],
+              "reasoning": "This is the only explicit outcome reported for the second case.",
+              "confidence": 0.93
+            },
+            "inferenceType": "Explicit"
+          }
+        ],
+        "claimedSystemValue": "BDIViz can streamline cross-dataset matching for distinct LUAD studies by helping experts find more correspondences than prior manual matching.",
+        "evidence": {
+          "passageIds": [
+            78
+          ],
+          "figureRefs": [
+            "caption-78"
+          ],
+          "quotes": [
+            "Within 10 minutes, the expert identified 13 matches"
+          ],
+          "reasoning": "The caption directly reports a faster and more complete matching outcome for this second use case.",
+          "confidence": 0.9
+        },
+        "inferenceType": "FigureGroundedInference"
+      },
+      "overallStrategySummary": "The reported LUAD use case is only summarized at a high level: the expert uses BDIViz to perform a rapid cross-dataset matching pass and retains the viable correspondences.",
+      "caseNarrativeSummary": "In the second, sparsely described LUAD use case, an expert applies BDIViz to integrate two lung adenocarcinoma datasets and identifies 13 matches within 10 minutes, exceeding the 8 previously found manually.",
+      "evidence": {
+        "passageIds": [
+          52,
+          78
+        ],
+        "figureRefs": [
+          "caption-78"
+        ],
+        "quotes": [
+          "we present two use cases provided by our expert co-designers",
+          "expert used BDIViz to integrate datasets from two distinct lung adenocarcinoma (LUAD) studies"
+        ],
+        "reasoning": "The paper explicitly claims two use cases, and the second is recoverable only coarsely from the extracted caption evidence.",
+        "confidence": 0.82
+      },
+      "inferenceType": "FigureGroundedInference"
+    }
+  ],
+  "paperLevelUsageClaims": [
+    "Across the reported use cases, BDIViz helps experts validate known schema correspondences quickly while uncovering additional missed mappings or cross-dataset matches.",
+    "The case-study narratives support the claim that BDIViz improves nuanced biomedical matching decisions by combining value evidence, attribute descriptions, and agent explanations when such evidence is available."
+  ],
+  "evidence": {
+    "passageIds": [
+      52,
+      53,
+      54,
+      55,
+      76,
+      78
+    ],
+    "figureRefs": [
+      "Fig. 9",
+      "caption-78"
+    ],
+    "quotes": [
+      "we present two use cases provided by our expert co-designers",
+      "Case Study 1: Heatmap visualization of curated matching candidates",
+      "Within 10 minutes, the expert identified 13 matches"
+    ],
+    "reasoning": "The revised paper-level usage spec keeps the detailed first case and adds a coarse second case because the paper explicitly states there are two use cases and the available caption evidence supports a minimal second-case extraction.",
+    "confidence": 0.9
+  },
+  "inferenceType": "CrossModalSynthesis"
+}

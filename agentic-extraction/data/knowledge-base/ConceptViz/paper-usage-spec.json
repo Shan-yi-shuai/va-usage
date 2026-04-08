@@ -1,0 +1,2133 @@
+{
+  "paperName": "ConceptViz",
+  "systemName": "ConceptViz",
+  "systemSpecPath": "data/agentic/extract-results/ConceptViz/system-spec/output/system-spec.json",
+  "caseStudies": [
+    {
+      "caseId": "plant-related-feature-analysis",
+      "caseTitle": "Exploring and Validating Plant-Related Features",
+      "caseStudyKind": "ScenarioDemonstration",
+      "analyst": {
+        "role": "DomainExpert",
+        "domainExpertise": "Expert",
+        "toolExpertise": "Unknown",
+        "description": "One of the two domain experts described in the paper's usage scenarios."
+      },
+      "scenario": {
+        "domainProblem": "Interpreting whether an SAE feature retrieved for a plant-related concept really reflects the intended semantics rather than only a lexical match.",
+        "analysisGoal": "Retrieve a plant-related feature, inspect its semantic behavior, and validate whether its activations and steering behavior support the intended interpretation.",
+        "datasetContext": "ConceptViz scenarios are completed by domain experts on the paper's described SAE and feature-explanation datasets for LLM interpretation.",
+        "initialQuestion": "Which retrieved feature best captures the intended plant concept rather than only the lexical token plant?"
+      },
+      "questions": [
+        {
+          "questionId": "plant-related-feature-analysis.which-feature-best-captures-the-intended-plant-concept",
+          "questionText": "Which retrieved feature best captures the intended plant concept rather than only the lexical token plant?",
+          "status": "Answered",
+          "evidence": {
+            "passageIds": [
+              355,
+              360,
+              365
+            ],
+            "figureRefs": [
+              "Fig. 5A",
+              "Fig. 5C",
+              "Fig. 5D"
+            ],
+            "quotes": [
+              "the user discovers a highlighted feature",
+              "Through this analysis process, the user validates"
+            ],
+            "reasoning": "The scenario is organized around finding a plant-related candidate feature and checking whether its semantics hold up under detailed inspection and validation.",
+            "confidence": 0.92
+          },
+          "inferenceType": "StrongInference"
+        }
+      ],
+      "hypotheses": [
+        {
+          "hypothesisId": "plant-related-feature-analysis.feature-983-captures-both-plant-token-and-botanical-meaning",
+          "hypothesisText": "Feature 983 captures both the lexical token plant and its botanical meaning, although some activations reflect ambiguous word sense.",
+          "status": "Supported",
+          "relatedQuestionIds": [
+            "plant-related-feature-analysis.which-feature-best-captures-the-intended-plant-concept"
+          ],
+          "evidence": {
+            "passageIds": [
+              360,
+              365
+            ],
+            "figureRefs": [
+              "Fig. 5C",
+              "Fig. 5D"
+            ],
+            "quotes": [
+              "the feature primarily recognizes the lexical token plant while associating it with botanical meanings",
+              "the user validates that the feature indeed correlates with both the word \"plant\" and its botanical meaning"
+            ],
+            "reasoning": "The paper explicitly describes the mixed lexical and botanical behavior and then reports validation through activation analysis and steering.",
+            "confidence": 0.97
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "episodes": [
+        {
+          "episodeId": "plant-related-feature-analysis.query-and-layer-selection",
+          "episodeTitle": "Query and Layer Selection",
+          "localGoal": "Refine the plant-related query and choose a promising SAE model for deeper analysis.",
+          "strategyCanonical": [
+            "IterativeRefinement",
+            "SearchThenInspect"
+          ],
+          "strategyText": "The analyst first improves the concept query and then narrows the search to a specific SAE layer before inspecting individual features.",
+          "steps": [
+            {
+              "stepId": "plant-related-feature-analysis.query-and-layer-selection.step-1",
+              "stepIndex": 1,
+              "rawNarrative": "The user enters \"plant\" in the Concept Query View, compares original and optimized query similarity distributions, and refines the search to \"words related to plant and its associations with cultivation, agriculture\".",
+              "questionsAddressed": [
+                "plant-related-feature-analysis.which-feature-best-captures-the-intended-plant-concept"
+              ],
+              "intentCanonical": [
+                "RefineQuery"
+              ],
+              "intentText": "Improve retrieval so the search better matches the intended plant concept.",
+              "strategyCanonical": [
+                "IterativeRefinement"
+              ],
+              "operationCanonical": [
+                "Search",
+                "CompareAlternatives"
+              ],
+              "operationText": "Submit the initial concept query, compare query distributions, and adopt a refined phrasing.",
+              "usedViews": [
+                {
+                  "viewId": "concept-query",
+                  "subViewId": "concept-query.query-input"
+                },
+                {
+                  "viewId": "concept-query",
+                  "subViewId": "concept-query.similarity-distribution"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "concept-query",
+                  "subViewId": "concept-query.query-input",
+                  "capabilityId": "concept-query.query-input.submit-query"
+                },
+                {
+                  "viewId": "concept-query",
+                  "subViewId": "concept-query.query-input",
+                  "capabilityId": "concept-query.query-input.refine-query"
+                },
+                {
+                  "viewId": "concept-query",
+                  "subViewId": "concept-query.similarity-distribution",
+                  "capabilityId": "concept-query.similarity-distribution.compare-distributions"
+                }
+              ],
+              "targetDataDescription": [
+                "semantic similarity rankings between the plant query and feature explanations"
+              ],
+              "observations": [
+                {
+                  "observationType": "Comparison",
+                  "description": "The optimized query produces higher similarity counts than the original plant query.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "concept-query",
+                      "subViewId": "concept-query.similarity-distribution"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      355
+                    ],
+                    "figureRefs": [
+                      "Fig. 5A"
+                    ],
+                    "quotes": [
+                      "Observing higher similarity counts with the optimized query"
+                    ],
+                    "reasoning": "The comparison is stated directly as the reason for refining the search.",
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "decision": {
+                "description": "Adopt the optimized plant query for downstream retrieval.",
+                "rationale": "The optimized query yields better similarity coverage than the original phrasing.",
+                "targetQuestionIds": [
+                  "plant-related-feature-analysis.which-feature-best-captures-the-intended-plant-concept"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    355
+                  ],
+                  "figureRefs": [
+                    "Fig. 5A"
+                  ],
+                  "quotes": [
+                    "the user refines their search"
+                  ],
+                  "reasoning": "The narrative explicitly states the user changes the query after seeing the distribution comparison.",
+                  "confidence": 0.96
+                },
+                "inferenceType": "Explicit"
+              },
+              "outcomeSummary": "The analyst improves the query wording before selecting an SAE model.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  355
+                ],
+                "figureRefs": [
+                  "Fig. 5A"
+                ],
+                "quotes": [
+                  "The user refines their search"
+                ],
+                "reasoning": "This step is directly described in the scenario text and figure caption.",
+                "confidence": 0.98
+              }
+            },
+            {
+              "stepId": "plant-related-feature-analysis.query-and-layer-selection.step-2",
+              "stepIndex": 2,
+              "rawNarrative": "After finalizing the query, the user examines the SAE Model Retrieval View, notices stronger semantic matches concentrated in earlier layers, and selects the fourth layer SAE for detailed exploration.",
+              "questionsAddressed": [
+                "plant-related-feature-analysis.which-feature-best-captures-the-intended-plant-concept"
+              ],
+              "intentCanonical": [
+                "Locate",
+                "Prioritize"
+              ],
+              "intentText": "Choose the most promising SAE model for plant-related feature exploration.",
+              "strategyCanonical": [
+                "SearchThenInspect"
+              ],
+              "operationCanonical": [
+                "CompareAlternatives",
+                "SelectItem"
+              ],
+              "operationText": "Inspect layer relevance and select layer 4 for deeper exploration.",
+              "usedViews": [
+                {
+                  "viewId": "sae-discovery",
+                  "subViewId": "sae-discovery.layer-overview"
+                },
+                {
+                  "viewId": "sae-discovery",
+                  "subViewId": "sae-discovery.layer-ranking-table"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "sae-discovery",
+                  "subViewId": "sae-discovery.layer-overview",
+                  "capabilityId": "sae-discovery.layer-overview.inspect-layer-relevance"
+                },
+                {
+                  "viewId": "sae-discovery",
+                  "subViewId": "sae-discovery.layer-ranking-table",
+                  "capabilityId": "sae-discovery.layer-ranking-table.select-sae"
+                }
+              ],
+              "targetDataDescription": [
+                "layer-wise semantic similarity rankings for plant-related feature explanations"
+              ],
+              "observations": [
+                {
+                  "observationType": "Distribution",
+                  "description": "Earlier SAE layers show stronger semantic matches for the refined plant query.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "sae-discovery",
+                      "subViewId": "sae-discovery.layer-overview"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      355
+                    ],
+                    "figureRefs": [
+                      "Fig. 5A"
+                    ],
+                    "quotes": [
+                      "stronger semantic matches ... concentrated in the earlier layers"
+                    ],
+                    "reasoning": "The paper directly reports what the analyst sees in the layer heat map.",
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "decision": {
+                "description": "Select the fourth layer SAE for detailed exploration.",
+                "rationale": "Layer 4 appears especially relevant within the stronger early-layer matches.",
+                "targetQuestionIds": [
+                  "plant-related-feature-analysis.which-feature-best-captures-the-intended-plant-concept"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    355
+                  ],
+                  "figureRefs": [
+                    "Fig. 5A"
+                  ],
+                  "quotes": [
+                    "the user selects the fourth layer SAE for detailed exploration"
+                  ],
+                  "reasoning": "The selection is stated explicitly.",
+                  "confidence": 1.0
+                },
+                "inferenceType": "Explicit"
+              },
+              "outcomeSummary": "The analyst narrows the search to layer 4 for candidate-feature exploration.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  355
+                ],
+                "figureRefs": [
+                  "Fig. 5A"
+                ],
+                "quotes": [
+                  "Based on this insight, the user selects the fourth layer SAE"
+                ],
+                "reasoning": "The narrative directly links the observation to the layer-selection step.",
+                "confidence": 0.99
+              }
+            }
+          ],
+          "episodeOutcomeSummary": "The analyst improves the plant query and commits to layer 4 as the search space for detailed feature inspection.",
+          "evidence": {
+            "passageIds": [
+              355
+            ],
+            "figureRefs": [
+              "Fig. 5A"
+            ],
+            "quotes": [
+              "the user refines their search",
+              "the user selects the fourth layer SAE"
+            ],
+            "reasoning": "Both steps belong to the initial retrieval-and-selection phase before any specific feature is inspected.",
+            "confidence": 0.97
+          },
+          "inferenceType": "StrongInference"
+        },
+        {
+          "episodeId": "plant-related-feature-analysis.feature-inspection",
+          "episodeTitle": "Feature Inspection",
+          "localGoal": "Locate a promising plant-related feature and inspect the detailed semantic evidence for it.",
+          "strategyCanonical": [
+            "DrillDownThenExplain",
+            "EvidenceAccumulation"
+          ],
+          "strategyText": "The analyst first navigates semantic regions to find a candidate feature and then inspects multiple detail views to test how well the feature explanation holds up.",
+          "steps": [
+            {
+              "stepId": "plant-related-feature-analysis.feature-inspection.step-1",
+              "stepIndex": 1,
+              "rawNarrative": "In the Feature Explorer View, the user starts from a high-level concept-space overview, drills into scientific, food, and environmental regions, and selects a highlighted feature described as plant-related.",
+              "questionsAddressed": [
+                "plant-related-feature-analysis.which-feature-best-captures-the-intended-plant-concept"
+              ],
+              "intentCanonical": [
+                "Explore",
+                "Locate",
+                "Select"
+              ],
+              "intentText": "Find a feature whose location and label suggest plant-related semantics.",
+              "strategyCanonical": [
+                "DrillDownThenExplain"
+              ],
+              "operationCanonical": [
+                "Zoom",
+                "Navigate",
+                "SelectItem"
+              ],
+              "operationText": "Browse the concept space at multiple semantic scales and select a candidate feature.",
+              "usedViews": [
+                {
+                  "viewId": "feature-explorer",
+                  "subViewId": "feature-explorer.concept-space-map"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "feature-explorer",
+                  "subViewId": "feature-explorer.concept-space-map",
+                  "capabilityId": "feature-explorer.concept-space-map.browse-clusters"
+                },
+                {
+                  "viewId": "feature-explorer",
+                  "subViewId": "feature-explorer.concept-space-map",
+                  "capabilityId": "feature-explorer.concept-space-map.zoom-levels"
+                },
+                {
+                  "viewId": "feature-explorer",
+                  "subViewId": "feature-explorer.concept-space-map",
+                  "capabilityId": "feature-explorer.concept-space-map.select-feature"
+                }
+              ],
+              "targetDataDescription": [
+                "query-relevant features in layer 4 concept space",
+                "feature 983 near the environmental cluster"
+              ],
+              "observations": [
+                {
+                  "observationType": "Cluster",
+                  "description": "Query-relevant features are distributed across several semantic regions, and one highlighted candidate appears in the environmental cluster.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "feature-explorer",
+                      "subViewId": "feature-explorer.concept-space-map"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      360
+                    ],
+                    "figureRefs": [
+                      "Fig. 5B"
+                    ],
+                    "quotes": [
+                      "distributed across several semantic regions",
+                      "Within the environmental cluster, the user discovers a highlighted feature"
+                    ],
+                    "reasoning": "The figure and passage jointly ground both the spatial distribution and the selected candidate location.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "CrossModalSynthesis"
+                }
+              ],
+              "decision": {
+                "description": "Select feature 983 for detailed semantic analysis.",
+                "rationale": "Its label and neighborhood make it the strongest visible plant-related candidate in the explored region.",
+                "targetQuestionIds": [
+                  "plant-related-feature-analysis.which-feature-best-captures-the-intended-plant-concept"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    360,
+                    630
+                  ],
+                  "figureRefs": [
+                    "Fig. 5B",
+                    "Fig. 5C"
+                  ],
+                  "quotes": [
+                    "The user selects this point for detailed analysis",
+                    "After selecting feature 983"
+                  ],
+                  "reasoning": "The selection is explicit in both the scenario passage and the figure caption.",
+                  "confidence": 0.99
+                },
+                "inferenceType": "Explicit"
+              },
+              "outcomeSummary": "The analyst identifies feature 983 as the main plant-related candidate.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  360,
+                  630
+                ],
+                "figureRefs": [
+                  "Fig. 5B",
+                  "Fig. 5C"
+                ],
+                "quotes": [
+                  "references to plants and plant-related topics",
+                  "After selecting feature 983"
+                ],
+                "reasoning": "The candidate feature and its selection are directly supported by the text and case-study figure.",
+                "confidence": 0.99
+              }
+            },
+            {
+              "stepId": "plant-related-feature-analysis.feature-inspection.step-2",
+              "stepIndex": 2,
+              "rawNarrative": "In the Feature Details View, the user examines vocabulary projections, maximum token activations, and the activation-similarity matrix, confirming plant-related lexical variants while identifying a high-activation but low-similarity example where plant refers to a factory.",
+              "questionsAddressed": [
+                "plant-related-feature-analysis.which-feature-best-captures-the-intended-plant-concept"
+              ],
+              "hypothesesTouched": [
+                "plant-related-feature-analysis.feature-983-captures-both-plant-token-and-botanical-meaning"
+              ],
+              "hypothesisEvents": [
+                {
+                  "hypothesisId": "plant-related-feature-analysis.feature-983-captures-both-plant-token-and-botanical-meaning",
+                  "action": "Propose",
+                  "relatedQuestionIds": [
+                    "plant-related-feature-analysis.which-feature-best-captures-the-intended-plant-concept"
+                  ],
+                  "hypothesisText": "Feature 983 captures both the lexical token plant and its botanical meaning, although some activations reflect ambiguous word sense.",
+                  "note": "The vocabulary and matrix evidence suggest mixed lexical and semantic behavior.",
+                  "statusAfter": "UnderInvestigation",
+                  "evidence": {
+                    "passageIds": [
+                      360
+                    ],
+                    "figureRefs": [
+                      "Fig. 5C"
+                    ],
+                    "quotes": [
+                      "the feature primarily recognizes the lexical token plant while associating it with botanical meanings"
+                    ],
+                    "reasoning": "This sentence states the mixed interpretation that becomes the working hypothesis for later validation.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "intentCanonical": [
+                "Inspect",
+                "Explain"
+              ],
+              "intentText": "Assess whether the selected feature's explanation and activation evidence support the intended plant semantics.",
+              "strategyCanonical": [
+                "EvidenceAccumulation"
+              ],
+              "operationCanonical": [
+                "InspectDetails",
+                "CompareAlternatives"
+              ],
+              "operationText": "Inspect multiple detail panels and compare semantic alignment against counterexamples.",
+              "usedViews": [
+                {
+                  "viewId": "feature-details",
+                  "subViewId": "feature-details.vocabulary-space"
+                },
+                {
+                  "viewId": "feature-details",
+                  "subViewId": "feature-details.token-summary"
+                },
+                {
+                  "viewId": "feature-details",
+                  "subViewId": "feature-details.text-segment-examples"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "feature-details",
+                  "subViewId": "feature-details.vocabulary-space",
+                  "capabilityId": "feature-details.vocabulary-space.inspect-vocabulary-projection"
+                },
+                {
+                  "viewId": "feature-details",
+                  "subViewId": "feature-details.token-summary",
+                  "capabilityId": "feature-details.token-summary.inspect-token-summary"
+                },
+                {
+                  "viewId": "feature-details",
+                  "subViewId": "feature-details.text-segment-examples",
+                  "capabilityId": "feature-details.text-segment-examples.inspect-example-alignment"
+                }
+              ],
+              "targetDataDescription": [
+                "feature 983 vocabulary projection",
+                "activation-similarity examples for feature 983"
+              ],
+              "observations": [
+                {
+                  "observationType": "Pattern",
+                  "description": "Feature 983 aligns with lexical variants such as plant, plants, and planted.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "feature-details",
+                      "subViewId": "feature-details.vocabulary-space"
+                    },
+                    {
+                      "viewId": "feature-details",
+                      "subViewId": "feature-details.token-summary"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      360
+                    ],
+                    "figureRefs": [
+                      "Fig. 5C"
+                    ],
+                    "quotes": [
+                      "confirming the feature's association with lexical variations such as \"plant\", \"plants\", \"planted\""
+                    ],
+                    "reasoning": "The passage directly reports the observed lexical associations from the detail view.",
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "Explicit"
+                },
+                {
+                  "observationType": "Anomaly",
+                  "description": "A high-activation but low-similarity example reveals that the token plant can refer to a factory rather than vegetation.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "feature-details",
+                      "subViewId": "feature-details.text-segment-examples"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      360
+                    ],
+                    "figureRefs": [
+                      "Fig. 5C"
+                    ],
+                    "quotes": [
+                      "a gray point indicating high activation but low semantic similarity",
+                      "this sample contains the word \"plant\" referring to a factory"
+                    ],
+                    "reasoning": "The matrix and example inspection expose an ambiguity not captured by the automated explanation.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "interpretationSummary": "The selected feature is semantically useful but not purely botanical; it also responds to the ambiguous lexical token plant.",
+              "producedInsights": [
+                {
+                  "insightType": "ExplanationFormed",
+                  "description": "Feature 983 reflects both botanical meaning and a lexical plant token effect, exposing a limitation in the automated explanation.",
+                  "relatedQuestionIds": [
+                    "plant-related-feature-analysis.which-feature-best-captures-the-intended-plant-concept"
+                  ],
+                  "relatedHypothesisIds": [
+                    "plant-related-feature-analysis.feature-983-captures-both-plant-token-and-botanical-meaning"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "feature-details",
+                      "subViewId": "feature-details.vocabulary-space"
+                    },
+                    {
+                      "viewId": "feature-details",
+                      "subViewId": "feature-details.text-segment-examples"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      360
+                    ],
+                    "figureRefs": [
+                      "Fig. 5C"
+                    ],
+                    "quotes": [
+                      "the feature primarily recognizes the lexical token plant while associating it with botanical meanings"
+                    ],
+                    "reasoning": "The passage states the interpretation produced after inspecting the detail views.",
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "outcomeSummary": "The analyst identifies both strong plant-related evidence and a word-sense limitation that needs validation.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  360
+                ],
+                "figureRefs": [
+                  "Fig. 5C"
+                ],
+                "quotes": [
+                  "The overview of activation-similarity matrix further validates this semantic alignment",
+                  "suggests potential limitations in the automated feature explanation"
+                ],
+                "reasoning": "This step is entirely supported by the detailed inspection paragraph and the corresponding figure panel.",
+                "confidence": 0.99
+              }
+            }
+          ],
+          "episodeOutcomeSummary": "The analyst finds feature 983 and determines that it is plant-related but semantically mixed enough to require direct validation.",
+          "evidence": {
+            "passageIds": [
+              360,
+              630
+            ],
+            "figureRefs": [
+              "Fig. 5B",
+              "Fig. 5C"
+            ],
+            "quotes": [
+              "The user selects this point for detailed analysis",
+              "revealing plant-related associations"
+            ],
+            "reasoning": "These two steps together cover the exploration-to-inspection phase before formal validation.",
+            "confidence": 0.97
+          },
+          "inferenceType": "StrongInference"
+        },
+        {
+          "episodeId": "plant-related-feature-analysis.validation",
+          "episodeTitle": "Validation",
+          "localGoal": "Validate the mixed lexical and botanical interpretation of feature 983 with direct activation checks and steering.",
+          "strategyCanonical": [
+            "HypothesisTesting",
+            "WhatIfAnalysis"
+          ],
+          "strategyText": "The analyst first checks activation on controlled text, then tests causal impact through steering.",
+          "steps": [
+            {
+              "stepId": "plant-related-feature-analysis.validation.step-1",
+              "stepIndex": 1,
+              "rawNarrative": "To validate the interpretation, the user enters custom text containing the token plant in the Input Activation View and observes that the activation pattern confirms the earlier findings.",
+              "questionsAddressed": [
+                "plant-related-feature-analysis.which-feature-best-captures-the-intended-plant-concept"
+              ],
+              "hypothesesTouched": [
+                "plant-related-feature-analysis.feature-983-captures-both-plant-token-and-botanical-meaning"
+              ],
+              "intentCanonical": [
+                "Validate"
+              ],
+              "intentText": "Check whether the candidate feature activates as expected on a controlled plant-related input.",
+              "strategyCanonical": [
+                "HypothesisTesting"
+              ],
+              "operationCanonical": [
+                "ChangeParameter",
+                "InspectDetails"
+              ],
+              "operationText": "Enter custom text and inspect token-level activation patterns.",
+              "usedViews": [
+                {
+                  "viewId": "input-activation",
+                  "subViewId": "input-activation.prompt-input"
+                },
+                {
+                  "viewId": "input-activation",
+                  "subViewId": "input-activation.token-activation-display"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "input-activation",
+                  "subViewId": "input-activation.prompt-input",
+                  "capabilityId": "input-activation.prompt-input.enter-custom-text"
+                },
+                {
+                  "viewId": "input-activation",
+                  "subViewId": "input-activation.token-activation-display",
+                  "capabilityId": "input-activation.token-activation-display.inspect-token-activations"
+                }
+              ],
+              "targetDataDescription": [
+                "custom input text containing the token plant",
+                "feature 983 token activation pattern"
+              ],
+              "observations": [
+                {
+                  "observationType": "Pattern",
+                  "description": "The custom-input activation pattern is consistent with the earlier interpretation of feature 983.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "input-activation",
+                      "subViewId": "input-activation.token-activation-display"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      365
+                    ],
+                    "figureRefs": [
+                      "Fig. 5D"
+                    ],
+                    "quotes": [
+                      "The activation pattern analysis confirms the earlier findings"
+                    ],
+                    "reasoning": "The paper explicitly states the confirmation result from the custom-input test.",
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "outcomeSummary": "The analyst obtains direct activation evidence that supports the current interpretation of feature 983.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  365
+                ],
+                "figureRefs": [
+                  "Fig. 5D"
+                ],
+                "quotes": [
+                  "To validate this hypothesis",
+                  "The activation pattern analysis confirms the earlier findings"
+                ],
+                "reasoning": "The narrative explicitly frames this as a validation step.",
+                "confidence": 0.99
+              }
+            },
+            {
+              "stepId": "plant-related-feature-analysis.validation.step-2",
+              "stepIndex": 2,
+              "rawNarrative": "The user then steers generation with a garden-themed prompt and compares outputs across different feature activation levels, observing stronger plant and botanical vocabulary at high activation and reduced plant specificity when the feature is suppressed.",
+              "questionsAddressed": [
+                "plant-related-feature-analysis.which-feature-best-captures-the-intended-plant-concept"
+              ],
+              "hypothesesTouched": [
+                "plant-related-feature-analysis.feature-983-captures-both-plant-token-and-botanical-meaning"
+              ],
+              "hypothesisEvents": [
+                {
+                  "hypothesisId": "plant-related-feature-analysis.feature-983-captures-both-plant-token-and-botanical-meaning",
+                  "action": "Support",
+                  "note": "Steering experiments provide causal evidence that the feature affects plant-related generation while preserving the broader semantic interpretation.",
+                  "statusAfter": "Supported",
+                  "evidence": {
+                    "passageIds": [
+                      365
+                    ],
+                    "figureRefs": [
+                      "Fig. 5D"
+                    ],
+                    "quotes": [
+                      "Through this analysis process, the user validates that the feature indeed correlates with both the word \"plant\" and its botanical meaning"
+                    ],
+                    "reasoning": "The paper explicitly states the validation conclusion after the steering experiment.",
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "intentCanonical": [
+                "Validate",
+                "Compare"
+              ],
+              "intentText": "Establish causal evidence for how feature 983 shapes generated text.",
+              "strategyCanonical": [
+                "HypothesisTesting",
+                "WhatIfAnalysis"
+              ],
+              "operationCanonical": [
+                "ChangeParameter",
+                "CompareAlternatives"
+              ],
+              "operationText": "Run steering with different activation levels and compare the resulting output branches.",
+              "usedViews": [
+                {
+                  "viewId": "output-steering",
+                  "subViewId": "output-steering.prompt-input"
+                },
+                {
+                  "viewId": "output-steering",
+                  "subViewId": "output-steering.output-branches"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "output-steering",
+                  "subViewId": "output-steering.prompt-input",
+                  "capabilityId": "output-steering.prompt-input.enter-steering-prompt"
+                },
+                {
+                  "viewId": "output-steering",
+                  "subViewId": "output-steering.output-branches",
+                  "capabilityId": "output-steering.output-branches.compare-steered-outputs"
+                }
+              ],
+              "targetDataDescription": [
+                "garden-themed prompt completions under multiple feature 983 activation strengths"
+              ],
+              "observations": [
+                {
+                  "observationType": "Comparison",
+                  "description": "Higher activation produces outputs focused on plants and botanical vocabulary, while suppression shifts the output away from plant-related content.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "output-steering",
+                      "subViewId": "output-steering.output-branches"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      365
+                    ],
+                    "figureRefs": [
+                      "Fig. 5D"
+                    ],
+                    "quotes": [
+                      "increasing feature activation produces outputs focused on plants and botanical vocabulary",
+                      "suppressing activation shifts away from plant-related content"
+                    ],
+                    "reasoning": "The output comparison is stated directly in the narrative.",
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "HypothesisSupported",
+                  "description": "Feature 983 causally contributes to plant-related generation and supports a mixed lexical-plus-botanical interpretation that extends beyond the automated explanation.",
+                  "relatedQuestionIds": [
+                    "plant-related-feature-analysis.which-feature-best-captures-the-intended-plant-concept"
+                  ],
+                  "relatedHypothesisIds": [
+                    "plant-related-feature-analysis.feature-983-captures-both-plant-token-and-botanical-meaning"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "output-steering",
+                      "subViewId": "output-steering.output-branches"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      365
+                    ],
+                    "figureRefs": [
+                      "Fig. 5D"
+                    ],
+                    "quotes": [
+                      "the user validates that the feature indeed correlates with both the word \"plant\" and its botanical meaning",
+                      "discovering nuanced activation patterns beyond the scope of the automated explanation"
+                    ],
+                    "reasoning": "The scenario explicitly states both the validation result and the added nuance obtained through steering.",
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "outcomeSummary": "The analyst confirms that feature 983 has a real causal relationship to plant-related text generation.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  365
+                ],
+                "figureRefs": [
+                  "Fig. 5D"
+                ],
+                "quotes": [
+                  "Through this analysis process, the user validates"
+                ],
+                "reasoning": "This step contains the case's explicit validation outcome.",
+                "confidence": 1.0
+              }
+            }
+          ],
+          "episodeOutcomeSummary": "The analyst validates feature 983 with both direct activation evidence and causal steering outcomes.",
+          "evidence": {
+            "passageIds": [
+              365
+            ],
+            "figureRefs": [
+              "Fig. 5D"
+            ],
+            "quotes": [
+              "To validate this hypothesis",
+              "Through this analysis process, the user validates"
+            ],
+            "reasoning": "The paragraph explicitly frames this phase as validation and contains both direct-input and steering checks.",
+            "confidence": 0.99
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "finalOutcome": {
+        "finalInsights": [
+          {
+            "insightType": "HypothesisSupported",
+            "description": "Feature 983 aligns with plant-related semantics and causally affects plant-focused generation, but its behavior also reflects lexical ambiguity around the token plant.",
+            "relatedQuestionIds": [
+              "plant-related-feature-analysis.which-feature-best-captures-the-intended-plant-concept"
+            ],
+            "relatedHypothesisIds": [
+              "plant-related-feature-analysis.feature-983-captures-both-plant-token-and-botanical-meaning"
+            ],
+            "supportedByViews": [
+              {
+                "viewId": "feature-details",
+                "subViewId": "feature-details.text-segment-examples"
+              },
+              {
+                "viewId": "output-steering",
+                "subViewId": "output-steering.output-branches"
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                360,
+                365
+              ],
+              "figureRefs": [
+                "Fig. 5C",
+                "Fig. 5D"
+              ],
+              "quotes": [
+                "the feature primarily recognizes the lexical token plant while associating it with botanical meanings",
+                "the user validates that the feature indeed correlates with both the word \"plant\" and its botanical meaning"
+              ],
+              "reasoning": "The final case-level outcome synthesizes the inspection and validation results.",
+              "confidence": 0.99
+            },
+            "inferenceType": "CrossModalSynthesis"
+          }
+        ],
+        "claimedSystemValue": "ConceptViz helps analysts move from query refinement to feature inspection and causal validation when interpreting plant-related SAE features.",
+        "evidence": {
+          "passageIds": [
+            345,
+            355,
+            360,
+            365
+          ],
+          "figureRefs": [
+            "Fig. 5"
+          ],
+          "quotes": [
+            "showcasing how our system helps understand concept and feature semantic associations"
+          ],
+          "reasoning": "The complete scenario demonstrates end-to-end support from retrieval through explanation checking and validation.",
+          "confidence": 0.95
+        },
+        "inferenceType": "CrossModalSynthesis"
+      },
+      "overallStrategySummary": "The analyst iteratively refines the query, narrows to a promising SAE layer, drills down to a candidate feature, inspects mixed lexical and semantic evidence, and validates the interpretation through direct activation checks and steering.",
+      "caseNarrativeSummary": "This scenario follows a plant-focused reasoning chain from query optimization to layer selection, candidate-feature discovery, semantic inspection, and causal validation. The end result is a supported interpretation of feature 983 as both plant-related and lexically ambiguous.",
+      "evidence": {
+        "passageIds": [
+          345,
+          355,
+          360,
+          365
+        ],
+        "figureRefs": [
+          "Fig. 5"
+        ],
+        "quotes": [
+          "First, the user explores plant-related features",
+          "Through this analysis process, the user validates"
+        ],
+        "reasoning": "The case is explicitly introduced and completed across the Fig. 5 narrative sequence.",
+        "confidence": 0.98
+      },
+      "inferenceType": "Explicit"
+    },
+    {
+      "caseId": "superhero-feature-analysis",
+      "caseTitle": "Exploring Superhero-Related Features",
+      "caseStudyKind": "ScenarioDemonstration",
+      "analyst": {
+        "role": "DomainExpert",
+        "domainExpertise": "Expert",
+        "toolExpertise": "Unknown",
+        "description": "One of the two domain experts described in the paper's usage scenarios."
+      },
+      "scenario": {
+        "domainProblem": "Determining which SAE features genuinely encode superhero-related semantics and which nearby or co-activated features are semantically narrower or incoherent.",
+        "analysisGoal": "Find a superhero-related candidate feature, validate its behavior, and compare it with other activated features to separate broad heroic semantics from franchise-specific or noisy alternatives.",
+        "datasetContext": "ConceptViz scenarios are completed by domain experts on the paper's described SAE and feature-explanation datasets for LLM interpretation.",
+        "initialQuestion": "Which features truly represent superhero-related semantics rather than coincidental activation overlap?"
+      },
+      "questions": [
+        {
+          "questionId": "superhero-feature-analysis.which-features-truly-represent-superhero-semantics",
+          "questionText": "Which features truly represent superhero-related semantics rather than coincidental activation overlap?",
+          "status": "Answered",
+          "evidence": {
+            "passageIds": [
+              375,
+              385,
+              390
+            ],
+            "figureRefs": [
+              "Fig. 6A",
+              "Fig. 6C",
+              "Fig. 6D"
+            ],
+            "quotes": [
+              "distinguishing semantically relevant features from coincidental activations",
+              "the user concludes that feature 6610 captures a general heroic concept"
+            ],
+            "reasoning": "The paper frames this scenario around separating meaningful superhero semantics from coincidental or narrower activations.",
+            "confidence": 0.97
+          },
+          "inferenceType": "CrossModalSynthesis"
+        }
+      ],
+      "hypotheses": [
+        {
+          "hypothesisId": "superhero-feature-analysis.feature-6610-encodes-a-general-superhero-or-heroic-concept",
+          "hypothesisText": "Feature 6610 encodes a general superhero or heroic concept that should respond to superhero names and affect generation.",
+          "status": "Supported",
+          "relatedQuestionIds": [
+            "superhero-feature-analysis.which-features-truly-represent-superhero-semantics"
+          ],
+          "evidence": {
+            "passageIds": [
+              375,
+              380,
+              390
+            ],
+            "figureRefs": [
+              "Fig. 6A",
+              "Fig. 6B",
+              "Fig. 6D"
+            ],
+            "quotes": [
+              "Feature 6610 ... captures the user's attention",
+              "The visualization reveals strong activation for superhero names",
+              "feature 6610 captures a general heroic concept"
+            ],
+            "reasoning": "The candidate is introduced, validated with activation and steering, and then summarized explicitly as the broader heroic feature.",
+            "confidence": 0.99
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "hypothesisId": "superhero-feature-analysis.feature-9638-is-narrower-and-franchise-oriented",
+          "hypothesisText": "Feature 9638 is related to heroic entertainment franchises rather than a broad heroic concept.",
+          "status": "Supported",
+          "relatedQuestionIds": [
+            "superhero-feature-analysis.which-features-truly-represent-superhero-semantics"
+          ],
+          "evidence": {
+            "passageIds": [
+              385,
+              390
+            ],
+            "figureRefs": [
+              "Fig. 6C",
+              "Fig. 6D"
+            ],
+            "quotes": [
+              "the user observes this feature relates to heroic movies",
+              "feature 9638 is specific to characters from entertainment franchises"
+            ],
+            "reasoning": "The paper first motivates feature 9638 as a related candidate and then directly states its narrower interpretation.",
+            "confidence": 0.99
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "episodes": [
+        {
+          "episodeId": "superhero-feature-analysis.query-and-candidate-selection",
+          "episodeTitle": "Query and Candidate Selection",
+          "localGoal": "Choose an SAE model for the superhero query and identify an initial superhero-related feature candidate.",
+          "strategyCanonical": [
+            "SearchThenInspect"
+          ],
+          "strategyText": "The analyst starts with a concept query and quickly narrows to a feature candidate using the cluster layout.",
+          "steps": [
+            {
+              "stepId": "superhero-feature-analysis.query-and-candidate-selection.step-1",
+              "stepIndex": 1,
+              "rawNarrative": "The user queries \"superhero\" in the Concept Query View and selects an appropriate SAE model from layer 11.",
+              "questionsAddressed": [
+                "superhero-feature-analysis.which-features-truly-represent-superhero-semantics"
+              ],
+              "intentCanonical": [
+                "Locate",
+                "Select"
+              ],
+              "intentText": "Initialize a superhero-focused search using a suitable SAE model.",
+              "strategyCanonical": [
+                "SearchThenInspect"
+              ],
+              "operationCanonical": [
+                "Search",
+                "SelectItem"
+              ],
+              "operationText": "Submit the superhero query and choose the SAE model from layer 11.",
+              "usedViews": [
+                {
+                  "viewId": "concept-query",
+                  "subViewId": "concept-query.query-input"
+                },
+                {
+                  "viewId": "sae-discovery",
+                  "subViewId": "sae-discovery.layer-ranking-table"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "concept-query",
+                  "subViewId": "concept-query.query-input",
+                  "capabilityId": "concept-query.query-input.submit-query"
+                },
+                {
+                  "viewId": "sae-discovery",
+                  "subViewId": "sae-discovery.layer-ranking-table",
+                  "capabilityId": "sae-discovery.layer-ranking-table.select-sae"
+                }
+              ],
+              "targetDataDescription": [
+                "superhero query results for layer-wise SAE retrieval"
+              ],
+              "decision": {
+                "description": "Select the layer 11 SAE as the basis for superhero feature exploration.",
+                "targetQuestionIds": [
+                  "superhero-feature-analysis.which-features-truly-represent-superhero-semantics"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    375
+                  ],
+                  "figureRefs": [
+                    "Fig. 1A",
+                    "Fig. 1B"
+                  ],
+                  "quotes": [
+                    "selects an appropriate SAE model from layer 11"
+                  ],
+                  "reasoning": "The paper states the layer selection directly.",
+                  "confidence": 1.0
+                },
+                "inferenceType": "Explicit"
+              },
+              "outcomeSummary": "The analyst commits to a superhero query and a layer 11 SAE for candidate search.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  375
+                ],
+                "figureRefs": [
+                  "Fig. 1A",
+                  "Fig. 1B"
+                ],
+                "quotes": [
+                  "the user begins by querying \"superhero\"",
+                  "selects an appropriate SAE model from layer 11"
+                ],
+                "reasoning": "This step is explicitly described in the scenario text.",
+                "confidence": 0.99
+              }
+            },
+            {
+              "stepId": "superhero-feature-analysis.query-and-candidate-selection.step-2",
+              "stepIndex": 2,
+              "rawNarrative": "In the Feature Explorer View, the user inspects clusters labeled power, spiritual, and individuals, and focuses on feature 6610 because it sits in the individuals cluster and is described as referencing superhero characters.",
+              "questionsAddressed": [
+                "superhero-feature-analysis.which-features-truly-represent-superhero-semantics"
+              ],
+              "hypothesesTouched": [
+                "superhero-feature-analysis.feature-6610-encodes-a-general-superhero-or-heroic-concept"
+              ],
+              "hypothesisEvents": [
+                {
+                  "hypothesisId": "superhero-feature-analysis.feature-6610-encodes-a-general-superhero-or-heroic-concept",
+                  "action": "Propose",
+                  "relatedQuestionIds": [
+                    "superhero-feature-analysis.which-features-truly-represent-superhero-semantics"
+                  ],
+                  "hypothesisText": "Feature 6610 encodes a general superhero or heroic concept that should respond to superhero names and affect generation.",
+                  "note": "The candidate feature is selected because its position and description suggest coherent superhero semantics.",
+                  "statusAfter": "UnderInvestigation",
+                  "evidence": {
+                    "passageIds": [
+                      375
+                    ],
+                    "figureRefs": [
+                      "Fig. 6A"
+                    ],
+                    "quotes": [
+                      "Feature 6610, described as \"references to superhero characters and their narratives\", captures the user's attention"
+                    ],
+                    "reasoning": "The candidate selection implies the working hypothesis that feature 6610 is semantically meaningful.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "intentCanonical": [
+                "Explore",
+                "Select"
+              ],
+              "intentText": "Identify the most promising superhero-related feature candidate.",
+              "strategyCanonical": [
+                "SearchThenInspect"
+              ],
+              "operationCanonical": [
+                "Navigate",
+                "SelectItem"
+              ],
+              "operationText": "Inspect labeled clusters and select a candidate feature from the concept space.",
+              "usedViews": [
+                {
+                  "viewId": "feature-explorer",
+                  "subViewId": "feature-explorer.concept-space-map"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "feature-explorer",
+                  "subViewId": "feature-explorer.concept-space-map",
+                  "capabilityId": "feature-explorer.concept-space-map.browse-clusters"
+                },
+                {
+                  "viewId": "feature-explorer",
+                  "subViewId": "feature-explorer.concept-space-map",
+                  "capabilityId": "feature-explorer.concept-space-map.select-feature"
+                }
+              ],
+              "targetDataDescription": [
+                "superhero-related feature clusters in the selected SAE",
+                "feature 6610"
+              ],
+              "observations": [
+                {
+                  "observationType": "Cluster",
+                  "description": "Feature 6610 stands out within the individuals cluster as a candidate tied to superhero characters.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "feature-explorer",
+                      "subViewId": "feature-explorer.concept-space-map"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      375
+                    ],
+                    "figureRefs": [
+                      "Fig. 6A"
+                    ],
+                    "quotes": [
+                      "Feature 6610 ... captures the user's attention due to its position within the individuals cluster"
+                    ],
+                    "reasoning": "The cluster position and feature description are explicit reasons for selecting it.",
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "decision": {
+                "description": "Choose feature 6610 as the primary superhero-related candidate for validation.",
+                "rationale": "Its label and cluster position suggest semantically coherent superhero content.",
+                "targetQuestionIds": [
+                  "superhero-feature-analysis.which-features-truly-represent-superhero-semantics"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    375,
+                    635
+                  ],
+                  "figureRefs": [
+                    "Fig. 6A"
+                  ],
+                  "quotes": [
+                    "The user identifies feature 6610 within the individuals cluster"
+                  ],
+                  "reasoning": "The selection is explicit in the figure caption and scenario text.",
+                  "confidence": 0.99
+                },
+                "inferenceType": "Explicit"
+              },
+              "outcomeSummary": "The analyst selects feature 6610 as the main superhero-related feature candidate.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  375,
+                  635
+                ],
+                "figureRefs": [
+                  "Fig. 6A"
+                ],
+                "quotes": [
+                  "The user identifies feature 6610"
+                ],
+                "reasoning": "The scenario explicitly identifies this feature as the candidate of interest.",
+                "confidence": 0.99
+              }
+            }
+          ],
+          "episodeOutcomeSummary": "The analyst initializes a superhero-focused search and picks feature 6610 as the main candidate.",
+          "evidence": {
+            "passageIds": [
+              375,
+              635
+            ],
+            "figureRefs": [
+              "Fig. 6A"
+            ],
+            "quotes": [
+              "Feature 6610 ... captures the user's attention",
+              "The user identifies feature 6610"
+            ],
+            "reasoning": "These two steps together form the case's initial query and candidate-selection phase.",
+            "confidence": 0.98
+          },
+          "inferenceType": "StrongInference"
+        },
+        {
+          "episodeId": "superhero-feature-analysis.feature-validation",
+          "episodeTitle": "Feature Validation",
+          "localGoal": "Check whether feature 6610 responds to superhero content and causally influences generation.",
+          "strategyCanonical": [
+            "HypothesisTesting",
+            "WhatIfAnalysis"
+          ],
+          "strategyText": "The analyst validates the candidate first with input activations and then with output steering.",
+          "steps": [
+            {
+              "stepId": "superhero-feature-analysis.feature-validation.step-1",
+              "stepIndex": 1,
+              "rawNarrative": "In the Input Activation View, the user tests feature 6610 with superhero-related prompts and observes strong activation for superhero names.",
+              "questionsAddressed": [
+                "superhero-feature-analysis.which-features-truly-represent-superhero-semantics"
+              ],
+              "hypothesesTouched": [
+                "superhero-feature-analysis.feature-6610-encodes-a-general-superhero-or-heroic-concept"
+              ],
+              "intentCanonical": [
+                "Validate"
+              ],
+              "intentText": "Check whether feature 6610 activates on expected superhero examples.",
+              "strategyCanonical": [
+                "HypothesisTesting"
+              ],
+              "operationCanonical": [
+                "ChangeParameter",
+                "InspectDetails"
+              ],
+              "operationText": "Enter superhero-related prompts and inspect token activations.",
+              "usedViews": [
+                {
+                  "viewId": "input-activation",
+                  "subViewId": "input-activation.prompt-input"
+                },
+                {
+                  "viewId": "input-activation",
+                  "subViewId": "input-activation.token-activation-display"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "input-activation",
+                  "subViewId": "input-activation.prompt-input",
+                  "capabilityId": "input-activation.prompt-input.enter-custom-text"
+                },
+                {
+                  "viewId": "input-activation",
+                  "subViewId": "input-activation.token-activation-display",
+                  "capabilityId": "input-activation.token-activation-display.inspect-token-activations"
+                }
+              ],
+              "targetDataDescription": [
+                "superhero-related prompts for feature 6610",
+                "token-level activations for superhero names"
+              ],
+              "observations": [
+                {
+                  "observationType": "Pattern",
+                  "description": "Feature 6610 activates strongly for superhero names.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "input-activation",
+                      "subViewId": "input-activation.token-activation-display"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      380
+                    ],
+                    "figureRefs": [
+                      "Fig. 6B"
+                    ],
+                    "quotes": [
+                      "The visualization reveals strong activation for superhero names"
+                    ],
+                    "reasoning": "The activation pattern is stated directly.",
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "outcomeSummary": "The analyst gets direct activation evidence that feature 6610 responds to superhero names.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  380
+                ],
+                "figureRefs": [
+                  "Fig. 6B"
+                ],
+                "quotes": [
+                  "The visualization reveals strong activation for superhero names"
+                ],
+                "reasoning": "This is the explicit result of the input-activation check.",
+                "confidence": 0.99
+              }
+            },
+            {
+              "stepId": "superhero-feature-analysis.feature-validation.step-2",
+              "stepIndex": 2,
+              "rawNarrative": "The user then steers generation with the prompt \"My favorite hero is\" and compares outputs across activation strengths, finding superhero names under high activation and more general character references at lower activation.",
+              "questionsAddressed": [
+                "superhero-feature-analysis.which-features-truly-represent-superhero-semantics"
+              ],
+              "hypothesesTouched": [
+                "superhero-feature-analysis.feature-6610-encodes-a-general-superhero-or-heroic-concept"
+              ],
+              "hypothesisEvents": [
+                {
+                  "hypothesisId": "superhero-feature-analysis.feature-6610-encodes-a-general-superhero-or-heroic-concept",
+                  "action": "Support",
+                  "note": "Steering strengthens the claim that feature 6610 has a causal role in superhero-themed generation.",
+                  "statusAfter": "Supported",
+                  "evidence": {
+                    "passageIds": [
+                      380
+                    ],
+                    "figureRefs": [
+                      "Fig. 6B"
+                    ],
+                    "quotes": [
+                      "high activation generates superhero names like \"Dr. Strange\""
+                    ],
+                    "reasoning": "The steering result is the direct validation evidence for the hypothesis.",
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "intentCanonical": [
+                "Validate",
+                "Compare"
+              ],
+              "intentText": "Test whether feature 6610 causally influences superhero-themed generation.",
+              "strategyCanonical": [
+                "HypothesisTesting",
+                "WhatIfAnalysis"
+              ],
+              "operationCanonical": [
+                "ChangeParameter",
+                "CompareAlternatives"
+              ],
+              "operationText": "Generate output branches under different activation strengths and compare them.",
+              "usedViews": [
+                {
+                  "viewId": "output-steering",
+                  "subViewId": "output-steering.prompt-input"
+                },
+                {
+                  "viewId": "output-steering",
+                  "subViewId": "output-steering.output-branches"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "output-steering",
+                  "subViewId": "output-steering.prompt-input",
+                  "capabilityId": "output-steering.prompt-input.enter-steering-prompt"
+                },
+                {
+                  "viewId": "output-steering",
+                  "subViewId": "output-steering.output-branches",
+                  "capabilityId": "output-steering.output-branches.compare-steered-outputs"
+                }
+              ],
+              "targetDataDescription": [
+                "steered completions for the prompt \"My favorite hero is\""
+              ],
+              "observations": [
+                {
+                  "observationType": "Comparison",
+                  "description": "High activation yields superhero names, while lower activation produces more general character references.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "output-steering",
+                      "subViewId": "output-steering.output-branches"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      380
+                    ],
+                    "figureRefs": [
+                      "Fig. 6B"
+                    ],
+                    "quotes": [
+                      "high activation generates superhero names like \"Dr. Strange\" while lower activation produces more general character references"
+                    ],
+                    "reasoning": "The steering comparison is directly described in the text.",
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "HypothesisSupported",
+                  "description": "Feature 6610 not only responds to superhero names but also causally steers generation toward superhero characters.",
+                  "relatedQuestionIds": [
+                    "superhero-feature-analysis.which-features-truly-represent-superhero-semantics"
+                  ],
+                  "relatedHypothesisIds": [
+                    "superhero-feature-analysis.feature-6610-encodes-a-general-superhero-or-heroic-concept"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "output-steering",
+                      "subViewId": "output-steering.output-branches"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      380
+                    ],
+                    "figureRefs": [
+                      "Fig. 6B"
+                    ],
+                    "quotes": [
+                      "steering demonstrates control over character generation"
+                    ],
+                    "reasoning": "The case-study figure caption and narrative both describe the steering effect as validation.",
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "CrossModalSynthesis"
+                }
+              ],
+              "outcomeSummary": "The analyst establishes causal support for feature 6610 as a superhero-related feature.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  380,
+                  635
+                ],
+                "figureRefs": [
+                  "Fig. 6B"
+                ],
+                "quotes": [
+                  "For validation, the user employs the Output Steering View",
+                  "steering demonstrates control over character generation"
+                ],
+                "reasoning": "This step is explicitly framed as validation through steering.",
+                "confidence": 0.99
+              }
+            }
+          ],
+          "episodeOutcomeSummary": "The analyst validates feature 6610 with both activation evidence and causal steering behavior.",
+          "evidence": {
+            "passageIds": [
+              380,
+              635
+            ],
+            "figureRefs": [
+              "Fig. 6B"
+            ],
+            "quotes": [
+              "The visualization reveals strong activation for superhero names",
+              "steering demonstrates control over character generation"
+            ],
+            "reasoning": "The two steps together form the case's core validation phase for feature 6610.",
+            "confidence": 0.99
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "episodeId": "superhero-feature-analysis.related-feature-comparison",
+          "episodeTitle": "Related Feature Comparison",
+          "localGoal": "Compare feature 6610 with other activated or nearby features to distinguish broad heroic semantics from narrower or incoherent alternatives.",
+          "strategyCanonical": [
+            "ComparativeAnalysis",
+            "EvidenceAccumulation"
+          ],
+          "strategyText": "The analyst uses token-based related-feature retrieval to filter candidates and then validates the most plausible secondary feature.",
+          "steps": [
+            {
+              "stepId": "superhero-feature-analysis.related-feature-comparison.step-1",
+              "stepIndex": 1,
+              "rawNarrative": "The user selects superhero tokens such as Superman and Batman to find similarly activated features, observes that several candidates have semantically mismatched labels, rejects feature 12945 as incoherent, and notes that nearby feature 9638 appears related to heroic movies.",
+              "questionsAddressed": [
+                "superhero-feature-analysis.which-features-truly-represent-superhero-semantics"
+              ],
+              "hypothesesTouched": [
+                "superhero-feature-analysis.feature-9638-is-narrower-and-franchise-oriented"
+              ],
+              "hypothesisEvents": [
+                {
+                  "hypothesisId": "superhero-feature-analysis.feature-9638-is-narrower-and-franchise-oriented",
+                  "action": "Propose",
+                  "relatedQuestionIds": [
+                    "superhero-feature-analysis.which-features-truly-represent-superhero-semantics"
+                  ],
+                  "hypothesisText": "Feature 9638 is related to heroic entertainment franchises rather than a broad heroic concept.",
+                  "note": "Feature 9638 stands out as the only plausible related feature after incoherent candidates are ruled out.",
+                  "statusAfter": "UnderInvestigation",
+                  "evidence": {
+                    "passageIds": [
+                      385
+                    ],
+                    "figureRefs": [
+                      "Fig. 6C"
+                    ],
+                    "quotes": [
+                      "feature 9638's proximity to feature 6610 in the feature space captures the user's attention",
+                      "the user observes this feature relates to heroic movies"
+                    ],
+                    "reasoning": "The passage presents feature 9638 as the next candidate worth validating.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "intentCanonical": [
+                "Compare",
+                "Inspect",
+                "Prioritize"
+              ],
+              "intentText": "Separate semantically coherent related features from noisy co-activations.",
+              "strategyCanonical": [
+                "ComparativeAnalysis"
+              ],
+              "operationCanonical": [
+                "SelectItem",
+                "CompareAlternatives",
+                "InspectDetails"
+              ],
+              "operationText": "Select high-activation tokens, inspect related features, and compare their semantic coherence.",
+              "usedViews": [
+                {
+                  "viewId": "input-activation",
+                  "subViewId": "input-activation.token-activation-display"
+                },
+                {
+                  "viewId": "feature-explorer",
+                  "subViewId": "feature-explorer.concept-space-map"
+                },
+                {
+                  "viewId": "feature-details",
+                  "subViewId": "feature-details.token-summary"
+                },
+                {
+                  "viewId": "feature-details",
+                  "subViewId": "feature-details.text-segment-examples"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "input-activation",
+                  "subViewId": "input-activation.token-activation-display",
+                  "capabilityId": "input-activation.token-activation-display.select-tokens"
+                },
+                {
+                  "viewId": "feature-explorer",
+                  "subViewId": "feature-explorer.concept-space-map",
+                  "capabilityId": "feature-explorer.concept-space-map.show-related-features"
+                },
+                {
+                  "viewId": "feature-details",
+                  "subViewId": "feature-details.token-summary",
+                  "capabilityId": "feature-details.token-summary.inspect-token-summary"
+                },
+                {
+                  "viewId": "feature-details",
+                  "subViewId": "feature-details.text-segment-examples",
+                  "capabilityId": "feature-details.text-segment-examples.inspect-example-alignment"
+                }
+              ],
+              "targetDataDescription": [
+                "superhero tokens such as Superman and Batman",
+                "related features 12945 and 9638"
+              ],
+              "observations": [
+                {
+                  "observationType": "Comparison",
+                  "description": "Several token-related features have labels that suggest technical, medical, or scientific semantics rather than coherent superhero meaning.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "feature-explorer",
+                      "subViewId": "feature-explorer.concept-space-map"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      385
+                    ],
+                    "figureRefs": [
+                      "Fig. 6C"
+                    ],
+                    "quotes": [
+                      "their semantic cluster labels ... suggest they may not represent superhero concepts coherently"
+                    ],
+                    "reasoning": "The paper explicitly describes the mismatch between activation overlap and semantic coherence.",
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "Explicit"
+                },
+                {
+                  "observationType": "Anomaly",
+                  "description": "Feature 12945 shows poor activation-to-semantic coherence across diverse, unrelated text segments.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "feature-details",
+                      "subViewId": "feature-details.text-segment-examples"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      385
+                    ],
+                    "figureRefs": [
+                      "Fig. 6C"
+                    ],
+                    "quotes": [
+                      "feature 12945 ... lacks clear semantic specificity"
+                    ],
+                    "reasoning": "The passage directly reports why this related feature is rejected.",
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "Explicit"
+                },
+                {
+                  "observationType": "Relationship",
+                  "description": "Feature 9638 appears closer to feature 6610 and is associated with heroic movies.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "feature-explorer",
+                      "subViewId": "feature-explorer.concept-space-map"
+                    },
+                    {
+                      "viewId": "feature-details",
+                      "subViewId": "feature-details.token-summary"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      385
+                    ],
+                    "figureRefs": [
+                      "Fig. 6C"
+                    ],
+                    "quotes": [
+                      "feature 9638's proximity to feature 6610",
+                      "the user observes this feature relates to heroic movies"
+                    ],
+                    "reasoning": "The passage uses both spatial proximity and token statistics to motivate deeper validation of 9638.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "NeedMoreEvidence",
+                  "description": "Activation overlap alone is insufficient for semantic interpretation; related features need coherence checks before they can be treated as superhero features.",
+                  "relatedQuestionIds": [
+                    "superhero-feature-analysis.which-features-truly-represent-superhero-semantics"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "feature-explorer",
+                      "subViewId": "feature-explorer.concept-space-map"
+                    },
+                    {
+                      "viewId": "feature-details",
+                      "subViewId": "feature-details.text-segment-examples"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      385
+                    ],
+                    "figureRefs": [
+                      "Fig. 6C"
+                    ],
+                    "quotes": [
+                      "they may not represent superhero concepts coherently"
+                    ],
+                    "reasoning": "The scenario explicitly distinguishes semantic coherence from token co-activation.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "CrossModalSynthesis"
+                }
+              ],
+              "outcomeSummary": "The analyst rules out incoherent candidates and promotes feature 9638 as the most plausible related feature for deeper validation.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  385
+                ],
+                "figureRefs": [
+                  "Fig. 6C"
+                ],
+                "quotes": [
+                  "feature 9638's proximity ... captures the user's attention"
+                ],
+                "reasoning": "The first comparison step ends by focusing the analysis on 9638.",
+                "confidence": 0.98
+              }
+            },
+            {
+              "stepId": "superhero-feature-analysis.related-feature-comparison.step-2",
+              "stepIndex": 2,
+              "rawNarrative": "Further validation shows feature 9638 activates for entertainment franchises such as Harry Potter but not traditional heroes like Hercules and Sun Wukong, leading the user to conclude that feature 6610 captures a general heroic concept while feature 9638 is franchise-specific.",
+              "questionsAddressed": [
+                "superhero-feature-analysis.which-features-truly-represent-superhero-semantics"
+              ],
+              "hypothesesTouched": [
+                "superhero-feature-analysis.feature-6610-encodes-a-general-superhero-or-heroic-concept",
+                "superhero-feature-analysis.feature-9638-is-narrower-and-franchise-oriented"
+              ],
+              "hypothesisEvents": [
+                {
+                  "hypothesisId": "superhero-feature-analysis.feature-9638-is-narrower-and-franchise-oriented",
+                  "action": "Support",
+                  "note": "Targeted validation confirms the narrower entertainment-franchise scope of feature 9638.",
+                  "statusAfter": "Supported",
+                  "evidence": {
+                    "passageIds": [
+                      390
+                    ],
+                    "figureRefs": [
+                      "Fig. 6D"
+                    ],
+                    "quotes": [
+                      "feature 9638 activates for entertainment franchises like Harry Potter",
+                      "feature 9638 is specific to characters from entertainment franchises"
+                    ],
+                    "reasoning": "The passage directly states the supported interpretation.",
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "intentCanonical": [
+                "Validate",
+                "Compare",
+                "Summarize"
+              ],
+              "intentText": "Resolve the semantic distinction between the main candidate and the related feature.",
+              "strategyCanonical": [
+                "ComparativeAnalysis",
+                "HypothesisTesting"
+              ],
+              "operationCanonical": [
+                "CompareAlternatives",
+                "InspectDetails"
+              ],
+              "operationText": "Validate feature 9638 with targeted examples and synthesize the comparison with feature 6610.",
+              "usedViews": [
+                {
+                  "viewId": "input-activation",
+                  "subViewId": "input-activation.prompt-input"
+                },
+                {
+                  "viewId": "input-activation",
+                  "subViewId": "input-activation.token-activation-display"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "input-activation",
+                  "subViewId": "input-activation.prompt-input",
+                  "capabilityId": "input-activation.prompt-input.enter-custom-text"
+                },
+                {
+                  "viewId": "input-activation",
+                  "subViewId": "input-activation.token-activation-display",
+                  "capabilityId": "input-activation.token-activation-display.inspect-token-activations"
+                }
+              ],
+              "targetDataDescription": [
+                "feature 9638 responses to entertainment-franchise examples and traditional heroes"
+              ],
+              "observations": [
+                {
+                  "observationType": "Comparison",
+                  "description": "Feature 9638 activates for entertainment-franchise characters like Harry Potter but not for traditional heroes such as Hercules and Sun Wukong.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "input-activation",
+                      "subViewId": "input-activation.token-activation-display"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      390
+                    ],
+                    "figureRefs": [
+                      "Fig. 6D"
+                    ],
+                    "quotes": [
+                      "feature 9638 activates for entertainment franchises like Harry Potter but shows no response to traditional heroes"
+                    ],
+                    "reasoning": "The validation contrast is explicit in the scenario text.",
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "RelationshipIdentified",
+                  "description": "Feature 6610 captures a broader heroic concept, whereas feature 9638 is a narrower entertainment-franchise feature.",
+                  "relatedQuestionIds": [
+                    "superhero-feature-analysis.which-features-truly-represent-superhero-semantics"
+                  ],
+                  "relatedHypothesisIds": [
+                    "superhero-feature-analysis.feature-6610-encodes-a-general-superhero-or-heroic-concept",
+                    "superhero-feature-analysis.feature-9638-is-narrower-and-franchise-oriented"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "input-activation",
+                      "subViewId": "input-activation.token-activation-display"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      390
+                    ],
+                    "figureRefs": [
+                      "Fig. 6D"
+                    ],
+                    "quotes": [
+                      "the user concludes that feature 6610 captures a general heroic concept, while feature 9638 is specific to characters from entertainment franchises"
+                    ],
+                    "reasoning": "The comparison result is stated explicitly as the scenario conclusion.",
+                    "confidence": 1.0
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "outcomeSummary": "The analyst resolves the comparison by distinguishing broad heroic semantics from franchise-specific activation.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  390
+                ],
+                "figureRefs": [
+                  "Fig. 6D"
+                ],
+                "quotes": [
+                  "Based on this key finding, the user concludes"
+                ],
+                "reasoning": "This step is the explicit conclusion of the related-feature comparison.",
+                "confidence": 1.0
+              }
+            }
+          ],
+          "episodeOutcomeSummary": "The analyst determines that feature 6610 is the broader heroic feature and that feature 9638 is a narrower entertainment-franchise feature, while other related candidates are semantically incoherent.",
+          "evidence": {
+            "passageIds": [
+              385,
+              390
+            ],
+            "figureRefs": [
+              "Fig. 6C",
+              "Fig. 6D"
+            ],
+            "quotes": [
+              "feature 9638's proximity ... captures the user's attention",
+              "the user concludes that feature 6610 captures a general heroic concept"
+            ],
+            "reasoning": "The episode consists of candidate comparison followed by targeted validation and synthesis.",
+            "confidence": 0.99
+          },
+          "inferenceType": "StrongInference"
+        }
+      ],
+      "finalOutcome": {
+        "finalInsights": [
+          {
+            "insightType": "RelationshipIdentified",
+            "description": "Feature 6610 is the most semantically coherent superhero-related feature in this scenario, while feature 9638 is narrower and entertainment-franchise-specific, and feature 12945 is not semantically coherent.",
+            "relatedQuestionIds": [
+              "superhero-feature-analysis.which-features-truly-represent-superhero-semantics"
+            ],
+            "relatedHypothesisIds": [
+              "superhero-feature-analysis.feature-6610-encodes-a-general-superhero-or-heroic-concept",
+              "superhero-feature-analysis.feature-9638-is-narrower-and-franchise-oriented"
+            ],
+            "supportedByViews": [
+              {
+                "viewId": "feature-details",
+                "subViewId": "feature-details.text-segment-examples"
+              },
+              {
+                "viewId": "input-activation",
+                "subViewId": "input-activation.token-activation-display"
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                385,
+                390
+              ],
+              "figureRefs": [
+                "Fig. 6C",
+                "Fig. 6D"
+              ],
+              "quotes": [
+                "feature 12945 ... lacks clear semantic specificity",
+                "feature 6610 captures a general heroic concept, while feature 9638 is specific to characters from entertainment franchises"
+              ],
+              "reasoning": "The final outcome synthesizes the rejection of incoherent related features with the supported distinction between 6610 and 9638.",
+              "confidence": 0.99
+            },
+            "inferenceType": "CrossModalSynthesis"
+          }
+        ],
+        "claimedSystemValue": "ConceptViz helps analysts validate a primary feature and compare related candidates so they can distinguish meaningful superhero semantics from coincidental or narrower activations.",
+        "evidence": {
+          "passageIds": [
+            345,
+            375,
+            380,
+            385,
+            390
+          ],
+          "figureRefs": [
+            "Fig. 6"
+          ],
+          "quotes": [
+            "highlighting our system's ability to reveal meaningful tokenfeature associations while distinguishing semantically relevant features from coincidental activations"
+          ],
+          "reasoning": "The paper explicitly states the intended system value for this scenario and then demonstrates it through validation and comparison.",
+          "confidence": 0.97
+        },
+        "inferenceType": "Explicit"
+      },
+      "overallStrategySummary": "The analyst retrieves a superhero-focused SAE, selects feature 6610 from the concept space, validates it with activation evidence and steering, then compares related features to separate broad heroic semantics from franchise-specific or incoherent alternatives.",
+      "caseNarrativeSummary": "This scenario moves from superhero query and candidate selection to direct validation of feature 6610 and then to a comparative analysis of related features. The final result distinguishes a broad heroic feature from a narrower entertainment-franchise feature while ruling out incoherent co-activated alternatives.",
+      "evidence": {
+        "passageIds": [
+          345,
+          375,
+          380,
+          385,
+          390
+        ],
+        "figureRefs": [
+          "Fig. 6"
+        ],
+        "quotes": [
+          "Second, the user investigates the superhero concept",
+          "Based on this key finding, the user concludes"
+        ],
+        "reasoning": "The case is explicitly introduced and completed in the Fig. 6 scenario sequence.",
+        "confidence": 0.98
+      },
+      "inferenceType": "Explicit"
+    }
+  ],
+  "paperLevelUsageClaims": [
+    "ConceptViz supports an end-to-end workflow that moves from concept querying and SAE selection to feature inspection and validation.",
+    "The case studies show that the system helps analysts distinguish semantically meaningful SAE features from explanation errors, coincidental activations, and narrower related features."
+  ],
+  "evidence": {
+    "passageIds": [
+      345
+    ],
+    "figureRefs": [
+      "Fig. 5",
+      "Fig. 6"
+    ],
+    "quotes": [
+      "we present two usage scenarios completed by two domain experts",
+      "highlighting our system's ability to reveal meaningful tokenfeature associations while distinguishing semantically relevant features from coincidental activations"
+    ],
+    "reasoning": "The paper-level wrapper is grounded in the paragraph that introduces both scenarios and states the usage claims they are meant to demonstrate.",
+    "confidence": 0.96
+  },
+  "inferenceType": "CrossModalSynthesis"
+}

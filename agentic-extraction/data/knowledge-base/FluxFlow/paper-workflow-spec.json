@@ -1,0 +1,432 @@
+{
+  "paperName": "FluxFlow",
+  "systemName": "FluxFlow",
+  "systemSpecPath": "data/agentic/extract-results/FluxFlow/system-spec/output/system-spec.json",
+  "workflows": [
+    {
+      "workflowId": "anomalous-thread-analysis-workflow",
+      "workflowTitle": "Anomalous Thread Analysis Workflow",
+      "workflowKind": "ExploratoryAnalysis",
+      "workflowGoal": "Guide analysts from overview-based anomaly scanning through thread-level drill-down and lower-level model interpretation of anomalous retweeting threads.",
+      "description": "FluxFlow is intended to support an exploratory visual-analytics workflow in which analysts first use coordinated overview views to identify noteworthy threads, then unfold and compare selected threads in the timeline workspace, and may continue into lower-level feature, state, and tweet views to interpret anomalies and the underlying model behavior.",
+      "targetUsers": [
+        "analysts"
+      ],
+      "stages": [
+        {
+          "stageId": "overview-anomaly-screening",
+          "stageIndex": 1,
+          "stageTitle": "Overview Anomaly Screening",
+          "stageGoal": "Capture the general picture of retweeting-thread anomalies and identify promising threads or clusters for closer inspection.",
+          "description": "Analysts begin with the cluster and MDS overviews to browse topic structure, compare thread distributions in anomaly feature space, and inspect lightweight metadata before deciding which threads merit deeper exploration.",
+          "usedViews": [
+            {
+              "viewId": "cluster-view",
+              "subViewId": "cluster-view.main"
+            },
+            {
+              "viewId": "mds-view",
+              "subViewId": "mds-view.main"
+            },
+            {
+              "viewId": "tooltip-view",
+              "subViewId": "tooltip-view.card"
+            },
+            {
+              "viewId": "context-menu",
+              "subViewId": "context-menu.details"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "cluster-view",
+              "subViewId": "cluster-view.main",
+              "capabilityId": "cluster-view.main.browse-hierarchy"
+            },
+            {
+              "viewId": "cluster-view",
+              "subViewId": "cluster-view.main",
+              "capabilityId": "cluster-view.main.collapse-levels"
+            },
+            {
+              "viewId": "cluster-view",
+              "subViewId": "cluster-view.main",
+              "capabilityId": "cluster-view.main.request-details"
+            },
+            {
+              "viewId": "mds-view",
+              "subViewId": "mds-view.main",
+              "capabilityId": "mds-view.main.compare-projection"
+            },
+            {
+              "viewId": "mds-view",
+              "subViewId": "mds-view.main",
+              "capabilityId": "mds-view.main.zoom-pan"
+            },
+            {
+              "viewId": "mds-view",
+              "subViewId": "mds-view.main",
+              "capabilityId": "mds-view.main.request-details"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "cluster-collapse-updates-mds",
+              "description": "Hierarchy aggregation in the cluster view updates the MDS overview to preserve context while screening anomalies."
+            },
+            {
+              "coordinationId": "cluster-details-on-demand",
+              "description": "Cluster-view inspection can open concise tooltip metadata during overview screening."
+            },
+            {
+              "coordinationId": "mds-details-on-demand",
+              "description": "MDS-view inspection can open concise tooltip metadata during overview screening."
+            },
+            {
+              "coordinationId": "cluster-context-menu-details",
+              "description": "Cluster-view inspection can open richer thread details in the context menu."
+            },
+            {
+              "coordinationId": "mds-context-menu-details",
+              "description": "MDS-view inspection can open richer thread details in the context menu."
+            }
+          ],
+          "expectedOutcome": "A set of interesting anomalous or contextually important threads is identified, with enough overview and metadata evidence to justify deeper exploration.",
+          "evidence": {
+            "passageIds": [
+              13,
+              31,
+              91,
+              93,
+              94
+            ],
+            "figureRefs": [
+              "Fig. 5a",
+              "Fig. 5b",
+              "Fig. 5g",
+              "Fig. 5h"
+            ],
+            "quotes": [
+              "FluxFlow offers two overviews to allow users to capture the general picture of data from different perspectives",
+              "allowing users to identify outliers and visually compare the threads at a higher level",
+              "Both views provide informative tooltips and context menus to access extra information of the thread nodes"
+            ],
+            "reasoning": "These passages consistently describe a first intended stage focused on overview-based screening and selection rather than case-specific drill-down behavior.",
+            "confidence": 0.94
+          },
+          "inferenceType": "CrossModalSynthesis"
+        },
+        {
+          "stageId": "thread-drill-down-and-comparison",
+          "stageIndex": 2,
+          "stageTitle": "Thread Drill-Down And Comparison",
+          "stageGoal": "Open selected threads and compare their temporal, user-level, and relational patterns in detail.",
+          "description": "After finding a promising node in an overview, analysts unfold the corresponding thread in the threads view, compare multiple timelines, inspect temporal dynamics, and explore duplicated users or social links across and within threads.",
+          "usedViews": [
+            {
+              "viewId": "cluster-view",
+              "subViewId": "cluster-view.main"
+            },
+            {
+              "viewId": "mds-view",
+              "subViewId": "mds-view.main"
+            },
+            {
+              "viewId": "threads-view",
+              "subViewId": "threads-view.timeline"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "cluster-view",
+              "subViewId": "cluster-view.main",
+              "capabilityId": "cluster-view.main.open-thread"
+            },
+            {
+              "viewId": "cluster-view",
+              "subViewId": "cluster-view.main",
+              "capabilityId": "cluster-view.main.highlight-descendants"
+            },
+            {
+              "viewId": "mds-view",
+              "subViewId": "mds-view.main",
+              "capabilityId": "mds-view.main.open-thread"
+            },
+            {
+              "viewId": "mds-view",
+              "subViewId": "mds-view.main",
+              "capabilityId": "mds-view.main.highlight-descendants"
+            },
+            {
+              "viewId": "threads-view",
+              "subViewId": "threads-view.timeline",
+              "capabilityId": "threads-view.timeline.show-timelines"
+            },
+            {
+              "viewId": "threads-view",
+              "subViewId": "threads-view.timeline",
+              "capabilityId": "threads-view.timeline.zoom-time"
+            },
+            {
+              "viewId": "threads-view",
+              "subViewId": "threads-view.timeline",
+              "capabilityId": "threads-view.timeline.expand-children"
+            },
+            {
+              "viewId": "threads-view",
+              "subViewId": "threads-view.timeline",
+              "capabilityId": "threads-view.timeline.show-highlighted-retweets"
+            },
+            {
+              "viewId": "threads-view",
+              "subViewId": "threads-view.timeline",
+              "capabilityId": "threads-view.timeline.show-duplicated-users"
+            },
+            {
+              "viewId": "threads-view",
+              "subViewId": "threads-view.timeline",
+              "capabilityId": "threads-view.timeline.show-user-connections"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "cluster-opens-threads",
+              "description": "The cluster overview can open the selected thread in the timeline workspace."
+            },
+            {
+              "coordinationId": "mds-opens-threads",
+              "description": "The MDS overview can open the selected thread in the timeline workspace."
+            },
+            {
+              "coordinationId": "cluster-hover-highlights-threads",
+              "description": "Hovering cluster descendants highlights matching retweets in loaded thread timelines."
+            },
+            {
+              "coordinationId": "mds-hover-highlights-threads",
+              "description": "Hovering MDS descendants highlights matching retweets in loaded thread timelines."
+            }
+          ],
+          "expectedOutcome": "The analyst develops a comparative understanding of selected threads, including timing, participation, and possible cross-thread user relationships.",
+          "evidence": {
+            "passageIds": [
+              13,
+              96,
+              98,
+              99
+            ],
+            "figureRefs": [
+              "Fig. 5c",
+              "Fig. 5j",
+              "Fig. 6"
+            ],
+            "quotes": [
+              "double-click a node in either to unfold the timeline visualization of that thread in the threads view",
+              "allowing users to discover the trends and other temporal dynamics of information spreading",
+              "FluxFlow integrates several functions to facilitate the process of discovering user relationships"
+            ],
+            "reasoning": "These normative passages support a middle stage centered on detailed thread exploration and comparison once an overview selection has been made.",
+            "confidence": 0.95
+          },
+          "inferenceType": "CrossModalSynthesis"
+        },
+        {
+          "stageId": "model-interpretation-and-low-level-inspection",
+          "stageIndex": 3,
+          "stageTitle": "Model Interpretation And Low-Level Inspection",
+          "stageGoal": "Inspect lower-level feature, state, and tweet evidence to understand why threads appear anomalous and how the model behaves.",
+          "description": "Analysts use hidden-state backgrounds in the thread timelines together with the features, states, and tweets views to interpret anomaly mechanisms, inspect feature variation, examine state signatures, and consult the lower-level tweet panel when needed.",
+          "usedViews": [
+            {
+              "viewId": "threads-view",
+              "subViewId": "threads-view.timeline"
+            },
+            {
+              "viewId": "detail-panel",
+              "subViewId": "detail-panel.features"
+            },
+            {
+              "viewId": "detail-panel",
+              "subViewId": "detail-panel.states"
+            },
+            {
+              "viewId": "detail-panel",
+              "subViewId": "detail-panel.tweets"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "threads-view",
+              "subViewId": "threads-view.timeline",
+              "capabilityId": "threads-view.timeline.show-state-transitions"
+            },
+            {
+              "viewId": "detail-panel",
+              "subViewId": "detail-panel.features",
+              "capabilityId": "detail-panel.features.inspect-features"
+            },
+            {
+              "viewId": "detail-panel",
+              "subViewId": "detail-panel.states",
+              "capabilityId": "detail-panel.states.inspect-states"
+            },
+            {
+              "viewId": "detail-panel",
+              "subViewId": "detail-panel.states",
+              "capabilityId": "detail-panel.states.set-axes"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "threads-zoom-features",
+              "description": "Temporal zooming in the thread timelines is coupled with the features view for multiscale inspection."
+            }
+          ],
+          "expectedOutcome": "The analyst reaches a lower-level interpretation of thread abnormality by relating thread behavior to feature patterns, hidden-state structure, and available tweet-level evidence.",
+          "evidence": {
+            "passageIds": [
+              13,
+              31,
+              102,
+              103
+            ],
+            "figureRefs": [
+              "Fig. 5c",
+              "Fig. 5d",
+              "Fig. 5e",
+              "Fig. 5f"
+            ],
+            "quotes": [
+              "FluxFlow provides visual access to some low-level information generated by the model",
+              "To further look into the state variables, the analyst can leverage the features view",
+              "the states view indicates how states are tied to tweet users"
+            ],
+            "reasoning": "The system description and interface passages support a final intended stage focused on model interpretation and low-level inspection rather than merely continuing timeline exploration.",
+            "confidence": 0.94
+          },
+          "inferenceType": "CrossModalSynthesis"
+        }
+      ],
+      "transitions": [
+        {
+          "sourceStageId": "overview-anomaly-screening",
+          "targetStageId": "thread-drill-down-and-comparison",
+          "transitionType": "DrillDown",
+          "rationale": "Once an overview view reveals an interesting thread or cluster, the intended next move is to unfold that thread in the timeline workspace for closer inspection.",
+          "evidence": {
+            "passageIds": [
+              91,
+              93,
+              96
+            ],
+            "figureRefs": [
+              "Fig. 5a",
+              "Fig. 5b",
+              "Fig. 5c"
+            ],
+            "quotes": [
+              "When the user identifies something interesting by interacting with the cluster view and the MDS view, she can double-click a node in either to unfold the timeline visualization of that thread in the threads view"
+            ],
+            "reasoning": "This passage states the intended move from overview exploration to thread-level detail inspection.",
+            "confidence": 0.97
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "sourceStageId": "thread-drill-down-and-comparison",
+          "targetStageId": "model-interpretation-and-low-level-inspection",
+          "transitionType": "Branch",
+          "rationale": "After thread-level comparison, analysts may branch into the lower-level views when they need additional explanation about hidden states, feature variation, or tweet-level context.",
+          "evidence": {
+            "passageIds": [
+              31,
+              102,
+              103
+            ],
+            "figureRefs": [
+              "Fig. 5c",
+              "Fig. 5d",
+              "Fig. 5e",
+              "Fig. 5f"
+            ],
+            "quotes": [
+              "Some other views, including the features view, states view, and raw tweets view are also provided to help analysts explore the data at a lower level",
+              "To further look into the state variables, the analyst can leverage the features view"
+            ],
+            "reasoning": "The paper supports lower-level interpretation as an available next analytical path, but not as a fixed prescribed next step after thread comparison.",
+            "confidence": 0.88
+          },
+          "inferenceType": "WeakInference"
+        }
+      ],
+      "expectedFinalOutcome": "Analysts identify anomalous retweeting threads, compare their propagation patterns, and develop a lower-level interpretation of how the anomaly model and user-state structure explain those threads.",
+      "evidence": {
+        "passageIds": [
+          13,
+          28,
+          31,
+          91,
+          96,
+          102,
+          103
+        ],
+        "figureRefs": [
+          "Fig. 5"
+        ],
+        "quotes": [
+          "This allows analysts to browse and compare different retweeting threads in FluxFlow",
+          "The FluxFlow system is designed for detecting, exploring and interpreting anomalous conversational threads in Twitter"
+        ],
+        "reasoning": "Across the system overview and interface passages, FluxFlow supports a coherent intended workflow from overview triage to thread drill-down with optional lower-level interpretation.",
+        "confidence": 0.92
+      },
+      "inferenceType": "CrossModalSynthesis"
+    }
+  ],
+  "paperLevelClaims": [
+    {
+      "claimText": "FluxFlow is intended to support analysts in detecting, exploring, and interpreting anomalous conversational threads through multiple coordinated views and lower-level model evidence.",
+      "evidence": {
+        "passageIds": [
+          13,
+          28,
+          31
+        ],
+        "figureRefs": [
+          "Fig. 2",
+          "Fig. 5"
+        ],
+        "quotes": [
+          "designed for detecting, exploring and interpreting anomalous conversational threads in Twitter",
+          "Multiple coordinated views are applied in FluxFlow"
+        ],
+        "reasoning": "The paper-level framing emphasizes coordinated exploration and interpretation rather than one isolated view or one-off scenario.",
+        "confidence": 0.92
+      },
+      "inferenceType": "CrossModalSynthesis"
+    }
+  ],
+  "evidence": {
+    "passageIds": [
+      13,
+      28,
+      31,
+      91,
+      93,
+      94,
+      96,
+      98,
+      99,
+      102,
+      103
+    ],
+    "figureRefs": [
+      "Fig. 5"
+    ],
+    "quotes": [
+      "Multiple coordinated views are applied in FluxFlow",
+      "Some other views ... are also provided to help analysts explore the data at a lower level"
+    ],
+    "reasoning": "The extracted workflow is synthesized from system-overview and interface passages while excluding case-study narrative.",
+    "confidence": 0.92
+  }
+}

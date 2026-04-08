@@ -1,0 +1,1509 @@
+{
+  "paperName": "DMap",
+  "systemInfo": {
+    "systemName": "D-Map",
+    "dataOntology": {
+      "datasetType": [
+        "NetworksAndTrees",
+        "Text",
+        "Temporal"
+      ],
+      "dataType": [
+        "ItemNodes",
+        "Links",
+        "Attributes"
+      ],
+      "attributeType": [
+        "Categorical",
+        "Quantitative"
+      ]
+    },
+    "systemCategory": [
+      {
+        "level1": "B Social / Info Ecosystem",
+        "level2": [
+          "B1 Topic/Propagation",
+          "B3 Community/Interaction"
+        ]
+      }
+    ]
+  },
+  "viewsInfo": [
+    {
+      "viewId": "source-weibo-table",
+      "viewName": "Source Weibo Table View",
+      "nameSource": "caption",
+      "aliases": [
+        "Fig. 1a",
+        "a"
+      ],
+      "description": "Tabular source-weibo list used to select different groups of source weibos for analysis.",
+      "viewImages": [
+        "data/view-images/DMap/1.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          51,
+          78
+        ],
+        "figureRefs": [
+          "Fig. 1a",
+          "data/view-images/DMap/1.png"
+        ],
+        "quotes": [
+          "table view of source weibos with sorting, keyword searching, and filtering functions",
+          "for selecting different groups of source weibos"
+        ],
+        "reasoning": "The caption and system description clearly identify this region as the source-weibo table used for record-level selection and filtering.",
+        "confidence": 0.99
+      },
+      "subViews": [
+        {
+          "subViewId": "source-weibo-table.main",
+          "subViewName": "Source Weibo Table",
+          "nameSource": "caption",
+          "aliases": [
+            "Fig. 1a"
+          ],
+          "description": "Main left-hand table listing source weibos with sortable columns and row selection.",
+          "evidence": {
+            "passageIds": [
+              51,
+              78
+            ],
+            "figureRefs": [
+              "Fig. 1a"
+            ],
+            "quotes": [
+              "sorting, keyword searching, and filtering functions",
+              "selected source weibos"
+            ],
+            "reasoning": "This single region behaves as a table-centric control surface for source-weibo selection.",
+            "confidence": 0.98
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "TableView",
+            "description": "Tabular control and preview surface for source-weibo records, including row selection, sorting, search, and filters.",
+            "evidence": {
+              "passageIds": [
+                51
+              ],
+              "figureRefs": [
+                "Fig. 1a"
+              ],
+              "quotes": [
+                "table view of source weibos with sorting, keyword searching, and filtering functions"
+              ],
+              "reasoning": "The paper explicitly describes a table view with table-like control operations.",
+              "confidence": 0.99
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "source-weibo-table.main.sort-table",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Sort rows",
+              "description": "Users can sort the source-weibo entries in the table.",
+              "evidence": {
+                "passageIds": [
+                  51
+                ],
+                "quotes": [
+                  "sorting"
+                ],
+                "reasoning": "Sorting is explicitly listed as a table function.",
+                "confidence": 0.97
+              }
+            },
+            {
+              "capabilityId": "source-weibo-table.main.search-keywords",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Search source weibos",
+              "description": "Users can keyword-search within the source-weibo table.",
+              "evidence": {
+                "passageIds": [
+                  51
+                ],
+                "quotes": [
+                  "keyword searching"
+                ],
+                "reasoning": "Keyword searching is explicitly described for the table view.",
+                "confidence": 0.97
+              }
+            },
+            {
+              "capabilityId": "source-weibo-table.main.filter-table",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Filter source weibos",
+              "description": "Users can filter the displayed source-weibo records before further exploration.",
+              "evidence": {
+                "passageIds": [
+                  51
+                ],
+                "quotes": [
+                  "filtering functions"
+                ],
+                "reasoning": "Filtering is explicitly listed as a table function.",
+                "confidence": 0.97
+              }
+            },
+            {
+              "capabilityId": "source-weibo-table.main.select-source-weibos",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Select source weibos",
+              "description": "Users can select source weibos from the table for linked highlighting in other views.",
+              "evidence": {
+                "passageIds": [
+                  51,
+                  78
+                ],
+                "quotes": [
+                  "The selected source weibos will pop up for highlighting",
+                  "for selecting different groups of source weibos"
+                ],
+                "reasoning": "The table is the named source of source-weibo selection and drives linked highlights.",
+                "confidence": 0.99
+              }
+            },
+            {
+              "capabilityId": "source-weibo-table.main.show-weibo-metadata",
+              "capabilityKind": "Information",
+              "capabilityName": "Show source-weibo records",
+              "description": "The table directly shows source-weibo metadata such as time, text, and counts in rows.",
+              "evidence": {
+                "passageIds": [
+                  78
+                ],
+                "figureRefs": [
+                  "data/view-images/DMap/1.png"
+                ],
+                "quotes": [
+                  "Source Weibo Table View"
+                ],
+                "reasoning": "The interface crop shows a standard record table with columns and entries.",
+                "confidence": 0.88
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "source-weibo-distribution",
+      "viewName": "Source Weibo Distribution View",
+      "nameSource": "caption",
+      "aliases": [
+        "Fig. 1b",
+        "b"
+      ],
+      "description": "Grouped source-weibo distribution analysis view containing document and keyword perspectives.",
+      "evidence": {
+        "passageIds": [
+          49,
+          51,
+          78,
+          88
+        ],
+        "figureRefs": [
+          "Fig. 1b",
+          "Fig. 9"
+        ],
+        "quotes": [
+          "Source Weibo Distribution View",
+          "analyze the weibo sources from these two perspectives",
+          "keyword filtering are supported"
+        ],
+        "reasoning": "The caption and system description treat the source-weibo distribution area as a grouped top-level view with two internal perspectives.",
+        "confidence": 0.96
+      },
+      "subViews": [
+        {
+          "subViewId": "source-weibo-distribution.documents",
+          "subViewName": "Documents View",
+          "nameSource": "caption",
+          "aliases": [
+            "Fig. 1b1",
+            "b1"
+          ],
+          "description": "Upper scatterplot showing source-weibo distributions in 2D based on participant or content distance.",
+          "evidence": {
+            "passageIds": [
+              49,
+              88
+            ],
+            "figureRefs": [
+              "Fig. 1b1",
+              "Fig. 9a"
+            ],
+            "quotes": [
+              "including Documents View (b1)",
+              "project the documents into a 2D space with t-SNE"
+            ],
+            "reasoning": "The caption identifies the region as the Documents View, and passage 49 describes its 2D projection.",
+            "confidence": 0.98
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "source-weibo-distribution.documents.points",
+                "markType": "point",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "document_embedding_x",
+                      "type": "quantitative",
+                      "description": "Horizontal t-SNE position of each source weibo in the 2D projection."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "document_embedding_y",
+                      "type": "quantitative",
+                      "description": "Vertical t-SNE position of each source weibo in the 2D projection."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "dominant_participating_community",
+                      "type": "categorical",
+                      "description": "Point color encodes the community with the largest participating number for the source weibo."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                49
+              ],
+              "figureRefs": [
+                "Fig. 9a",
+                "data/view-images/DMap/2.png"
+              ],
+              "quotes": [
+                "project the documents into a 2D space with t-SNE",
+                "choose the color of the community with the largest participating number to encode the source weibo"
+              ],
+              "reasoning": "Passage 49 explicitly describes a colored 2D projection of source weibos, which matches the scatterplot crop.",
+              "confidence": 0.96
+            }
+          },
+          "viewProcessingInfo": {
+            "processingSteps": [
+              {
+                "name": "Community-participation vector projection",
+                "category": "DR",
+                "description": "Builds a high-dimensional vector for each source weibo from community participant counts and projects it into 2D with t-SNE.",
+                "input": [
+                  "source weibos",
+                  "community participant counts"
+                ],
+                "output": [
+                  "2D document positions"
+                ],
+                "tasks": [
+                  "distribution analysis",
+                  "source-weibo comparison"
+                ]
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                49
+              ],
+              "quotes": [
+                "construct a high-dimension vector for each source weibo",
+                "project the documents into a 2D space with t-SNE"
+              ],
+              "reasoning": "The projection pipeline is explicitly tied to the document-distribution perspective.",
+              "confidence": 0.97
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "source-weibo-distribution.documents.brush-documents",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Brush documents",
+              "description": "Users can brush or click over the source-weibo distribution to select subsets of source weibos.",
+              "evidence": {
+                "passageIds": [
+                  51,
+                  88
+                ],
+                "figureRefs": [
+                  "Fig. 9b"
+                ],
+                "quotes": [
+                  "clicking and brushing selection",
+                  "Interactions including (b) brushing"
+                ],
+                "reasoning": "Figure 9 and passage 51 explicitly ground brushing interaction for the source-weibo analysis view.",
+                "confidence": 0.9
+              }
+            },
+            {
+              "capabilityId": "source-weibo-distribution.documents.show-source-weibo-embedding",
+              "capabilityKind": "Information",
+              "capabilityName": "Show source-weibo embedding",
+              "description": "The view shows source weibos arranged in a 2D space for comparing reposting-people or content distances.",
+              "evidence": {
+                "passageIds": [
+                  49,
+                  88
+                ],
+                "quotes": [
+                  "reposting people distribution distance",
+                  "project the documents into a 2D space with t-SNE"
+                ],
+                "reasoning": "The scatterplot directly presents the 2D source-weibo distribution described in the paper.",
+                "confidence": 0.97
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "source-weibo-distribution.keywords",
+          "subViewName": "Keywords View",
+          "nameSource": "caption",
+          "aliases": [
+            "Fig. 1b2",
+            "b2"
+          ],
+          "description": "Lower keyword cloud-like view used to inspect and filter source weibos by content terms.",
+          "evidence": {
+            "passageIds": [
+              49,
+              51,
+              78
+            ],
+            "figureRefs": [
+              "Fig. 1b2",
+              "Fig. 9c"
+            ],
+            "quotes": [
+              "Keywords View (b2)",
+              "click the keywords to select related weibos and reposting people"
+            ],
+            "reasoning": "The paper names the region and explicitly ties keyword clicking to selection behavior.",
+            "confidence": 0.98
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "source-weibo-distribution.keywords.labels",
+                "markType": "text",
+                "encoding": {
+                  "text": [
+                    {
+                      "field": "keyword",
+                      "type": "text",
+                      "description": "Displayed keyword labels summarize content terms associated with source weibos."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                49,
+                51
+              ],
+              "figureRefs": [
+                "Fig. 1b2",
+                "Fig. 9c",
+                "data/view-images/DMap/3.png"
+              ],
+              "quotes": [
+                "Keywords View",
+                "click the keywords"
+              ],
+              "reasoning": "The crop shows a word-based display, and the paper describes direct keyword clicking.",
+              "confidence": 0.94
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "source-weibo-distribution.keywords.select-related-weibos",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Select related weibos",
+              "description": "Users can click keywords to select related source weibos and the reposting people associated with them.",
+              "evidence": {
+                "passageIds": [
+                  51
+                ],
+                "figureRefs": [
+                  "Fig. 9c"
+                ],
+                "quotes": [
+                  "click the keywords to select related weibos and reposting people"
+                ],
+                "reasoning": "The paper explicitly describes keyword clicking as a selection interaction.",
+                "confidence": 0.99
+              }
+            },
+            {
+              "capabilityId": "source-weibo-distribution.keywords.show-keyword-summary",
+              "capabilityKind": "Information",
+              "capabilityName": "Show keyword summary",
+              "description": "The view displays prominent content keywords for inspecting source-weibo content preferences.",
+              "evidence": {
+                "passageIds": [
+                  49,
+                  78
+                ],
+                "quotes": [
+                  "explore the participants' preference for different keywords and content",
+                  "Keywords View"
+                ],
+                "reasoning": "The keyword view exists to expose content terms and preferences across source weibos.",
+                "confidence": 0.93
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "d-map",
+      "viewName": "D-Map View",
+      "nameSource": "caption",
+      "aliases": [
+        "Fig. 1c",
+        "c"
+      ],
+      "description": "Main map-like diffusion visualization summarizing social interaction among participating people of a central user.",
+      "viewImages": [
+        "data/view-images/DMap/4.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          9,
+          36,
+          57,
+          78
+        ],
+        "figureRefs": [
+          "Fig. 1c",
+          "Fig. 4",
+          "data/view-images/DMap/4.png"
+        ],
+        "quotes": [
+          "interactive information Diffusion Map",
+          "each node represents one person or a group of people with similar behaviors",
+          "summarizing the social interaction among participating people of a central user"
+        ],
+        "reasoning": "The paper explicitly defines D-Map as the main visualization and describes its nodes, communities, and interaction role.",
+        "confidence": 0.99
+      },
+      "subViews": [
+        {
+          "subViewId": "d-map.main",
+          "subViewName": "D-Map",
+          "nameSource": "explicit",
+          "aliases": [
+            "Fig. 1c"
+          ],
+          "description": "Main central hexagon-based diffusion map showing communities, key players, and reposting links.",
+          "evidence": {
+            "passageIds": [
+              9,
+              36,
+              57,
+              78
+            ],
+            "figureRefs": [
+              "Fig. 1c",
+              "Fig. 4"
+            ],
+            "quotes": [
+              "D-Map View (c)",
+              "each node represents one person or a group of people with similar behaviors",
+              "by selecting a community on the map"
+            ],
+            "reasoning": "The map itself is a coherent visualization unit with explicit interaction descriptions.",
+            "confidence": 0.99
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "d-map.main.nodes",
+                "markType": "node",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "layout_x",
+                      "type": "quantitative",
+                      "description": "Horizontal map position from the compacted layout."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "layout_y",
+                      "type": "quantitative",
+                      "description": "Vertical map position from the compacted layout."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "community",
+                      "type": "categorical",
+                      "description": "Node and region color identify the detected community."
+                    }
+                  ],
+                  "size": [
+                    {
+                      "field": "people_count",
+                      "type": "quantitative",
+                      "description": "Larger highlighted nodes indicate key players or larger aggregated groups."
+                    }
+                  ],
+                  "shape": [
+                    {
+                      "field": "node_role",
+                      "type": "categorical",
+                      "description": "Hexagonal node forms distinguish the map metaphor and highlighted key players."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "d-map.main.links",
+                "markType": "edge",
+                "encoding": {
+                  "color": [
+                    {
+                      "field": "link_state",
+                      "type": "categorical",
+                      "description": "Links depict reposting relationships and highlighted diffusion paths."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                9,
+                36,
+                37
+              ],
+              "figureRefs": [
+                "Fig. 1c",
+                "Fig. 4",
+                "data/view-images/DMap/4.png"
+              ],
+              "quotes": [
+                "hexagonal tessellation",
+                "each node represents one person or a group of people",
+                "color regions to encode different communities"
+              ],
+              "reasoning": "The image and passages jointly support node and edge layers, community color, and size-based highlighting.",
+              "confidence": 0.96
+            }
+          },
+          "viewProcessingInfo": {
+            "processingSteps": [
+              {
+                "name": "Community detection",
+                "category": "clustering",
+                "description": "Detects communities of participants based on reposting behaviors in the merged reposting network.",
+                "input": [
+                  "merged reposting network"
+                ],
+                "output": [
+                  "community assignments"
+                ],
+                "tasks": [
+                  "community analysis",
+                  "interaction analysis"
+                ]
+              },
+              {
+                "name": "Hexagonal map layout construction",
+                "category": "pipeline stage",
+                "description": "Builds the D-Map layout by force-directed placement, compacting gaps, and arranging nodes chronologically within communities.",
+                "input": [
+                  "community assignments",
+                  "reposting graph"
+                ],
+                "output": [
+                  "hexagonal D-Map layout"
+                ],
+                "tasks": [
+                  "layout generation"
+                ]
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                31,
+                44,
+                46
+              ],
+              "figureRefs": [
+                "Fig. 6"
+              ],
+              "quotes": [
+                "detect communities of all the participants",
+                "choose a force-directed layout",
+                "delete the blanks among nodes and make the layout compact"
+              ],
+              "reasoning": "These processing steps directly support the construction of the D-Map view rather than only the global pipeline.",
+              "confidence": 0.94
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "d-map.main.select-communities",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Select communities",
+              "description": "Users can select one or multiple communities on the map to inspect correlated communities and compare community features.",
+              "evidence": {
+                "passageIds": [
+                  57,
+                  90
+                ],
+                "quotes": [
+                  "by selecting a community on the map, the correlated communities would be highlighted",
+                  "when users select multiple communities, features of communities can be compared interactively"
+                ],
+                "reasoning": "Community selection on the map is explicit and serves as a driver for downstream analysis.",
+                "confidence": 0.99
+              }
+            },
+            {
+              "capabilityId": "d-map.main.select-nodes",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Select nodes",
+              "description": "Users can select nodes on the map to investigate direct reposting and reposted nodes.",
+              "evidence": {
+                "passageIds": [
+                  57
+                ],
+                "quotes": [
+                  "by selecting the nodes on the map, we can investigate the people's direct reposting and reposted nodes"
+                ],
+                "reasoning": "Node selection is explicitly described as a map interaction.",
+                "confidence": 0.99
+              }
+            },
+            {
+              "capabilityId": "d-map.main.show-diffusion-map",
+              "capabilityKind": "Information",
+              "capabilityName": "Show diffusion map",
+              "description": "The view shows the aggregated ego-centric diffusion process with communities, key players, and reposting links.",
+              "evidence": {
+                "passageIds": [
+                  9,
+                  36,
+                  78
+                ],
+                "quotes": [
+                  "summarize the historical information diffusion processes",
+                  "key players are highlighted",
+                  "summarizing the social interaction among participating people"
+                ],
+                "reasoning": "The D-Map view is the main information-bearing map visualization in the system.",
+                "confidence": 0.99
+              }
+            },
+            {
+              "capabilityId": "d-map.main.show-highlighted-participants",
+              "capabilityKind": "Information",
+              "capabilityName": "Show highlighted participants",
+              "description": "The map highlights participants associated with selected source weibos or filtered subsets from linked views.",
+              "evidence": {
+                "passageIds": [
+                  51
+                ],
+                "quotes": [
+                  "Participants of the selected source weibos are highlighted on D-Map"
+                ],
+                "reasoning": "The paper explicitly describes D-Map as the target of linked participant highlighting.",
+                "confidence": 0.99
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "community-radar",
+      "viewName": "Community Radar View",
+      "nameSource": "caption",
+      "aliases": [
+        "Fig. 1d",
+        "d"
+      ],
+      "description": "Grouped community-characteristics view combining a radar chart with a statistics information window.",
+      "evidence": {
+        "passageIds": [
+          57,
+          78,
+          83,
+          90
+        ],
+        "figureRefs": [
+          "Fig. 1d",
+          "Fig. 5"
+        ],
+        "quotes": [
+          "Community Radar View",
+          "showing the high dimensional features of communities",
+          "selected people number will be shown"
+        ],
+        "reasoning": "The paper explicitly names the grouped view and describes both the radar visualization and the statistics window.",
+        "confidence": 0.98
+      },
+      "subViews": [
+        {
+          "subViewId": "community-radar.radar",
+          "subViewName": "Radar View",
+          "nameSource": "caption",
+          "aliases": [
+            "Fig. 1d1",
+            "d1"
+          ],
+          "description": "Radar-style chart showing normalized high-dimensional community features.",
+          "evidence": {
+            "passageIds": [
+              41,
+              57,
+              78,
+              83
+            ],
+            "figureRefs": [
+              "Fig. 1d1",
+              "Fig. 5"
+            ],
+            "quotes": [
+              "interactive radar-style visualization",
+              "the radar visualization shows the distribution of each dimension of selected communities"
+            ],
+            "reasoning": "The passages and figures clearly identify this panel as a radar visualization for community features.",
+            "confidence": 0.98
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "community-radar.radar.profiles",
+                "markType": "line",
+                "encoding": {
+                  "color": [
+                    {
+                      "field": "community",
+                      "type": "categorical",
+                      "description": "Colored overlaid profiles correspond to selected communities."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                41,
+                83
+              ],
+              "figureRefs": [
+                "Fig. 1d1",
+                "data/view-images/DMap/7.png"
+              ],
+              "quotes": [
+                "interactive radar-style visualization",
+                "distribution of each dimension of selected communities"
+              ],
+              "reasoning": "The crop shows overlaid radar profiles. The paper supports the radar chart form but not finer channel details, so the encoding stays coarse.",
+              "confidence": 0.9
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "community-radar.radar.compare-community-features",
+              "capabilityKind": "Information",
+              "capabilityName": "Compare community features",
+              "description": "The radar view lets users compare high-dimensional feature distributions of selected communities.",
+              "evidence": {
+                "passageIds": [
+                  57,
+                  83
+                ],
+                "quotes": [
+                  "features of communities can be compared interactively in the Community Radar View",
+                  "distribution of each dimension of selected communities"
+                ],
+                "reasoning": "The paper explicitly describes feature comparison in this radar view.",
+                "confidence": 0.99
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "community-radar.statistics",
+          "subViewName": "Statistics Information Window",
+          "nameSource": "caption",
+          "aliases": [
+            "Fig. 1d2",
+            "d2"
+          ],
+          "description": "Textual metrics panel summarizing counts and statistics for the selected community or selected people.",
+          "evidence": {
+            "passageIds": [
+              57,
+              78
+            ],
+            "figureRefs": [
+              "Fig. 1d2",
+              "data/view-images/DMap/8.png"
+            ],
+            "quotes": [
+              "Statistics Information Window (d2)",
+              "the selected people number will be shown"
+            ],
+            "reasoning": "The caption names the panel, and passage 57 states that selected-people counts are displayed there.",
+            "confidence": 0.98
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "Inspector",
+            "subKind": "others(metrics panel)",
+            "description": "Inspector-like statistics panel listing selected people counts, reposting statistics, and related summary metrics.",
+            "evidence": {
+              "passageIds": [
+                57
+              ],
+              "figureRefs": [
+                "Fig. 1d2"
+              ],
+              "quotes": [
+                "the selected people number will be shown"
+              ],
+              "reasoning": "The panel presents textual metrics about the current selection rather than a standalone chart.",
+              "confidence": 0.95
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "community-radar.statistics.show-selected-community-stats",
+              "capabilityKind": "Information",
+              "capabilityName": "Show selected community stats",
+              "description": "The panel shows selected-people counts and reposting-related summary values for the current community selection.",
+              "evidence": {
+                "passageIds": [
+                  57
+                ],
+                "quotes": [
+                  "the selected people number will be shown"
+                ],
+                "reasoning": "Passage 57 explicitly describes a statistics display tied to community selection.",
+                "confidence": 0.98
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "hierarchical-view",
+      "viewName": "Hierarchical View",
+      "nameSource": "caption",
+      "aliases": [
+        "Fig. 1e",
+        "e"
+      ],
+      "description": "Visualization of reposting structures that aggregates nodes of the same communities in a hierarchical tree.",
+      "viewImages": [
+        "data/view-images/DMap/6.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          57,
+          65,
+          78,
+          90
+        ],
+        "figureRefs": [
+          "Fig. 1e",
+          "Fig. 11c",
+          "data/view-images/DMap/6.png"
+        ],
+        "quotes": [
+          "illustrating the reposting structures",
+          "Hierarchical View aggregates the nodes of the same communities in the diffusion process"
+        ],
+        "reasoning": "The caption and analysis text align on the hierarchical view's role for reposting structure inspection.",
+        "confidence": 0.98
+      },
+      "subViews": [
+        {
+          "subViewId": "hierarchical-view.main",
+          "subViewName": "Hierarchical View",
+          "nameSource": "caption",
+          "aliases": [
+            "Fig. 1e"
+          ],
+          "description": "Main hierarchical reposting tree view for understanding the position of communities in the diffusion process.",
+          "evidence": {
+            "passageIds": [
+              57,
+              78
+            ],
+            "figureRefs": [
+              "Fig. 1e"
+            ],
+            "quotes": [
+              "illustrating the reposting structures",
+              "helps users understand the position of a selected community in the hierarchical reposting tree"
+            ],
+            "reasoning": "The paper clearly treats this region as a dedicated hierarchical structural view.",
+            "confidence": 0.98
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "hierarchical-view.main.nodes",
+                "markType": "node",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "tree_depth_or_order",
+                      "type": "quantitative",
+                      "description": "Horizontal placement reflects hierarchical stage in the reposting tree."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "tree_branch_position",
+                      "type": "quantitative",
+                      "description": "Vertical placement separates branches and aggregated community nodes."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "community",
+                      "type": "categorical",
+                      "description": "Node color aligns with community identity used across the system."
+                    }
+                  ],
+                  "size": [
+                    {
+                      "field": "aggregated_people_count",
+                      "type": "quantitative",
+                      "description": "Larger nodes indicate larger aggregated groups."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "hierarchical-view.main.links",
+                "markType": "edge",
+                "encoding": {}
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                57,
+                78
+              ],
+              "figureRefs": [
+                "Fig. 1e",
+                "data/view-images/DMap/6.png"
+              ],
+              "quotes": [
+                "aggregates the nodes of the same communities",
+                "illustrating the reposting structures"
+              ],
+              "reasoning": "The image supports a node-link hierarchy with community-colored nodes and connecting links.",
+              "confidence": 0.9
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "hierarchical-view.main.show-community-position",
+              "capabilityKind": "Information",
+              "capabilityName": "Show community position",
+              "description": "The view shows where a selected community sits in the hierarchical reposting tree.",
+              "evidence": {
+                "passageIds": [
+                  57
+                ],
+                "quotes": [
+                  "helps users understand the position of a selected community in the hierarchical reposting tree"
+                ],
+                "reasoning": "The paper explicitly states this informational role for the view.",
+                "confidence": 0.99
+              }
+            },
+            {
+              "capabilityId": "hierarchical-view.main.show-reposting-structure",
+              "capabilityKind": "Information",
+              "capabilityName": "Show reposting structure",
+              "description": "The view displays aggregated reposting structures across communities.",
+              "evidence": {
+                "passageIds": [
+                  78
+                ],
+                "quotes": [
+                  "illustrating the reposting structures"
+                ],
+                "reasoning": "The caption directly identifies the information shown in this view.",
+                "confidence": 0.97
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "timeline-view",
+      "viewName": "Timeline View",
+      "nameSource": "caption",
+      "aliases": [
+        "Fig. 1f",
+        "f"
+      ],
+      "description": "Temporal trend view showing diffusion activity over relative time for detected communities.",
+      "viewImages": [
+        "data/view-images/DMap/9.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          53,
+          78,
+          89
+        ],
+        "figureRefs": [
+          "Fig. 1f",
+          "data/view-images/DMap/9.png"
+        ],
+        "quotes": [
+          "Timeline View",
+          "the y-axis is the detected community and the x-axis is the aligned relative timeline",
+          "highlighting the temporal trends of the diffusion"
+        ],
+        "reasoning": "The paper explicitly describes the timeline view's axes and purpose.",
+        "confidence": 0.99
+      },
+      "subViews": [
+        {
+          "subViewId": "timeline-view.main",
+          "subViewName": "Timeline View",
+          "nameSource": "caption",
+          "aliases": [
+            "Fig. 1f"
+          ],
+          "description": "Main timeline heatmap-like view for showing community activity over the first 24 hours of reposting.",
+          "evidence": {
+            "passageIds": [
+              53,
+              78
+            ],
+            "figureRefs": [
+              "Fig. 1f"
+            ],
+            "quotes": [
+              "the y-axis is the detected community and the x-axis is the aligned relative timeline",
+              "highlighting the temporal trends of the diffusion"
+            ],
+            "reasoning": "The timeline view is a single coherent temporal chart.",
+            "confidence": 0.99
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "timeline-view.main.cells",
+                "markType": "rect",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "relative_time",
+                      "type": "quantitative",
+                      "description": "Horizontal position encodes aligned relative time after the source weibo."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "community",
+                      "type": "categorical",
+                      "description": "Rows correspond to detected communities."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                53
+              ],
+              "figureRefs": [
+                "Fig. 1f",
+                "data/view-images/DMap/9.png"
+              ],
+              "quotes": [
+                "the y-axis is the detected community and the x-axis is the aligned relative timeline"
+              ],
+              "reasoning": "The image and passage jointly support a time-by-community tiled display.",
+              "confidence": 0.92
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "timeline-view.main.animate-diffusion",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Animate diffusion",
+              "description": "Users can fast-forward the diffusion process through an animation function.",
+              "evidence": {
+                "passageIds": [
+                  53
+                ],
+                "quotes": [
+                  "We provide an animation function to fast-forward the diffusion process"
+                ],
+                "reasoning": "Animation is explicitly described as an interaction provided by the timeline view setup.",
+                "confidence": 0.96
+              }
+            },
+            {
+              "capabilityId": "timeline-view.main.show-temporal-trends",
+              "capabilityKind": "Information",
+              "capabilityName": "Show temporal trends",
+              "description": "The view shows how community activity evolves across relative time during diffusion.",
+              "evidence": {
+                "passageIds": [
+                  53,
+                  78
+                ],
+                "quotes": [
+                  "highlighting the temporal trends of the diffusion",
+                  "the y-axis is the detected community and the x-axis is the aligned relative timeline"
+                ],
+                "reasoning": "The caption and passage explicitly describe the temporal information shown.",
+                "confidence": 0.99
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "small-multiple-view",
+      "viewName": "Small Multiple View",
+      "nameSource": "caption",
+      "aliases": [
+        "Fig. 1g",
+        "g"
+      ],
+      "description": "Snapshot browser of D-Map stages for identifying key time frames in the diffusion process.",
+      "viewImages": [
+        "data/view-images/DMap/5.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          53,
+          54,
+          78,
+          89
+        ],
+        "figureRefs": [
+          "Fig. 1g",
+          "data/view-images/DMap/5.png"
+        ],
+        "quotes": [
+          "identifying key time frames of D-Map's snapshots",
+          "show the critical period range in the small multiples"
+        ],
+        "reasoning": "The caption and dynamic-analysis description treat the small multiples as a distinct snapshot view.",
+        "confidence": 0.98
+      },
+      "subViews": [
+        {
+          "subViewId": "small-multiple-view.main",
+          "subViewName": "Small Multiple View",
+          "nameSource": "caption",
+          "aliases": [
+            "Fig. 1g"
+          ],
+          "description": "Vertical stack of D-Map thumbnails representing key periods of the diffusion process.",
+          "evidence": {
+            "passageIds": [
+              53,
+              54,
+              78
+            ],
+            "figureRefs": [
+              "Fig. 1g"
+            ],
+            "quotes": [
+              "show the critical period range in the small multiples",
+              "When we click the thumbnail, the corresponding D-Map would be shown in the main window"
+            ],
+            "reasoning": "The panel is a thumbnail-based overview connected to the main D-Map.",
+            "confidence": 0.99
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "small-multiple-view.main.snapshots",
+                "markType": "image",
+                "encoding": {
+                  "row": [
+                    {
+                      "field": "time_period",
+                      "type": "ordinal",
+                      "description": "Each row corresponds to a selected critical time period."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                53,
+                54,
+                89
+              ],
+              "figureRefs": [
+                "Fig. 1g",
+                "data/view-images/DMap/5.png"
+              ],
+              "quotes": [
+                "Multiple diffusion stages are shown in the small multiples",
+                "When we click the thumbnail, the corresponding D-Map would be shown"
+              ],
+              "reasoning": "The image shows stacked D-Map snapshots, and the passage confirms the thumbnail-based period overview.",
+              "confidence": 0.92
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "small-multiple-view.main.open-snapshot",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Open snapshot",
+              "description": "Users can click a thumbnail to load the corresponding D-Map snapshot in the main window.",
+              "evidence": {
+                "passageIds": [
+                  54
+                ],
+                "quotes": [
+                  "When we click the thumbnail, the corresponding D-Map would be shown in the main window"
+                ],
+                "reasoning": "The paper explicitly defines this thumbnail-to-main-window coordination.",
+                "confidence": 0.99
+              }
+            },
+            {
+              "capabilityId": "small-multiple-view.main.show-key-timeframes",
+              "capabilityKind": "Information",
+              "capabilityName": "Show key time frames",
+              "description": "The view shows critical diffusion periods and the key players visible within those stages.",
+              "evidence": {
+                "passageIds": [
+                  53,
+                  54,
+                  78
+                ],
+                "quotes": [
+                  "identifying key time frames of D-Map's snapshots",
+                  "In the Small Multiple View, key players are shown as rectangles"
+                ],
+                "reasoning": "The caption and dynamic-analysis passage together define the informational role of the small multiples.",
+                "confidence": 0.98
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "coordinationInfo": [
+    {
+      "coordinationId": "coord-swtv-m-bling-01",
+      "source": {
+        "viewId": "source-weibo-table",
+        "subViewId": "source-weibo-table.main"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "source-weibo-table",
+        "subViewId": "source-weibo-table.main",
+        "capabilityId": "source-weibo-table.main.select-source-weibos"
+      },
+      "targets": [
+        {
+          "viewId": "d-map",
+          "subViewId": "d-map.main"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "d-map",
+          "subViewId": "d-map.main",
+          "capabilityId": "d-map.main.show-highlighted-participants"
+        }
+      ],
+      "coordinationType": "brushing-linking",
+      "evidence": {
+        "passageIds": [
+          51
+        ],
+        "figureRefs": [
+          "Fig. 1a",
+          "Fig. 1c"
+        ],
+        "quotes": [
+          "The selected source weibos will pop up for highlighting",
+          "Participants of the selected source weibos are highlighted on D-Map"
+        ],
+        "reasoning": "Selecting rows in the source-weibo table triggers participant highlighting in D-Map.",
+        "confidence": 0.99
+      }
+    },
+    {
+      "coordinationId": "coord-swkv-bling-02",
+      "source": {
+        "viewId": "source-weibo-distribution",
+        "subViewId": "source-weibo-distribution.keywords"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "source-weibo-distribution",
+        "subViewId": "source-weibo-distribution.keywords",
+        "capabilityId": "source-weibo-distribution.keywords.select-related-weibos"
+      },
+      "targets": [
+        {
+          "viewId": "d-map",
+          "subViewId": "d-map.main"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "d-map",
+          "subViewId": "d-map.main",
+          "capabilityId": "d-map.main.show-highlighted-participants"
+        }
+      ],
+      "coordinationType": "brushing-linking",
+      "evidence": {
+        "passageIds": [
+          51
+        ],
+        "figureRefs": [
+          "Fig. 1c"
+        ],
+        "quotes": [
+          "click the keywords to select related weibos and reposting people",
+          "Participants of the selected source weibos are highlighted on D-Map"
+        ],
+        "reasoning": "Keyword selection is explicitly grounded as selecting related weibos and reposting people, and the paper explicitly states that selected-source-weibo participants are highlighted on D-Map.",
+        "confidence": 0.93
+      }
+    },
+    {
+      "coordinationId": "coord-dmcrh-bling-03",
+      "source": {
+        "viewId": "d-map",
+        "subViewId": "d-map.main"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "d-map",
+        "subViewId": "d-map.main",
+        "capabilityId": "d-map.main.select-communities"
+      },
+      "targets": [
+        {
+          "viewId": "community-radar",
+          "subViewId": "community-radar.radar"
+        },
+        {
+          "viewId": "community-radar",
+          "subViewId": "community-radar.statistics"
+        },
+        {
+          "viewId": "hierarchical-view",
+          "subViewId": "hierarchical-view.main"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "community-radar",
+          "subViewId": "community-radar.radar",
+          "capabilityId": "community-radar.radar.compare-community-features"
+        },
+        {
+          "viewId": "community-radar",
+          "subViewId": "community-radar.statistics",
+          "capabilityId": "community-radar.statistics.show-selected-community-stats"
+        },
+        {
+          "viewId": "hierarchical-view",
+          "subViewId": "hierarchical-view.main",
+          "capabilityId": "hierarchical-view.main.show-community-position"
+        }
+      ],
+      "coordinationType": "brushing-linking",
+      "evidence": {
+        "passageIds": [
+          57,
+          90
+        ],
+        "figureRefs": [
+          "Fig. 11a",
+          "Fig. 11b",
+          "Fig. 11c"
+        ],
+        "quotes": [
+          "by selecting a community on the map, the correlated communities would be highlighted",
+          "the selected people number will be shown",
+          "helps users understand the position of a selected community in the hierarchical reposting tree"
+        ],
+        "reasoning": "Community selection on D-Map updates community feature comparison, selected-community statistics, and hierarchical context.",
+        "confidence": 0.91
+      }
+    },
+    {
+      "coordinationId": "coord-smv-dmap-od-04",
+      "source": {
+        "viewId": "small-multiple-view",
+        "subViewId": "small-multiple-view.main"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "small-multiple-view",
+        "subViewId": "small-multiple-view.main",
+        "capabilityId": "small-multiple-view.main.open-snapshot"
+      },
+      "targets": [
+        {
+          "viewId": "d-map",
+          "subViewId": "d-map.main"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "d-map",
+          "subViewId": "d-map.main",
+          "capabilityId": "d-map.main.show-diffusion-map"
+        }
+      ],
+      "coordinationType": "overview-detail",
+      "evidence": {
+        "passageIds": [
+          54
+        ],
+        "figureRefs": [
+          "Fig. 1g",
+          "Fig. 1c"
+        ],
+        "quotes": [
+          "When we click the thumbnail, the corresponding D-Map would be shown in the main window"
+        ],
+        "reasoning": "The small multiple thumbnails act as overview selectors for the main D-Map display.",
+        "confidence": 0.99
+      }
+    }
+  ]
+}

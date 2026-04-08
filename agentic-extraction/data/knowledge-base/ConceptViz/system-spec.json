@@ -1,0 +1,2184 @@
+{
+  "paperName": "ConceptViz",
+  "systemInfo": {
+    "systemName": "ConceptViz",
+    "dataOntology": {
+      "datasetType": [
+        "Text"
+      ]
+    },
+    "systemCategory": [
+      {
+        "level1": "A DS/ML",
+        "level2": [
+          "A1 XAI / Model Understanding"
+        ]
+      }
+    ]
+  },
+  "viewsInfo": [
+    {
+      "viewId": "concept-query",
+      "viewName": "Concept Query View",
+      "nameSource": "caption",
+      "aliases": [
+        "A",
+        "Fig. 1A"
+      ],
+      "description": "Entry view for building and refining natural-language concept queries before downstream SAE retrieval and feature exploration.",
+      "viewImages": [
+        "data/view-images/ConceptViz/1.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          31,
+          56,
+          70
+        ],
+        "figureRefs": [
+          "Fig. 1A",
+          "Fig. 5A"
+        ],
+        "quotes": [
+          "Concept Query View serves as the entry point for feature exploration.",
+          "A similarity distribution chart of the top 2,000 features provides an initial overview."
+        ],
+        "reasoning": "The caption, interface crop, and scenario text consistently describe this as the query-entry and refinement view.",
+        "confidence": 0.99
+      },
+      "subViews": [
+        {
+          "subViewId": "concept-query.query-input",
+          "subViewName": "Query Input",
+          "nameSource": "inferred",
+          "aliases": [
+            "query box",
+            "recommended suggestions"
+          ],
+          "description": "Upper control area where users enter a concept query, trigger search, and apply suggestion chips to refine ambiguous wording.",
+          "evidence": {
+            "passageIds": [
+              31,
+              56,
+              70
+            ],
+            "figureRefs": [
+              "Fig. 1A",
+              "Fig. 5A"
+            ],
+            "quotes": [
+              "Users describe concepts of interest using natural language.",
+              "This view supports query refinement through suggestions by GPT-4o."
+            ],
+            "reasoning": "The crop shows a text input, search button, and recommendation chips; the passages describe query entry and refinement suggestions.",
+            "confidence": 0.97
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "Form",
+            "subKind": "TextInput",
+            "description": "Natural-language query entry form with recommendation chips used to rewrite or expand the concept query.",
+            "evidence": {
+              "passageIds": [
+                31,
+                56
+              ],
+              "figureRefs": [
+                "Fig. 1A"
+              ],
+              "quotes": [
+                "Concept queries need to be rephrased.",
+                "The view supports query refinement through suggestions by GPT-4o."
+              ],
+              "reasoning": "The interaction is centered on entering and refining a text query rather than inspecting plotted marks.",
+              "confidence": 0.95
+            }
+          },
+          "viewProcessingInfo": {
+            "processingSteps": [
+              {
+                "name": "Concept query embedding",
+                "category": "embedding model",
+                "description": "Encodes the user query into the same semantic vector space as feature explanations so ConceptViz can compare concepts against SAE features.",
+                "input": [
+                  "user query text",
+                  "feature explanations"
+                ],
+                "output": [
+                  "query embedding",
+                  "query-feature cosine similarities"
+                ],
+                "tasks": [
+                  "concept search",
+                  "query scoring"
+                ]
+              },
+              {
+                "name": "GPT-4o query suggestion",
+                "category": "LLM",
+                "description": "Generates refinement suggestions that help users disambiguate or broaden the current concept query.",
+                "input": [
+                  "user query text"
+                ],
+                "output": [
+                  "optimized query suggestions"
+                ],
+                "tasks": [
+                  "query optimization"
+                ]
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                31,
+                44,
+                56
+              ],
+              "figureRefs": [
+                "Fig. 1A",
+                "Fig. 3A"
+              ],
+              "quotes": [
+                "We calculate semantic similarity between user queries and SAE features using OpenAI's text-embedding-3-large model.",
+                "This view supports query refinement through suggestions by GPT-4o."
+              ],
+              "reasoning": "The query input is directly supported by embedding-based matching and suggestion generation.",
+              "confidence": 0.94
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "concept-query.query-input.submit-query",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Submit Query",
+              "description": "Enter a natural-language concept and run the search against all feature explanations.",
+              "evidence": {
+                "passageIds": [
+                  31,
+                  56
+                ],
+                "figureRefs": [
+                  "Fig. 1A"
+                ],
+                "quotes": [
+                  "Users describe concepts of interest using natural language."
+                ],
+                "reasoning": "The input box and query button support search submission.",
+                "confidence": 0.98
+              }
+            },
+            {
+              "capabilityId": "concept-query.query-input.refine-query",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Refine Query",
+              "description": "Apply or edit suggested phrasings to resolve ambiguity and improve concept search quality.",
+              "evidence": {
+                "passageIds": [
+                  31,
+                  56,
+                  70
+                ],
+                "figureRefs": [
+                  "Fig. 1A",
+                  "Fig. 5A"
+                ],
+                "quotes": [
+                  "The system should provide intuitive visual feedback on query quality and suggest optimization alternatives.",
+                  "The user refines their search."
+                ],
+                "reasoning": "The interface shows recommendation chips and the scenarios describe iterative query rewriting.",
+                "confidence": 0.97
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "concept-query.similarity-distribution",
+          "subViewName": "Similarity Distribution",
+          "nameSource": "inferred",
+          "description": "Lower chart area comparing the similarity distributions of the original and optimized queries over the highest-ranked features.",
+          "evidence": {
+            "passageIds": [
+              31,
+              56,
+              70
+            ],
+            "figureRefs": [
+              "Fig. 1A",
+              "Fig. 5A"
+            ],
+            "quotes": [
+              "A similarity distribution chart of the top 2,000 features provides an initial overview of the match.",
+              "Displaying the distribution graph."
+            ],
+            "reasoning": "Both text and the crop show a chart contrasting original and optimized query behavior.",
+            "confidence": 0.98
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "concept-query.similarity-distribution.line-original",
+                "markType": "line",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "similarity",
+                      "type": "quantitative",
+                      "description": "Similarity score bins or thresholds along the horizontal axis."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "count",
+                      "type": "quantitative",
+                      "description": "Number of features matching each similarity level."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "query version",
+                      "type": "categorical",
+                      "description": "Distinguishes the original query from the optimized query."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                31,
+                56,
+                70
+              ],
+              "figureRefs": [
+                "Fig. 1A",
+                "Fig. 5A"
+              ],
+              "quotes": [
+                "A similarity distribution chart of the top 2,000 features provides an initial overview.",
+                "The system calculates semantic similarity between feature explanations and both original and optimized queries, displaying the distribution graph."
+              ],
+              "reasoning": "The chart is clearly a two-series quantitative distribution view.",
+              "confidence": 0.93
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "concept-query.similarity-distribution.compare-distributions",
+              "capabilityKind": "Information",
+              "capabilityName": "Compare Query Distributions",
+              "description": "Shows how the original and optimized query formulations differ in the number of highly similar features.",
+              "evidence": {
+                "passageIds": [
+                  31,
+                  56,
+                  70
+                ],
+                "figureRefs": [
+                  "Fig. 1A",
+                  "Fig. 5A"
+                ],
+                "quotes": [
+                  "The system should provide intuitive visual feedback on query quality.",
+                  "Observing higher similarity counts with the optimized query."
+                ],
+                "reasoning": "The distribution chart is the view's primary feedback mechanism for query quality.",
+                "confidence": 0.97
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "sae-discovery",
+      "viewName": "SAE Discovery View",
+      "nameSource": "caption",
+      "aliases": [
+        "B",
+        "Fig. 1B",
+        "SAE Model Retrieval View"
+      ],
+      "description": "Layer-oriented view for identifying which SAE model is most relevant to the active concept query.",
+      "viewImages": [
+        "data/view-images/ConceptViz/2.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          32,
+          44,
+          45,
+          46,
+          56,
+          70
+        ],
+        "figureRefs": [
+          "Fig. 1B",
+          "Fig. 3A",
+          "Fig. 5A"
+        ],
+        "quotes": [
+          "SAE Discovery View enables users to select appropriate SAE models based on concept-relevance metrics.",
+          "The overview bar above in this view displays the distribution of concept-relevant features across different network layers."
+        ],
+        "reasoning": "The paper consistently describes this view as the place for cross-layer recommendation and final SAE selection.",
+        "confidence": 0.99
+      },
+      "subViews": [
+        {
+          "subViewId": "sae-discovery.layer-overview",
+          "subViewName": "Layer Overview",
+          "nameSource": "inferred",
+          "description": "Top overview strip summarizing concept-relevant feature counts across layers for multiple top-K thresholds.",
+          "evidence": {
+            "passageIds": [
+              32,
+              56,
+              70
+            ],
+            "figureRefs": [
+              "Fig. 1B",
+              "Fig. 5A"
+            ],
+            "quotes": [
+              "The overview bar above in this view displays the distribution of concept-relevant features across different network layers.",
+              "The visualization reveals stronger semantic matches concentrated in the earlier layers."
+            ],
+            "reasoning": "The crop shows a compact per-layer bar strip above the table, matching the passage description.",
+            "confidence": 0.97
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "sae-discovery.layer-overview.layer-bars",
+                "markType": "bar",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "layer index",
+                      "type": "ordinal",
+                      "description": "Transformer layer position."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "concept relevance score",
+                      "type": "quantitative",
+                      "description": "Color intensity reflects how strongly a layer matches the current concept."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                32,
+                56,
+                70
+              ],
+              "figureRefs": [
+                "Fig. 1B",
+                "Fig. 5A"
+              ],
+              "quotes": [
+                "The overview bar above in this view displays the distribution of concept-relevant features across different network layers."
+              ],
+              "reasoning": "The overview is shown as a bar-like strip with per-layer color intensity.",
+              "confidence": 0.91
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "sae-discovery.layer-overview.inspect-layer-relevance",
+              "capabilityKind": "Information",
+              "capabilityName": "Inspect Layer Relevance",
+              "description": "Shows where concept-relevant features appear across the model's layers and across different top-K metrics.",
+              "evidence": {
+                "passageIds": [
+                  32,
+                  56,
+                  70
+                ],
+                "figureRefs": [
+                  "Fig. 1B",
+                  "Fig. 5A"
+                ],
+                "quotes": [
+                  "This layer-based organization helps users identify SAEs that balance model architectural considerations with concept relevance."
+                ],
+                "reasoning": "The overview provides the cross-layer summary needed before choosing an SAE.",
+                "confidence": 0.97
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "sae-discovery.layer-ranking-table",
+          "subViewName": "Layer Ranking Table",
+          "nameSource": "inferred",
+          "description": "Scrollable table listing layers and Top-10, Top-100, and Top-1000 scores for direct SAE model selection.",
+          "evidence": {
+            "passageIds": [
+              32,
+              45,
+              46,
+              56,
+              70
+            ],
+            "figureRefs": [
+              "Fig. 1B",
+              "Fig. 5A"
+            ],
+            "quotes": [
+              "Presenting Top 10, Top 100, and Top 1000 scores for each layer in the list below.",
+              "Users can directly select the SAE of interest from this view."
+            ],
+            "reasoning": "The lower portion of the crop is a ranked table used for selection.",
+            "confidence": 0.98
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "TableView",
+            "subKind": "Table",
+            "description": "Tabular ranking of SAE layers with per-threshold relevance metrics used to pick the active SAE model.",
+            "evidence": {
+              "passageIds": [
+                45,
+                56
+              ],
+              "figureRefs": [
+                "Fig. 1B"
+              ],
+              "quotes": [
+                "Top 10, Top 100, and Top 1000 scores for each layer in the list below."
+              ],
+              "reasoning": "The interface region is best characterized as a data table rather than a plotted visualization.",
+              "confidence": 0.96
+            }
+          },
+          "viewProcessingInfo": {
+            "processingSteps": [
+              {
+                "name": "Multi-threshold SAE ranking",
+                "category": "ranking",
+                "description": "Ranks SAE models by averaging their positions across Top-10, Top-100, and Top-1000 concept-similarity counts.",
+                "input": [
+                  "query-feature cosine similarities across all SAE models"
+                ],
+                "output": [
+                  "per-layer Top-10 score",
+                  "per-layer Top-100 score",
+                  "per-layer Top-1000 score",
+                  "balanced recommendation score"
+                ],
+                "tasks": [
+                  "model recommendation",
+                  "cross-layer comparison"
+                ]
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                44,
+                45,
+                46,
+                56
+              ],
+              "figureRefs": [
+                "Fig. 1B",
+                "Fig. 3A"
+              ],
+              "quotes": [
+                "We then identify which SAE models contribute the most features to the Top-K most similar features, where K = {10, 100, 1000}.",
+                "This approach prioritizes SAE models that consistently rank well across different thresholds."
+              ],
+              "reasoning": "These passages describe the ranking process that populates the discovery table and overview.",
+              "confidence": 0.98
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "sae-discovery.layer-ranking-table.select-sae",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Select SAE Model",
+              "description": "Choose a layer-specific SAE model for downstream feature exploration.",
+              "evidence": {
+                "passageIds": [
+                  32,
+                  56,
+                  70
+                ],
+                "figureRefs": [
+                  "Fig. 1B",
+                  "Fig. 5A"
+                ],
+                "quotes": [
+                  "Users can directly select the SAE of interest from this view to proceed with feature exploration.",
+                  "Based on this insight, the user selects the fourth layer SAE."
+                ],
+                "reasoning": "Model selection is the core interactive affordance of this table.",
+                "confidence": 0.99
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "feature-explorer",
+      "viewName": "Feature Explorer View",
+      "nameSource": "caption",
+      "aliases": [
+        "C",
+        "Fig. 1C"
+      ],
+      "description": "Global semantic map of SAE features used to browse clusters, locate query-relevant regions, and choose features for detailed analysis.",
+      "viewImages": [
+        "data/view-images/ConceptViz/3.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          34,
+          48,
+          56,
+          60,
+          71,
+          74,
+          76
+        ],
+        "figureRefs": [
+          "Fig. 1C",
+          "Fig. 3B",
+          "Fig. 5B",
+          "Fig. 6A",
+          "Fig. 6C"
+        ],
+        "quotes": [
+          "Feature Explorer View presents a global visualization of SAE features.",
+          "All feature explanation vectors are mapped to a two-dimensional semantic space.",
+          "The system highlights query-relevant features and represents the query's position with a red pin."
+        ],
+        "reasoning": "The caption, methods section, and usage scenarios all describe the same integrated 2D explorer.",
+        "confidence": 0.99
+      },
+      "subViews": [
+        {
+          "subViewId": "feature-explorer.concept-space-map",
+          "subViewName": "Concept Space Map",
+          "nameSource": "inferred",
+          "description": "A 2D concept-space view combining colored cluster regions, cluster labels, highlighted relevant features, intersection points, and a query point marker.",
+          "evidence": {
+            "passageIds": [
+              34,
+              48,
+              56,
+              60,
+              71
+            ],
+            "figureRefs": [
+              "Fig. 1C",
+              "Fig. 3B",
+              "Fig. 5B"
+            ],
+            "quotes": [
+              "The system should provide an intuitive spatial representation of features.",
+              "Hierarchical clustering results are displayed as a color-coded map with representative topic terms at cluster centers.",
+              "We employ HexBin techniques."
+            ],
+            "reasoning": "The explorer is one composite visualization with no justified internal boundary beyond overlays in the same map.",
+            "confidence": 0.98
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "feature-explorer.concept-space-map.cluster-hexagons",
+                "markType": "hexagon",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "embedding_2d_x",
+                      "type": "quantitative",
+                      "description": "Horizontal position in the 2D semantic space."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "embedding_2d_y",
+                      "type": "quantitative",
+                      "description": "Vertical position in the 2D semantic space."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "cluster grouping",
+                      "type": "categorical",
+                      "description": "Color family distinguishes cluster regions and hierarchy levels."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "feature-explorer.concept-space-map.feature-points",
+                "markType": "point",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "embedding_2d_x",
+                      "type": "quantitative",
+                      "description": "Feature position in the concept-space map."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "embedding_2d_y",
+                      "type": "quantitative",
+                      "description": "Feature position in the concept-space map."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "feature status",
+                      "type": "categorical",
+                      "description": "Visual emphasis distinguishes highlighted relevant features from other feature points."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "feature-explorer.concept-space-map.query-marker",
+                "markType": "point",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "marker_x",
+                      "type": "quantitative",
+                      "description": "Horizontal position of the query pin or related guide marker."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "marker_y",
+                      "type": "quantitative",
+                      "description": "Vertical position of the query pin or related guide marker."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "marker role",
+                      "type": "categorical",
+                      "description": "Color highlights the query marker relative to other guide markers."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "feature-explorer.concept-space-map.cluster-labels",
+                "markType": "text",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "label_x",
+                      "type": "quantitative",
+                      "description": "Horizontal position of a representative cluster label."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "label_y",
+                      "type": "quantitative",
+                      "description": "Vertical position of a representative cluster label."
+                    }
+                  ],
+                  "text": [
+                    {
+                      "field": "topic term",
+                      "type": "categorical",
+                      "description": "Representative topic terms shown at cluster centers."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                48,
+                56,
+                60
+              ],
+              "figureRefs": [
+                "Fig. 1C",
+                "Fig. 3B"
+              ],
+              "quotes": [
+                "All feature explanation vectors are mapped to a two-dimensional semantic space.",
+                "Hierarchical clustering results are displayed as a color-coded map.",
+                "We employ HexBin techniques."
+              ],
+              "reasoning": "The crop clearly shows hexagonal regions, point overlays, labels, and query/intersection markers.",
+              "confidence": 0.95
+            }
+          },
+          "viewProcessingInfo": {
+            "processingSteps": [
+              {
+                "name": "UMAP projection",
+                "category": "DR",
+                "description": "Projects 3072-dimensional feature explanation embeddings into a 2D semantic layout for global browsing.",
+                "input": [
+                  "feature explanation embeddings"
+                ],
+                "output": [
+                  "embedding_2d_x",
+                  "embedding_2d_y"
+                ],
+                "tasks": [
+                  "global feature visualization"
+                ]
+              },
+              {
+                "name": "Hierarchical semantic clustering",
+                "category": "clustering",
+                "description": "Groups features into multi-level semantic clusters and derives representative topic labels for exploration at different granularities.",
+                "input": [
+                  "feature explanation embeddings"
+                ],
+                "output": [
+                  "cluster assignments",
+                  "cluster labels",
+                  "multilevel cluster hierarchy"
+                ],
+                "tasks": [
+                  "cluster navigation",
+                  "semantic summarization"
+                ]
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                48,
+                56,
+                60
+              ],
+              "figureRefs": [
+                "Fig. 1C",
+                "Fig. 3B"
+              ],
+              "quotes": [
+                "We apply UMAP to reduce the 3072-dimensional feature embeddings to a 2D space.",
+                "We employ Agglomerative Hierarchical Clustering at multiple granularity levels."
+              ],
+              "reasoning": "These methods directly produce the explorer's projection and cluster structure.",
+              "confidence": 0.98
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "feature-explorer.concept-space-map.browse-clusters",
+              "capabilityKind": "Information",
+              "capabilityName": "Browse Semantic Regions",
+              "description": "Shows how features distribute across semantic regions and cluster levels in the concept space.",
+              "evidence": {
+                "passageIds": [
+                  34,
+                  56,
+                  71
+                ],
+                "figureRefs": [
+                  "Fig. 1C",
+                  "Fig. 5B"
+                ],
+                "quotes": [
+                  "The system should provide an intuitive spatial representation of features.",
+                  "Starting at a high-level view, user identify broad conceptual areas."
+                ],
+                "reasoning": "The explorer supports overview-level semantic navigation.",
+                "confidence": 0.98
+              }
+            },
+            {
+              "capabilityId": "feature-explorer.concept-space-map.zoom-levels",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Zoom Cluster Levels",
+              "description": "Move between clustering granularities to inspect coarse and fine semantic groupings.",
+              "evidence": {
+                "passageIds": [
+                  56,
+                  60,
+                  71
+                ],
+                "figureRefs": [
+                  "Fig. 1C",
+                  "Fig. 5B"
+                ],
+                "quotes": [
+                  "Level transitions through zooming, offering multi-granularity semantic views.",
+                  "Drilling down into the scientific region reveals intermediate clusters."
+                ],
+                "reasoning": "The paper explicitly describes zoom-driven level transitions.",
+                "confidence": 0.97
+              }
+            },
+            {
+              "capabilityId": "feature-explorer.concept-space-map.select-feature",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Select Feature",
+              "description": "Choose a feature point for detailed semantic inspection and validation.",
+              "evidence": {
+                "passageIds": [
+                  56,
+                  71,
+                  74
+                ],
+                "figureRefs": [
+                  "Fig. 1C",
+                  "Fig. 5B",
+                  "Fig. 6A"
+                ],
+                "quotes": [
+                  "The user selects this point for detailed analysis.",
+                  "Feature 6610 captures the user's attention."
+                ],
+                "reasoning": "Feature selection is the primary handoff from the explorer to detail and validation views.",
+                "confidence": 0.98
+              }
+            },
+            {
+              "capabilityId": "feature-explorer.concept-space-map.show-related-features",
+              "capabilityKind": "Information",
+              "capabilityName": "Show Related Features",
+              "description": "Displays bubble-set or proximity-based indications of other features with similar activation behavior or nearby semantics.",
+              "evidence": {
+                "passageIds": [
+                  57,
+                  76
+                ],
+                "figureRefs": [
+                  "Fig. 1C",
+                  "Fig. 6C"
+                ],
+                "quotes": [
+                  "Highlighting bubble sets displayed in the Feature Explorer View.",
+                  "Feature 9638's proximity to feature 6610 in the feature space captures the user's attention."
+                ],
+                "reasoning": "The explorer receives related-feature highlights and exposes spatial proximity cues.",
+                "confidence": 0.92
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "feature-details",
+      "viewName": "Feature Details View",
+      "nameSource": "caption",
+      "aliases": [
+        "D",
+        "Fig. 1D"
+      ],
+      "description": "Detail view for interpreting a selected feature through vocabulary-space evidence and activation-similarity examples.",
+      "viewImages": [
+        "data/view-images/ConceptViz/4.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          35,
+          56,
+          65,
+          66,
+          71
+        ],
+        "figureRefs": [
+          "Fig. 1D",
+          "Fig. 4",
+          "Fig. 5C"
+        ],
+        "quotes": [
+          "Feature Details View presents comprehensive information about selected features.",
+          "The left panel (D1) shows the feature's projection in vocabulary space.",
+          "The right panel (D2) displays an activation-similarity matrix."
+        ],
+        "reasoning": "The paper explicitly names the two internal panels and explains their complementary roles.",
+        "confidence": 0.99
+      },
+      "subViews": [
+        {
+          "subViewId": "feature-details.vocabulary-space",
+          "subViewName": "Vocabulary Space",
+          "nameSource": "caption",
+          "aliases": [
+            "D1"
+          ],
+          "description": "Left panel showing vocabulary projections for the selected feature, with words on positive and negative logit sides.",
+          "evidence": {
+            "passageIds": [
+              56,
+              71
+            ],
+            "figureRefs": [
+              "Fig. 1D",
+              "Fig. 5C"
+            ],
+            "quotes": [
+              "The left panel (D1) shows the feature's projection in vocabulary space, mapping words with the highest and lowest probabilities.",
+              "The Feature Details View displays vocabulary space projections."
+            ],
+            "reasoning": "D1 is explicitly identified and described in the paper and visible in the crop.",
+            "confidence": 0.99
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "feature-details.vocabulary-space.word-bars",
+                "markType": "bar",
+                "encoding": {
+                  "y": [
+                    {
+                      "field": "token",
+                      "type": "categorical",
+                      "description": "Vocabulary items associated with the selected feature."
+                    }
+                  ],
+                  "x": [
+                    {
+                      "field": "logit magnitude",
+                      "type": "quantitative",
+                      "description": "Strength of positive or negative logit projection for each token."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "logit sign",
+                      "type": "categorical",
+                      "description": "Distinguishes negative logits from positive logits."
+                    }
+                  ],
+                  "text": [
+                    {
+                      "field": "token",
+                      "type": "categorical",
+                      "description": "Rendered token labels beside the bars."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                56,
+                71
+              ],
+              "figureRefs": [
+                "Fig. 1D",
+                "Fig. 5C"
+              ],
+              "quotes": [
+                "Mapping words with the highest and lowest probabilities."
+              ],
+              "reasoning": "The panel is rendered as two lists of horizontal bars with token labels.",
+              "confidence": 0.94
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "feature-details.vocabulary-space.inspect-vocabulary-projection",
+              "capabilityKind": "Information",
+              "capabilityName": "Inspect Vocabulary Projection",
+              "description": "Shows which vocabulary items are most positively or negatively associated with the selected feature.",
+              "evidence": {
+                "passageIds": [
+                  56,
+                  71
+                ],
+                "figureRefs": [
+                  "Fig. 1D",
+                  "Fig. 5C"
+                ],
+                "quotes": [
+                  "Mapping words with the highest and lowest probabilities."
+                ],
+                "reasoning": "This is the explicit purpose of D1.",
+                "confidence": 0.98
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "feature-details.text-segment-examples",
+          "subViewName": "Text Segment Examples",
+          "nameSource": "caption",
+          "aliases": [
+            "D2"
+          ],
+          "description": "Right panel centered on the activation-similarity matrix for sampled text segments, with interaction for inspection and sentence-level details.",
+          "evidence": {
+            "passageIds": [
+              56,
+              65,
+              66,
+              71
+            ],
+            "figureRefs": [
+              "Fig. 1D",
+              "Fig. 4",
+              "Fig. 5C"
+            ],
+            "quotes": [
+              "The right panel (D2) displays an activation-similarity matrix of sampled text segments.",
+              "Users can also view complete sentences for context through the View Details option."
+            ],
+            "reasoning": "D2 combines the matrix and its accompanying segment detail affordances.",
+            "confidence": 0.98
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "feature-details.text-segment-examples.segment-cells",
+                "markType": "point",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "similarity rank",
+                      "type": "ordinal",
+                      "description": "Sentence ranking by semantic similarity to the feature explanation."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "activation rank",
+                      "type": "ordinal",
+                      "description": "Sentence ranking by maximum activation value."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "activation region",
+                      "type": "quantitative",
+                      "description": "Background or cell color indicates activation intensity regions across the matrix."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                56,
+                65,
+                66
+              ],
+              "figureRefs": [
+                "Fig. 1D",
+                "Fig. 4"
+              ],
+              "quotes": [
+                "The x-axis represents the ranking of sentences by semantic similarity and the y-axis represents their ranking by maximum activation value."
+              ],
+              "reasoning": "The D2 panel is explicitly described as the activation-similarity matrix view.",
+              "confidence": 0.95
+            }
+          },
+          "viewProcessingInfo": {
+            "processingSteps": [
+              {
+                "name": "Activation-similarity comparison",
+                "category": "similarity analysis",
+                "description": "Compares each sampled sentence's maximum activation value with the cosine similarity between the sentence embedding and the feature explanation embedding.",
+                "input": [
+                  "sampled text segments",
+                  "sentence embeddings",
+                  "feature explanation embedding",
+                  "feature activation scores"
+                ],
+                "output": [
+                  "activation rank",
+                  "similarity rank",
+                  "activation-similarity matrix positions"
+                ],
+                "tasks": [
+                  "feature interpretation",
+                  "anomaly inspection"
+                ]
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                65,
+                66
+              ],
+              "figureRefs": [
+                "Fig. 1D",
+                "Fig. 4"
+              ],
+              "quotes": [
+                "We compare each sampled sentence's maximum activation value with the cosine similarity between the sentence's text embedding and the feature explanation embedding."
+              ],
+              "reasoning": "The matrix view directly operationalizes this comparison.",
+              "confidence": 0.99
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "feature-details.text-segment-examples.inspect-example-alignment",
+              "capabilityKind": "Information",
+              "capabilityName": "Inspect Example Alignment",
+              "description": "Shows where sampled segments align or diverge between activation strength and semantic similarity.",
+              "evidence": {
+                "passageIds": [
+                  35,
+                  56,
+                  65,
+                  66
+                ],
+                "figureRefs": [
+                  "Fig. 1D",
+                  "Fig. 4"
+                ],
+                "quotes": [
+                  "This multi-faceted approach reveals discrepancies between explanations and actual feature behavior."
+                ],
+                "reasoning": "The matrix is designed to expose alignment and anomalous cases.",
+                "confidence": 0.98
+              }
+            },
+            {
+              "capabilityId": "feature-details.text-segment-examples.select-region",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Select Matrix Region",
+              "description": "Select a region of the activation-similarity matrix to update token summaries and inspect supporting details.",
+              "evidence": {
+                "passageIds": [
+                  56
+                ],
+                "figureRefs": [
+                  "Fig. 1D"
+                ],
+                "quotes": [
+                  "When users select regions in the matrix, the bar chart updates to show token distributions from the selected segments."
+                ],
+                "reasoning": "This is the paper's only explicit interaction inside D2.",
+                "confidence": 0.99
+              }
+            },
+            {
+              "capabilityId": "feature-details.text-segment-examples.view-sentence-details",
+              "capabilityKind": "Interaction",
+              "capabilityName": "View Sentence Details",
+              "description": "Open complete sentences for the selected examples to inspect context around feature activations.",
+              "evidence": {
+                "passageIds": [
+                  56
+                ],
+                "figureRefs": [
+                  "Fig. 1D"
+                ],
+                "quotes": [
+                  "Users can also view complete sentences for context through the View Details option."
+                ],
+                "reasoning": "The detail-on-demand action is explicitly named.",
+                "confidence": 0.99
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "feature-details.token-summary",
+          "subViewName": "Token Summary",
+          "nameSource": "inferred",
+          "description": "Adjacent summary chart showing the maximum-activation tokens for sampled or selected text segments.",
+          "evidence": {
+            "passageIds": [
+              56,
+              71
+            ],
+            "figureRefs": [
+              "Fig. 1D",
+              "Fig. 5C"
+            ],
+            "quotes": [
+              "Adjacent to this matrix, a bar chart summarizes the maximum activation tokens for each text segment.",
+              "The Feature Details View displays vocabulary space projections and maximum token activation statistics."
+            ],
+            "reasoning": "The paper describes the token summary as a separate adjacent chart, so it is modeled as its own visual sub-view.",
+            "confidence": 0.96
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "feature-details.token-summary.token-bars",
+                "markType": "bar",
+                "encoding": {
+                  "y": [
+                    {
+                      "field": "token",
+                      "type": "categorical",
+                      "description": "Tokens summarized for the current selection or segment set."
+                    }
+                  ],
+                  "x": [
+                    {
+                      "field": "activation summary",
+                      "type": "quantitative",
+                      "description": "Summary magnitude or count associated with each token."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                56,
+                71
+              ],
+              "figureRefs": [
+                "Fig. 1D",
+                "Fig. 5C"
+              ],
+              "quotes": [
+                "Adjacent to this matrix, a bar chart summarizes the maximum activation tokens for each text segment."
+              ],
+              "reasoning": "The adjacent summary is explicitly described as a bar chart.",
+              "confidence": 0.97
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "feature-details.token-summary.inspect-token-summary",
+              "capabilityKind": "Information",
+              "capabilityName": "Inspect Token Summary",
+              "description": "Shows token-level activation statistics for the current set of sampled or selected text segments.",
+              "evidence": {
+                "passageIds": [
+                  56,
+                  71
+                ],
+                "figureRefs": [
+                  "Fig. 1D",
+                  "Fig. 5C"
+                ],
+                "quotes": [
+                  "A bar chart summarizes the maximum activation tokens for each text segment."
+                ],
+                "reasoning": "This summary chart provides token-level information complementary to the matrix.",
+                "confidence": 0.97
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "input-activation",
+      "viewName": "Input Activation View",
+      "nameSource": "caption",
+      "aliases": [
+        "E",
+        "Fig. 1E",
+        "Custom Input Activation View"
+      ],
+      "description": "Validation view for testing the selected feature on custom input text and inspecting token-level activations.",
+      "viewImages": [
+        "data/view-images/ConceptViz/5.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          38,
+          51,
+          57,
+          72,
+          75,
+          76
+        ],
+        "figureRefs": [
+          "Fig. 1E",
+          "Fig. 3C1",
+          "Fig. 5D",
+          "Fig. 6B",
+          "Fig. 6C"
+        ],
+        "quotes": [
+          "Input Activation View allows users to verify feature responses to custom inputs.",
+          "The system displays the activation distribution across tokens for the target feature."
+        ],
+        "reasoning": "The paper and crop consistently show a prompt entry area paired with token-level activation results.",
+        "confidence": 0.99
+      },
+      "subViews": [
+        {
+          "subViewId": "input-activation.prompt-input",
+          "subViewName": "Prompt Input",
+          "nameSource": "inferred",
+          "description": "Input field used to submit custom text samples for activation analysis on the selected feature.",
+          "evidence": {
+            "passageIds": [
+              51,
+              57,
+              72,
+              75
+            ],
+            "figureRefs": [
+              "Fig. 1E",
+              "Fig. 5D",
+              "Fig. 6B"
+            ],
+            "quotes": [
+              "Users can enter text samples.",
+              "The user proceeds to the Custom Input Activation View, inputting text containing token plant."
+            ],
+            "reasoning": "The field and add button at the top of the crop support custom text submission.",
+            "confidence": 0.98
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "Form",
+            "subKind": "TextInput",
+            "description": "Text-entry control for custom sentences or prompts used in token-level activation validation.",
+            "evidence": {
+              "passageIds": [
+                51,
+                57
+              ],
+              "figureRefs": [
+                "Fig. 1E"
+              ],
+              "quotes": [
+                "When users input text, the system performs a forward pass through the model."
+              ],
+              "reasoning": "This region is a text entry form, not a plotted display.",
+              "confidence": 0.96
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "input-activation.prompt-input.enter-custom-text",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Enter Custom Text",
+              "description": "Submit a sentence or prompt to test how the selected feature responds in context.",
+              "evidence": {
+                "passageIds": [
+                  51,
+                  57,
+                  72,
+                  75
+                ],
+                "figureRefs": [
+                  "Fig. 1E",
+                  "Fig. 5D",
+                  "Fig. 6B"
+                ],
+                "quotes": [
+                  "Users can enter text samples.",
+                  "The user tests this feature with various superhero-related prompts."
+                ],
+                "reasoning": "This is the primary interaction supported by the prompt input box.",
+                "confidence": 0.99
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "input-activation.token-activation-display",
+          "subViewName": "Token Activation Display",
+          "nameSource": "inferred",
+          "description": "Token-by-token readout showing which words in the submitted text strongly activate the selected feature and which tokens can be used to retrieve related features.",
+          "evidence": {
+            "passageIds": [
+              38,
+              51,
+              57,
+              76
+            ],
+            "figureRefs": [
+              "Fig. 1E",
+              "Fig. 6B",
+              "Fig. 6C"
+            ],
+            "quotes": [
+              "The system displays the activation distribution across tokens for the target feature.",
+              "For selected tokens with high activation, the system recommends other features with similar activation patterns."
+            ],
+            "reasoning": "The crop shows token chips with highlighted high-activation terms; the paper explains the same interaction.",
+            "confidence": 0.98
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "input-activation.token-activation-display.token-labels",
+                "markType": "text",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "token order",
+                      "type": "ordinal",
+                      "description": "Sequential token position in the submitted text."
+                    }
+                  ],
+                  "row": [
+                    {
+                      "field": "input example",
+                      "type": "categorical",
+                      "description": "Separate tested phrases or text lines."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "activation strength",
+                      "type": "quantitative",
+                      "description": "Visual emphasis communicates which tokens strongly activate the selected feature."
+                    }
+                  ],
+                  "text": [
+                    {
+                      "field": "token text",
+                      "type": "categorical",
+                      "description": "Rendered token labels."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                38,
+                51,
+                57
+              ],
+              "figureRefs": [
+                "Fig. 1E",
+                "Fig. 3C1"
+              ],
+              "quotes": [
+                "Records the activation strength of target features at each token position."
+              ],
+              "reasoning": "The token display is best modeled as a text-mark view with activation-driven emphasis.",
+              "confidence": 0.88
+            }
+          },
+          "viewProcessingInfo": {
+            "processingSteps": [
+              {
+                "name": "Custom input activation analysis",
+                "category": "feature extraction",
+                "description": "Runs the selected text through the model, maps intermediate activations to SAE feature space, and records target-feature activation strength for each token.",
+                "input": [
+                  "user-defined text",
+                  "selected SAE feature"
+                ],
+                "output": [
+                  "token-level target-feature activations"
+                ],
+                "tasks": [
+                  "instance-level validation"
+                ]
+              },
+              {
+                "name": "Co-activation feature retrieval",
+                "category": "retrieval",
+                "description": "Finds other features that strongly activate for user-selected tokens in order to surface functionally related features.",
+                "input": [
+                  "selected high-activation tokens",
+                  "all feature activation values"
+                ],
+                "output": [
+                  "related features with similar activation patterns"
+                ],
+                "tasks": [
+                  "related feature discovery"
+                ]
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                51,
+                57
+              ],
+              "figureRefs": [
+                "Fig. 1E",
+                "Fig. 3C1"
+              ],
+              "quotes": [
+                "We implemented this method for user-defined text.",
+                "We provide a co-activation feature retrieval function."
+              ],
+              "reasoning": "These methods directly power the token display and related-feature retrieval behavior.",
+              "confidence": 0.99
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "input-activation.token-activation-display.inspect-token-activations",
+              "capabilityKind": "Information",
+              "capabilityName": "Inspect Token Activations",
+              "description": "Shows which tokens in the submitted text trigger the selected feature most strongly.",
+              "evidence": {
+                "passageIds": [
+                  38,
+                  51,
+                  57,
+                  75
+                ],
+                "figureRefs": [
+                  "Fig. 1E",
+                  "Fig. 6B"
+                ],
+                "quotes": [
+                  "The system displays the activation distribution across tokens for the target feature."
+                ],
+                "reasoning": "Token-level inspection is the core information affordance of the view.",
+                "confidence": 0.99
+              }
+            },
+            {
+              "capabilityId": "input-activation.token-activation-display.select-tokens",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Select High-Activation Tokens",
+              "description": "Select highly activated tokens to retrieve other features with similar activation behavior.",
+              "evidence": {
+                "passageIds": [
+                  57,
+                  76
+                ],
+                "figureRefs": [
+                  "Fig. 1E",
+                  "Fig. 6C"
+                ],
+                "quotes": [
+                  "For selected tokens with high activation, the system recommends other features.",
+                  "The user then selects superhero tokens to identify other features with similar activation patterns."
+                ],
+                "reasoning": "This action drives the explicit coordination back to the explorer.",
+                "confidence": 0.99
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "output-steering",
+      "viewName": "Output Steering View",
+      "nameSource": "caption",
+      "aliases": [
+        "F",
+        "Fig. 1F",
+        "Activation Steering View"
+      ],
+      "description": "Causal-validation view for comparing generated outputs under different feature activation strengths.",
+      "viewImages": [
+        "data/view-images/ConceptViz/6.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          39,
+          40,
+          51,
+          52,
+          58,
+          72,
+          75
+        ],
+        "figureRefs": [
+          "Fig. 1F",
+          "Fig. 3C2",
+          "Fig. 5D",
+          "Fig. 6B"
+        ],
+        "quotes": [
+          "Output Steering View enables causal verification of feature-concept relationships.",
+          "Generate multiple output variants with different feature activation strengths simultaneously."
+        ],
+        "reasoning": "The crop shows prompt entry and multiple steered branches, matching the text.",
+        "confidence": 0.99
+      },
+      "subViews": [
+        {
+          "subViewId": "output-steering.prompt-input",
+          "subViewName": "Steering Prompt Input",
+          "nameSource": "inferred",
+          "description": "Prompt-entry field and generate trigger used to launch activation steering experiments.",
+          "evidence": {
+            "passageIds": [
+              40,
+              58,
+              72,
+              75
+            ],
+            "figureRefs": [
+              "Fig. 1F",
+              "Fig. 5D",
+              "Fig. 6B"
+            ],
+            "quotes": [
+              "The Activation Steer module allows users to input prompts.",
+              "The user employs the Activation Steering View with the prompt."
+            ],
+            "reasoning": "The upper field and generate button are a separate control region in the crop.",
+            "confidence": 0.98
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "Form",
+            "subKind": "TextInput",
+            "description": "Prompt input used to generate steered language model outputs for the currently selected feature.",
+            "evidence": {
+              "passageIds": [
+                40,
+                58
+              ],
+              "figureRefs": [
+                "Fig. 1F"
+              ],
+              "quotes": [
+                "Enable users to dynamically adjust input samples and feature activations while observing resulting changes."
+              ],
+              "reasoning": "This region provides prompt submission rather than direct data visualization.",
+              "confidence": 0.95
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "output-steering.prompt-input.enter-steering-prompt",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Enter Steering Prompt",
+              "description": "Provide a prompt for causal steering experiments and trigger generation.",
+              "evidence": {
+                "passageIds": [
+                  40,
+                  58,
+                  72,
+                  75
+                ],
+                "figureRefs": [
+                  "Fig. 1F",
+                  "Fig. 5D",
+                  "Fig. 6B"
+                ],
+                "quotes": [
+                  "The Activation Steer module allows users to input prompts."
+                ],
+                "reasoning": "The prompt field is the explicit entry point for steering experiments.",
+                "confidence": 0.99
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "output-steering.output-branches",
+          "subViewName": "Steered Output Branches",
+          "nameSource": "inferred",
+          "description": "Generated output panels showing multiple completions under different steering strengths for side-by-side comparison.",
+          "evidence": {
+            "passageIds": [
+              51,
+              52,
+              58,
+              72,
+              75
+            ],
+            "figureRefs": [
+              "Fig. 1F",
+              "Fig. 5D",
+              "Fig. 6B"
+            ],
+            "quotes": [
+              "Generate multiple output variants with different feature activation strengths simultaneously.",
+              "By comparing outputs across different steering branches, users can observe how manipulating feature activations affects model outputs."
+            ],
+            "reasoning": "The crop clearly shows multiple output cards branching from the same input prompt.",
+            "confidence": 0.98
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "StructuredText",
+            "subKind": "Card",
+            "description": "A card-based set of generated text responses used to compare the causal effects of different steering strengths.",
+            "evidence": {
+              "passageIds": [
+                52,
+                58,
+                72,
+                75
+              ],
+              "figureRefs": [
+                "Fig. 1F",
+                "Fig. 5D",
+                "Fig. 6B"
+              ],
+              "quotes": [
+                "This method allows users to observe the causal impact of feature activation changes on model output."
+              ],
+              "reasoning": "The outputs are text cards rather than a plotted chart.",
+              "confidence": 0.96
+            }
+          },
+          "viewProcessingInfo": {
+            "processingSteps": [
+              {
+                "name": "Activation steering",
+                "category": "model editing",
+                "description": "Applies a steering vector derived from the SAE decoder to increase or suppress a selected feature during model inference.",
+                "input": [
+                  "selected SAE feature",
+                  "steering prompt",
+                  "steering strength"
+                ],
+                "output": [
+                  "steered model outputs"
+                ],
+                "tasks": [
+                  "causal verification",
+                  "feature intervention"
+                ]
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                51,
+                52,
+                58
+              ],
+              "figureRefs": [
+                "Fig. 1F",
+                "Fig. 3C2"
+              ],
+              "quotes": [
+                "We extract the steering vector for a feature from SAE.",
+                "Positive values enhance feature influence, negative values suppress it."
+              ],
+              "reasoning": "The output-branch panels are produced by the steering mechanism described in the methods section.",
+              "confidence": 0.99
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "output-steering.output-branches.compare-steered-outputs",
+              "capabilityKind": "Information",
+              "capabilityName": "Compare Steered Outputs",
+              "description": "Shows how different steering strengths change generated text so users can assess causal feature-concept effects.",
+              "evidence": {
+                "passageIds": [
+                  52,
+                  58,
+                  72,
+                  75
+                ],
+                "figureRefs": [
+                  "Fig. 1F",
+                  "Fig. 5D",
+                  "Fig. 6B"
+                ],
+                "quotes": [
+                  "By comparing outputs with and without steering, users can verify the association.",
+                  "By comparing outputs across different steering branches."
+                ],
+                "reasoning": "The information affordance of the output cards is side-by-side causal comparison.",
+                "confidence": 0.99
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "coordinationInfo": [
+    {
+      "coordinationId": "coord-query-to-results",
+      "source": {
+        "viewId": "concept-query",
+        "subViewId": "concept-query.query-input"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "concept-query",
+        "subViewId": "concept-query.query-input",
+        "capabilityId": "concept-query.query-input.submit-query"
+      },
+      "targets": [
+        {
+          "viewId": "sae-discovery",
+          "subViewId": "sae-discovery.layer-overview"
+        },
+        {
+          "viewId": "feature-explorer",
+          "subViewId": "feature-explorer.concept-space-map"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "sae-discovery",
+          "subViewId": "sae-discovery.layer-overview",
+          "capabilityId": "sae-discovery.layer-overview.inspect-layer-relevance"
+        },
+        {
+          "viewId": "feature-explorer",
+          "subViewId": "feature-explorer.concept-space-map",
+          "capabilityId": "feature-explorer.concept-space-map.browse-clusters"
+        }
+      ],
+      "coordinationType": "parameter-binding",
+      "evidence": {
+        "passageIds": [
+          56,
+          70
+        ],
+        "figureRefs": [
+          "Fig. 1A",
+          "Fig. 1B",
+          "Fig. 1C",
+          "Fig. 5A"
+        ],
+        "quotes": [
+          "The Concept Query View and SAE Discovery View help users locate SAE models with features related to target concepts.",
+          "After finalizing the query, the user examines the SAE Model Retrieval View.",
+          "The system highlights query-relevant features."
+        ],
+        "reasoning": "Submitting or refining the query updates both the layer relevance results and the highlighted relevant features in the explorer.",
+        "confidence": 0.93
+      }
+    },
+    {
+      "coordinationId": "coord-select-sae-to-explorer",
+      "source": {
+        "viewId": "sae-discovery",
+        "subViewId": "sae-discovery.layer-ranking-table"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "sae-discovery",
+        "subViewId": "sae-discovery.layer-ranking-table",
+        "capabilityId": "sae-discovery.layer-ranking-table.select-sae"
+      },
+      "targets": [
+        {
+          "viewId": "feature-explorer",
+          "subViewId": "feature-explorer.concept-space-map"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "feature-explorer",
+          "subViewId": "feature-explorer.concept-space-map",
+          "capabilityId": "feature-explorer.concept-space-map.browse-clusters"
+        }
+      ],
+      "coordinationType": "parameter-binding",
+      "evidence": {
+        "passageIds": [
+          56,
+          70,
+          74
+        ],
+        "figureRefs": [
+          "Fig. 1B",
+          "Fig. 1C",
+          "Fig. 5A",
+          "Fig. 6A"
+        ],
+        "quotes": [
+          "Users can directly select the SAE of interest from this view to proceed with feature exploration.",
+          "Based on this insight, the user selects the fourth layer SAE for detailed exploration."
+        ],
+        "reasoning": "Selecting a layer-specific SAE updates the feature space shown in the explorer.",
+        "confidence": 0.96
+      }
+    },
+    {
+      "coordinationId": "coord-select-feature-to-details",
+      "source": {
+        "viewId": "feature-explorer",
+        "subViewId": "feature-explorer.concept-space-map"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "feature-explorer",
+        "subViewId": "feature-explorer.concept-space-map",
+        "capabilityId": "feature-explorer.concept-space-map.select-feature"
+      },
+      "targets": [
+        {
+          "viewId": "feature-details",
+          "subViewId": "feature-details.vocabulary-space"
+        },
+        {
+          "viewId": "feature-details",
+          "subViewId": "feature-details.text-segment-examples"
+        },
+        {
+          "viewId": "feature-details",
+          "subViewId": "feature-details.token-summary"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "feature-details",
+          "subViewId": "feature-details.vocabulary-space",
+          "capabilityId": "feature-details.vocabulary-space.inspect-vocabulary-projection"
+        },
+        {
+          "viewId": "feature-details",
+          "subViewId": "feature-details.text-segment-examples",
+          "capabilityId": "feature-details.text-segment-examples.inspect-example-alignment"
+        },
+        {
+          "viewId": "feature-details",
+          "subViewId": "feature-details.token-summary",
+          "capabilityId": "feature-details.token-summary.inspect-token-summary"
+        }
+      ],
+      "coordinationType": "details-on-demand",
+      "evidence": {
+        "passageIds": [
+          56,
+          71
+        ],
+        "figureRefs": [
+          "Fig. 1C",
+          "Fig. 1D",
+          "Fig. 5B",
+          "Fig. 5C"
+        ],
+        "quotes": [
+          "The user selects this point for detailed analysis.",
+          "The Feature Details View displays vocabulary space projections and maximum token activation statistics."
+        ],
+        "reasoning": "Feature selection in the explorer populates the detailed inspection panels.",
+        "confidence": 0.97
+      }
+    },
+    {
+      "coordinationId": "coord-matrix-to-token-summary",
+      "source": {
+        "viewId": "feature-details",
+        "subViewId": "feature-details.text-segment-examples"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "feature-details",
+        "subViewId": "feature-details.text-segment-examples",
+        "capabilityId": "feature-details.text-segment-examples.select-region"
+      },
+      "targets": [
+        {
+          "viewId": "feature-details",
+          "subViewId": "feature-details.token-summary"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "feature-details",
+          "subViewId": "feature-details.token-summary",
+          "capabilityId": "feature-details.token-summary.inspect-token-summary"
+        }
+      ],
+      "coordinationType": "brushing-linking",
+      "evidence": {
+        "passageIds": [
+          56
+        ],
+        "figureRefs": [
+          "Fig. 1D"
+        ],
+        "quotes": [
+          "When users select regions in the matrix, the bar chart updates to show token distributions from the selected segments."
+        ],
+        "reasoning": "Matrix-region selection explicitly updates the adjacent token summary chart.",
+        "confidence": 0.99
+      }
+    },
+    {
+      "coordinationId": "coord-activation-to-related-features",
+      "source": {
+        "viewId": "input-activation",
+        "subViewId": "input-activation.token-activation-display"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "input-activation",
+        "subViewId": "input-activation.token-activation-display",
+        "capabilityId": "input-activation.token-activation-display.select-tokens"
+      },
+      "targets": [
+        {
+          "viewId": "feature-explorer",
+          "subViewId": "feature-explorer.concept-space-map"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "feature-explorer",
+          "subViewId": "feature-explorer.concept-space-map",
+          "capabilityId": "feature-explorer.concept-space-map.show-related-features"
+        }
+      ],
+      "coordinationType": "brushing-linking",
+      "evidence": {
+        "passageIds": [
+          57,
+          76
+        ],
+        "figureRefs": [
+          "Fig. 1C",
+          "Fig. 1E",
+          "Fig. 6B",
+          "Fig. 6C"
+        ],
+        "quotes": [
+          "For selected tokens with high activation, the system recommends other features with similar activation patterns by highlighting bubble sets displayed in the Feature Explorer View.",
+          "The user then selects superhero tokens to identify other features with similar activation patterns."
+        ],
+        "reasoning": "Selecting activated tokens in the validation view highlights related features in the explorer.",
+        "confidence": 0.99
+      }
+    },
+    {
+      "coordinationId": "coord-input-prompt-to-activation-display",
+      "source": {
+        "viewId": "input-activation",
+        "subViewId": "input-activation.prompt-input"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "input-activation",
+        "subViewId": "input-activation.prompt-input",
+        "capabilityId": "input-activation.prompt-input.enter-custom-text"
+      },
+      "targets": [
+        {
+          "viewId": "input-activation",
+          "subViewId": "input-activation.token-activation-display"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "input-activation",
+          "subViewId": "input-activation.token-activation-display",
+          "capabilityId": "input-activation.token-activation-display.inspect-token-activations"
+        }
+      ],
+      "coordinationType": "parameter-binding",
+      "evidence": {
+        "passageIds": [
+          57,
+          72,
+          75
+        ],
+        "figureRefs": [
+          "Fig. 1E",
+          "Fig. 5D",
+          "Fig. 6B"
+        ],
+        "quotes": [
+          "Users can enter text samples, and the system displays the activation distribution across tokens for the target feature.",
+          "The user proceeds to the Custom Input Activation View, inputting text containing token plant."
+        ],
+        "reasoning": "Submitting custom text in the prompt input updates the token-level activation display inside the same view.",
+        "confidence": 0.99
+      }
+    },
+    {
+      "coordinationId": "coord-steering-prompt-to-output-branches",
+      "source": {
+        "viewId": "output-steering",
+        "subViewId": "output-steering.prompt-input"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "output-steering",
+        "subViewId": "output-steering.prompt-input",
+        "capabilityId": "output-steering.prompt-input.enter-steering-prompt"
+      },
+      "targets": [
+        {
+          "viewId": "output-steering",
+          "subViewId": "output-steering.output-branches"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "output-steering",
+          "subViewId": "output-steering.output-branches",
+          "capabilityId": "output-steering.output-branches.compare-steered-outputs"
+        }
+      ],
+      "coordinationType": "parameter-binding",
+      "evidence": {
+        "passageIds": [
+          58,
+          72,
+          75
+        ],
+        "figureRefs": [
+          "Fig. 1F",
+          "Fig. 5D",
+          "Fig. 6B"
+        ],
+        "quotes": [
+          "The Activation Steer module allows users to input prompts and generate multiple output variants with different feature activation strengths simultaneously.",
+          "The user employs the Output Steering View with the prompt."
+        ],
+        "reasoning": "Entering a steering prompt and triggering generation updates the output-branch panel within the steering view.",
+        "confidence": 0.99
+      }
+    },
+    {
+      "coordinationId": "coord-select-feature-to-validation",
+      "source": {
+        "viewId": "feature-explorer",
+        "subViewId": "feature-explorer.concept-space-map"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "feature-explorer",
+        "subViewId": "feature-explorer.concept-space-map",
+        "capabilityId": "feature-explorer.concept-space-map.select-feature"
+      },
+      "targets": [
+        {
+          "viewId": "input-activation",
+          "subViewId": "input-activation.token-activation-display"
+        },
+        {
+          "viewId": "output-steering",
+          "subViewId": "output-steering.output-branches"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "input-activation",
+          "subViewId": "input-activation.token-activation-display",
+          "capabilityId": "input-activation.token-activation-display.inspect-token-activations"
+        },
+        {
+          "viewId": "output-steering",
+          "subViewId": "output-steering.output-branches",
+          "capabilityId": "output-steering.output-branches.compare-steered-outputs"
+        }
+      ],
+      "coordinationType": "parameter-binding",
+      "evidence": {
+        "passageIds": [
+          57,
+          58,
+          71,
+          72,
+          75
+        ],
+        "figureRefs": [
+          "Fig. 1C",
+          "Fig. 1E",
+          "Fig. 1F",
+          "Fig. 5C",
+          "Fig. 5D",
+          "Fig. 6A",
+          "Fig. 6B"
+        ],
+        "quotes": [
+          "Input Activation View allows users to verify feature responses to custom inputs.",
+          "Output Steering View enables causal verification of feature-concept relationships.",
+          "The user selects this point for detailed analysis.",
+          "The user then employs the Activation Steering View."
+        ],
+        "reasoning": "The paper's workflow and scenarios indicate the currently selected feature feeds both validation views, though this edge is less directly stated than the others.",
+        "confidence": 0.77
+      }
+    }
+  ]
+}

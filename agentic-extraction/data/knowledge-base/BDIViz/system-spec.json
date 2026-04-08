@@ -1,0 +1,1609 @@
+{
+  "paperName": "BDIViz",
+  "systemInfo": {
+    "systemName": "BDIViz",
+    "dataOntology": {
+      "datasetType": [
+        "Tables"
+      ],
+      "dataType": [
+        "Attributes"
+      ],
+      "attributeType": [
+        "Categorical"
+      ]
+    },
+    "systemCategory": [
+      {
+        "level1": "D Health / Public Health",
+        "level2": [
+          "others(Biomedical schema matching and data harmonization)"
+        ]
+      }
+    ]
+  },
+  "viewsInfo": [
+    {
+      "viewId": "control-panel",
+      "viewName": "Control Panel",
+      "nameSource": "caption",
+      "aliases": [
+        "Fig. 3 (1)",
+        "1"
+      ],
+      "description": "Left-side control area for configuring matching parameters, managing candidate decisions, and revisiting prior curation actions.",
+      "viewImages": [
+        "data/view-images/BDIViz/2.png",
+        "data/view-images/BDIViz/3.png",
+        "data/view-images/BDIViz/4.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          20,
+          22,
+          70
+        ],
+        "figureRefs": [
+          "Fig. 3"
+        ],
+        "quotes": [
+          "The control panel ... serves two primary functions: configuration of matching parameters and keeping track of user actions",
+          "a shortcut panel for managing matching candidates"
+        ],
+        "reasoning": "The caption and UI-components section describe one grouped control area with three labeled regions.",
+        "confidence": 0.97
+      },
+      "subViews": [
+        {
+          "subViewId": "control-panel.shortcut-panel",
+          "subViewName": "Shortcut Panel",
+          "nameSource": "caption",
+          "aliases": [
+            "1A"
+          ],
+          "description": "Top-left toolbar for quick curation actions such as accepting or rejecting candidates, undoing or redoing edits, and importing or exporting data.",
+          "evidence": {
+            "passageIds": [
+              22,
+              70
+            ],
+            "figureRefs": [
+              "Fig. 3",
+              "data/view-images/BDIViz/2.png"
+            ],
+            "quotes": [
+              "shortcut panel for managing matching candidates, undo/redo, importing datasets, and exporting results as CSV or JSON",
+              "undo/redo buttons"
+            ],
+            "confidence": 0.98
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "Control",
+            "subKind": "others(Toolbar)",
+            "description": "Compact toolbar containing quick decision and session-management controls for schema curation.",
+            "evidence": {
+              "passageIds": [
+                22,
+                70
+              ],
+              "figureRefs": [
+                "Fig. 3"
+              ],
+              "quotes": [
+                "shortcut panel for managing matching candidates"
+              ],
+              "confidence": 0.94
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "control-panel.shortcut-panel.accept-reject-candidates",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Accept Or Reject Candidates",
+              "description": "Lets users commit or dismiss highlighted schema-match candidates from the quick-action toolbar.",
+              "evidence": {
+                "passageIds": [
+                  10,
+                  70
+                ],
+                "figureRefs": [
+                  "Fig. 3"
+                ],
+                "quotes": [
+                  "accept, or reject candidates",
+                  "managing matching candidates"
+                ],
+                "confidence": 0.91
+              }
+            },
+            {
+              "capabilityId": "control-panel.shortcut-panel.manage-session-actions",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Manage Session Actions",
+              "description": "Supports undo and redo navigation plus dataset import and result export actions.",
+              "evidence": {
+                "passageIds": [
+                  22,
+                  70
+                ],
+                "figureRefs": [
+                  "Fig. 3"
+                ],
+                "quotes": [
+                  "undo/redo buttons",
+                  "importing datasets, and exporting results as CSV or JSON"
+                ],
+                "confidence": 0.95
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "control-panel.filter-controls",
+          "subViewName": "Filter Control Panel",
+          "nameSource": "caption",
+          "aliases": [
+            "1B"
+          ],
+          "description": "Configuration form for source-attribute selection, filtering thresholds, matcher weighting, and related parameters that narrow the candidate set shown elsewhere.",
+          "evidence": {
+            "passageIds": [
+              20,
+              22,
+              70
+            ],
+            "figureRefs": [
+              "Fig. 3",
+              "data/view-images/BDIViz/3.png"
+            ],
+            "quotes": [
+              "control panel for filtering candidates",
+              "Users can select scoring algorithms, threshold values, and weighting factors"
+            ],
+            "confidence": 0.98
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "Control",
+            "subKind": "others(FilterForm)",
+            "description": "Form-like control region used to configure matching parameters, thresholds, and filtering criteria before or during candidate exploration.",
+            "evidence": {
+              "passageIds": [
+                20,
+                22
+              ],
+              "figureRefs": [
+                "Fig. 3"
+              ],
+              "quotes": [
+                "Users can configure the datasets/schemas, matcher parameters as well as modify matching thresholds"
+              ],
+              "confidence": 0.95
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "control-panel.filter-controls.configure-matching-parameters",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Configure Matching Parameters",
+              "description": "Allows users to change scoring algorithms, threshold values, and matcher weighting factors that influence automated matching.",
+              "evidence": {
+                "passageIds": [
+                  22
+                ],
+                "figureRefs": [
+                  "Fig. 3"
+                ],
+                "quotes": [
+                  "Users can select scoring algorithms, threshold values, and weighting factors for different similarity metrics"
+                ],
+                "confidence": 0.98
+              }
+            },
+            {
+              "capabilityId": "control-panel.filter-controls.filter-candidates",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Filter Candidates",
+              "description": "Lets users narrow the visible match candidates to relevant subsets instead of reviewing all possible matches at once.",
+              "evidence": {
+                "passageIds": [
+                  20,
+                  70
+                ],
+                "figureRefs": [
+                  "Fig. 3"
+                ],
+                "quotes": [
+                  "Users can filter matches by confidence thresholds",
+                  "control panel for filtering candidates"
+                ],
+                "confidence": 0.97
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "control-panel.action-timeline",
+          "subViewName": "User Action Timeline",
+          "nameSource": "caption",
+          "aliases": [
+            "1C"
+          ],
+          "description": "Lower-left provenance display showing curation events in chronological order and enabling navigation back to prior decision points.",
+          "evidence": {
+            "passageIds": [
+              22,
+              70
+            ],
+            "figureRefs": [
+              "Fig. 3",
+              "data/view-images/BDIViz/4.png"
+            ],
+            "quotes": [
+              "timeline graph showing the history of user actions",
+              "The provenance component records user interactions chronologically"
+            ],
+            "confidence": 0.97
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "control-panel.action-timeline.event-nodes",
+                "markType": "point",
+                "encoding": {
+                  "y": [
+                    {
+                      "field": "event_order",
+                      "type": "ordinal",
+                      "description": "Positions user-action events along a temporal sequence."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "action_type",
+                      "type": "categorical",
+                      "description": "Uses icon or color variation to distinguish event types such as parameter change, accept, or reject."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "control-panel.action-timeline.sequence-links",
+                "markType": "line",
+                "encoding": {
+                  "y": [
+                    {
+                      "field": "event_order",
+                      "type": "ordinal",
+                      "description": "Connects action nodes in chronological order."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                22,
+                70
+              ],
+              "figureRefs": [
+                "Fig. 3"
+              ],
+              "quotes": [
+                "Each interaction is represented as a discrete event on the timeline",
+                "icons indicating the type of action performed"
+              ],
+              "confidence": 0.88
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "control-panel.action-timeline.inspect-action-history",
+              "capabilityKind": "Information",
+              "capabilityName": "Inspect Action History",
+              "description": "Shows a chronological record of parameter adjustments and accept or reject decisions made during curation.",
+              "evidence": {
+                "passageIds": [
+                  22,
+                  70
+                ],
+                "figureRefs": [
+                  "Fig. 3"
+                ],
+                "quotes": [
+                  "history of user actions",
+                  "records user interactions chronologically"
+                ],
+                "confidence": 0.98
+              }
+            },
+            {
+              "capabilityId": "control-panel.action-timeline.navigate-to-history-state",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Navigate To History State",
+              "description": "Lets users jump back to specific decision points in the curation provenance trail.",
+              "evidence": {
+                "passageIds": [
+                  22
+                ],
+                "figureRefs": [
+                  "Fig. 3"
+                ],
+                "quotes": [
+                  "the ability to directly navigate to specific decision points"
+                ],
+                "confidence": 0.9
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "heatmap-panel",
+      "viewName": "Heatmap Panel",
+      "nameSource": "caption",
+      "aliases": [
+        "Fig. 3 (2)",
+        "2"
+      ],
+      "description": "Central coordinated analysis area that summarizes candidate matches, exposes schema structure, and provides multiple detail views for inspecting source-target relationships.",
+      "viewImages": [
+        "data/view-images/BDIViz/5.png",
+        "data/view-images/BDIViz/6.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          20,
+          22,
+          23,
+          70
+        ],
+        "figureRefs": [
+          "Fig. 3",
+          "Fig. 4",
+          "Fig. 6"
+        ],
+        "quotes": [
+          "The Interactive Heatmap Panel ... provides a summary of the matches",
+          "bottom: an UpSet plot, value comparisons, and parallel coordinates"
+        ],
+        "reasoning": "The paper treats the central region as panel 2 with multiple coordinated internal regions, so the draft keeps one top-level view with multiple sub-views.",
+        "confidence": 0.95
+      },
+      "subViews": [
+        {
+          "subViewId": "heatmap-panel.interactive-heatmap",
+          "subViewName": "Interactive Heatmap",
+          "nameSource": "caption",
+          "aliases": [
+            "2A"
+          ],
+          "description": "Matrix-based overview of match candidates with source attributes on rows, target attributes on the x-axis, and color intensity showing similarity scores.",
+          "evidence": {
+            "passageIds": [
+              20,
+              22,
+              70
+            ],
+            "figureRefs": [
+              "Fig. 3",
+              "data/view-images/BDIViz/5.png"
+            ],
+            "quotes": [
+              "matrix-based layout where color intensity encodes similarity scores",
+              "interactive heatmap panel displaying matching candidates with source attributes on the y-axis"
+            ],
+            "confidence": 0.99
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "heatmap-panel.interactive-heatmap.cell-rects",
+                "markType": "rect",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "target_attribute",
+                      "type": "attribute",
+                      "description": "Places target attributes across columns using the schema layout."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "source_attribute",
+                      "type": "attribute",
+                      "description": "Places source attributes down the rows."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "similarity_score",
+                      "type": "quantitative",
+                      "description": "Uses color intensity to encode normalized similarity strength."
+                    },
+                    {
+                      "field": "match_status",
+                      "type": "categorical",
+                      "description": "Status colors distinguish accepted, rejected, or highlighted cells."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                22,
+                70
+              ],
+              "figureRefs": [
+                "Fig. 3",
+                "Fig. 4"
+              ],
+              "quotes": [
+                "matrix-based layout where color intensity encodes similarity scores",
+                "selected matches (cells)"
+              ],
+              "confidence": 0.97
+            }
+          },
+          "viewProcessingInfo": {
+            "processingSteps": [
+              {
+                "name": "Ensemble schema matching score aggregation",
+                "category": "ML model",
+                "description": "Combines multiple schema-matching methods into a weighted candidate score that is summarized in the heatmap for interactive exploration.",
+                "input": [
+                  "source schema attributes",
+                  "target schema attributes",
+                  "matcher scores"
+                ],
+                "output": [
+                  "candidate matches",
+                  "weighted similarity score"
+                ],
+                "tasks": [
+                  "schema matching",
+                  "candidate ranking",
+                  "interactive triage"
+                ]
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                4,
+                11,
+                23
+              ],
+              "figureRefs": [
+                "Fig. 3",
+                "Fig. 6"
+              ],
+              "quotes": [
+                "combines multiple matching methods",
+                "The matching score displayed in the heatmap is computed as the average of an ensemble of matchers"
+              ],
+              "confidence": 0.92
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "heatmap-panel.interactive-heatmap.browse-candidate-matches",
+              "capabilityKind": "Information",
+              "capabilityName": "Browse Candidate Matches",
+              "description": "Lets users scan many source-target candidates at once to identify promising or problematic matches.",
+              "evidence": {
+                "passageIds": [
+                  10,
+                  20,
+                  22
+                ],
+                "figureRefs": [
+                  "Fig. 3"
+                ],
+                "quotes": [
+                  "summarize matches across large schemas",
+                  "provides a summary of the matches"
+                ],
+                "confidence": 0.98
+              }
+            },
+            {
+              "capabilityId": "heatmap-panel.interactive-heatmap.select-candidate-cell",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Select Candidate Cell",
+              "description": "Supports clicking or hovering a match cell to open detailed evidence for a specific source-target attribute pair.",
+              "evidence": {
+                "passageIds": [
+                  20,
+                  22,
+                  71
+                ],
+                "figureRefs": [
+                  "Fig. 3",
+                  "Fig. 4"
+                ],
+                "quotes": [
+                  "By selecting a cells, users can examine a specific attribute pair in detail",
+                  "When a user hovers over a cell"
+                ],
+                "confidence": 0.98
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "heatmap-panel.value-distribution-histograms",
+          "subViewName": "Value Distribution Histograms",
+          "nameSource": "caption",
+          "aliases": [
+            "Fig. 4 (2A,2B)"
+          ],
+          "description": "Detail-on-demand pair of histograms that compares the source and target attribute value distributions for a selected candidate match.",
+          "evidence": {
+            "passageIds": [
+              22,
+              71
+            ],
+            "figureRefs": [
+              "Fig. 4"
+            ],
+            "quotes": [
+              "display side-by-side histograms with source and target value distributions",
+              "Expanded view of the value distribution histograms"
+            ],
+            "confidence": 0.98
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "heatmap-panel.value-distribution-histograms.source-bars",
+                "markType": "bar",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "source_value_bin",
+                      "type": "binned attribute value",
+                      "description": "Organizes the source attribute's value bins or categories along the horizontal axis."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "source_frequency",
+                      "type": "quantitative",
+                      "description": "Encodes the count or prevalence for each source value bin."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "heatmap-panel.value-distribution-histograms.target-bars",
+                "markType": "bar",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "target_value_bin",
+                      "type": "binned attribute value",
+                      "description": "Organizes the target attribute's value bins or categories along the horizontal axis."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "target_frequency",
+                      "type": "quantitative",
+                      "description": "Encodes the count or prevalence for each target value bin."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                22,
+                71
+              ],
+              "figureRefs": [
+                "Fig. 4"
+              ],
+              "quotes": [
+                "side-by-side histograms",
+                "source (2A) and target (2B) attributes"
+              ],
+              "confidence": 0.96
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "heatmap-panel.value-distribution-histograms.compare-value-distributions",
+              "capabilityKind": "Information",
+              "capabilityName": "Compare Value Distributions",
+              "description": "Shows whether source and target attributes have compatible value distributions beyond their similarity score.",
+              "evidence": {
+                "passageIds": [
+                  22
+                ],
+                "figureRefs": [
+                  "Fig. 4"
+                ],
+                "quotes": [
+                  "verify semantic alignment by inspecting the actual data values"
+                ],
+                "confidence": 0.97
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "heatmap-panel.target-attribute-hierarchy",
+          "subViewName": "Target Attribute Hierarchy",
+          "nameSource": "inferred",
+          "aliases": [
+            "Fig. 3 (2A) bottom"
+          ],
+          "description": "Hierarchical x-axis display that groups target attributes into supercategories, categories, and individual columns with connectors showing their relationships.",
+          "evidence": {
+            "passageIds": [
+              22
+            ],
+            "figureRefs": [
+              "Fig. 3",
+              "data/view-images/BDIViz/5.png"
+            ],
+            "quotes": [
+              "The x-axis of the heatmap displays a hierarchical organization of target attributes",
+              "curved connectors represent hierarchical relationships"
+            ],
+            "confidence": 0.95
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "heatmap-panel.target-attribute-hierarchy.hierarchy-blocks",
+                "markType": "rect",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "target_schema_position",
+                      "type": "ordinal",
+                      "description": "Places schema categories and columns along the horizontal hierarchy."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "target_category",
+                      "type": "categorical",
+                      "description": "Uses color to distinguish categories and supercategories."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "heatmap-panel.target-attribute-hierarchy.hierarchy-connectors",
+                "markType": "line",
+                "encoding": {
+                  "source": [
+                    {
+                      "field": "parent_category",
+                      "type": "hierarchy link",
+                      "description": "Starts a connector from a parent category or supercategory."
+                    }
+                  ],
+                  "target": [
+                    {
+                      "field": "child_category",
+                      "type": "hierarchy link",
+                      "description": "Ends a connector at a child category or column."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                22
+              ],
+              "figureRefs": [
+                "Fig. 3"
+              ],
+              "quotes": [
+                "three-level hierarchy",
+                "curved connectors represent hierarchical relationships"
+              ],
+              "confidence": 0.93
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "heatmap-panel.target-attribute-hierarchy.inspect-target-hierarchy",
+              "capabilityKind": "Information",
+              "capabilityName": "Inspect Target Hierarchy",
+              "description": "Provides structural context about how target attributes are grouped inside the biomedical schema.",
+              "evidence": {
+                "passageIds": [
+                  22
+                ],
+                "figureRefs": [
+                  "Fig. 3"
+                ],
+                "quotes": [
+                  "providing a concise visualization of relationships present in complex biomedical schemas"
+                ],
+                "confidence": 0.96
+              }
+            },
+            {
+              "capabilityId": "heatmap-panel.target-attribute-hierarchy.highlight-hierarchy-levels",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Highlight Hierarchy Levels",
+              "description": "Lets users hover categories or columns to emphasize selected hierarchy levels and their relationships.",
+              "evidence": {
+                "passageIds": [
+                  22
+                ],
+                "figureRefs": [
+                  "Fig. 3"
+                ],
+                "quotes": [
+                  "Our interactive hover functionality allows users to highlight specific levels"
+                ],
+                "confidence": 0.96
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "heatmap-panel.matcher-contributions-upset",
+          "subViewName": "UpSet Plot",
+          "nameSource": "caption",
+          "aliases": [
+            "Fig. 6"
+          ],
+          "description": "Tabular-plot hybrid view that reveals which matchers support a candidate, their weights, and the resulting weighted average score.",
+          "evidence": {
+            "passageIds": [
+              23,
+              70,
+              73
+            ],
+            "figureRefs": [
+              "Fig. 3",
+              "Fig. 6"
+            ],
+            "quotes": [
+              "UpSet plot visualization",
+              "matcher weights",
+              "the matchers that produced a given candidate"
+            ],
+            "confidence": 0.95
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "heatmap-panel.matcher-contributions-upset.matcher-dots",
+                "markType": "point",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "candidate_or_matcher_position",
+                      "type": "ordinal",
+                      "description": "Places candidate combinations or matcher entries across the UpSet layout."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "matcher",
+                      "type": "categorical",
+                      "description": "Places contributing matchers on separate rows."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "weighted_average_score",
+                      "type": "quantitative",
+                      "description": "Uses the shared heatmap palette to indicate the combined score strength."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "heatmap-panel.matcher-contributions-upset.connection-lines",
+                "markType": "line",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "candidate_or_matcher_position",
+                      "type": "ordinal",
+                      "description": "Connects dots belonging to the same candidate recommendation."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "matcher",
+                      "type": "categorical",
+                      "description": "Traces contributing matchers vertically."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "heatmap-panel.matcher-contributions-upset.weight-bars",
+                "markType": "bar",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "matcher_weight",
+                      "type": "quantitative",
+                      "description": "Encodes current weight assigned to each matcher."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "matcher",
+                      "type": "categorical",
+                      "description": "Associates each bar with a matcher."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                23,
+                73
+              ],
+              "figureRefs": [
+                "Fig. 6"
+              ],
+              "quotes": [
+                "each matcher's recommendation is encoded by a dot",
+                "matcher weights"
+              ],
+              "confidence": 0.94
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "heatmap-panel.matcher-contributions-upset.inspect-matcher-support",
+              "capabilityKind": "Information",
+              "capabilityName": "Inspect Matcher Support",
+              "description": "Shows which matchers recommended a candidate and how strongly they contribute to the combined score.",
+              "evidence": {
+                "passageIds": [
+                  23,
+                  73
+                ],
+                "figureRefs": [
+                  "Fig. 6"
+                ],
+                "quotes": [
+                  "identify which matchers support a particular match",
+                  "weighted average score for each candidate"
+                ],
+                "confidence": 0.97
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "heatmap-panel.value-comparisons-table",
+          "subViewName": "Value Comparisons",
+          "nameSource": "caption",
+          "aliases": [
+            "Fig. 3 (2B)"
+          ],
+          "description": "Tabbed table-like view that aligns unique source values with corresponding target-column values for the selected candidate match.",
+          "evidence": {
+            "passageIds": [
+              20,
+              22,
+              70
+            ],
+            "figureRefs": [
+              "Fig. 3",
+              "data/view-images/BDIViz/6.png"
+            ],
+            "quotes": [
+              "value comparisons",
+              "one-to-one mapping between the unique values from the source column and the corresponding values from the candidate target column"
+            ],
+            "confidence": 0.95
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "TableView",
+            "subKind": "Table",
+            "description": "Table-like comparison view that lists source values beside matched target values for the currently selected attribute pair.",
+            "evidence": {
+              "passageIds": [
+                22
+              ],
+              "figureRefs": [
+                "Fig. 3"
+              ],
+              "quotes": [
+                "presents a one-to-one mapping between the unique values from the source column and the corresponding values"
+              ],
+              "confidence": 0.93
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "heatmap-panel.value-comparisons-table.compare-source-target-values",
+              "capabilityKind": "Information",
+              "capabilityName": "Compare Source And Target Values",
+              "description": "Displays concrete value mappings so users can inspect how source and target attribute values align.",
+              "evidence": {
+                "passageIds": [
+                  20,
+                  22
+                ],
+                "figureRefs": [
+                  "Fig. 3"
+                ],
+                "quotes": [
+                  "the value comparison for these attributes is shown in Fig. 3 (2B)"
+                ],
+                "confidence": 0.96
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "heatmap-panel.parallel-coordinates",
+          "subViewName": "Parallel Coordinates",
+          "nameSource": "caption",
+          "aliases": [
+            "Fig. 3 (2B)"
+          ],
+          "description": "Named tab or mode for source-target relationship inspection within panel 2B, but the available evidence does not support a defensible visual-style reconstruction.",
+          "evidence": {
+            "passageIds": [
+              70
+            ],
+            "figureRefs": [
+              "Fig. 3",
+              "data/view-images/BDIViz/6.png"
+            ],
+            "quotes": [
+              "parallel coordinates for understanding the source-target relationships"
+            ],
+            "confidence": 0.72
+          },
+          "isVisualizationView": false,
+          "capabilities": [
+            {
+              "capabilityId": "heatmap-panel.parallel-coordinates.inspect-source-target-relationships",
+              "capabilityKind": "Information",
+              "capabilityName": "Inspect Source-Target Relationships",
+              "description": "Indicates an additional analysis mode for understanding source-target relationships, without committing to unsupported visual details.",
+              "evidence": {
+                "passageIds": [
+                  70
+                ],
+                "figureRefs": [
+                  "Fig. 3"
+                ],
+                "quotes": [
+                  "parallel coordinates for understanding the source-target relationships"
+                ],
+                "confidence": 0.63
+              }
+            }
+          ],
+          "nonVisualViewSpec": {
+            "viewKind": "others(TabbedAnalysisMode)",
+            "description": "Named analysis mode within the 2B tab set for understanding source-target relationships. The caption confirms its existence, but the reviewed evidence does not justify a stronger claim about its visible chart form.",
+            "evidence": {
+              "passageIds": [
+                70
+              ],
+              "figureRefs": [
+                "Fig. 3"
+              ],
+              "quotes": [
+                "parallel coordinates for understanding the source-target relationships"
+              ],
+              "confidence": 0.63
+            }
+          }
+        }
+      ]
+    },
+    {
+      "viewId": "agent-panel",
+      "viewName": "Agent Panel",
+      "nameSource": "caption",
+      "aliases": [
+        "Fig. 3 (3)",
+        "3"
+      ],
+      "description": "Right-side contextual panel that explains the selected match candidate and shows metadata for the target attribute under consideration.",
+      "viewImages": [
+        "data/view-images/BDIViz/7.png",
+        "data/view-images/BDIViz/8.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          20,
+          22,
+          23,
+          70
+        ],
+        "figureRefs": [
+          "Fig. 3",
+          "Fig. 5"
+        ],
+        "quotes": [
+          "Agent panel to guide accept/reject decisions",
+          "agent explanation panel showing LLM validation results"
+        ],
+        "confidence": 0.97
+      },
+      "subViews": [
+        {
+          "subViewId": "agent-panel.match-explanations",
+          "subViewName": "Match Explanations",
+          "nameSource": "caption",
+          "aliases": [
+            "3A"
+          ],
+          "description": "Explanation cards describing why the LLM-based agent considers a selected source-target pair to be a match, including confidence scores and evidence categories.",
+          "evidence": {
+            "passageIds": [
+              20,
+              22,
+              23,
+              70
+            ],
+            "figureRefs": [
+              "Fig. 3",
+              "Fig. 5"
+            ],
+            "quotes": [
+              "explanations generated by the LLM-based agent",
+              "each explanation category is presented with a confidence score"
+            ],
+            "confidence": 0.98
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "StructuredText",
+            "subKind": "Card",
+            "description": "Stack of explanation cards and progress bars summarizing semantic, value-based, name-based, and historical evidence for the selected match.",
+            "evidence": {
+              "passageIds": [
+                22,
+                23
+              ],
+              "figureRefs": [
+                "Fig. 3",
+                "Fig. 5"
+              ],
+              "quotes": [
+                "presented with a confidence score visualized as a progress bar"
+              ],
+              "confidence": 0.95
+            }
+          },
+          "viewProcessingInfo": {
+            "processingSteps": [
+              {
+                "name": "LLM-based explanation generation",
+                "category": "LLM",
+                "description": "Generates validation explanations for selected schema matches by combining semantic, value, naming, and historical evidence.",
+                "input": [
+                  "source attribute",
+                  "target attribute",
+                  "semantic similarity",
+                  "shared tokens",
+                  "value overlap",
+                  "historical references"
+                ],
+                "output": [
+                  "explanation categories",
+                  "confidence scores",
+                  "reasoning text"
+                ],
+                "tasks": [
+                  "match justification",
+                  "decision support",
+                  "explanation generation"
+                ]
+              },
+              {
+                "name": "Retrieval-augmented historical memory",
+                "category": "feature extraction",
+                "description": "Stores and retrieves validated matches, terminology relationships, and correction patterns so later explanations can align with prior user behavior and domain conventions.",
+                "input": [
+                  "validated matches",
+                  "domain terminology relationships",
+                  "user corrections"
+                ],
+                "output": [
+                  "retrieved historical references for explanations"
+                ],
+                "tasks": [
+                  "knowledge retrieval",
+                  "adaptation over time"
+                ]
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                20,
+                23
+              ],
+              "figureRefs": [
+                "Fig. 3",
+                "Fig. 5"
+              ],
+              "quotes": [
+                "LLM validation results with reasoning",
+                "The LLM agent learns from user interactions over time through a retrieval-augmented generation (RAG) component"
+              ],
+              "confidence": 0.95
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "agent-panel.match-explanations.inspect-match-explanations",
+              "capabilityKind": "Information",
+              "capabilityName": "Inspect Match Explanations",
+              "description": "Shows the rationale and confidence for a proposed match using several explanation categories.",
+              "evidence": {
+                "passageIds": [
+                  20,
+                  22,
+                  70
+                ],
+                "figureRefs": [
+                  "Fig. 3",
+                  "Fig. 5"
+                ],
+                "quotes": [
+                  "LLM validation results with reasoning",
+                  "helps users gauge the system's certainty"
+                ],
+                "confidence": 0.98
+              }
+            },
+            {
+              "capabilityId": "agent-panel.match-explanations.provide-explanation-feedback",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Provide Explanation Feedback",
+              "description": "Allows users to confirm or correct explanation quality so the agent can incorporate that feedback later.",
+              "evidence": {
+                "passageIds": [
+                  23
+                ],
+                "figureRefs": [
+                  "Fig. 5"
+                ],
+                "quotes": [
+                  "Users can provide feedback on explanations"
+                ],
+                "confidence": 0.95
+              }
+            }
+          ]
+        },
+        {
+          "subViewId": "agent-panel.target-attribute-properties",
+          "subViewName": "Target Attribute Properties",
+          "nameSource": "caption",
+          "aliases": [
+            "3B"
+          ],
+          "description": "Structured metadata display for the selected target attribute, including node, category, type, description, and sometimes value-distribution context.",
+          "evidence": {
+            "passageIds": [
+              20,
+              22,
+              70
+            ],
+            "figureRefs": [
+              "Fig. 3",
+              "data/view-images/BDIViz/8.png"
+            ],
+            "quotes": [
+              "display of target attribute properties, including node name, category, type, descriptions, and value distributions",
+              "attribute definitions, data types, and value constraints"
+            ],
+            "confidence": 0.98
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "Inspector",
+            "subKind": "others(AttributeMetadataCard)",
+            "description": "Inspector-like metadata card for the currently selected target attribute.",
+            "evidence": {
+              "passageIds": [
+                20,
+                22
+              ],
+              "figureRefs": [
+                "Fig. 3"
+              ],
+              "quotes": [
+                "display of target attribute properties"
+              ],
+              "confidence": 0.95
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "agent-panel.target-attribute-properties.inspect-target-attribute-properties",
+              "capabilityKind": "Information",
+              "capabilityName": "Inspect Target Attribute Properties",
+              "description": "Shows schema-level metadata and descriptive context for the target attribute involved in the selected candidate match.",
+              "evidence": {
+                "passageIds": [
+                  20,
+                  22,
+                  70
+                ],
+                "figureRefs": [
+                  "Fig. 3"
+                ],
+                "quotes": [
+                  "the description of primary_diagnosis from GDC is shown",
+                  "attribute definitions, data types, and value constraints"
+                ],
+                "confidence": 0.98
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "search-bar",
+      "viewName": "Search Bar",
+      "nameSource": "caption",
+      "aliases": [
+        "Fig. 3 (4)",
+        "4"
+      ],
+      "description": "Top search control for keyword-based narrowing of candidate matches.",
+      "viewImages": [
+        "data/view-images/BDIViz/1.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          20,
+          70
+        ],
+        "figureRefs": [
+          "Fig. 3"
+        ],
+        "quotes": [
+          "search using keywords",
+          "search bar to filter matches using keywords"
+        ],
+        "confidence": 0.99
+      },
+      "subViews": [
+        {
+          "subViewId": "search-bar.keyword-search",
+          "subViewName": "Keyword Search",
+          "nameSource": "generated",
+          "aliases": [
+            "4"
+          ],
+          "description": "Single text-input control for entering keywords that filter the currently visible match set.",
+          "evidence": {
+            "passageIds": [
+              20,
+              70
+            ],
+            "figureRefs": [
+              "Fig. 3",
+              "data/view-images/BDIViz/1.png"
+            ],
+            "quotes": [
+              "search bar to filter matches using keywords"
+            ],
+            "confidence": 0.98
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "SearchBox",
+            "subKind": "SearchBox",
+            "description": "A dedicated global keyword search input used to filter match candidates.",
+            "evidence": {
+              "passageIds": [
+                70
+              ],
+              "figureRefs": [
+                "Fig. 3"
+              ],
+              "quotes": [
+                "search bar"
+              ],
+              "confidence": 0.98
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "search-bar.keyword-search.search-matches",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Search Matches",
+              "description": "Lets users enter keywords to filter match candidates by relevant terms.",
+              "evidence": {
+                "passageIds": [
+                  20,
+                  70
+                ],
+                "figureRefs": [
+                  "Fig. 3"
+                ],
+                "quotes": [
+                  "search using keywords",
+                  "filter matches using keywords"
+                ],
+                "confidence": 0.99
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "coordinationInfo": [
+    {
+      "coordinationId": "coord-filter-to-heatmap",
+      "source": {
+        "viewId": "control-panel",
+        "subViewId": "control-panel.filter-controls"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "control-panel",
+        "subViewId": "control-panel.filter-controls",
+        "capabilityId": "control-panel.filter-controls.filter-candidates"
+      },
+      "targets": [
+        {
+          "viewId": "heatmap-panel",
+          "subViewId": "heatmap-panel.interactive-heatmap"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "heatmap-panel",
+          "subViewId": "heatmap-panel.interactive-heatmap",
+          "capabilityId": "heatmap-panel.interactive-heatmap.browse-candidate-matches"
+        }
+      ],
+      "coordinationType": "parameter-binding",
+      "evidence": {
+        "passageIds": [
+          20,
+          22,
+          70
+        ],
+        "figureRefs": [
+          "Fig. 3"
+        ],
+        "quotes": [
+          "control panel for filtering candidates",
+          "Users can filter matches by confidence thresholds"
+        ],
+        "reasoning": "The filter controls are explicitly described as narrowing candidate subsets, which directly changes the match matrix view.",
+        "confidence": 0.97
+      }
+    },
+    {
+      "coordinationId": "coord-search-to-heatmap",
+      "source": {
+        "viewId": "search-bar",
+        "subViewId": "search-bar.keyword-search"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "search-bar",
+        "subViewId": "search-bar.keyword-search",
+        "capabilityId": "search-bar.keyword-search.search-matches"
+      },
+      "targets": [
+        {
+          "viewId": "heatmap-panel",
+          "subViewId": "heatmap-panel.interactive-heatmap"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "heatmap-panel",
+          "subViewId": "heatmap-panel.interactive-heatmap",
+          "capabilityId": "heatmap-panel.interactive-heatmap.browse-candidate-matches"
+        }
+      ],
+      "coordinationType": "search-filtering",
+      "evidence": {
+        "passageIds": [
+          20,
+          70
+        ],
+        "figureRefs": [
+          "Fig. 3"
+        ],
+        "quotes": [
+          "search bar to filter matches using keywords"
+        ],
+        "reasoning": "The only explicit effect of the search bar is filtering the displayed matches.",
+        "confidence": 0.98
+      }
+    },
+    {
+      "coordinationId": "coord-heatmap-to-histograms",
+      "source": {
+        "viewId": "heatmap-panel",
+        "subViewId": "heatmap-panel.interactive-heatmap"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "heatmap-panel",
+        "subViewId": "heatmap-panel.interactive-heatmap",
+        "capabilityId": "heatmap-panel.interactive-heatmap.select-candidate-cell"
+      },
+      "targets": [
+        {
+          "viewId": "heatmap-panel",
+          "subViewId": "heatmap-panel.value-distribution-histograms"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "heatmap-panel",
+          "subViewId": "heatmap-panel.value-distribution-histograms",
+          "capabilityId": "heatmap-panel.value-distribution-histograms.compare-value-distributions"
+        }
+      ],
+      "coordinationType": "details-on-demand",
+      "evidence": {
+        "passageIds": [
+          22,
+          71
+        ],
+        "figureRefs": [
+          "Fig. 4"
+        ],
+        "quotes": [
+          "When a user hovers over a cell, it is expanded to display side-by-side histograms"
+        ],
+        "reasoning": "Cell hover or selection triggers the histogram detail view for that candidate pair.",
+        "confidence": 0.98
+      }
+    },
+    {
+      "coordinationId": "coord-heatmap-to-value-comparison",
+      "source": {
+        "viewId": "heatmap-panel",
+        "subViewId": "heatmap-panel.interactive-heatmap"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "heatmap-panel",
+        "subViewId": "heatmap-panel.interactive-heatmap",
+        "capabilityId": "heatmap-panel.interactive-heatmap.select-candidate-cell"
+      },
+      "targets": [
+        {
+          "viewId": "heatmap-panel",
+          "subViewId": "heatmap-panel.value-comparisons-table"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "heatmap-panel",
+          "subViewId": "heatmap-panel.value-comparisons-table",
+          "capabilityId": "heatmap-panel.value-comparisons-table.compare-source-target-values"
+        }
+      ],
+      "coordinationType": "details-on-demand",
+      "evidence": {
+        "passageIds": [
+          20,
+          22,
+          70
+        ],
+        "figureRefs": [
+          "Fig. 3"
+        ],
+        "quotes": [
+          "When a cell is selected, details of the match are displayed",
+          "the value comparison for these attributes is shown in Fig. 3 (2B)"
+        ],
+        "reasoning": "Selecting a heatmap cell reveals the side-by-side value comparison for that chosen attribute pair.",
+        "confidence": 0.97
+      }
+    },
+    {
+      "coordinationId": "coord-heatmap-to-explanations",
+      "source": {
+        "viewId": "heatmap-panel",
+        "subViewId": "heatmap-panel.interactive-heatmap"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "heatmap-panel",
+        "subViewId": "heatmap-panel.interactive-heatmap",
+        "capabilityId": "heatmap-panel.interactive-heatmap.select-candidate-cell"
+      },
+      "targets": [
+        {
+          "viewId": "agent-panel",
+          "subViewId": "agent-panel.match-explanations"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "agent-panel",
+          "subViewId": "agent-panel.match-explanations",
+          "capabilityId": "agent-panel.match-explanations.inspect-match-explanations"
+        }
+      ],
+      "coordinationType": "details-on-demand",
+      "evidence": {
+        "passageIds": [
+          20,
+          22,
+          70
+        ],
+        "figureRefs": [
+          "Fig. 3",
+          "Fig. 5"
+        ],
+        "quotes": [
+          "When a cell is selected, details of the match are displayed",
+          "explanations generated by the LLM-based agent"
+        ],
+        "reasoning": "The explanation cards are described as contextual information for the currently selected match candidate.",
+        "confidence": 0.97
+      }
+    },
+    {
+      "coordinationId": "coord-heatmap-to-target-properties",
+      "source": {
+        "viewId": "heatmap-panel",
+        "subViewId": "heatmap-panel.interactive-heatmap"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "heatmap-panel",
+        "subViewId": "heatmap-panel.interactive-heatmap",
+        "capabilityId": "heatmap-panel.interactive-heatmap.select-candidate-cell"
+      },
+      "targets": [
+        {
+          "viewId": "agent-panel",
+          "subViewId": "agent-panel.target-attribute-properties"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "agent-panel",
+          "subViewId": "agent-panel.target-attribute-properties",
+          "capabilityId": "agent-panel.target-attribute-properties.inspect-target-attribute-properties"
+        }
+      ],
+      "coordinationType": "details-on-demand",
+      "evidence": {
+        "passageIds": [
+          20,
+          22,
+          70
+        ],
+        "figureRefs": [
+          "Fig. 3"
+        ],
+        "quotes": [
+          "attribute descriptions ... shown in Fig. 3 (3B)",
+          "display of target attribute properties"
+        ],
+        "reasoning": "The selected heatmap cell determines which target-attribute metadata appears in the right-side inspector.",
+        "confidence": 0.97
+      }
+    }
+  ]
+}

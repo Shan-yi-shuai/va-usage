@@ -1,0 +1,1715 @@
+{
+  "paperName": "FluxFlow",
+  "systemInfo": {
+    "systemName": "FluxFlow",
+    "dataOntology": {
+      "datasetType": [
+        "NetworksAndTrees",
+        "Text",
+        "Temporal"
+      ],
+      "dataType": [
+        "Items",
+        "ItemNodes",
+        "Links",
+        "Attributes"
+      ],
+      "attributeType": [
+        "Categorical",
+        "Quantitative"
+      ],
+      "orderingDirection": [
+        "Sequential"
+      ]
+    },
+    "systemCategory": [
+      {
+        "level1": "B Social / Info Ecosystem",
+        "level2": [
+          "B1 Topic/Propagation"
+        ]
+      }
+    ]
+  },
+  "viewsInfo": [
+    {
+      "viewId": "cluster-view",
+      "viewName": "cluster view",
+      "nameSource": "caption",
+      "aliases": [
+        "Fig. 5-a",
+        "a"
+      ],
+      "description": "Hierarchical overview that groups retweeting threads by content similarity so analysts can navigate topics and select aggregates or leaf threads.",
+      "viewImages": [
+        "data/view-images/FluxFlow/1.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          89,
+          91,
+          92
+        ],
+        "figureRefs": [
+          "Fig. 5a",
+          "data/view-images/FluxFlow/1.png"
+        ],
+        "quotes": [
+          "the cluster view groups all retweeting threads hierarchically",
+          "reveals the content similarities among retweeting threads in a dendrogram"
+        ],
+        "reasoning": "The caption and interface description identify this crop as the cluster overview for hierarchical topic navigation.",
+        "confidence": 0.97
+      },
+      "subViews": [
+        {
+          "subViewId": "cluster-view.main",
+          "subViewName": "cluster hierarchy",
+          "nameSource": "inferred",
+          "description": "Main dendrogram region with circle-encoded thread nodes and compact branch summaries for navigating hierarchical clusters.",
+          "evidence": {
+            "passageIds": [
+              92
+            ],
+            "figureRefs": [
+              "Fig. 5a"
+            ],
+            "quotes": [
+              "each internal tree node represents an aggregate of related retweeting threads"
+            ],
+            "reasoning": "The cluster crop shows one primary hierarchy region rather than separate named subpanels.",
+            "confidence": 0.9
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "cluster-view.main.nodes",
+                "markType": "node",
+                "encoding": {
+                  "color": [
+                    {
+                      "field": "thread sentiment",
+                      "type": "categorical/derived attribute",
+                      "description": "Interior color of a thread node indicates thread sentiment."
+                    },
+                    {
+                      "field": "anomaly score",
+                      "type": "quantitative/derived attribute",
+                      "description": "Outline color of a thread node indicates anomaly score."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "cluster-view.main.edges",
+                "markType": "edge",
+                "encoding": {
+                  "source": [
+                    {
+                      "field": "parent thread node",
+                      "type": "hierarchy link source",
+                      "description": "Dendrogram links connect parent aggregates to child nodes."
+                    }
+                  ],
+                  "target": [
+                    {
+                      "field": "child thread node",
+                      "type": "hierarchy link target",
+                      "description": "Dendrogram links connect parent aggregates to child nodes."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                92
+              ],
+              "figureRefs": [
+                "Fig. 5a"
+              ],
+              "quotes": [
+                "Initially all nodes in the cluster view are represented with small circles"
+              ],
+              "reasoning": "Text and crop support circle-encoded nodes within a dendrogram structure.",
+              "confidence": 0.91
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "cluster-view.main.browse-hierarchy",
+              "capabilityKind": "Information",
+              "capabilityName": "Browse Topic Hierarchy",
+              "description": "Shows content similarity structure among retweeting threads so analysts can navigate topics and aggregates.",
+              "evidence": {
+                "passageIds": [
+                  92
+                ],
+                "figureRefs": [
+                  "Fig. 5a"
+                ],
+                "quotes": [
+                  "allowing users to navigate the data in a sense of topics and keywords"
+                ],
+                "reasoning": "The cluster view directly provides hierarchical topic context.",
+                "confidence": 0.95
+              }
+            },
+            {
+              "capabilityId": "cluster-view.main.collapse-levels",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Collapse Tree Levels",
+              "description": "Lets the user collapse nodes below a chosen hierarchy level using a toolbar slider.",
+              "evidence": {
+                "passageIds": [
+                  92,
+                  111
+                ],
+                "figureRefs": [
+                  "Fig. 5i"
+                ],
+                "quotes": [
+                  "allows a user to quickly collapse all nodes below certain tree level"
+                ],
+                "reasoning": "The paper explicitly describes level-based collapsing in the cluster view.",
+                "confidence": 0.96
+              }
+            },
+            {
+              "capabilityId": "cluster-view.main.request-details",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Request Thread Details",
+              "description": "Supports on-demand inspection of metadata and tweet content for a thread node through tooltips and context menus.",
+              "evidence": {
+                "passageIds": [
+                  94
+                ],
+                "figureRefs": [
+                  "Fig. 5g",
+                  "Fig. 5h"
+                ],
+                "quotes": [
+                  "Both views provide informative tooltips (Fig. 5-g) and context menus (Fig. 5-h)"
+                ],
+                "reasoning": "The cluster overview is one of the two explicit sources for the auxiliary detail surfaces.",
+                "confidence": 0.9
+              }
+            },
+            {
+              "capabilityId": "cluster-view.main.open-thread",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Open Thread In Timelines",
+              "description": "Double-clicking a node unfolds the selected thread in the threads view.",
+              "evidence": {
+                "passageIds": [
+                  96
+                ],
+                "figureRefs": [
+                  "Fig. 5a",
+                  "Fig. 5c"
+                ],
+                "quotes": [
+                  "double-click a node in either to unfold the timeline visualization of that thread in the threads view"
+                ],
+                "reasoning": "The cluster overview explicitly triggers thread loading into the timeline workspace.",
+                "confidence": 0.97
+              }
+            },
+            {
+              "capabilityId": "cluster-view.main.highlight-descendants",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Highlight Descendant Retweets",
+              "description": "Hovering descendant nodes highlights corresponding retweets within a loaded thread timeline.",
+              "evidence": {
+                "passageIds": [
+                  97
+                ],
+                "figureRefs": [
+                  "Fig. 5a",
+                  "Fig. 5c"
+                ],
+                "quotes": [
+                  "highlight retweets from each of its sub-threads by hovering over the descendant nodes"
+                ],
+                "reasoning": "The passage explicitly names the cluster view as a source of cross-view highlight interaction.",
+                "confidence": 0.94
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "mds-view",
+      "viewName": "MDS view",
+      "nameSource": "caption",
+      "aliases": [
+        "Fig. 5-b",
+        "b"
+      ],
+      "description": "Projection overview showing thread distributions in anomaly feature space for outlier finding and comparison.",
+      "viewImages": [
+        "data/view-images/FluxFlow/4.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          89,
+          91,
+          93
+        ],
+        "figureRefs": [
+          "Fig. 5b",
+          "data/view-images/FluxFlow/4.png"
+        ],
+        "quotes": [
+          "the MDS view summarizes the relationships of threads in a high-dimensional feature space",
+          "allowing users to identify outliers and visually compare the threads"
+        ],
+        "reasoning": "The crop and text describe one projection-based overview for the anomaly feature space.",
+        "confidence": 0.97
+      },
+      "subViews": [
+        {
+          "subViewId": "mds-view.main",
+          "subViewName": "MDS projection",
+          "nameSource": "inferred",
+          "description": "Scatterplot-like projection of thread nodes in a two-dimensional MDS embedding of the anomaly feature space.",
+          "evidence": {
+            "passageIds": [
+              93
+            ],
+            "figureRefs": [
+              "Fig. 5b"
+            ],
+            "quotes": [
+              "shows the distributions of threads with MDS projection from the high-dimensional anomaly feature space"
+            ],
+            "reasoning": "The MDS view is a single named projection region.",
+            "confidence": 0.93
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "mds-view.main.points",
+                "markType": "point",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "mds_x",
+                      "type": "quantitative/derived position",
+                      "description": "Horizontal position comes from MDS projection of the anomaly feature space."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "mds_y",
+                      "type": "quantitative/derived position",
+                      "description": "Vertical position comes from MDS projection of the anomaly feature space."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "thread sentiment and anomaly score",
+                      "type": "derived attributes",
+                      "description": "Thread nodes reuse the same color encodings as the cluster view."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                93
+              ],
+              "figureRefs": [
+                "Fig. 5b"
+              ],
+              "quotes": [
+                "The MDS view applies consistent visual encodings to the thread nodes as the cluster view"
+              ],
+              "reasoning": "The view is a point-based MDS projection reusing node encodings from the cluster overview.",
+              "confidence": 0.92
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "mds-view.main.compare-projection",
+              "capabilityKind": "Information",
+              "capabilityName": "Compare Thread Distribution",
+              "description": "Shows relative positions of threads in anomaly feature space so analysts can identify outliers and compare groups.",
+              "evidence": {
+                "passageIds": [
+                  93,
+                  117
+                ],
+                "figureRefs": [
+                  "Fig. 5b"
+                ],
+                "quotes": [
+                  "allowing users to identify outliers and visually compare the threads"
+                ],
+                "reasoning": "The MDS view directly provides high-level comparison and outlier context.",
+                "confidence": 0.95
+              }
+            },
+            {
+              "capabilityId": "mds-view.main.zoom-pan",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Zoom And Pan Projection",
+              "description": "Supports basic navigation of the MDS layout through zooming and panning.",
+              "evidence": {
+                "passageIds": [
+                  93
+                ],
+                "figureRefs": [
+                  "Fig. 5b"
+                ],
+                "quotes": [
+                  "supports several basic interactions such as zooming and panning"
+                ],
+                "reasoning": "The paper explicitly lists zoom and pan in the MDS view.",
+                "confidence": 0.96
+              }
+            },
+            {
+              "capabilityId": "mds-view.main.request-details",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Request Thread Details",
+              "description": "Supports on-demand access to tooltip and context-menu details for a thread node.",
+              "evidence": {
+                "passageIds": [
+                  94
+                ],
+                "figureRefs": [
+                  "Fig. 5g",
+                  "Fig. 5h"
+                ],
+                "quotes": [
+                  "Both views provide informative tooltips (Fig. 5-g) and context menus (Fig. 5-h)"
+                ],
+                "reasoning": "The MDS overview is explicitly cited as a source of details-on-demand.",
+                "confidence": 0.9
+              }
+            },
+            {
+              "capabilityId": "mds-view.main.open-thread",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Open Thread In Timelines",
+              "description": "Double-clicking a projected node unfolds the selected thread in the threads view.",
+              "evidence": {
+                "passageIds": [
+                  96
+                ],
+                "figureRefs": [
+                  "Fig. 5b",
+                  "Fig. 5c"
+                ],
+                "quotes": [
+                  "double-click a node in either to unfold the timeline visualization of that thread in the threads view"
+                ],
+                "reasoning": "The overview-detail transition is explicitly supported from the MDS view.",
+                "confidence": 0.97
+              }
+            },
+            {
+              "capabilityId": "mds-view.main.highlight-descendants",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Highlight Descendant Retweets",
+              "description": "Hovering descendant nodes highlights the corresponding retweets inside loaded thread timelines.",
+              "evidence": {
+                "passageIds": [
+                  97
+                ],
+                "figureRefs": [
+                  "Fig. 5b",
+                  "Fig. 5c"
+                ],
+                "quotes": [
+                  "hovering over the descendant nodes in either the cluster view or the MDS view"
+                ],
+                "reasoning": "The paper explicitly names the MDS view as a source of cross-view highlighting.",
+                "confidence": 0.94
+              }
+            }
+          ],
+          "viewProcessingInfo": {
+            "processingSteps": [
+              {
+                "name": "multidimensional scaling (MDS)",
+                "category": "DR",
+                "description": "Projects retweeting threads from the high-dimensional anomaly feature space into a 2D layout for overview comparison and outlier inspection.",
+                "input": [
+                  "thread-level anomaly feature vectors"
+                ],
+                "output": [
+                  "2D thread projection"
+                ],
+                "tasks": [
+                  "outlier identification",
+                  "thread comparison"
+                ]
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                93
+              ],
+              "figureRefs": [
+                "Fig. 5b"
+              ],
+              "quotes": [
+                "shows the distributions of threads with MDS projection from the high-dimensional anomaly feature space"
+              ],
+              "reasoning": "The paper explicitly binds an MDS projection to the MDS overview.",
+              "confidence": 0.95
+            }
+          }
+        }
+      ]
+    },
+    {
+      "viewId": "threads-view",
+      "viewName": "threads view",
+      "nameSource": "caption",
+      "aliases": [
+        "Fig. 5-c",
+        "c"
+      ],
+      "description": "Central timeline view for comparing retweeting threads, their user activity, hidden states, and social overlays across multiple temporal scales.",
+      "viewImages": [
+        "data/view-images/FluxFlow/2.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          31,
+          89,
+          96,
+          97,
+          98,
+          99,
+          102
+        ],
+        "figureRefs": [
+          "Fig. 3",
+          "Fig. 5c",
+          "Fig. 6",
+          "data/view-images/FluxFlow/2.png"
+        ],
+        "quotes": [
+          "represents anomalous threads with interactive timelines",
+          "allowing users to discover the trends and other temporal dynamics of information spreading"
+        ],
+        "reasoning": "The threads crop and the visual-encoding figure both describe a timeline-centered visual workspace with multiple thread representations.",
+        "confidence": 0.97
+      },
+      "subViews": [
+        {
+          "subViewId": "threads-view.timeline",
+          "subViewName": "thread timelines",
+          "nameSource": "inferred",
+          "description": "Timeline canvas combining thread glyphs, thread timeline variants, time-axis controls, and optional user-link overlays for comparing multiple threads.",
+          "evidence": {
+            "passageIds": [
+              97,
+              98,
+              99,
+              102
+            ],
+            "figureRefs": [
+              "Fig. 3",
+              "Fig. 5c",
+              "Fig. 6"
+            ],
+            "quotes": [
+              "both leaf and internal nodes can be added to the threads view",
+              "multi-scale navigations along the time dimension"
+            ],
+            "reasoning": "The paper treats the thread glyphs, timelines, and overlays as one coordinated timeline region.",
+            "confidence": 0.9
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "threads-view.timeline.thread-representations",
+                "markType": "timeline",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "time",
+                      "type": "temporal",
+                      "description": "Horizontal position follows absolute time or aligned relative time across the thread timeline variants."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "variant-specific thread layout",
+                      "type": "derived layout position",
+                      "description": "Vertical structure depends on the active thread representation, such as a volume summary or circle-packed user layout."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "hidden state and user anomaly cues",
+                      "type": "derived attributes",
+                      "description": "Background state colors and user-level anomaly coloring appear within the supported timeline variants rather than one fixed simultaneous encoding stack."
+                    }
+                  ]
+                }
+              },
+              {
+                "layerId": "threads-view.timeline.user-links",
+                "markType": "edge",
+                "encoding": {
+                  "source": [
+                    {
+                      "field": "source user",
+                      "type": "network link source",
+                      "description": "Optional overlay links originate from one user in the estimated social connection graph."
+                    }
+                  ],
+                  "target": [
+                    {
+                      "field": "target user",
+                      "type": "network link target",
+                      "description": "Optional overlay links end at the connected user in the same or another thread."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                13,
+                99,
+                102
+              ],
+              "figureRefs": [
+                "Fig. 3",
+                "Fig. 5c",
+                "Fig. 6"
+              ],
+              "quotes": [
+                "three thread timeline visualizations for unfolding the temporal patterns with different perspectives",
+                "reveal the user social connections at the intra-or inter-thread level by overlaying links on the timeline views"
+              ],
+              "reasoning": "The paper supports a family of timeline representations plus an optional link overlay, but not one fixed simultaneous area-plus-points composition.",
+              "confidence": 0.9
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "threads-view.timeline.show-timelines",
+              "capabilityKind": "Information",
+              "capabilityName": "Show Thread Timelines",
+              "description": "Displays one or more retweeting threads as comparable timelines with hidden-state backgrounds and thread glyph summaries.",
+              "evidence": {
+                "passageIds": [
+                  31,
+                  97,
+                  102
+                ],
+                "figureRefs": [
+                  "Fig. 3",
+                  "Fig. 5c"
+                ],
+                "quotes": [
+                  "interactive timelines",
+                  "both leaf and internal nodes can be added to the threads view"
+                ],
+                "reasoning": "The threads workspace primarily presents thread timelines for comparison.",
+                "confidence": 0.96
+              }
+            },
+            {
+              "capabilityId": "threads-view.timeline.zoom-time",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Zoom Time Window",
+              "description": "Lets the analyst brush and drag a time window to zoom and pan across thread timelines.",
+              "evidence": {
+                "passageIds": [
+                  98
+                ],
+                "figureRefs": [
+                  "Fig. 5j"
+                ],
+                "quotes": [
+                  "zooming and panning, can be easily operated by directly brushing and dragging a time window"
+                ],
+                "reasoning": "The threads view explicitly supports time-window navigation.",
+                "confidence": 0.97
+              }
+            },
+            {
+              "capabilityId": "threads-view.timeline.expand-children",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Expand Child Threads",
+              "description": "Allows a loaded thread timeline to be split into multiple child threads in place.",
+              "evidence": {
+                "passageIds": [
+                  97,
+                  110
+                ],
+                "figureRefs": [
+                  "Fig. 5c",
+                  "Fig. 8c"
+                ],
+                "quotes": [
+                  "dive into a thread timeline by splitting it into multiple child threads in-place"
+                ],
+                "reasoning": "The paper explicitly describes in-place expansion within the threads view.",
+                "confidence": 0.94
+              }
+            },
+            {
+              "capabilityId": "threads-view.timeline.show-highlighted-retweets",
+              "capabilityKind": "Information",
+              "capabilityName": "Show Highlighted Retweets",
+              "description": "Highlights retweets corresponding to hovered descendant nodes from the overview views.",
+              "evidence": {
+                "passageIds": [
+                  97
+                ],
+                "figureRefs": [
+                  "Fig. 5c"
+                ],
+                "quotes": [
+                  "highlight retweets from each of its sub-threads"
+                ],
+                "reasoning": "The timelines visibly update to show retweets associated with overview interactions.",
+                "confidence": 0.92
+              }
+            },
+            {
+              "capabilityId": "threads-view.timeline.show-duplicated-users",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Show Duplicated Users",
+              "description": "Toggles highlights for users who appear multiple times within or across threads.",
+              "evidence": {
+                "passageIds": [
+                  99
+                ],
+                "figureRefs": [
+                  "Fig. 6"
+                ],
+                "quotes": [
+                  "duplicated users within the same thread or across different threads can be highlighted by toggling a button"
+                ],
+                "reasoning": "This is an explicit user-triggered function of the threads view.",
+                "confidence": 0.96
+              }
+            },
+            {
+              "capabilityId": "threads-view.timeline.show-user-connections",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Show User Connections",
+              "description": "Overlays social links between users within or across threads to expose possible relationships.",
+              "evidence": {
+                "passageIds": [
+                  99
+                ],
+                "figureRefs": [
+                  "Fig. 6"
+                ],
+                "quotes": [
+                  "reveal the user social connections at the intra-or inter-thread level by overlaying links on the timeline views"
+                ],
+                "reasoning": "The paper explicitly describes a toggle that reveals user-link overlays in the timeline view.",
+                "confidence": 0.96
+              }
+            },
+            {
+              "capabilityId": "threads-view.timeline.show-state-transitions",
+              "capabilityKind": "Information",
+              "capabilityName": "Show Hidden State Transitions",
+              "description": "Reveals OCCRF hidden-state transitions as background color bands behind thread timelines.",
+              "evidence": {
+                "passageIds": [
+                  102
+                ],
+                "figureRefs": [
+                  "Fig. 5c"
+                ],
+                "quotes": [
+                  "hidden state transitions shown as the background of thread timeline views"
+                ],
+                "reasoning": "The threads view directly visualizes latent model states in the timeline background.",
+                "confidence": 0.95
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "detail-panel",
+      "viewName": "detail information panel",
+      "nameSource": "caption",
+      "aliases": [
+        "Fig. 5 d-f"
+      ],
+      "description": "Detail panel containing lower-level feature, state, and tweet views to inspect the model and selected threads more closely.",
+      "viewImages": [
+        "data/view-images/FluxFlow/6.png",
+        "data/view-images/FluxFlow/5.png",
+        "data/view-images/FluxFlow/7.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          31,
+          89
+        ],
+        "figureRefs": [
+          "Fig. 5d",
+          "Fig. 5e",
+          "Fig. 5f"
+        ],
+        "quotes": [
+          "a detail information panel with three subviews containing d) a features view, e) a states view and f) a tweets view"
+        ],
+        "reasoning": "The interface caption explicitly names the panel and its three subviews.",
+        "confidence": 0.98
+      },
+      "subViews": [
+        {
+          "subViewId": "detail-panel.features",
+          "subViewName": "features view",
+          "nameSource": "caption",
+          "aliases": [
+            "Fig. 5-d"
+          ],
+          "description": "Heatmap-like view summarizing temporal variation of feature vectors for selected threads.",
+          "evidence": {
+            "passageIds": [
+              102
+            ],
+            "figureRefs": [
+              "Fig. 5d",
+              "data/view-images/FluxFlow/6.png"
+            ],
+            "quotes": [
+              "the features view which summarizes the temporal variations of feature vectors ... with a heatmap-like visualization"
+            ],
+            "reasoning": "The features subview is explicitly named and described as a heatmap-like temporal summary.",
+            "confidence": 0.97
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "detail-panel.features.heatmap",
+                "markType": "rect",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "time",
+                      "type": "temporal",
+                      "description": "Columns progress along time for the selected thread."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "feature",
+                      "type": "attribute dimension",
+                      "description": "Rows correspond to individual feature dimensions."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "feature value",
+                      "type": "quantitative/derived attribute",
+                      "description": "Cell color encodes the temporal variation of each feature value."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                102,
+                114
+              ],
+              "figureRefs": [
+                "Fig. 5d"
+              ],
+              "quotes": [
+                "heatmap-like visualization",
+                "heatmaps of feature values"
+              ],
+              "reasoning": "The paper explicitly characterizes the features view as a heatmap of temporal feature values.",
+              "confidence": 0.96
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "detail-panel.features.inspect-features",
+              "capabilityKind": "Information",
+              "capabilityName": "Inspect Temporal Features",
+              "description": "Shows how selected feature vectors vary over time for the current thread or comparison set.",
+              "evidence": {
+                "passageIds": [
+                  102,
+                  114
+                ],
+                "figureRefs": [
+                  "Fig. 5d"
+                ],
+                "quotes": [
+                  "summarizes the temporal variations of feature vectors"
+                ],
+                "reasoning": "The features view directly exposes temporal feature variation.",
+                "confidence": 0.96
+              }
+            }
+          ],
+          "viewProcessingInfo": {
+            "processingSteps": [
+              {
+                "name": "temporal feature-vector summarization",
+                "category": "feature extraction",
+                "description": "Aggregates thread feature vectors over time into a heatmap-like representation for inspecting temporal variation.",
+                "input": [
+                  "temporal feature vectors for selected threads"
+                ],
+                "output": [
+                  "time-aligned feature matrix"
+                ],
+                "tasks": [
+                  "feature inspection",
+                  "thread comparison"
+                ]
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                102
+              ],
+              "figureRefs": [
+                "Fig. 5d"
+              ],
+              "quotes": [
+                "the features view which summarizes the temporal variations of feature vectors"
+              ],
+              "reasoning": "The paper explicitly ties temporal feature summarization to the features view.",
+              "confidence": 0.94
+            }
+          }
+        },
+        {
+          "subViewId": "detail-panel.states",
+          "subViewName": "states view",
+          "nameSource": "caption",
+          "aliases": [
+            "Fig. 5-e"
+          ],
+          "description": "Projection view of users associated with hidden states, with optional axis reassignment to specific features.",
+          "evidence": {
+            "passageIds": [
+              103,
+              114
+            ],
+            "figureRefs": [
+              "Fig. 5e",
+              "data/view-images/FluxFlow/5.png"
+            ],
+            "quotes": [
+              "displaying the MDS projections of all users from the highdimensional feature space"
+            ],
+            "reasoning": "The states view is explicitly described as an MDS projection of users tied to hidden states.",
+            "confidence": 0.96
+          },
+          "isVisualizationView": true,
+          "viewStyleInfo": {
+            "layers": [
+              {
+                "layerId": "detail-panel.states.points",
+                "markType": "point",
+                "encoding": {
+                  "x": [
+                    {
+                      "field": "projection_x or selected feature",
+                      "type": "quantitative/derived position",
+                      "description": "The x-axis can show an MDS dimension or a user-selected feature."
+                    }
+                  ],
+                  "y": [
+                    {
+                      "field": "projection_y or selected feature",
+                      "type": "quantitative/derived position",
+                      "description": "The y-axis can show an MDS dimension or a user-selected feature."
+                    }
+                  ],
+                  "color": [
+                    {
+                      "field": "hidden state",
+                      "type": "categorical/derived latent variable",
+                      "description": "Point groups correspond to hidden states characterizing user features."
+                    }
+                  ]
+                }
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                103
+              ],
+              "figureRefs": [
+                "Fig. 5e"
+              ],
+              "quotes": [
+                "forming a scatter-plot of users with the correlations between features"
+              ],
+              "reasoning": "The states view is a point-based projection/scatterplot used to inspect hidden-state signatures.",
+              "confidence": 0.94
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "detail-panel.states.inspect-states",
+              "capabilityKind": "Information",
+              "capabilityName": "Inspect User State Projection",
+              "description": "Shows how users associated with hidden states are distributed in projected feature space.",
+              "evidence": {
+                "passageIds": [
+                  103,
+                  114
+                ],
+                "figureRefs": [
+                  "Fig. 5e",
+                  "Fig. 10b"
+                ],
+                "quotes": [
+                  "the states view indicates how states are tied to tweet users"
+                ],
+                "reasoning": "The subview is designed to expose user-state relationships directly.",
+                "confidence": 0.95
+              }
+            },
+            {
+              "capabilityId": "detail-panel.states.set-axes",
+              "capabilityKind": "Interaction",
+              "capabilityName": "Set Projection Axes",
+              "description": "Lets the analyst assign specific features to the axes, turning the view into a feature-correlation scatterplot.",
+              "evidence": {
+                "passageIds": [
+                  103
+                ],
+                "figureRefs": [
+                  "Fig. 5e"
+                ],
+                "quotes": [
+                  "the user can set the axes to represent specific features"
+                ],
+                "reasoning": "The paper explicitly describes axis reassignment in the states view.",
+                "confidence": 0.96
+              }
+            }
+          ],
+          "viewProcessingInfo": {
+            "processingSteps": [
+              {
+                "name": "multidimensional scaling (MDS)",
+                "category": "DR",
+                "description": "Projects users from the high-dimensional feature space into a 2D layout so analysts can inspect how hidden states relate to user distributions.",
+                "input": [
+                  "user-level high-dimensional feature vectors"
+                ],
+                "output": [
+                  "2D user projection"
+                ],
+                "tasks": [
+                  "state inspection",
+                  "feature correlation analysis"
+                ]
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                103
+              ],
+              "figureRefs": [
+                "Fig. 5e"
+              ],
+              "quotes": [
+                "displaying the MDS projections of all users from the highdimensional feature space"
+              ],
+              "reasoning": "The paper explicitly binds the user MDS projection to the states view.",
+              "confidence": 0.95
+            }
+          }
+        },
+        {
+          "subViewId": "detail-panel.tweets",
+          "subViewName": "tweets view",
+          "nameSource": "caption",
+          "aliases": [
+            "Fig. 5-f"
+          ],
+          "description": "Textual detail view for raw tweet contents associated with selected threads.",
+          "evidence": {
+            "passageIds": [
+              31,
+              89,
+              110
+            ],
+            "figureRefs": [
+              "Fig. 5f",
+              "data/view-images/FluxFlow/7.png"
+            ],
+            "quotes": [
+              "raw tweets view",
+              "From the raw tweets view, she sees the range of anomaly scores"
+            ],
+            "reasoning": "The panel's third named subview exposes raw tweets and thread values as textual details.",
+            "confidence": 0.88
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "StructuredText",
+            "subKind": "List",
+            "description": "List-like text panel for reading raw tweets and related thread values or metadata.",
+            "evidence": {
+              "passageIds": [
+                31,
+                110
+              ],
+              "figureRefs": [
+                "Fig. 5f"
+              ],
+              "quotes": [
+                "raw tweets view"
+              ],
+              "reasoning": "The tweets view is described as textual access to raw tweets rather than a chart.",
+              "confidence": 0.87
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "detail-panel.tweets.read-raw-tweets",
+              "capabilityKind": "Information",
+              "capabilityName": "Read Raw Tweets",
+              "description": "Lets the analyst inspect tweet contents and some associated values for the selected thread.",
+              "evidence": {
+                "passageIds": [
+                  110
+                ],
+                "figureRefs": [
+                  "Fig. 5f"
+                ],
+                "quotes": [
+                  "From the raw tweets view, she sees the range of anomaly scores"
+                ],
+                "reasoning": "The case-study passage confirms the tweets view is used for direct textual inspection.",
+                "confidence": 0.85
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "tooltip-view",
+      "viewName": "informative tooltip",
+      "nameSource": "caption",
+      "aliases": [
+        "Fig. 5-g",
+        "g"
+      ],
+      "description": "Auxiliary details-on-demand tooltip for thread metadata and keyword snippets.",
+      "viewImages": [
+        "data/view-images/FluxFlow/8.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          89,
+          94,
+          111
+        ],
+        "figureRefs": [
+          "Fig. 5g",
+          "data/view-images/FluxFlow/8.png"
+        ],
+        "quotes": [
+          "informative tooltips",
+          "from the tooltip she can see a few interesting keywords"
+        ],
+        "reasoning": "The caption and case study both describe an auxiliary tooltip used to inspect thread metadata and keywords.",
+        "confidence": 0.93
+      },
+      "subViews": [
+        {
+          "subViewId": "tooltip-view.card",
+          "subViewName": "thread tooltip",
+          "nameSource": "inferred",
+          "description": "Small pop-up card showing thread metadata such as keywords, timestamps, or score values.",
+          "evidence": {
+            "passageIds": [
+              94,
+              111
+            ],
+            "figureRefs": [
+              "Fig. 5g"
+            ],
+            "quotes": [
+              "extra information of the thread nodes",
+              "from the tooltip she can see a few interesting keywords"
+            ],
+            "reasoning": "The tooltip appears as a compact detail card for a selected thread node.",
+            "confidence": 0.92
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "StructuredText",
+            "subKind": "Card",
+            "description": "Compact card-like textual detail surface for metadata and keyword snippets.",
+            "evidence": {
+              "passageIds": [
+                94,
+                111
+              ],
+              "figureRefs": [
+                "Fig. 5g"
+              ],
+              "quotes": [
+                "informative tooltips"
+              ],
+              "reasoning": "The tooltip is a transient textual inspector rather than a standalone chart.",
+              "confidence": 0.9
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "tooltip-view.card.show-metadata",
+              "capabilityKind": "Information",
+              "capabilityName": "Show Thread Metadata",
+              "description": "Displays keywords and other concise metadata for a hovered or inspected thread node.",
+              "evidence": {
+                "passageIds": [
+                  94,
+                  111
+                ],
+                "figureRefs": [
+                  "Fig. 5g"
+                ],
+                "quotes": [
+                  "access extra information of the thread nodes",
+                  "see a few interesting keywords"
+                ],
+                "reasoning": "The tooltip\u2019s direct role is to surface concise metadata.",
+                "confidence": 0.91
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewId": "context-menu",
+      "viewName": "context menu",
+      "nameSource": "caption",
+      "aliases": [
+        "Fig. 5-h",
+        "h"
+      ],
+      "description": "Auxiliary details-on-demand context menu for raw tweet contents, exact score values, and timestamps.",
+      "viewImages": [
+        "data/view-images/FluxFlow/3.png"
+      ],
+      "evidence": {
+        "passageIds": [
+          89,
+          94,
+          110,
+          111
+        ],
+        "figureRefs": [
+          "Fig. 5h",
+          "Fig. 8b",
+          "data/view-images/FluxFlow/3.png"
+        ],
+        "quotes": [
+          "context menus",
+          "raw tweets shown in the context menu"
+        ],
+        "reasoning": "The paper explicitly labels a context menu as the surface for detailed tweet content and precise values.",
+        "confidence": 0.95
+      },
+      "subViews": [
+        {
+          "subViewId": "context-menu.details",
+          "subViewName": "thread detail menu",
+          "nameSource": "inferred",
+          "description": "Pop-up menu-like detail surface exposing raw tweets, exact score values, and starting or ending timestamps.",
+          "evidence": {
+            "passageIds": [
+              94,
+              110,
+              111
+            ],
+            "figureRefs": [
+              "Fig. 5h",
+              "Fig. 8b"
+            ],
+            "quotes": [
+              "tweet contents, exact score values and starting/ending timestamps"
+            ],
+            "reasoning": "The context menu appears as a detailed pop-up tied to thread-node inspection.",
+            "confidence": 0.94
+          },
+          "isVisualizationView": false,
+          "nonVisualViewSpec": {
+            "viewKind": "Inspector",
+            "subKind": "others(pop-up thread detail menu)",
+            "description": "Inspector-like pop-up surface for reading thread-level textual details and exact values.",
+            "evidence": {
+              "passageIds": [
+                94,
+                110
+              ],
+              "figureRefs": [
+                "Fig. 5h",
+                "Fig. 8b"
+              ],
+              "quotes": [
+                "raw tweets shown in the context menu"
+              ],
+              "reasoning": "This auxiliary view behaves like a pop-up inspector rather than a persistent form or control.",
+              "confidence": 0.92
+            }
+          },
+          "capabilities": [
+            {
+              "capabilityId": "context-menu.details.show-thread-details",
+              "capabilityKind": "Information",
+              "capabilityName": "Show Raw Tweets And Values",
+              "description": "Displays raw tweet text together with exact score values and timestamps for an inspected thread node.",
+              "evidence": {
+                "passageIds": [
+                  94,
+                  110,
+                  111
+                ],
+                "figureRefs": [
+                  "Fig. 5h",
+                  "Fig. 8b"
+                ],
+                "quotes": [
+                  "access extra information of the thread nodes",
+                  "raw tweets shown in the context menu"
+                ],
+                "reasoning": "The context menu\u2019s user-visible function is direct inspection of detailed thread contents and values.",
+                "confidence": 0.94
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "coordinationInfo": [
+    {
+      "coordinationId": "cluster-collapse-updates-mds",
+      "source": {
+        "viewId": "cluster-view",
+        "subViewId": "cluster-view.main"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "cluster-view",
+        "subViewId": "cluster-view.main",
+        "capabilityId": "cluster-view.main.collapse-levels"
+      },
+      "targets": [
+        {
+          "viewId": "mds-view",
+          "subViewId": "mds-view.main"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "mds-view",
+          "subViewId": "mds-view.main",
+          "capabilityId": "mds-view.main.compare-projection"
+        }
+      ],
+      "coordinationType": "brushing-linking",
+      "evidence": {
+        "passageIds": [
+          94
+        ],
+        "figureRefs": [
+          "Fig. 5a",
+          "Fig. 5b"
+        ],
+        "quotes": [
+          "nodes in collapsed branches in the cluster view are shown semi-transparently in the MDS view"
+        ],
+        "reasoning": "Collapsing or aggregating hierarchy structure in the cluster overview explicitly changes rendering of corresponding nodes in the MDS overview.",
+        "confidence": 0.92
+      }
+    },
+    {
+      "coordinationId": "cluster-opens-threads",
+      "source": {
+        "viewId": "cluster-view",
+        "subViewId": "cluster-view.main"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "cluster-view",
+        "subViewId": "cluster-view.main",
+        "capabilityId": "cluster-view.main.open-thread"
+      },
+      "targets": [
+        {
+          "viewId": "threads-view",
+          "subViewId": "threads-view.timeline"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "threads-view",
+          "subViewId": "threads-view.timeline",
+          "capabilityId": "threads-view.timeline.show-timelines"
+        }
+      ],
+      "coordinationType": "overview-detail",
+      "evidence": {
+        "passageIds": [
+          96
+        ],
+        "figureRefs": [
+          "Fig. 5a",
+          "Fig. 5c"
+        ],
+        "quotes": [
+          "double-click a node in either to unfold the timeline visualization of that thread in the threads view"
+        ],
+        "reasoning": "A selected cluster node is explicitly opened as a detailed thread timeline.",
+        "confidence": 0.95
+      }
+    },
+    {
+      "coordinationId": "mds-opens-threads",
+      "source": {
+        "viewId": "mds-view",
+        "subViewId": "mds-view.main"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "mds-view",
+        "subViewId": "mds-view.main",
+        "capabilityId": "mds-view.main.open-thread"
+      },
+      "targets": [
+        {
+          "viewId": "threads-view",
+          "subViewId": "threads-view.timeline"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "threads-view",
+          "subViewId": "threads-view.timeline",
+          "capabilityId": "threads-view.timeline.show-timelines"
+        }
+      ],
+      "coordinationType": "overview-detail",
+      "evidence": {
+        "passageIds": [
+          96
+        ],
+        "figureRefs": [
+          "Fig. 5b",
+          "Fig. 5c"
+        ],
+        "quotes": [
+          "double-click a node in either to unfold the timeline visualization of that thread in the threads view"
+        ],
+        "reasoning": "The same explicit interaction is supported from the MDS overview into the threads view.",
+        "confidence": 0.95
+      }
+    },
+    {
+      "coordinationId": "cluster-hover-highlights-threads",
+      "source": {
+        "viewId": "cluster-view",
+        "subViewId": "cluster-view.main"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "cluster-view",
+        "subViewId": "cluster-view.main",
+        "capabilityId": "cluster-view.main.highlight-descendants"
+      },
+      "targets": [
+        {
+          "viewId": "threads-view",
+          "subViewId": "threads-view.timeline"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "threads-view",
+          "subViewId": "threads-view.timeline",
+          "capabilityId": "threads-view.timeline.show-highlighted-retweets"
+        }
+      ],
+      "coordinationType": "brushing-linking",
+      "evidence": {
+        "passageIds": [
+          97
+        ],
+        "figureRefs": [
+          "Fig. 5a",
+          "Fig. 5c"
+        ],
+        "quotes": [
+          "highlight retweets from each of its sub-threads by hovering over the descendant nodes"
+        ],
+        "reasoning": "Hovering descendant nodes in the cluster view updates the retweet highlight state in the thread timelines.",
+        "confidence": 0.94
+      }
+    },
+    {
+      "coordinationId": "mds-hover-highlights-threads",
+      "source": {
+        "viewId": "mds-view",
+        "subViewId": "mds-view.main"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "mds-view",
+        "subViewId": "mds-view.main",
+        "capabilityId": "mds-view.main.highlight-descendants"
+      },
+      "targets": [
+        {
+          "viewId": "threads-view",
+          "subViewId": "threads-view.timeline"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "threads-view",
+          "subViewId": "threads-view.timeline",
+          "capabilityId": "threads-view.timeline.show-highlighted-retweets"
+        }
+      ],
+      "coordinationType": "brushing-linking",
+      "evidence": {
+        "passageIds": [
+          97
+        ],
+        "figureRefs": [
+          "Fig. 5b",
+          "Fig. 5c"
+        ],
+        "quotes": [
+          "hovering over the descendant nodes in either the cluster view or the MDS view"
+        ],
+        "reasoning": "Hovering descendant nodes in the MDS view updates highlights in the thread timelines.",
+        "confidence": 0.94
+      }
+    },
+    {
+      "coordinationId": "threads-zoom-features",
+      "source": {
+        "viewId": "threads-view",
+        "subViewId": "threads-view.timeline"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "threads-view",
+        "subViewId": "threads-view.timeline",
+        "capabilityId": "threads-view.timeline.zoom-time"
+      },
+      "targets": [
+        {
+          "viewId": "detail-panel",
+          "subViewId": "detail-panel.features"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "detail-panel",
+          "subViewId": "detail-panel.features",
+          "capabilityId": "detail-panel.features.inspect-features"
+        }
+      ],
+      "coordinationType": "synchronized-scrolling",
+      "evidence": {
+        "passageIds": [
+          102
+        ],
+        "figureRefs": [
+          "Fig. 5c",
+          "Fig. 5d"
+        ],
+        "quotes": [
+          "A coupled zooming mechanism with the threads view is also incorporated"
+        ],
+        "reasoning": "Zoom state in the timeline workspace is explicitly coupled to the features view for multiscale analysis.",
+        "confidence": 0.9
+      }
+    },
+    {
+      "coordinationId": "cluster-details-on-demand",
+      "source": {
+        "viewId": "cluster-view",
+        "subViewId": "cluster-view.main"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "cluster-view",
+        "subViewId": "cluster-view.main",
+        "capabilityId": "cluster-view.main.request-details"
+      },
+      "targets": [
+        {
+          "viewId": "tooltip-view",
+          "subViewId": "tooltip-view.card"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "tooltip-view",
+          "subViewId": "tooltip-view.card",
+          "capabilityId": "tooltip-view.card.show-metadata"
+        }
+      ],
+      "coordinationType": "details-on-demand",
+      "evidence": {
+        "passageIds": [
+          94
+        ],
+        "figureRefs": [
+          "Fig. 5a",
+          "Fig. 5g",
+          "Fig. 5h"
+        ],
+        "quotes": [
+          "Both views provide informative tooltips (Fig. 5-g) and context menus (Fig. 5-h) to access extra information of the thread nodes"
+        ],
+        "reasoning": "Inspecting a thread node in the cluster overview can open the tooltip for concise metadata details.",
+        "confidence": 0.88
+      }
+    },
+    {
+      "coordinationId": "mds-details-on-demand",
+      "source": {
+        "viewId": "mds-view",
+        "subViewId": "mds-view.main"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "mds-view",
+        "subViewId": "mds-view.main",
+        "capabilityId": "mds-view.main.request-details"
+      },
+      "targets": [
+        {
+          "viewId": "tooltip-view",
+          "subViewId": "tooltip-view.card"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "tooltip-view",
+          "subViewId": "tooltip-view.card",
+          "capabilityId": "tooltip-view.card.show-metadata"
+        }
+      ],
+      "coordinationType": "details-on-demand",
+      "evidence": {
+        "passageIds": [
+          94
+        ],
+        "figureRefs": [
+          "Fig. 5b",
+          "Fig. 5g",
+          "Fig. 5h"
+        ],
+        "quotes": [
+          "Both views provide informative tooltips (Fig. 5-g) and context menus (Fig. 5-h) to access extra information of the thread nodes"
+        ],
+        "reasoning": "Inspecting a thread node in the MDS overview can open the tooltip for concise metadata details.",
+        "confidence": 0.88
+      }
+    },
+    {
+      "coordinationId": "cluster-context-menu-details",
+      "source": {
+        "viewId": "cluster-view",
+        "subViewId": "cluster-view.main"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "cluster-view",
+        "subViewId": "cluster-view.main",
+        "capabilityId": "cluster-view.main.request-details"
+      },
+      "targets": [
+        {
+          "viewId": "context-menu",
+          "subViewId": "context-menu.details"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "context-menu",
+          "subViewId": "context-menu.details",
+          "capabilityId": "context-menu.details.show-thread-details"
+        }
+      ],
+      "coordinationType": "details-on-demand",
+      "evidence": {
+        "passageIds": [
+          94
+        ],
+        "figureRefs": [
+          "Fig. 5a",
+          "Fig. 5h"
+        ],
+        "quotes": [
+          "provide informative tooltips (Fig. 5-g) and context menus (Fig. 5-h) to access extra information"
+        ],
+        "reasoning": "Inspecting a thread node in the cluster overview can open the context menu for detailed tweets and exact values.",
+        "confidence": 0.88
+      }
+    },
+    {
+      "coordinationId": "mds-context-menu-details",
+      "source": {
+        "viewId": "mds-view",
+        "subViewId": "mds-view.main"
+      },
+      "sourceCapabilityRef": {
+        "viewId": "mds-view",
+        "subViewId": "mds-view.main",
+        "capabilityId": "mds-view.main.request-details"
+      },
+      "targets": [
+        {
+          "viewId": "context-menu",
+          "subViewId": "context-menu.details"
+        }
+      ],
+      "targetCapabilityRefs": [
+        {
+          "viewId": "context-menu",
+          "subViewId": "context-menu.details",
+          "capabilityId": "context-menu.details.show-thread-details"
+        }
+      ],
+      "coordinationType": "details-on-demand",
+      "evidence": {
+        "passageIds": [
+          94
+        ],
+        "figureRefs": [
+          "Fig. 5b",
+          "Fig. 5h"
+        ],
+        "quotes": [
+          "provide informative tooltips (Fig. 5-g) and context menus (Fig. 5-h) to access extra information"
+        ],
+        "reasoning": "Inspecting a thread node in the MDS overview can open the context menu for detailed tweets and exact values.",
+        "confidence": 0.88
+      }
+    }
+  ]
+}

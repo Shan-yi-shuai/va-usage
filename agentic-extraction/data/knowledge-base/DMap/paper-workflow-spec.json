@@ -1,0 +1,373 @@
+{
+  "paperName": "DMap",
+  "systemName": "D-Map",
+  "systemSpecPath": "data/agentic/extract-results/DMap/system-spec/output/system-spec.json",
+  "workflows": [
+    {
+      "workflowId": "dmap-exploration-workflow",
+      "workflowTitle": "D-Map exploration workflow",
+      "workflowKind": "ExploratoryAnalysis",
+      "workflowGoal": "Explore a central user's information diffusion through coordinated source-weibo, community, structural, and temporal analyses.",
+      "description": "The authors present D-Map as a coordinated visual analysis workflow with an overview and entry stage, followed by dynamic diffusion exploration and then social community behavior analysis.",
+      "stages": [
+        {
+          "stageId": "analyze-source-weibos",
+          "stageIndex": 1,
+          "stageTitle": "Visual analysis overview and entry",
+          "stageGoal": "Establish an overview and entry point for further analysis by scanning source-weibo patterns and selecting promising subsets.",
+          "description": "The workflow opens with the source-weibo table and distribution views as an overview and entry layer, helping analysts orient themselves, compare source-weibo patterns, and choose subsets for subsequent exploration.",
+          "usedViews": [
+            {
+              "viewId": "source-weibo-table",
+              "subViewId": "source-weibo-table.main"
+            },
+            {
+              "viewId": "source-weibo-distribution",
+              "subViewId": "source-weibo-distribution.documents"
+            },
+            {
+              "viewId": "source-weibo-distribution",
+              "subViewId": "source-weibo-distribution.keywords"
+            },
+            {
+              "viewId": "d-map",
+              "subViewId": "d-map.main"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "source-weibo-table",
+              "subViewId": "source-weibo-table.main",
+              "capabilityId": "source-weibo-table.main.select-source-weibos"
+            },
+            {
+              "viewId": "source-weibo-table",
+              "subViewId": "source-weibo-table.main",
+              "capabilityId": "source-weibo-table.main.search-keywords"
+            },
+            {
+              "viewId": "source-weibo-distribution",
+              "subViewId": "source-weibo-distribution.documents",
+              "capabilityId": "source-weibo-distribution.documents.show-source-weibo-embedding"
+            },
+            {
+              "viewId": "source-weibo-distribution",
+              "subViewId": "source-weibo-distribution.keywords",
+              "capabilityId": "source-weibo-distribution.keywords.select-related-weibos"
+            },
+            {
+              "viewId": "d-map",
+              "subViewId": "d-map.main",
+              "capabilityId": "d-map.main.show-highlighted-participants"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "coord-swtv-m-bling-01",
+              "description": "Selected source weibos highlight participants on D-Map."
+            },
+            {
+              "coordinationId": "coord-swkv-bling-02",
+              "description": "Keyword-based source-weibo selection highlights related participants on D-Map."
+            }
+          ],
+          "expectedOutcome": "The analyst gains an initial overview and identifies source-weibo subsets worth following into later analyses.",
+          "evidence": {
+            "passageIds": [
+              49,
+              51,
+              78,
+              87
+            ],
+            "figureRefs": [
+              "Fig. 1a",
+              "Fig. 1b",
+              "Fig. 8"
+            ],
+            "quotes": [
+              "we provide a starting point for analysis",
+              "analyze the weibo sources from these two perspectives",
+              "table view of source weibos with sorting, keyword searching, and filtering functions"
+            ],
+            "reasoning": "The paper supports the source-weibo views as an analysis entry layer, but revision weakens the claim from a universal mandatory starting step to an overview-and-entry role.",
+            "confidence": 0.93
+          },
+          "inferenceType": "CrossModalSynthesis"
+        },
+        {
+          "stageId": "analyze-dynamic-diffusion",
+          "stageIndex": 2,
+          "stageTitle": "Dynamic diffusion and exploration",
+          "stageGoal": "Examine temporal evolution, key periods, and influential diffusion paths.",
+          "description": "After the overview stage, analysts use the timeline and small multiple views together with D-Map to inspect temporal trends, identify critical time ranges, open snapshot maps, and investigate diffusion paths of important participants.",
+          "usedViews": [
+            {
+              "viewId": "timeline-view",
+              "subViewId": "timeline-view.main"
+            },
+            {
+              "viewId": "small-multiple-view",
+              "subViewId": "small-multiple-view.main"
+            },
+            {
+              "viewId": "d-map",
+              "subViewId": "d-map.main"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "timeline-view",
+              "subViewId": "timeline-view.main",
+              "capabilityId": "timeline-view.main.animate-diffusion"
+            },
+            {
+              "viewId": "timeline-view",
+              "subViewId": "timeline-view.main",
+              "capabilityId": "timeline-view.main.show-temporal-trends"
+            },
+            {
+              "viewId": "small-multiple-view",
+              "subViewId": "small-multiple-view.main",
+              "capabilityId": "small-multiple-view.main.open-snapshot"
+            },
+            {
+              "viewId": "small-multiple-view",
+              "subViewId": "small-multiple-view.main",
+              "capabilityId": "small-multiple-view.main.show-key-timeframes"
+            },
+            {
+              "viewId": "d-map",
+              "subViewId": "d-map.main",
+              "capabilityId": "d-map.main.show-diffusion-map"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "coord-smv-dmap-od-04",
+              "description": "Selecting a snapshot thumbnail opens the corresponding D-Map in the main window."
+            }
+          ],
+          "expectedOutcome": "The analyst identifies critical diffusion periods, influential paths, and key players over time.",
+          "evidence": {
+            "passageIds": [
+              53,
+              54,
+              78,
+              87
+            ],
+            "figureRefs": [
+              "Fig. 1f",
+              "Fig. 1g",
+              "Fig. 8"
+            ],
+            "quotes": [
+              "support the exploration of the dynamic diffusion process with D-Map",
+              "show the critical period range in the small multiples",
+              "Diffusion path, social interactions and people impact can be found"
+            ],
+            "reasoning": "Human feedback explicitly points to Figure 8 ordering dynamic diffusion before social community behavior analysis, and passages 53 and 54 support this temporal-analysis stage.",
+            "confidence": 0.97
+          },
+          "inferenceType": "CrossModalSynthesis"
+        },
+        {
+          "stageId": "inspect-communities-and-structure",
+          "stageIndex": 3,
+          "stageTitle": "Social community behavior analysis",
+          "stageGoal": "Investigate community characteristics, social interactions, and reposting structure.",
+          "description": "Analysts use D-Map and its linked community-analysis views to compare community features, inspect selected-community statistics, and understand where selected communities sit in the reposting hierarchy.",
+          "usedViews": [
+            {
+              "viewId": "d-map",
+              "subViewId": "d-map.main"
+            },
+            {
+              "viewId": "community-radar",
+              "subViewId": "community-radar.radar"
+            },
+            {
+              "viewId": "community-radar",
+              "subViewId": "community-radar.statistics"
+            },
+            {
+              "viewId": "hierarchical-view",
+              "subViewId": "hierarchical-view.main"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "d-map",
+              "subViewId": "d-map.main",
+              "capabilityId": "d-map.main.select-communities"
+            },
+            {
+              "viewId": "d-map",
+              "subViewId": "d-map.main",
+              "capabilityId": "d-map.main.select-nodes"
+            },
+            {
+              "viewId": "community-radar",
+              "subViewId": "community-radar.radar",
+              "capabilityId": "community-radar.radar.compare-community-features"
+            },
+            {
+              "viewId": "community-radar",
+              "subViewId": "community-radar.statistics",
+              "capabilityId": "community-radar.statistics.show-selected-community-stats"
+            },
+            {
+              "viewId": "hierarchical-view",
+              "subViewId": "hierarchical-view.main",
+              "capabilityId": "hierarchical-view.main.show-community-position"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "coord-dmcrh-bling-03",
+              "description": "Community selection on D-Map updates community-feature, statistics, and hierarchy views."
+            }
+          ],
+          "expectedOutcome": "The analyst characterizes community behavior, social interactions, and structural positions relevant to the diffusion process.",
+          "evidence": {
+            "passageIds": [
+              57,
+              78,
+              87
+            ],
+            "figureRefs": [
+              "Fig. 1c",
+              "Fig. 1d",
+              "Fig. 1e",
+              "Fig. 8"
+            ],
+            "quotes": [
+              "high dimensional features reflect the community characteristics",
+              "by selecting a community on the map, the correlated communities would be highlighted",
+              "helps users understand the position of a selected community in the hierarchical reposting tree"
+            ],
+            "reasoning": "This stage remains supported by passage 57 and Figure 8, but revision moves it after dynamic diffusion to align with explicit human feedback about the intended order in Figure 8.",
+            "confidence": 0.95
+          },
+          "inferenceType": "CrossModalSynthesis"
+        }
+      ],
+      "transitions": [
+        {
+          "sourceStageId": "analyze-source-weibos",
+          "targetStageId": "analyze-dynamic-diffusion",
+          "transitionType": "Next",
+          "rationale": "Figure 8 and the human feedback support moving from the overview-and-entry stage into dynamic diffusion exploration before social community behavior analysis.",
+          "evidence": {
+            "passageIds": [
+              49,
+              53,
+              87
+            ],
+            "figureRefs": [
+              "Fig. 8"
+            ],
+            "quotes": [
+              "we provide a starting point for analysis",
+              "support the exploration of the dynamic diffusion process with D-Map",
+              "Visual analysis pipeline"
+            ],
+            "reasoning": "The revised transition follows the ordering indicated by Figure 8 and confirmed by explicit human feedback.",
+            "confidence": 0.92
+          },
+          "inferenceType": "CrossModalSynthesis"
+        },
+        {
+          "sourceStageId": "analyze-dynamic-diffusion",
+          "targetStageId": "inspect-communities-and-structure",
+          "transitionType": "Next",
+          "rationale": "The revised stage order follows the human feedback that Figure 8 places social community behavior analysis after dynamic diffusion and exploration.",
+          "evidence": {
+            "passageIds": [
+              53,
+              57,
+              87
+            ],
+            "figureRefs": [
+              "Fig. 8"
+            ],
+            "quotes": [
+              "We apply a Timeline View with a Small Multiple View to support the exploration of the dynamic diffusion process",
+              "Visual analysis pipeline"
+            ],
+            "reasoning": "This transition remains an inferred ordering judgment, but revision aligns it with the explicit human reading of Figure 8.",
+            "confidence": 0.86
+          },
+          "inferenceType": "CrossModalSynthesis"
+        }
+      ],
+      "expectedFinalOutcome": "The workflow helps analysts uncover diffusion paths, social interactions, people impact, and key temporal patterns for a central user's information spread.",
+      "evidence": {
+        "passageIds": [
+          11,
+          49,
+          53,
+          57,
+          87
+        ],
+        "figureRefs": [
+          "Fig. 8",
+          "Fig. 1"
+        ],
+        "quotes": [
+          "It provides a solution for understanding the influence of a central user and the social interactions in a diffusion process",
+          "users can explore the diffusion process among communities systematically",
+          "Diffusion path, social interactions and people impact can be found"
+        ],
+        "reasoning": "The intended workflow is synthesized across the system-overview passage, the main system walkthrough, the visual analysis pipeline caption, and explicit human feedback about Figure 8 ordering.",
+        "confidence": 0.95
+      },
+      "inferenceType": "CrossModalSynthesis"
+    }
+  ],
+  "paperLevelClaims": [
+    {
+      "claimText": "D-Map is intended to support coordinated exploration of diffusion through source-weibo, community, structural, and temporal analyses.",
+      "evidence": {
+        "passageIds": [
+          11,
+          49,
+          87
+        ],
+        "figureRefs": [
+          "Fig. 1",
+          "Fig. 8"
+        ],
+        "quotes": [
+          "comprehensive visual analytics system",
+          "users can explore the diffusion process among communities systematically",
+          "augmented trend, hierarchy and high dimensional analysis"
+        ],
+        "reasoning": "These sources jointly support a paper-level claim about intended coordinated use across the major analysis dimensions.",
+        "confidence": 0.94
+      },
+      "inferenceType": "CrossModalSynthesis"
+    }
+  ],
+  "evidence": {
+    "passageIds": [
+      11,
+      49,
+      53,
+      57,
+      78,
+      87
+    ],
+    "figureRefs": [
+      "Fig. 1",
+      "Fig. 6",
+      "Fig. 8"
+    ],
+    "quotes": [
+      "comprehensive visual analytics system",
+      "users can explore the diffusion process among communities systematically",
+      "Visual analysis pipeline, illustrating how to explore users' D-Map"
+    ],
+    "reasoning": "The paper-level workflow extraction is grounded primarily in the intended-workflow figures and the normative system walkthrough, with case-study figures excluded.",
+    "confidence": 0.95
+  }
+}

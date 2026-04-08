@@ -1,0 +1,421 @@
+{
+  "paperName": "ConceptViz",
+  "systemName": "ConceptViz",
+  "systemSpecPath": "data/agentic/extract-results/ConceptViz/system-spec/output/system-spec.json",
+  "workflows": [
+    {
+      "workflowId": "identification-interpretation-validation",
+      "workflowTitle": "Identification-Interpretation-Validation Workflow",
+      "workflowKind": "ExploratoryAnalysis",
+      "workflowGoal": "Guide researchers from concept-driven SAE discovery through semantic feature interpretation to empirical validation of feature-concept relationships.",
+      "description": "ConceptViz is explicitly organized around an author-intended three-phase workflow in which researchers first identify a relevant SAE through concept querying and model selection, then interpret candidate features through overview and detail analysis, and finally validate those interpretations through input-based and steering-based checks.",
+      "targetUsers": [
+        "LLM experts",
+        "researchers interested in exploring concepts within LLMs through SAE techniques"
+      ],
+      "stages": [
+        {
+          "stageId": "identification",
+          "stageIndex": 1,
+          "stageTitle": "Identification",
+          "stageGoal": "Identify a concept query and choose an SAE model that best captures the target concept.",
+          "description": "Researchers formulate and refine a natural-language concept query, inspect its similarity distribution, compare concept relevance across layers, and select the SAE model most aligned with the concept.",
+          "usedViews": [
+            {
+              "viewId": "concept-query",
+              "subViewId": "concept-query.query-input"
+            },
+            {
+              "viewId": "concept-query",
+              "subViewId": "concept-query.similarity-distribution"
+            },
+            {
+              "viewId": "sae-discovery",
+              "subViewId": "sae-discovery.layer-overview"
+            },
+            {
+              "viewId": "sae-discovery",
+              "subViewId": "sae-discovery.layer-ranking-table"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "concept-query",
+              "subViewId": "concept-query.query-input",
+              "capabilityId": "concept-query.query-input.submit-query"
+            },
+            {
+              "viewId": "concept-query",
+              "subViewId": "concept-query.query-input",
+              "capabilityId": "concept-query.query-input.refine-query"
+            },
+            {
+              "viewId": "concept-query",
+              "subViewId": "concept-query.similarity-distribution",
+              "capabilityId": "concept-query.similarity-distribution.compare-distributions"
+            },
+            {
+              "viewId": "sae-discovery",
+              "subViewId": "sae-discovery.layer-overview",
+              "capabilityId": "sae-discovery.layer-overview.inspect-layer-relevance"
+            },
+            {
+              "viewId": "sae-discovery",
+              "subViewId": "sae-discovery.layer-ranking-table",
+              "capabilityId": "sae-discovery.layer-ranking-table.select-sae"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "coord-query-to-results",
+              "description": "Submitting or refining the query updates the discovery and relevance views used to select an SAE."
+            }
+          ],
+          "expectedOutcome": "A refined concept query and a selected SAE model that appears most relevant to the concept.",
+          "evidence": {
+            "passageIds": [
+              1,
+              7,
+              8,
+              30,
+              31,
+              32,
+              56
+            ],
+            "figureRefs": [
+              "Fig. 1A",
+              "Fig. 1B"
+            ],
+            "quotes": [
+              "First, to efficiently identify relevant SAE models (Identification), we enable concept-based queries combined with structural information about model architecture.",
+              "Users first formulate and refine queries to identify potentially relevant SAE models."
+            ],
+            "reasoning": "The paper explicitly names Identification as the first workflow phase and links it to concept query and SAE discovery views.",
+            "confidence": 0.99
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "stageId": "interpretation",
+          "stageIndex": 2,
+          "stageTitle": "Interpretation",
+          "stageGoal": "Explore the selected SAE feature space and interpret candidate features in semantic detail.",
+          "description": "After choosing an SAE, researchers browse the concept-space overview, navigate semantic clusters, select candidate features, and inspect vocabulary projections, activation-similarity evidence, and token summaries to understand feature meaning and limitations.",
+          "usedViews": [
+            {
+              "viewId": "feature-explorer",
+              "subViewId": "feature-explorer.concept-space-map"
+            },
+            {
+              "viewId": "feature-details",
+              "subViewId": "feature-details.vocabulary-space"
+            },
+            {
+              "viewId": "feature-details",
+              "subViewId": "feature-details.text-segment-examples"
+            },
+            {
+              "viewId": "feature-details",
+              "subViewId": "feature-details.token-summary"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "feature-explorer",
+              "subViewId": "feature-explorer.concept-space-map",
+              "capabilityId": "feature-explorer.concept-space-map.browse-clusters"
+            },
+            {
+              "viewId": "feature-explorer",
+              "subViewId": "feature-explorer.concept-space-map",
+              "capabilityId": "feature-explorer.concept-space-map.zoom-levels"
+            },
+            {
+              "viewId": "feature-explorer",
+              "subViewId": "feature-explorer.concept-space-map",
+              "capabilityId": "feature-explorer.concept-space-map.select-feature"
+            },
+            {
+              "viewId": "feature-details",
+              "subViewId": "feature-details.vocabulary-space",
+              "capabilityId": "feature-details.vocabulary-space.inspect-vocabulary-projection"
+            },
+            {
+              "viewId": "feature-details",
+              "subViewId": "feature-details.text-segment-examples",
+              "capabilityId": "feature-details.text-segment-examples.inspect-example-alignment"
+            },
+            {
+              "viewId": "feature-details",
+              "subViewId": "feature-details.token-summary",
+              "capabilityId": "feature-details.token-summary.inspect-token-summary"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "coord-select-feature-to-details",
+              "description": "Selecting a feature opens the detail views needed for interpretation."
+            },
+            {
+              "coordinationId": "coord-matrix-to-token-summary",
+              "description": "Matrix selection updates the token summary during detailed interpretation."
+            }
+          ],
+          "expectedOutcome": "A defensible interpretation of one or more candidate features, including semantic evidence and observed limitations.",
+          "evidence": {
+            "passageIds": [
+              1,
+              7,
+              30,
+              33,
+              34,
+              35,
+              56
+            ],
+            "figureRefs": [
+              "Fig. 1C",
+              "Fig. 1D"
+            ],
+            "quotes": [
+              "Second, to explore the alignment between feature space and human concepts in-depth (Interpretation), we introduce interactive visualizations that project sparse features into a concept space.",
+              "They then navigate through feature spaces to discover and interpret meaningful features related to their concepts of interest."
+            ],
+            "reasoning": "The paper explicitly names Interpretation as the second workflow phase and ties it to the explorer and detail views.",
+            "confidence": 0.99
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "stageId": "validation",
+          "stageIndex": 3,
+          "stageTitle": "Validation",
+          "stageGoal": "Verify whether interpreted features behave consistently and causally with respect to the target concept.",
+          "description": "Researchers test candidate features on custom inputs, inspect token-level activations, retrieve related features when needed, and compare steered outputs under different activation strengths to confirm or challenge their interpretation.",
+          "usedViews": [
+            {
+              "viewId": "feature-explorer",
+              "subViewId": "feature-explorer.concept-space-map"
+            },
+            {
+              "viewId": "input-activation",
+              "subViewId": "input-activation.prompt-input"
+            },
+            {
+              "viewId": "input-activation",
+              "subViewId": "input-activation.token-activation-display"
+            },
+            {
+              "viewId": "output-steering",
+              "subViewId": "output-steering.prompt-input"
+            },
+            {
+              "viewId": "output-steering",
+              "subViewId": "output-steering.output-branches"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "input-activation",
+              "subViewId": "input-activation.prompt-input",
+              "capabilityId": "input-activation.prompt-input.enter-custom-text"
+            },
+            {
+              "viewId": "input-activation",
+              "subViewId": "input-activation.token-activation-display",
+              "capabilityId": "input-activation.token-activation-display.inspect-token-activations"
+            },
+            {
+              "viewId": "input-activation",
+              "subViewId": "input-activation.token-activation-display",
+              "capabilityId": "input-activation.token-activation-display.select-tokens"
+            },
+            {
+              "viewId": "output-steering",
+              "subViewId": "output-steering.prompt-input",
+              "capabilityId": "output-steering.prompt-input.enter-steering-prompt"
+            },
+            {
+              "viewId": "output-steering",
+              "subViewId": "output-steering.output-branches",
+              "capabilityId": "output-steering.output-branches.compare-steered-outputs"
+            },
+            {
+              "viewId": "feature-explorer",
+              "subViewId": "feature-explorer.concept-space-map",
+              "capabilityId": "feature-explorer.concept-space-map.show-related-features"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "coord-select-feature-to-validation",
+              "description": "The currently selected feature is carried into the validation views."
+            },
+            {
+              "coordinationId": "coord-input-prompt-to-activation-display",
+              "description": "Custom input submission updates the token-level activation display."
+            },
+            {
+              "coordinationId": "coord-steering-prompt-to-output-branches",
+              "description": "Prompt submission drives the generation of steered output branches."
+            },
+            {
+              "coordinationId": "coord-activation-to-related-features",
+              "description": "Selected activated tokens can reveal related features back in the explorer."
+            }
+          ],
+          "expectedOutcome": "A validated judgment about whether the feature reliably corresponds to the target concept and produces expected output effects under steering.",
+          "evidence": {
+            "passageIds": [
+              1,
+              7,
+              30,
+              36,
+              37,
+              38,
+              39,
+              40,
+              57,
+              58
+            ],
+            "figureRefs": [
+              "Fig. 1E",
+              "Fig. 1F"
+            ],
+            "quotes": [
+              "Third, to verify the alignment between features and human concepts at the instance level (Validation), we provide input and output-based validation.",
+              "Finally, users validate their understanding by examining how these features activate across different inputs and testing how steering these features affects model outputs."
+            ],
+            "reasoning": "The Validation phase is explicitly named and is directly realized by the input-activation and output-steering views.",
+            "confidence": 0.99
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "transitions": [
+        {
+          "sourceStageId": "identification",
+          "targetStageId": "interpretation",
+          "transitionType": "Next",
+          "rationale": "After selecting a relevant SAE model, users move from model identification into exploration and interpretation of features within that model; this handoff is operationalized by the coordination that loads the selected SAE into the explorer.",
+          "evidence": {
+            "passageIds": [
+              7,
+              30,
+              33,
+              56
+            ],
+            "figureRefs": [
+              "Fig. 1A",
+              "Fig. 1B",
+              "Fig. 1C"
+            ],
+            "quotes": [
+              "Users first formulate and refine queries to identify potentially relevant SAE models. They then navigate through feature spaces to discover and interpret meaningful features.",
+              "Users can directly select the SAE of interest from this view to proceed with feature exploration."
+            ],
+            "reasoning": "The intended workflow explicitly sequences model discovery before feature interpretation, and the explorer is entered via the selected-SAE handoff.",
+            "confidence": 0.98
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "sourceStageId": "interpretation",
+          "targetStageId": "validation",
+          "transitionType": "Confirm",
+          "rationale": "Once researchers develop an initial interpretation of a feature, the intended next move is to test that interpretation with custom inputs and activation steering.",
+          "evidence": {
+            "passageIds": [
+              7,
+              30,
+              36,
+              56,
+              57,
+              58
+            ],
+            "figureRefs": [
+              "Fig. 1D",
+              "Fig. 1E",
+              "Fig. 1F"
+            ],
+            "quotes": [
+              "Finally, users validate their understanding by examining how these features activate across different inputs and testing how steering these features affects model outputs.",
+              "Input Activation View and Output Steering View support the validation of connections between features and concepts."
+            ],
+            "reasoning": "The paper explicitly frames validation as the stage used to confirm or challenge interpretations developed in the prior stage.",
+            "confidence": 0.98
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "expectedFinalOutcome": "Researchers build a more accurate mental model of which SAE features correspond to their concepts of interest and how those features behave under observation and intervention.",
+      "evidence": {
+        "passageIds": [
+          1,
+          7,
+          8,
+          30,
+          54,
+          56,
+          57,
+          58
+        ],
+        "figureRefs": [
+          "Fig. 1",
+          "Fig. 3"
+        ],
+        "quotes": [
+          "ConceptViz implements a novel Identification ⇒Interpretation ⇒Validation pipeline.",
+          "This integrated approach ensures a seamless transition from model discovery to detailed analysis and empirical validation."
+        ],
+        "reasoning": "The workflow is explicitly described at both abstract and system-design level as the intended way to use ConceptViz.",
+        "confidence": 0.99
+      },
+      "inferenceType": "Explicit"
+    }
+  ],
+  "paperLevelClaims": [
+    {
+      "claimText": "ConceptViz is intended to support a three-phase concept exploration workflow that moves from identifying relevant SAE models to interpreting features and then validating the resulting concept-feature hypotheses.",
+      "evidence": {
+        "passageIds": [
+          1,
+          7,
+          8,
+          30
+        ],
+        "figureRefs": [
+          "Fig. 1"
+        ],
+        "quotes": [
+          "ConceptViz implements a novel Identification ⇒Interpretation ⇒Validation pipeline.",
+          "We formulate the concept exploration task into a three-phase workflow."
+        ],
+        "reasoning": "This claim is directly stated in the abstract and design framing.",
+        "confidence": 0.99
+      },
+      "inferenceType": "Explicit"
+    }
+  ],
+  "evidence": {
+    "passageIds": [
+      1,
+      7,
+      8,
+      30,
+      54,
+      56,
+      57,
+      58
+    ],
+    "figureRefs": [
+      "Fig. 1",
+      "Fig. 3"
+    ],
+    "quotes": [
+      "ConceptViz implements a novel Identification ⇒Interpretation ⇒Validation pipeline.",
+      "We design an Identification-Interpretation-Validation workflow."
+    ],
+    "reasoning": "Paper-level intended workflow extraction is grounded in the abstract, workflow framing, task analysis, and system-design description rather than the case studies.",
+    "confidence": 0.99
+  }
+}

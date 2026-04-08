@@ -1,0 +1,4 @@
+interface:
+  display_name: "VA Spec Revise"
+  short_description: "Revise a reviewed VA system spec"
+  default_prompt: "Use $revise-va-system-spec to repair a draft VA SystemSpec after review findings."

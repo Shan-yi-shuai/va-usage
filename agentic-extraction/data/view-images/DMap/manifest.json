@@ -1,0 +1,142 @@
+[
+  {
+    "index": 1,
+    "file_name": "1.png",
+    "view_id": "a",
+    "short_label": "Source Weibo Table View",
+    "description": "For selecting different groups of source weibos",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 20,
+      "top": 70,
+      "right": 255,
+      "bottom": 480
+    },
+    "bbox_pixels": {
+      "left": 38,
+      "top": 58,
+      "right": 479,
+      "bottom": 399
+    }
+  },
+  {
+    "index": 2,
+    "file_name": "2.png",
+    "view_id": "b",
+    "short_label": "Source Weibo Distribution View",
+    "description": "Includes Documents View (b1) and Keywords View (b2)",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 260,
+      "top": 60,
+      "right": 408,
+      "bottom": 490
+    },
+    "bbox_pixels": {
+      "left": 489,
+      "top": 50,
+      "right": 767,
+      "bottom": 408
+    }
+  },
+  {
+    "index": 3,
+    "file_name": "3.png",
+    "view_id": "c",
+    "short_label": "D-Map View",
+    "description": "Summarizes the social interaction among participating people of a central user",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 410,
+      "top": 70,
+      "right": 818,
+      "bottom": 745
+    },
+    "bbox_pixels": {
+      "left": 770,
+      "top": 58,
+      "right": 1537,
+      "bottom": 620
+    }
+  },
+  {
+    "index": 4,
+    "file_name": "4.png",
+    "view_id": "g",
+    "short_label": "Small Multiple View",
+    "description": "Identifies key time frames of D-Map’s snapshots",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 840,
+      "top": 70,
+      "right": 975,
+      "bottom": 915
+    },
+    "bbox_pixels": {
+      "left": 1578,
+      "top": 58,
+      "right": 1832,
+      "bottom": 761
+    }
+  },
+  {
+    "index": 5,
+    "file_name": "5.png",
+    "view_id": "e",
+    "short_label": "Hierarchical View",
+    "description": "Illustrates the reposting structures",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 20,
+      "top": 510,
+      "right": 258,
+      "bottom": 940
+    },
+    "bbox_pixels": {
+      "left": 38,
+      "top": 424,
+      "right": 485,
+      "bottom": 782
+    }
+  },
+  {
+    "index": 6,
+    "file_name": "6.png",
+    "view_id": "d",
+    "short_label": "Community Radar View",
+    "description": "Shows high dimensional features of communities with a Radar View (d1) and a Statistics Information Window (d2)",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 260,
+      "top": 510,
+      "right": 408,
+      "bottom": 940
+    },
+    "bbox_pixels": {
+      "left": 489,
+      "top": 424,
+      "right": 767,
+      "bottom": 782
+    }
+  },
+  {
+    "index": 7,
+    "file_name": "7.png",
+    "view_id": "f",
+    "short_label": "Timeline View",
+    "description": "Highlights the temporal trends of the diffusion",
+    "confidence": 1.0,
+    "bbox_normalized": {
+      "left": 410,
+      "top": 755,
+      "right": 840,
+      "bottom": 940
+    },
+    "bbox_pixels": {
+      "left": 770,
+      "top": 628,
+      "right": 1578,
+      "bottom": 782
+    }
+  }
+]

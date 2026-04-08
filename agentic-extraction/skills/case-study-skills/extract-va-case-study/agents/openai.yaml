@@ -1,0 +1,4 @@
+interface:
+  display_name: "VA Case Extract"
+  short_description: "Extract a draft VA case study spec"
+  default_prompt: "Use $extract-va-case-study to build a draft PaperUsageSpec from a visual analytics paper's case study narrative."

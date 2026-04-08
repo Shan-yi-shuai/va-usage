@@ -1,0 +1,1378 @@
+{
+  "paperName": "FluxFlow",
+  "systemSpecPath": "data/agentic/extract-results/FluxFlow/system-spec/output/system-spec.json",
+  "caseStudies": [
+    {
+      "caseId": "hurricane-sandy-case",
+      "caseTitle": "Hurricane Sandy",
+      "caseStudyKind": "ScenarioDemonstration",
+      "analyst": {
+        "role": "AuthorSimulatedUser",
+        "domainExpertise": "Expert",
+        "toolExpertise": "Intermediate",
+        "description": "A synthesized analyst persona based on in-depth interviews with three domain experts."
+      },
+      "scenario": {
+        "domainProblem": "Misinformation and anomalous retweeting behavior circulated widely during the 2012 Hurricane Sandy event.",
+        "analysisGoal": "Explore Twitter threads, identify anomalous rumor-related conversations, compare related rumor threads, and examine model mechanisms behind anomaly scores and hidden states.",
+        "datasetContext": "Top 100 abnormal retweeting threads from the Hurricane Sandy Twitter dataset ranked by anomaly score.",
+        "stakes": "Identifying rumor-spreading behavior in crisis communication can support understanding of misinformation diffusion.",
+        "initialQuestion": "Which anomalous retweeting threads deserve investigation, how are key rumor threads related, and what model patterns help explain their anomaly scores?"
+      },
+      "questions": [
+        {
+          "questionId": "hurricane-sandy-case.question-identify-anomalous-threads",
+          "questionText": "Which retweeting threads in the Hurricane Sandy dataset appear anomalous enough to merit misinformation investigation?",
+          "status": "Answered",
+          "description": "The analyst looks for suspicious high-anomaly rumor-related threads using both bottom-up and top-down exploration.",
+          "evidence": {
+            "passageIds": [
+              110,
+              111
+            ],
+            "figureRefs": [
+              "fig_8",
+              "fig_9"
+            ],
+            "quotes": [
+              "identifying anomalous conversational threads",
+              "This was proven to be a rumor afterwards",
+              "Both have been indicated as rumors later"
+            ],
+            "reasoning": "The case explicitly reports multiple suspicious threads that were later verified as rumors.",
+            "confidence": 0.96
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "questionId": "hurricane-sandy-case.question-compare-rumor-threads",
+          "questionText": "How are prominent rumor-related threads related in topics, user overlap, and social connections?",
+          "status": "PartiallyAnswered",
+          "description": "The analyst compares the Tomb of the Unknown Soldier topic with power outage and shark rumor threads and inspects overlapping users and links.",
+          "evidence": {
+            "passageIds": [
+              111
+            ],
+            "quotes": [
+              "the analyst wants to see if there is any relations between the participating users in the two \"rumor\" topic threads",
+              "there are many overlaps, and a few users have close social network relationships"
+            ],
+            "reasoning": "The tool reveals overlap and possible social proximity, but the narrative does not fully resolve broader causal relationships.",
+            "confidence": 0.91
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "questionId": "hurricane-sandy-case.question-understand-model",
+          "questionText": "What hidden-state and feature patterns help explain why some threads receive higher anomaly scores than others?",
+          "status": "PartiallyAnswered",
+          "description": "The analyst compares timeline shapes, hidden-state patterns, and feature heatmaps across threads with different anomaly levels.",
+          "evidence": {
+            "passageIds": [
+              112,
+              113,
+              114
+            ],
+            "figureRefs": [
+              "fig_10"
+            ],
+            "quotes": [
+              "the analyst wants to thoroughly understand the model mechanisms",
+              "future studies are needed to better understand the OCCRF model",
+              "threads with higher anomaly scores tend to have larger values in features measuring the activities of users"
+            ],
+            "reasoning": "The paper reports meaningful model-related observations but explicitly leaves the mechanism only partly resolved.",
+            "confidence": 0.96
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "episodes": [
+        {
+          "episodeId": "hurricane-sandy-case.bottom-up-rumor-triage",
+          "episodeTitle": "Bottom-Up Rumor Triage",
+          "localGoal": "Start from anomalous individual threads, inspect one suspicious topic in depth, and confirm it as a rumor example.",
+          "focusQuestionIds": [
+            "hurricane-sandy-case.question-identify-anomalous-threads"
+          ],
+          "strategyCanonical": [
+            "AnomalyTriage",
+            "DrillDownThenExplain"
+          ],
+          "strategyText": "Begin from visually suspicious anomalous leaves, then trace into a parent topic and its children to understand the rumor thread.",
+          "steps": [
+            {
+              "stepId": "hurricane-sandy-case.bottom-up-rumor-triage.select-leaf-threads",
+              "stepIndex": 1,
+              "rawNarrative": "The analyst restricts attention to leaf threads in the MDS view, uses glyph color and position to pick anomalous candidates, and imports selected threads into the threads view.",
+              "questionsAddressed": [
+                "hurricane-sandy-case.question-identify-anomalous-threads"
+              ],
+              "intentCanonical": [
+                "Explore",
+                "Locate",
+                "Prioritize"
+              ],
+              "intentText": "Find suspicious individual threads worth deeper inspection.",
+              "strategyCanonical": [
+                "OverviewFirst",
+                "AnomalyTriage"
+              ],
+              "operationCanonical": [
+                "FilterSubset",
+                "SelectItem",
+                "OpenView"
+              ],
+              "usedViews": [
+                {
+                  "viewId": "mds-view",
+                  "subViewId": "mds-view.main"
+                },
+                {
+                  "viewId": "threads-view",
+                  "subViewId": "threads-view.timeline"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "mds-view",
+                  "subViewId": "mds-view.main",
+                  "capabilityId": "mds-view.main.compare-projection"
+                },
+                {
+                  "viewId": "threads-view",
+                  "subViewId": "threads-view.timeline",
+                  "capabilityId": "threads-view.timeline.show-timelines"
+                }
+              ],
+              "targetDataDescription": [
+                "Leaf retweeting threads among the top 100 abnormal threads",
+                "A selected thread with anomaly score 0.97"
+              ],
+              "observations": [
+                {
+                  "observationType": "Anomaly",
+                  "description": "A leaf thread with very high anomaly score and unusual content stands out among the selected timelines.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "mds-view",
+                      "subViewId": "mds-view.main"
+                    },
+                    {
+                      "viewId": "threads-view",
+                      "subViewId": "threads-view.timeline"
+                    }
+                  ],
+                  "targetDataDescription": [
+                    "A thread quoting the Tomb of the Unknown Soldier photo"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      110
+                    ],
+                    "quotes": [
+                      "one with very high anomaly score (0.97) and interesting content catches her eye"
+                    ],
+                    "reasoning": "The narrative explicitly says the analyst notices one striking high-score thread.",
+                    "confidence": 0.94
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "CandidateIdentified",
+                  "description": "The Tomb of the Unknown Soldier thread is selected as a candidate anomalous rumor topic for deeper drill-down.",
+                  "relatedQuestionIds": [
+                    "hurricane-sandy-case.question-identify-anomalous-threads"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "mds-view",
+                      "subViewId": "mds-view.main"
+                    },
+                    {
+                      "viewId": "threads-view",
+                      "subViewId": "threads-view.timeline"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      110
+                    ],
+                    "reasoning": "The selected high-score thread becomes the focus of the next drill-down step.",
+                    "confidence": 0.9
+                  },
+                  "inferenceType": "StrongInference"
+                }
+              ],
+              "decision": {
+                "description": "Drill into the suspicious Tomb of the Unknown Soldier topic and examine its broader thread context.",
+                "targetQuestionIds": [
+                  "hurricane-sandy-case.question-identify-anomalous-threads"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    110
+                  ],
+                  "reasoning": "The next sentences explicitly describe tracing the thread to its parent topic.",
+                  "confidence": 0.9
+                },
+                "inferenceType": "StrongInference"
+              },
+              "outcomeSummary": "A specific suspicious leaf thread is prioritized for topic-level inspection.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  110
+                ],
+                "figureRefs": [
+                  "fig_8"
+                ],
+                "quotes": [
+                  "she first choses to show only the leaf threads in the MDS view"
+                ],
+                "reasoning": "This step is directly narrated in the bottom-up passage.",
+                "confidence": 0.95
+              }
+            },
+            {
+              "stepId": "hurricane-sandy-case.bottom-up-rumor-triage.trace-topic-and-expand",
+              "stepIndex": 2,
+              "rawNarrative": "The analyst traces the suspicious thread to its parent topic in the cluster view, inspects thread details and volume patterns, expands all child threads, and reads a bizarre rumor tweet from a highly abnormal child thread.",
+              "questionsAddressed": [
+                "hurricane-sandy-case.question-identify-anomalous-threads"
+              ],
+              "intentCanonical": [
+                "DrillDown",
+                "Inspect",
+                "Explain"
+              ],
+              "intentText": "Determine whether the suspicious topic and its child threads look like misinformation.",
+              "strategyCanonical": [
+                "DrillDownThenExplain",
+                "EvidenceAccumulation"
+              ],
+              "operationCanonical": [
+                "Navigate",
+                "InspectDetails",
+                "ExpandContext",
+                "ReadAnnotation"
+              ],
+              "usedViews": [
+                {
+                  "viewId": "cluster-view",
+                  "subViewId": "cluster-view.main"
+                },
+                {
+                  "viewId": "context-menu",
+                  "subViewId": "context-menu.details"
+                },
+                {
+                  "viewId": "threads-view",
+                  "subViewId": "threads-view.timeline"
+                },
+                {
+                  "viewId": "detail-panel",
+                  "subViewId": "detail-panel.tweets"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "cluster-view",
+                  "subViewId": "cluster-view.main",
+                  "capabilityId": "cluster-view.main.open-thread"
+                },
+                {
+                  "viewId": "context-menu",
+                  "subViewId": "context-menu.details",
+                  "capabilityId": "context-menu.details.show-thread-details"
+                },
+                {
+                  "viewId": "threads-view",
+                  "subViewId": "threads-view.timeline",
+                  "capabilityId": "threads-view.timeline.expand-children"
+                },
+                {
+                  "viewId": "detail-panel",
+                  "subViewId": "detail-panel.tweets",
+                  "capabilityId": "detail-panel.tweets.read-raw-tweets"
+                }
+              ],
+              "targetDataDescription": [
+                "Parent thread about the Tomb of the Unknown Soldier picture",
+                "Child rumor thread retweeted by 63 users within 3 hours"
+              ],
+              "observations": [
+                {
+                  "observationType": "TemporalChange",
+                  "description": "The parent thread lasts about 14.5 hours with multiple peaks, and user anomaly scores generally transition from low to high over time.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "threads-view",
+                      "subViewId": "threads-view.timeline"
+                    }
+                  ],
+                  "targetDataDescription": [
+                    "Parent topic thread about the Tomb of the Unknown Soldier picture"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      110
+                    ],
+                    "figureRefs": [
+                      "fig_8"
+                    ],
+                    "quotes": [
+                      "lasting about 14.5 hours and involving a total of 407 users",
+                      "the user anomaly scores generally transit from low to high along time"
+                    ],
+                    "reasoning": "The timeline view is explicitly used to characterize the topic thread's temporal pattern.",
+                    "confidence": 0.96
+                  },
+                  "inferenceType": "Explicit"
+                },
+                {
+                  "observationType": "Anomaly",
+                  "description": "A child thread contains many highly abnormal users and includes a bizarre claim about Obama and the Tomb of the Unknown Soldier.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "threads-view",
+                      "subViewId": "threads-view.timeline"
+                    },
+                    {
+                      "viewId": "detail-panel",
+                      "subViewId": "detail-panel.tweets"
+                    }
+                  ],
+                  "targetDataDescription": [
+                    "A child thread under the Tomb of the Unknown Soldier topic"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      110
+                    ],
+                    "quotes": [
+                      "In one child thread that is full of \"purple\" abnormal users",
+                      "\"Obama tells marrines they don't have to guard the Tomb of the Unknown Soldier. They refuse.\""
+                    ],
+                    "reasoning": "The narrative explicitly links the thread's abnormal coloring with an implausible rumor tweet.",
+                    "confidence": 0.97
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "AnomalyFound",
+                  "description": "The Tomb of the Unknown Soldier topic contains at least one clearly rumor-like anomalous child thread.",
+                  "relatedQuestionIds": [
+                    "hurricane-sandy-case.question-identify-anomalous-threads"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "cluster-view",
+                      "subViewId": "cluster-view.main"
+                    },
+                    {
+                      "viewId": "threads-view",
+                      "subViewId": "threads-view.timeline"
+                    },
+                    {
+                      "viewId": "detail-panel",
+                      "subViewId": "detail-panel.tweets"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      110
+                    ],
+                    "quotes": [
+                      "This was proven to be a rumor afterwards"
+                    ],
+                    "reasoning": "The paper explicitly confirms the selected child thread as a rumor example.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "outcomeSummary": "The analyst confirms one anomalous rumor topic by combining structural drill-down, detailed metadata, and raw tweet inspection.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  110
+                ],
+                "figureRefs": [
+                  "fig_8"
+                ],
+                "reasoning": "The bottom-up paragraph explicitly ends with a rumor-confirming child thread.",
+                "confidence": 0.97
+              }
+            }
+          ],
+          "episodeOutcomeSummary": "Bottom-up exploration isolates the Tomb of the Unknown Soldier topic as a concrete anomalous rumor example and shows how its children expose suspicious content.",
+          "evidence": {
+            "passageIds": [
+              110
+            ],
+            "figureRefs": [
+              "fig_8"
+            ],
+            "reasoning": "Order 110 defines this phase and its local outcome.",
+            "confidence": 0.97
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "episodeId": "hurricane-sandy-case.top-down-structure-analysis",
+          "episodeTitle": "Top-Down Structure Analysis",
+          "localGoal": "Use the hierarchy and MDS overview to find another anomalous topic, decompose it into subtopics, and interpret its bursts.",
+          "focusQuestionIds": [
+            "hurricane-sandy-case.question-identify-anomalous-threads"
+          ],
+          "strategyCanonical": [
+            "OverviewFirst",
+            "ComparativeAnalysis"
+          ],
+          "strategyText": "Manipulate the hierarchy at a higher level, then unfold and compare subtopics to explain a suspicious thread's temporal structure.",
+          "steps": [
+            {
+              "stepId": "hurricane-sandy-case.top-down-structure-analysis.collapse-and-find-topic",
+              "stepIndex": 1,
+              "rawNarrative": "The analyst collapses the hierarchy to reduce clutter, identifies a relatively high-anomaly thread, reads topical cues from the tooltip, and unfolds its timeline.",
+              "questionsAddressed": [
+                "hurricane-sandy-case.question-identify-anomalous-threads"
+              ],
+              "intentCanonical": [
+                "Explore",
+                "Locate",
+                "Inspect"
+              ],
+              "intentText": "Find another promising anomalous topic from the overview and inspect its overall temporal pattern.",
+              "strategyCanonical": [
+                "OverviewFirst",
+                "AnomalyTriage"
+              ],
+              "operationCanonical": [
+                "CollapseContext",
+                "SelectItem",
+                "InspectDetails",
+                "OpenView"
+              ],
+              "usedViews": [
+                {
+                  "viewId": "cluster-view",
+                  "subViewId": "cluster-view.main"
+                },
+                {
+                  "viewId": "tooltip-view",
+                  "subViewId": "tooltip-view.card"
+                },
+                {
+                  "viewId": "threads-view",
+                  "subViewId": "threads-view.timeline"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "cluster-view",
+                  "subViewId": "cluster-view.main",
+                  "capabilityId": "cluster-view.main.collapse-levels"
+                },
+                {
+                  "viewId": "tooltip-view",
+                  "subViewId": "tooltip-view.card",
+                  "capabilityId": "tooltip-view.card.show-metadata"
+                },
+                {
+                  "viewId": "threads-view",
+                  "subViewId": "threads-view.timeline",
+                  "capabilityId": "threads-view.timeline.show-timelines"
+                }
+              ],
+              "targetDataDescription": [
+                "A relatively high-anomaly parent thread with keywords including power plant, home, and swim"
+              ],
+              "observations": [
+                {
+                  "observationType": "ContextualCue",
+                  "description": "Tooltip metadata suggests an interesting topic through keywords such as power plant, home, and swim.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "tooltip-view",
+                      "subViewId": "tooltip-view.card"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      111
+                    ],
+                    "quotes": [
+                      "from the tooltip she can see a few interesting keywords of the tweets, such as \"power plant\", \"home\" and \"swim\""
+                    ],
+                    "reasoning": "The tooltip directly supplies the topical cues used for choosing the thread.",
+                    "confidence": 0.95
+                  },
+                  "inferenceType": "Explicit"
+                },
+                {
+                  "observationType": "TemporalChange",
+                  "description": "The selected thread has mostly high-anomaly users and a three-peak volume pattern with a large burst at the end.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "threads-view",
+                      "subViewId": "threads-view.timeline"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      111
+                    ],
+                    "quotes": [
+                      "most of the users have scores above 0.75",
+                      "the user volume seems to form three peaks, with a large burst in the end"
+                    ],
+                    "reasoning": "The timeline inspection explicitly reveals both anomaly distribution and burst structure.",
+                    "confidence": 0.97
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "decision": {
+                "description": "Expand the selected thread to inspect whether its subthreads explain the burst structure.",
+                "targetQuestionIds": [
+                  "hurricane-sandy-case.question-identify-anomalous-threads"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    111
+                  ],
+                  "reasoning": "The next part of the paragraph explicitly moves to expanding the node into child threads.",
+                  "confidence": 0.92
+                },
+                "inferenceType": "StrongInference"
+              },
+              "outcomeSummary": "A second suspicious topic is selected and characterized as temporally bursty with mostly high-anomaly users.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  111
+                ],
+                "reasoning": "The top-down paragraph explicitly reports the chosen thread and its timeline pattern.",
+                "confidence": 0.96
+              }
+            },
+            {
+              "stepId": "hurricane-sandy-case.top-down-structure-analysis.decompose-and-interpret-bursts",
+              "stepIndex": 2,
+              "rawNarrative": "The analyst expands the selected node into three child threads, compares them via glyph encodings and MDS proximity, and attributes the final burst to two short rumor-related child threads.",
+              "questionsAddressed": [
+                "hurricane-sandy-case.question-identify-anomalous-threads"
+              ],
+              "intentCanonical": [
+                "Compare",
+                "DrillDown",
+                "Explain"
+              ],
+              "intentText": "Explain the burst structure by decomposing the thread into subtopics and comparing them.",
+              "strategyCanonical": [
+                "ComparativeAnalysis",
+                "DrillDownThenExplain"
+              ],
+              "operationCanonical": [
+                "ExpandContext",
+                "CompareAlternatives",
+                "LinkAcrossViews",
+                "Highlight"
+              ],
+              "usedViews": [
+                {
+                  "viewId": "cluster-view",
+                  "subViewId": "cluster-view.main"
+                },
+                {
+                  "viewId": "mds-view",
+                  "subViewId": "mds-view.main"
+                },
+                {
+                  "viewId": "threads-view",
+                  "subViewId": "threads-view.timeline"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "mds-view",
+                  "subViewId": "mds-view.main",
+                  "capabilityId": "mds-view.main.compare-projection"
+                },
+                {
+                  "viewId": "threads-view",
+                  "subViewId": "threads-view.timeline",
+                  "capabilityId": "threads-view.timeline.expand-children"
+                }
+              ],
+              "targetDataDescription": [
+                "Three child threads under the selected high-anomaly parent topic",
+                "Two short rumor-related child threads about power outage and a shark swimming down the street"
+              ],
+              "observations": [
+                {
+                  "observationType": "Comparison",
+                  "description": "Two child threads are shorter in duration, one is especially anomalous, and the pair is closer together in MDS space than the third child thread.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "cluster-view",
+                      "subViewId": "cluster-view.main"
+                    },
+                    {
+                      "viewId": "mds-view",
+                      "subViewId": "mds-view.main"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      111
+                    ],
+                    "figureRefs": [
+                      "fig_9"
+                    ],
+                    "quotes": [
+                      "two of them last very little time, including one with a significantly higher anomaly score",
+                      "these two threads appear much closer in the MDS view"
+                    ],
+                    "reasoning": "The cluster and MDS views jointly support the comparison among child subtopics.",
+                    "confidence": 0.96
+                  },
+                  "inferenceType": "Explicit"
+                },
+                {
+                  "observationType": "Relationship",
+                  "description": "The final burst in the parent timeline is caused by the two shorter rumor-related child threads.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "threads-view",
+                      "subViewId": "threads-view.timeline"
+                    },
+                    {
+                      "viewId": "cluster-view",
+                      "subViewId": "cluster-view.main"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      111
+                    ],
+                    "quotes": [
+                      "the analyst further observes that the final burst is caused by the two shorter threads"
+                    ],
+                    "reasoning": "The narrative explicitly connects the child threads to the burst pattern in the timeline.",
+                    "confidence": 0.97
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "SubgroupCharacterized",
+                  "description": "The selected parent thread decomposes into three subtopics, with two shorter rumor-related child threads accounting for the late burst.",
+                  "relatedQuestionIds": [
+                    "hurricane-sandy-case.question-identify-anomalous-threads"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "cluster-view",
+                      "subViewId": "cluster-view.main"
+                    },
+                    {
+                      "viewId": "mds-view",
+                      "subViewId": "mds-view.main"
+                    },
+                    {
+                      "viewId": "threads-view",
+                      "subViewId": "threads-view.timeline"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      111
+                    ],
+                    "reasoning": "The subtopic decomposition and burst explanation are explicit in the text.",
+                    "confidence": 0.97
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "outcomeSummary": "Top-down exploration identifies two additional rumor-related threads and explains how they generate the parent thread's final burst.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  111
+                ],
+                "figureRefs": [
+                  "fig_9"
+                ],
+                "reasoning": "The paragraph explicitly ties the child rumors to the burst and names their topics.",
+                "confidence": 0.97
+              }
+            }
+          ],
+          "episodeOutcomeSummary": "Top-down overview analysis finds another suspicious parent thread, decomposes it into rumor-bearing subtopics, and relates those subtopics to temporal bursts.",
+          "evidence": {
+            "passageIds": [
+              111
+            ],
+            "figureRefs": [
+              "fig_9"
+            ],
+            "reasoning": "Order 111 explicitly defines this top-down analytic phase.",
+            "confidence": 0.96
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "episodeId": "hurricane-sandy-case.cross-thread-comparison",
+          "episodeTitle": "Cross-Thread Comparison",
+          "localGoal": "Compare two rumor-related threads to inspect shared users and social links.",
+          "focusQuestionIds": [
+            "hurricane-sandy-case.question-compare-rumor-threads"
+          ],
+          "strategyCanonical": [
+            "ComparativeAnalysis",
+            "EvidenceAccumulation"
+          ],
+          "strategyText": "Juxtapose two previously identified rumor threads and inspect overlap plus user-link overlays to judge whether they may be socially related.",
+          "steps": [
+            {
+              "stepId": "hurricane-sandy-case.cross-thread-comparison.compare-overlap-and-links",
+              "stepIndex": 1,
+              "rawNarrative": "The analyst opens the two rumor-related threads together, enables duplicated-user highlighting and user-connection overlays, and inspects overlap and close relationships among participants.",
+              "questionsAddressed": [
+                "hurricane-sandy-case.question-compare-rumor-threads"
+              ],
+              "intentCanonical": [
+                "Compare",
+                "Correlate",
+                "Inspect"
+              ],
+              "intentText": "Assess whether two rumor threads share users or network relationships worth further investigation.",
+              "strategyCanonical": [
+                "ComparativeAnalysis",
+                "InspectThenCompare"
+              ],
+              "operationCanonical": [
+                "CompareAlternatives",
+                "ChangeEncoding",
+                "InspectDetails"
+              ],
+              "usedViews": [
+                {
+                  "viewId": "threads-view",
+                  "subViewId": "threads-view.timeline"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "threads-view",
+                  "subViewId": "threads-view.timeline",
+                  "capabilityId": "threads-view.timeline.show-duplicated-users"
+                },
+                {
+                  "viewId": "threads-view",
+                  "subViewId": "threads-view.timeline",
+                  "capabilityId": "threads-view.timeline.show-user-connections"
+                }
+              ],
+              "targetDataDescription": [
+                "The Tomb of the Unknown Soldier rumor thread",
+                "A second rumor-related thread from the top-down exploration"
+              ],
+              "observations": [
+                {
+                  "observationType": "Relationship",
+                  "description": "The two rumor threads share many users, and a few of those users have close social network relationships.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "threads-view",
+                      "subViewId": "threads-view.timeline"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      111
+                    ],
+                    "quotes": [
+                      "there are many overlaps, and a few users have close social network relationships"
+                    ],
+                    "reasoning": "The overlap and connection overlays directly support this observation.",
+                    "confidence": 0.97
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "RelationshipIdentified",
+                  "description": "The two rumor-related threads are linked by overlapping participants and some close user connections, suggesting potentially related rumor-spreading behavior.",
+                  "relatedQuestionIds": [
+                    "hurricane-sandy-case.question-compare-rumor-threads"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "threads-view",
+                      "subViewId": "threads-view.timeline"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      111
+                    ],
+                    "reasoning": "The analyst explicitly interprets the overlap as evidence meriting further investigation.",
+                    "confidence": 0.95
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "decision": {
+                "description": "Flag the overlapping users as candidates for deeper rumor-spreading investigation.",
+                "targetQuestionIds": [
+                  "hurricane-sandy-case.question-compare-rumor-threads"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    111
+                  ],
+                  "quotes": [
+                    "those users might merit further investigation into their rumor-spreading behavior"
+                  ],
+                  "reasoning": "The paper explicitly presents a next investigative commitment.",
+                  "confidence": 0.97
+                },
+                "inferenceType": "Explicit"
+              },
+              "outcomeSummary": "Cross-thread comparison reveals overlapping and socially connected participants across the two rumor topics.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  111
+                ],
+                "reasoning": "The comparison block explicitly ends with this takeaway.",
+                "confidence": 0.96
+              }
+            }
+          ],
+          "episodeOutcomeSummary": "Comparative inspection suggests that two rumor threads share user participation patterns and possible social ties worth follow-up analysis.",
+          "evidence": {
+            "passageIds": [
+              111
+            ],
+            "reasoning": "The connection-and-comparison subsection is explicit in order 111.",
+            "confidence": 0.95
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "episodeId": "hurricane-sandy-case.model-mechanism-inspection",
+          "episodeTitle": "Model Mechanism Inspection",
+          "localGoal": "Compare threads across anomaly levels and inspect hidden-state and feature patterns that may explain model behavior.",
+          "focusQuestionIds": [
+            "hurricane-sandy-case.question-understand-model"
+          ],
+          "strategyCanonical": [
+            "ComparativeAnalysis",
+            "SensemakingLoop",
+            "EvidenceAccumulation"
+          ],
+          "strategyText": "Build a contrast set across anomaly levels, compare temporal patterns, then inspect hidden-state projections and feature heatmaps to form partial explanations.",
+          "steps": [
+            {
+              "stepId": "hurricane-sandy-case.model-mechanism-inspection.compare-threads-by-anomaly-level",
+              "stepIndex": 1,
+              "rawNarrative": "The analyst samples six threads across high, medium, and low anomaly levels, aligns them in time, and compares their timeline shapes and anomaly patterns.",
+              "questionsAddressed": [
+                "hurricane-sandy-case.question-understand-model"
+              ],
+              "intentCanonical": [
+                "Compare",
+                "Explain",
+                "Explore"
+              ],
+              "intentText": "Look for temporal patterns that distinguish more anomalous threads from less anomalous ones.",
+              "strategyCanonical": [
+                "ComparativeAnalysis",
+                "InspectThenCompare"
+              ],
+              "operationCanonical": [
+                "SelectGroup",
+                "CompareAlternatives",
+                "ChangeLayout"
+              ],
+              "usedViews": [
+                {
+                  "viewId": "cluster-view",
+                  "subViewId": "cluster-view.main"
+                },
+                {
+                  "viewId": "mds-view",
+                  "subViewId": "mds-view.main"
+                },
+                {
+                  "viewId": "threads-view",
+                  "subViewId": "threads-view.timeline"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "threads-view",
+                  "subViewId": "threads-view.timeline",
+                  "capabilityId": "threads-view.timeline.show-timelines"
+                }
+              ],
+              "targetDataDescription": [
+                "Six threads spanning high, medium, and low anomaly-score levels"
+              ],
+              "observations": [
+                {
+                  "observationType": "Comparison",
+                  "description": "Threads with short-time bursts or long tails tend to receive larger anomaly scores.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "threads-view",
+                      "subViewId": "threads-view.timeline"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      112
+                    ],
+                    "figureRefs": [
+                      "fig_10"
+                    ],
+                    "quotes": [
+                      "threads that have short-time bursts or long tails are likely to be assigned larger anomaly scores"
+                    ],
+                    "reasoning": "The compared aligned timelines directly support this model-related temporal observation.",
+                    "confidence": 0.97
+                  },
+                  "inferenceType": "Explicit"
+                },
+                {
+                  "observationType": "Comparison",
+                  "description": "User anomaly scores alone do not deterministically explain thread abnormality because some threads disagree between thread-level and user-level anomaly patterns.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "threads-view",
+                      "subViewId": "threads-view.timeline"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      112
+                    ],
+                    "quotes": [
+                      "user anomaly scores... do not have determinative effects alone on the abnormality of threads"
+                    ],
+                    "reasoning": "The narrative explicitly states a mismatch between thread and user anomaly patterns.",
+                    "confidence": 0.97
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "NeedMoreEvidence",
+                  "description": "Temporal comparison reveals useful tendencies, but those tendencies are insufficient to fully explain the anomaly model.",
+                  "relatedQuestionIds": [
+                    "hurricane-sandy-case.question-understand-model"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "threads-view",
+                      "subViewId": "threads-view.timeline"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      112
+                    ],
+                    "quotes": [
+                      "future studies are needed to better understand the OCCRF model"
+                    ],
+                    "reasoning": "The paragraph explicitly frames the explanation as incomplete.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "decision": {
+                "description": "Inspect hidden states and feature values to search for deeper explanatory structure beyond raw anomaly scores.",
+                "targetQuestionIds": [
+                  "hurricane-sandy-case.question-understand-model"
+                ],
+                "evidence": {
+                  "passageIds": [
+                    113,
+                    114
+                  ],
+                  "reasoning": "The next two paragraphs explicitly move from timeline comparison to hidden states and features.",
+                  "confidence": 0.94
+                },
+                "inferenceType": "StrongInference"
+              },
+              "outcomeSummary": "Temporal comparison yields partial model insights but leaves the anomaly mechanism unresolved.",
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  112
+                ],
+                "figureRefs": [
+                  "fig_10"
+                ],
+                "reasoning": "Order 112 directly states both the observations and the remaining uncertainty.",
+                "confidence": 0.97
+              }
+            },
+            {
+              "stepId": "hurricane-sandy-case.model-mechanism-inspection.inspect-states-and-features",
+              "stepIndex": 2,
+              "rawNarrative": "The analyst compares hidden-state color patterns across threads, inspects state projections in the states view, and checks feature heatmaps to find attributes associated with higher anomaly scores.",
+              "questionsAddressed": [
+                "hurricane-sandy-case.question-understand-model"
+              ],
+              "intentCanonical": [
+                "Inspect",
+                "Explain",
+                "Compare"
+              ],
+              "intentText": "Use hidden states and feature values to form a deeper partial explanation of anomaly behavior.",
+              "strategyCanonical": [
+                "EvidenceAccumulation",
+                "DrillDownThenExplain"
+              ],
+              "operationCanonical": [
+                "CompareAlternatives",
+                "InspectDetails",
+                "RequestExplanation"
+              ],
+              "usedViews": [
+                {
+                  "viewId": "detail-panel",
+                  "subViewId": "detail-panel.states"
+                },
+                {
+                  "viewId": "detail-panel",
+                  "subViewId": "detail-panel.features"
+                },
+                {
+                  "viewId": "threads-view",
+                  "subViewId": "threads-view.timeline"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "detail-panel",
+                  "subViewId": "detail-panel.states",
+                  "capabilityId": "detail-panel.states.inspect-states"
+                },
+                {
+                  "viewId": "detail-panel",
+                  "subViewId": "detail-panel.features",
+                  "capabilityId": "detail-panel.features.inspect-features"
+                }
+              ],
+              "targetDataDescription": [
+                "Hidden-state transitions of compared threads",
+                "Feature heatmaps for a couple of threads"
+              ],
+              "observations": [
+                {
+                  "observationType": "Pattern",
+                  "description": "Highly anomalous threads mostly remain in the pink state, whereas lower-anomaly threads show more state variation.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "threads-view",
+                      "subViewId": "threads-view.timeline"
+                    },
+                    {
+                      "viewId": "detail-panel",
+                      "subViewId": "detail-panel.states"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      113,
+                      114
+                    ],
+                    "figureRefs": [
+                      "fig_10"
+                    ],
+                    "quotes": [
+                      "highly anomalous retweeting threads mostly remain in the \"pink\" state",
+                      "those with lower anomaly scores are likely to have more variations of state colors"
+                    ],
+                    "reasoning": "The paper directly contrasts state patterns across higher- and lower-anomaly threads.",
+                    "confidence": 0.97
+                  },
+                  "inferenceType": "Explicit"
+                },
+                {
+                  "observationType": "Pattern",
+                  "description": "Threads with higher anomaly scores tend to show larger values for activity-related features such as status count, followers count, and out degree.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "detail-panel",
+                      "subViewId": "detail-panel.features"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      114
+                    ],
+                    "quotes": [
+                      "threads with higher anomaly scores tend to have larger values in features measuring the activities of users"
+                    ],
+                    "reasoning": "The feature view explicitly supports this activity-feature comparison.",
+                    "confidence": 0.97
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "ExplanationFormed",
+                  "description": "Persistent pink hidden states and elevated activity-related feature values provide a partial explanation for why some rumor-related threads look more anomalous.",
+                  "relatedQuestionIds": [
+                    "hurricane-sandy-case.question-understand-model"
+                  ],
+                  "supportedByViews": [
+                    {
+                      "viewId": "detail-panel",
+                      "subViewId": "detail-panel.states"
+                    },
+                    {
+                      "viewId": "detail-panel",
+                      "subViewId": "detail-panel.features"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      113,
+                      114
+                    ],
+                    "reasoning": "The final model-understanding observations combine state and feature evidence into a partial explanation.",
+                    "confidence": 0.93
+                  },
+                  "inferenceType": "FigureGroundedInference"
+                }
+              ],
+              "outcomeSummary": "State and feature inspection add a deeper but still incomplete explanation of anomaly patterns across rumor-related threads.",
+              "unresolvedQuestionIds": [
+                "hurricane-sandy-case.question-understand-model"
+              ],
+              "inferenceType": "Explicit",
+              "evidence": {
+                "passageIds": [
+                  113,
+                  114
+                ],
+                "figureRefs": [
+                  "fig_10"
+                ],
+                "reasoning": "Orders 113-114 explicitly report these deeper insights while the prior paragraph keeps the question only partially resolved.",
+                "confidence": 0.95
+              }
+            }
+          ],
+          "episodeOutcomeSummary": "The analyst forms a partial explanation of model behavior by comparing thread shapes, hidden-state persistence, and activity-related features, but the mechanism is not fully resolved.",
+          "evidence": {
+            "passageIds": [
+              112,
+              113,
+              114
+            ],
+            "figureRefs": [
+              "fig_10"
+            ],
+            "reasoning": "The final three paragraphs explicitly define this model-understanding phase and its limits.",
+            "confidence": 0.96
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "finalOutcome": {
+        "finalInsights": [
+          {
+            "insightType": "AnomalyFound",
+            "description": "FluxFlow helps surface multiple rumor-related anomalous threads during the Hurricane Sandy event, including the Tomb of the Unknown Soldier, power outage, and shark rumor topics.",
+            "relatedQuestionIds": [
+              "hurricane-sandy-case.question-identify-anomalous-threads"
+            ],
+            "supportedByViews": [
+              {
+                "viewId": "cluster-view",
+                "subViewId": "cluster-view.main"
+              },
+              {
+                "viewId": "threads-view",
+                "subViewId": "threads-view.timeline"
+              },
+              {
+                "viewId": "detail-panel",
+                "subViewId": "detail-panel.tweets"
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                110,
+                111
+              ],
+              "figureRefs": [
+                "fig_8",
+                "fig_9"
+              ],
+              "reasoning": "The case explicitly identifies several anomalous rumor topics across the bottom-up and top-down episodes.",
+              "confidence": 0.97
+            },
+            "inferenceType": "Explicit"
+          },
+          {
+            "insightType": "RelationshipIdentified",
+            "description": "Comparison across rumor-related threads reveals participant overlap and some close social connections that may indicate related rumor-spreading behavior.",
+            "relatedQuestionIds": [
+              "hurricane-sandy-case.question-compare-rumor-threads"
+            ],
+            "supportedByViews": [
+              {
+                "viewId": "threads-view",
+                "subViewId": "threads-view.timeline"
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                111
+              ],
+              "reasoning": "The connection-and-comparison block explicitly reports this relationship-oriented finding.",
+              "confidence": 0.95
+            },
+            "inferenceType": "Explicit"
+          },
+          {
+            "insightType": "ExplanationFormed",
+            "description": "Persistent pink hidden states and elevated activity-related features partially explain high anomaly scores, but the full OCCRF mechanism remains unresolved.",
+            "relatedQuestionIds": [
+              "hurricane-sandy-case.question-understand-model"
+            ],
+            "supportedByViews": [
+              {
+                "viewId": "detail-panel",
+                "subViewId": "detail-panel.states"
+              },
+              {
+                "viewId": "detail-panel",
+                "subViewId": "detail-panel.features"
+              }
+            ],
+            "evidence": {
+              "passageIds": [
+                112,
+                113,
+                114
+              ],
+              "figureRefs": [
+                "fig_10"
+              ],
+              "reasoning": "The final model-understanding sequence supports a partial explanatory claim and also notes open uncertainty.",
+              "confidence": 0.94
+            },
+            "inferenceType": "FigureGroundedInference"
+          }
+        ],
+        "finalDecisions": [
+          {
+            "description": "Users overlapping across rumor threads should be investigated further for rumor-spreading behavior.",
+            "targetQuestionIds": [
+              "hurricane-sandy-case.question-compare-rumor-threads"
+            ],
+            "evidence": {
+              "passageIds": [
+                111
+              ],
+              "quotes": [
+                "those users might merit further investigation into their rumor-spreading behavior"
+              ],
+              "reasoning": "The paper explicitly states this follow-up implication.",
+              "confidence": 0.97
+            },
+            "inferenceType": "Explicit"
+          }
+        ],
+        "unresolvedQuestionIds": [
+          "hurricane-sandy-case.question-understand-model"
+        ],
+        "claimedSystemValue": "FluxFlow supports complementary bottom-up and top-down exploration, cross-thread comparison, and partial explanation of the anomaly model in a misinformation-focused social-media case study.",
+        "evidence": {
+          "passageIds": [
+            110,
+            111,
+            112,
+            113,
+            114
+          ],
+          "figureRefs": [
+            "fig_1",
+            "fig_8",
+            "fig_9",
+            "fig_10"
+          ],
+          "reasoning": "The case narrative demonstrates these different forms of support across the full walkthrough.",
+          "confidence": 0.95
+        },
+        "inferenceType": "StrongInference"
+      },
+      "overallStrategySummary": "The case alternates between bottom-up anomaly triage and top-down structural exploration, then compares rumor threads directly and finally inspects hidden-state and feature evidence to partially explain model behavior.",
+      "caseNarrativeSummary": "In the Hurricane Sandy case study, a synthesized analyst uses FluxFlow to surface suspicious rumor-related retweeting threads, decomposes and compares those threads across hierarchy and time, inspects overlap among rumor participants, and then studies hidden states and feature values to form a partial explanation of why some threads appear more anomalous.",
+      "evidence": {
+        "passageIds": [
+          109,
+          110,
+          111,
+          112,
+          113,
+          114
+        ],
+        "figureRefs": [
+          "fig_1",
+          "fig_8",
+          "fig_9",
+          "fig_10"
+        ],
+        "reasoning": "The full case-study block supports the end-to-end narrative and episode segmentation.",
+        "confidence": 0.97
+      },
+      "inferenceType": "Explicit"
+    }
+  ],
+  "paperLevelUsageClaims": [
+    "The paper demonstrates FluxFlow through a synthesized case-study walkthrough grounded in expert interviews.",
+    "FluxFlow supports complementary bottom-up and top-down analysis, cross-thread comparison, and model-understanding activities in the Hurricane Sandy misinformation setting."
+  ],
+  "evidence": {
+    "passageIds": [
+      105,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114
+    ],
+    "figureRefs": [
+      "fig_1",
+      "fig_8",
+      "fig_9",
+      "fig_10"
+    ],
+    "reasoning": "Order 105 frames the existence of one analysis use case, and orders 109-114 plus the case-study figures provide the actual walkthrough evidence.",
+    "confidence": 0.96
+  },
+  "inferenceType": "Explicit"
+}

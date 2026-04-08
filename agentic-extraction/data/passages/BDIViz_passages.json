@@ -1,0 +1,397 @@
+[
+  {
+    "type": "title",
+    "order": 0,
+    "text": "Abstract"
+  },
+  {
+    "type": "paragraph",
+    "order": 1,
+    "text": "Biomedical data harmonization is essential for enabling exploratory analyses and meta-studies, but the process of schema matching-identifying semantic correspondences between elements of disparate datasets (schemas)-remains a labor-intensive and error-prone task. Even state-of-the-art automated methods often yield low accuracy when applied to biomedical schemas due to the large number of attributes and nuanced semantic differences between them. We present BDIViz, a novel visual analytics system designed to streamline the schema matching process for biomedical data. Through formative studies with domain experts, we identified key requirements for an effective solution and developed interactive visualization techniques that address both scalability challenges and semantic ambiguity. BDIViz employs an ensemble approach that combines multiple matching methods with LLM-based validation, summarizes matches through interactive heatmaps, and provides coordinated views that enable users to quickly compare attributes and their values. Our method-agnostic design allows the system to integrate various schema matching algorithms and adapt to application-specific needs. Through two biomedical case studies and a within-subject user study with domain experts, we demonstrate that BDIViz significantly improves matching accuracy while reducing cognitive load and curation time compared to baseline approaches."
+  },
+  {
+    "type": "title",
+    "order": 2,
+    "text": "Automated"
+  },
+  {
+    "type": "paragraph",
+    "order": 3,
+    "text": "Human-in-the-loop Fig. 1: Biomedical data harmonization requires experts to manually match attributes across disparate datasets and schemas (1A-C)."
+  },
+  {
+    "type": "paragraph",
+    "order": 4,
+    "text": "BDIViz (Biomedical Data Integration Visualization) streamlines this process through interactive exploration and validation of matches using visualization and LLM-based support. BDIViz leverages (2) automated methods for schema matching to (3A-3B) derive candidate matches, which are summarized in (6) an interactive heatmap. As users investigate and validate matches, the system employs a data-driven approach to empower them to make informed decisions by providing the ability to (4A) compare attribute values, (4C) explore similarity thresholds, and (4B) adjust matcher weights. (5) The LLM-based agent assists in match exploration and validation by deriving explanations. (7) The curated candidates are used to derive the (8A) harmonized dataset and (8B) mapping specification."
+  },
+  {
+    "type": "title",
+    "order": 5,
+    "text": "INTRODUCTION"
+  },
+  {
+    "type": "paragraph",
+    "order": 6,
+    "text": "Schema matching is a critical step in data harmonization (integration) required to identify semantic correspondences between attributes of disparate datasets [5]. In biomedical research, where datasets are increasingly spread across repositories [26,50,51], harmonization is essential to enable analyses and cross-study comparisons necessary for scientific discovery [24,64,66,67,71]. Despite investments to promote data sharing and adherence to the FAIR principles [73], harmonization remains labor-intensive and error-prone [24,64,66,67]. While many automated schema matching approaches exist [10,15,18,22,35,36,49], no single method consistently performs well across datasets [38,46]. Users must therefore manually validate matches, eliminate false positives and negatives [8]. This challenge is particularly acute in biomedical schemas, where even the best-performing methods struggle due to scale and ambiguity [46]."
+  },
+  {
+    "type": "paragraph",
+    "order": 7,
+    "text": "Standard biomedical schemas, such as the Genomic Data Commons (GDC) with over 700 attributes [26], including patient demographics, diagnosis, pathology details, family history, are commonly used for data sharing and integration in cancer research. Researchers often map their datasets to these schemas for sharing in data commons and often use them as the target for integrating disparate datasets [24]. For example, in a pan-cancer analysis, Li et al. integrated datasets from 10 studies of different cancer types [45], containing a total of 569 attributes, by first mapping them to the GDC schema, a process that took several months. In addition to the very large number of potential candidate matches (over 383,000), the task was further complicated by nuanced semantic differences between attributes, e.g., age_at_diagnosis and age_at_index (Fig. 1 (3A,3B)), thereby making accurate match curation cognitively demanding even for domain experts."
+  },
+  {
+    "type": "paragraph",
+    "order": 8,
+    "text": "Several visualization-based tools have been proposed to assist in general schema matching [11,[55][56][57]. However the node-link visualization paradigm they used, where source and target attributes are represented as nodes and matches as links, does not scale well for large biomedical schemas and lacks domain-specific semantics needed to resolve terminology ambiguities."
+  },
+  {
+    "type": "paragraph",
+    "order": 9,
+    "text": "As a result, despite advances in automated methods and visual interfaces, the identification and validation of matches remains timeconsuming and error-prone. Harmonization errors can have serious consequences: they compromise analytical integrity, distort scientific and clinical conclusions, impede cross-study validations, and ultimately hinder research progress. This challenge reveals a critical gap in the design of tools for biomedical schema matching. User-in-the-Loop AI-Powered Visual Schema Matching. We propose a novel visual analytics tool -BDIVizthat integrates automated matching methods, interactive visualization, and LLM-based validation and explanation to address the challenges in biomedical schema matching. To develop an effective solution, we employed a user-centered design approach. We first conducted a formative study with five biomedical experts, identifying key design requirements through interviews and workflow observations (Section 3). Then refined BDIViz via multiple co-design sessions with three biomedical researchers, incorporating iterative feedback on usability and functionality (Section 3)."
+  },
+  {
+    "type": "paragraph",
+    "order": 10,
+    "text": "BDIViz addresses the scalability challenges through novel interactive visualization techniques. It employs an interactive heatmap (Fig. 1 (6)) to summarize matches across large schemas, allowing users to intuitively explore similarities, filter, and refine matches efficiently, and then accept, or reject candidates. The interface organizes attributes into a tree-like structure, grouping similar attributes for efficient navigation of large schemas. BDIViz guides users in assessing nuanced semantic differences through interpretability and feedback. The system provides attribute comparison visualizations (Fig. 1 (4A,4C)), relevant attribute information, and LLM-based match explanations (Fig. 3 (3)) to help users disambiguate similar attributes. Last but not least, BDIViz captures provenance by recording user interactions to ensure transparency, traceability, and reproducibility of the curation process. This approach transforms the manual, error-prone process into a guided workflow combining human expertise and computational methods, addressing the needs identified from our formative studies."
+  },
+  {
+    "type": "paragraph",
+    "order": 11,
+    "text": "An important innovation of our approach is its method-agnostic design allowing the integration of various schema matching algorithms. This flexibility ensures that BDIViz can readily incorporate new developments in schema matching methods [18]. Recognizing that no single method performs consistently well across diverse schemas, BDI-Viz employs an ensemble approach that combines multiple matching algorithms and uses LLMs as an additional matcher. This multi-faceted strategy offers important benefits: it identifies high-confidence matches (where multiple matchers agree), directs expert attention to uncertain cases that require human judgment, leverages the broad knowledge encoded in LLMs, and as we show in Section 5, results in matching accuracies that are higher than what is attained by individual matchers used in isolation. Users can inspect matcher influence, adjust weights, and refine rankings (Fig. 1 (4B)), ensuring transparency and control throughout the curation process."
+  },
+  {
+    "type": "paragraph",
+    "order": 12,
+    "text": "We evaluated BDIViz with a within-subject user study with twelve expert participants, comparing its performance against a baseline workflow. Participants completed two schema matching tasks in a counterbalanced order. NASA TLX [25], SUS, and performance measures results showed that BDIViz reduced task completion time by over 14% while significantly improving accuracy (by 50%). We also show that BDIViz generalizes and addresses large scale complex schema matching tasks for real-world use cases in cancer research. We carried out a quantitative evaluation of different system components and present case studies that illustrate the system's effectiveness across diverse real-world biomedical schema matching tasks. Contributions. Our main contributions can be summarized as follows:"
+  },
+  {
+    "type": "paragraph",
+    "order": 13,
+    "text": "• A user-centered design approach, using a formative study and iterative co-design sessions with domain experts to identify key domainspecific design requirements for schema matching (Section 3). • BDIViz, an open-source visual analytics system that tackles scalability, semantic ambiguity, and usability challenges through interactive heatmaps and filtering, comparative attribute visualizations, and LLM-derived explanations (Section 4) [69]. • A method-agnostic ensemble that integrates multiple matchers with LLM-based validation to identify high-confidence matches and direct expert attention to uncertain cases. • Evaluation of the system's performance -a within-subject expert user study (n=12) and two biomedical case studies (Section 5, 6, 7)."
+  },
+  {
+    "type": "title",
+    "order": 14,
+    "text": "BACKGROUND AND RELATED WORK"
+  },
+  {
+    "type": "paragraph",
+    "order": 15,
+    "text": "Schema matching is a widely studied problem and an important step required to integrate data from multiple sources. Schema Matching Methods. Schema matching encompasses methods for determining the correspondence between elements from different schemas (tables). Typically, a schema matching method receives a source and a target table as input, computes a set of similarity metrics for attribute pairs, and outputs a subset of pairs representing potential matches. Earlier works in the field relied mainly on syntactic similarity measures between attribute names and instances [58,79]. Recent research has employed techniques that capture semantic similarity between attributes. Some methods employ pre-trained models, including: i) pre-trained word and character embedding models [6,17], ii) pretrained or fine-tuned transformer-based models [13,47,80], and iii) (self-)supervised deep learning models [39,78]. The emergence of LLMs has led to the development of approaches that utilize prompts to obtain potential matches between pairs of tables [43,54]; however, such methods are not effective or even applicable when schemas are large, as in the cases we study in this work, due to the cost and context limits of LLMs. More recently, Liu et al. proposed a new method that attemps to address this limitation by combining pre-trained models and LLMs [46]. Despite the multitude of schema matching techniques in the literature, experimental evaluations have shown that there is no method that consistently performs well for different data and schemas [38,46]. Therefore, we have designed BDIViz to combine the results of several schema matching methods and provide vizualizations that intuitively summarize the outputs of individual matchers. Furthermore, we leverage LLMs and the broad knowledge they encode to derive matching explanations and help with the selection of valid matches. User Interfaces for Schema Matching. Some schema matching systems provide GUIs that enable users to visually inspect matches derived by the underlying matching method. The COMA 3.0 GUI displays matches as a bipartite graph and allows users to review and edit automatically generated matches by manually adding and removing edges between attributes [2,11]. BizTalk Mapper introduced incremental matching through its GUI, allowing users to inspect candidate matches for each source attribute one at a time [4]. AMC provides more flexibility: users can execute and debug matching processes by moving forward and backward, setting breakpoints, and analyzing intermediate matching results through visualizations and 3D histograms to check similarity scores [55]. Harmony presented a schema matching system that is enhanced by a GUI for filtering results [48,62]. Unlike the aforementioned systems, Valentine uses a GUI to enable the execution of several schema matching methods and allows users to inspect lists of attribute pairs ranked by the similarity score that each individual method outputs [37]."
+  },
+  {
+    "type": "paragraph",
+    "order": 16,
+    "text": "These schema matching GUIs have important limitations. First, most use node-link diagrams or line-based visualizations to represent matches, leading to visual clutter and making it hard to navigate as the number of schema attributes increases. Ghoniem et al. and Nobre et al. showed that node-link diagrams are especially limited in dense or largescale scenarios, like in schema matching, due to cognitive overload and edge overlap [20,52]. Furthermore, users are typically presented with similarity scores between attribute pairs as the only guidance for evaluating potential matches. Kandel et al. emphasized that abstract statistics hinder understanding and decision-making, especially for users without deep context knowledge [33]. BDIViz overcomes these limitations by: i) introducing intuitive, a matrix-based visualization to display and summarize matches, ii) supporting large-scale schema matching without overwhelming users, iii) providing data-and contextbased insights enhanced by LLMs, and iv) enabling the integration of multiple matching methods. Scalable Heatmap Visualization. Schema matching results are naturally represented as a 2D matrix of scores between columns from two database schemas [11], making heatmaps a suitable visual representation. However, real-world schemas often involve tens to over a hundred columns [46], posing challenges for scalability, grouping, and drill-down analyses. While conventional heatmaps can scale to wide matrices [16,23], they often lack support for column grouping and focused exploration. Focus+Context techniques are commonly used in visual analytics to enable detailed inspection while preserving global context [32]. Prior work has proposed expandable heatmap cells to support such interaction [31], allowing users to enlarge a cell on demand. We make use of this design pattern to enable users to drill down into a match: each expanded cell displays a histogram that summarizes the value distributions in the corresponding columns. For column grouping, prior work often combines heatmaps with hierarchical visualizations such as node-link diagrams or dendrograms [65,68]. While effective for small hierarchies, these methods can become visually cluttered and disconnected from the heatmap when applied to large schemas. To improve visual coherence and scalability, we adopt a space-filling treemap layout [63] to represent column clusters. Unlike node-link diagrams, space-filling treemaps make efficient use of screen space and allow for direct alignment with the heatmap grid [41,44,61]. In our system, the space-filling treemap structure is presented adjacent to the heatmap axes, providing users with an integrated view of both column grouping and matching scores. This design supports scalable comparison while maintaining a compact and coherent visual layout. User Interfaces for Data Wrangling. Data wrangling presents fundamental challenges for data exploration and visualization. It entails many different operations, including data transformation, schema matching, entity resolution, and data cleaning [33]. Different systems have been proposed for different tasks. For example, Kendel et al. pioneered interactive data wrangling through Wrangler [34], which allows users to specify data transformations through direct manipulation. Rigel introduced a declarative approach to data transformation that relies on the visual arrangement of tables -rows, columns and cells [7]. Open-Refine allows users to iteratively apply data cleaning operations while interacting with the data in a spreadsheet view [53]. These systems aim to help users carry out a series on individual data transformation steps and do not support automated schema matching. While BDIViz also employs a user-in-the-loop approach, it does so to support the exploration and verification of matches derived by automated schema matching methods. Graph and Relational Data Visualization. Schema matching can be seen as a graph visualization problem since it entails the visualization of relationships between two sets of entities (source and target attributes). Ghoniem et al. demonstrated that matrix representations outperform node-link diagrams for dense graphs and relationship analysis tasks [20]. Henry and Fekete further showed the benefits of dualrepresentation systems, combining node-link diagrams and matrices for flexible exploration of social network structures [28]. Nobre et al. surveyed techniques for visualizing multivariate networks, emphasizing the advantages of adjacency matrices for detailed and scalable attribute analysis [52]. Additionally, Alper et al. provided insights into effective techniques for comparing weighted graphs, highlighting matrix-based visualizations as particularly effective for complex relationship assessments [1]. Our approach builds upon these foundational studies, employing a matrix-based representation to effectively handle dense biomedical schema matching scenarios."
+  },
+  {
+    "type": "title",
+    "order": 17,
+    "text": "FORMATIVE STUDY AND CO-DESIGN"
+  },
+  {
+    "type": "paragraph",
+    "order": 18,
+    "text": "To design a tool that aligns with biomedical researchers' data harmonization workflows, we conducted a formative study with biomedical experts and data scientists. Our goal was to understand: (1) their existing schema matching processes, and (2) identify key challenges they face, including current workflow inefficiencies and pain points. Expert Participants. We recruited five expert participants from our collaborator network. Among these experts, three are biomedical researchers and data scientists from a major academic medical institution (E1 -E3), one is a principal scientist from a major research organization (E4), and one is a data librarian at a prominent academic medical library (E5). (Note: a detailed table is provided in the supplementary material). Formative Study. We then conducted a ∼30 minutes formative study with each expert. The study began with the experts first completing a questionnaire on how they approach schema matching, key evaluation factors, and tools used. Through a semi-structured interview, we then collected feedback on their workflow, current challenges, and feature suggestions. Each 30-minute interview was transcribed and analyzed to extract key insights, which we synthesize into a list of prioritized user needs or desiderata for the tool design (Fig. 2). on these insights, we developed the initial prototype of the tool that was further refined iteratively through the following co-design sessions with three experts. Co-Design with the Experts. We conducted three one-hour co-design sessions with biomedical researchers to ensure our system's usability and alignment with their needs, following a user-centered design approach. First Session: We presented an initial prototype using a source dataset from Clark et al. to match the Genomic Data Commons (GDC) schema [9]. Feedback was gathered on usability, complexity, and areas of confusion, which informed the UI improvements. Second Session: Based on initial feedback, we refined the heatmap, updated color schemes, introduced a semantic clustered tree structure for labels, and added a preliminary LLM-based agent. We listed 14 UI features and sought input on their importance (for example, critically needed, good to have, could be removed, or needed redesigning), which helped us prioritize design changes. Third Session: Using feedback from the second session, we improved the LLM agent, visual layout, interactivity, and added a history feature. The final session provided further refinements to ensure BDIViz met researchers' needs. Throughout all the co-design sessions, experts shared insights and use cases, guiding design improvements. The co-design sessions culminated in the design considerations shown in Fig. 2 and the BDIViz system described next."
+  },
+  {
+    "type": "paragraph",
+    "order": 19,
+    "text": "4 BDIViz : AI-POWERED VISUAL SCHEMA MATCHING Design Rationale. Our design adopts a matrix-based heatmap visualization combined with interactive filtering and semantic overlays to address scalability and interpretability challenges in schema matching. Prior studies have shown that matrix-based representations scale more effectively than node-link diagrams, preserving spatial consistency and enabling pattern recognition across large attribute sets [20,28,30,52]. To further support user navigation and reduce visual complexity, we incorporate interactive filtering, allowing users to focus on highconfidence matches or subsets of interest -an approach aligned with principles of faceted interaction and details-on-demand [27,75]. Additionally, our system supports human-AI collaboration by integrating LLM-powered semantic explanations to help users interpret similarity scores and make informed decisions. This reflects recent HCI research on enhancing transparency and trust in AI-supported interfaces and ensures that non-expert users can meaningfully engage with the matching process [14,29,60,70]. System Overview. As Fig. 3 illustrates, to initiate a data harmonization task, the user uploads the source and target datasets or a source dataset and a target schema (Fig. 3 (1A)). BDIViz processes these inputs using an ensemble of matchers to generate candidate matches with associated confidence scores (Section 4.2). The system first identifies and automatically accepts matches that have high confidence scores and that multiple matchers agree on. This allows users to focus their attention on uncertain candidates that are more challenging to validate. Users can inspect the accepted matches and modify them if needed. The candidate pairs are summarized in the interactive heatmap matrix (Fig. 3 (2A)), which displays the source attributes as rows and target as columns; cells correspond to matches and their color intensity indicates matching confidence."
+  },
+  {
+    "type": "paragraph",
+    "order": 20,
+    "text": "Users can configure the datasets/schemas, matcher parameters as well as modify matching thresholds in the Control Panel (Fig. 3 (1)). The Interactive Heatmap Panel (Fig. 3 (2A)) provides a summary of the matches and enables users to explore and compare them. By selecting a cells, users can examine a specific attribute pair in detail. To facilitate exploration, the target attributes are clustered and displayed as a spacefilling treemap layout (Fig. 3 (2A) bottom). When a cell is selected, details of the match are displayed. Here, the selected cell represents a candidate match between the source attribute Histologic_Type and primary_diagnosis from GDC; the value comparison for these attributes is shown in Fig. 3 (2B). In addition, contextual information is displayed in the Agent panel to guide accept/reject decisions: explanations generated by the LLM-based agent that take into account semantic similarity, shared tokens, and value overlap (Fig. 3 (3A)); and attribute descriptions (when available) -here, the description of primary_diagnosis from GDC is shown (Fig. 3 (3B)). Users can filter matches by confidence thresholds, search using keywords (Fig. 3 (4)), and group similar attributes (Fig. 3 (1B) and Section 4.2) to focus on relevant subsets rather than viewing all possible matches simultaneously. The system also supports pagination when the number of selected source attributes exceeds the available screen space."
+  },
+  {
+    "type": "title",
+    "order": 21,
+    "text": "UI Components"
+  },
+  {
+    "type": "paragraph",
+    "order": 22,
+    "text": "In what follows, we describe the UI components in detail and the design considerations they address (Fig. 2). Control Panel (DC1, DC2, DC3). The control panel (Fig. 3 (1)) serves two primary functions: configuration of matching parameters and keeping track of user actions. The configuration view enables users to adjust key parameters that influence the automated matching process. Users can select scoring algorithms, threshold values, and weighting factors for different similarity metrics (Fig. 3 (1B)). This allows users to tailor the matching process to their specific domain requirements without requiring in-depth technical knowledge of the underlying algorithms. The provenance component records user interactions chronologically, allowing users to revisit previous states of the curation process (Fig. 3 (1C)). Each interaction is represented as a discrete event on the timeline, with icons indicating the type of action performed (e.g., parameter adjustment, match confirmation, rejection). This approach was chosen in addition to alternative designs-such as a simple list of actions or undo/redo buttons (which are also present in the control panel (Fig. 3 (1A))) -as it provides both temporal context and the ability to directly navigate to specific decision points. Interactive Heatmap Panel (DC1). The Interactive Heatmap View (Fig. 3 (2A)) is the core visualization for exploring matches. To visualize complex relationships among multiple attributes simultaneously, this view uses a matrix-based layout where color intensity encodes similarity scores, with adjustable palettes for accessibility. These color scales are normalized with appropriate padding to enhance visual discrimination between similarity scores. Combining overview and detail-on-demand, this view helps users identify, explore, and validate potential matches. As users interactively explore matches, detailed information that captures different aspects of a match are displayed. Value Distribution Histogram (DC2). When a user hovers over a cell, it is expanded to display side-by-side histograms with source and target value distributions (Fig. 4 (2A,2B)). This allows users to go beyond similarity scores and verify semantic alignment by inspecting the actual data values. For example, they can quickly determine if cancer diagnosis codes share similar distributions. Target Attribute Hierarchy (DC3, DC4). The x-axis of the heatmap displays a hierarchical organization of target attributes (Fig. 3 (2A)), providing a concise visualization of relationships present in complex biomedical schemas like the Genomic Data Commons (GDC). It employs a three-level hierarchy: supercategories (e.g., \"clinical,\" \"biospecimen\"), categories within each supercategory (e.g., \"diagnosis,\" \"treatment\"), and individual columns. The color encoding differentiates categories, while curved connectors represent hierarchical relationships. Our interactive hover functionality allows users to highlight specific levels, super-categories, or individual columns to better understand their relationships. To accommodate schemas of varying sizes, the adaptive layout automatically adjusts spacing, compressing attributes and selectively omitting text labels when necessary. This approach ensures clear, efficient navigation of large schemas containing a large number of attributes while preserving structural context. Value Comparison and Mapping (DC2, DC4). Users can compare the values of source and target attributes side by side using this component ((Fig. 3 (2B)) which presents a one-to-one mapping between the unique values from the source column and the corresponding values from the candidate target column. These mappings can be computed with general similarity methods such as RapidFuzz algorithm from PolyFuzz or specialized libraries [3,77]. Note that the leftmost column, labeled \"Source Value,\" remains static, while the column corresponding to the The panel displays LLM-generated explanations for selected matches using a combination of icons and colors to encode different types of evidence (e.g., semantic match, value distribution similarity, column name similarity). As shown in Fig. 3 (3A) and Fig. 5, each explanation category is presented with a confidence score visualized as a progress bar, helping users gauge the system's certainty. This design allows domain experts to quickly understand the rationale behind suggestions without requiring them to parse complex technical details. Knowledge Discovery: The panel also displays external knowledge available about the attributes (Fig. 3 (3B)), presenting contextual information such as attribute definitions, data types, and value constraints."
+  },
+  {
+    "type": "paragraph",
+    "order": 23,
+    "text": "Users can provide feedback on explanations, either confirming the system's reasoning or suggesting corrections, which is incorporated by the agent. The confidence visualization employs a gradient-based encoding derived from the color schemes defined in the system's color utilities. This approach provides an intuitive sense of confidence levels while maintaining visual consistency with the heatmap visualization. Agent Learning Over Time: The LLM agent learns from user interactions over time through a retrieval-augmented generation (RAG) component. This system stores and retrieves: (1) previously validated matches across datasets, (2) domain-specific terminology relationships, and (3) user correction patterns on similar attribute types. By incorporating this historical knowledge, the system progressively adapts its explanations to align with user preferences and domain conventions. UpSet Plot Panel (DC4). The matching score displayed in the heatmap is computed as the average of an ensemble of matchers. This detailed view of individual matcher contributions is implemented as an UpSet plot visualization, shown in Fig. 6, where each matcher's recommendation is encoded by a dot, allowing users to identify which matchers support a particular match and how these recommendations distribute across candidates [40]. For example, the target attribute age is supported by the three matchers, while bmi is only derived by Magneto ZS. This visualization maintains visual coherence with our interactive heatmap while providing deeper insights into the matching process."
+  },
+  {
+    "type": "title",
+    "order": 24,
+    "text": "Backend and Match Generation"
+  },
+  {
+    "type": "paragraph",
+    "order": 25,
+    "text": "The backend consists of a matching component, the LLM agent that derives explanations, the provenance manager that keeps track of user interactions, and other supporting modules that produce the content required by the UI components. We describe these below. Identifying Easy Matches. To prune the space of candidate matches that must be evaluated by matchers and users, BDIViz uses a simple heuristic, inspired by what experts do when they manually perform schema matching: it identifies matches that have high similarity for both attribute names and values. Specifically, it leverages fuzzy match- ing scores between attribute names and compute value similarity by averaging the highest fuzzy matching scores for each unique value in the source attribute against the unique values in the target attribute [77]. Formally, let S denote the set of unique source values and T the set of unique target values. If f (s,t) represents the fuzzy matching score between s and t, then for each s ∈ S we define v(s) = max t∈T f (s,t) and compute the value similarity as V = 1"
+  },
+  {
+    "type": "paragraph",
+    "order": 26,
+    "text": "|S| ∑ s∈S v(s). We consider a source-target attribute pair as an easy match if both the attribute name similarity and V exceed predefined thresholds. For these candidates, the matching score is set to 1 and they are subsequently excluded from the candidate set generated by other matchers."
+  },
+  {
+    "type": "paragraph",
+    "order": 27,
+    "text": "Matcher Ensemble. The matching component combines multiple matching methods in an ensemble to derive the match candidates and associated scores that are displayed in the heatmap matrix. Our design is matcher-agnostic, making it possible to integrate new schema matching methods as they become available. Users can either upload a custom matcher as a Python code snippet through the interface or add a matcher script directly to the codebase in a forked repository. The current prototype uses the contrastive-learning method from bdi-kit [47], Magneto [46], and the Jaccard distance matcher from Valentine [38]. Matchers are initially assigned equal weights; the weights are automatically adjusted based on their performance, and users can also manually adjust them, e.g., if a given matcher is producing better results."
+  },
+  {
+    "type": "paragraph",
+    "order": 28,
+    "text": "To automatically update matcher weights based on user interactions, we employ the following algorithm. Let candidate i be associated with a normalized score s i ∈ [0, 1] and a rank r i among the generated matching candidates, and assume that candidate i is recommended by a set of matchers M i . When a candidate is accepted, the weight w m of each matcher m ∈ M i is updated as w m ← w m + α • s i • 1 r i ; conversely, when a candidate is rejected, the weight is updated as w m ← w mβ • s i • 1 r i , where α and β are the learning rate parameters for weight increase and decrease, respectively. This mechanism rewards highquality matchers with strong scores and rankings while penalizing those linked to incorrect recommendations."
+  },
+  {
+    "type": "paragraph",
+    "order": 29,
+    "text": "Source Attribute Clustering. To facilitate exploration, the backend leverages embedding techniques such as sentence transformers to cluster source columns based on semantic similarity [59]. These embeddings make it possible to apply K-Nearest Neighbors (KNN) clustering algorithm based on cosine similarity to group semantically similar attributes. This clustering acts as a filter, assisting users in exploring related source attributes."
+  },
+  {
+    "type": "paragraph",
+    "order": 30,
+    "text": "LLM-Derived Explanations. BDIViz leverages a carefully engineered prompt to harness LLM reasoning for schema matching validation. This prompt integrates contextual constraints, structured data, and historical matching information-managed via a RAG memory keyed by composite identifiers (e.g., \"source_attribute::target_attribute\"). The LLM is then instructed to generate up to four chain-of-thought explanations for each candidate match [72], with each explanation providing a true/false flag, rationale classification (e.g., semantic, name, token, value, pattern, history, knowledge, or other), detailed reasoning, references, and a confidence score. These explanations are then synthesized into a final true/false decision regarding the match's validity."
+  },
+  {
+    "type": "title",
+    "order": 31,
+    "text": "Implementation"
+  },
+  {
+    "type": "paragraph",
+    "order": 32,
+    "text": "BDIViz is an open-source system built using a client-server architecture [69]. The backend, developed with Flask, is responsible for executing automatic schema matchers and managing the LLM agent, while the frontend-constructed with the React Next.js framework-handles data visualization and user interactions. Our visualizations leverage the capabilities of D3 and Observable, ensuring dynamic and interactive displays. For schema matching, we integrate multiple libraries, including bdi-kit [3], Magneto [46], and Valentine [38], within our backend. The LLM agent is implemented using LangChain and Lang-Graph. The tool is fully dockerized within a compact Next.js and Flask environment, enabling local deployment and streamlined development."
+  },
+  {
+    "type": "title",
+    "order": 33,
+    "text": "QUANTITATIVE PERFORMANCE EVALUATION"
+  },
+  {
+    "type": "paragraph",
+    "order": 34,
+    "text": "To evaluate BDIViz, we used a benchmark that contains ground truth matches [46], curated by biomedical experts, from 10 datasets to the GDC schema. In the following, we discuss results on the effectiveness of i) our approach to identify easy matches, ii) the matcher ensemble, and iii) the match predictions provided by the LLM-agent. Identifying Easy Matches. To asses the effectiveness of our heuristic to identify easy matches, we compute the overlap between the easy matches and the ground-truth data. We observe that 91% of the attribute pairs classified as easy matches annotated as matches are found in the ground truth; the remaining 9% correspond to cases where a source attribute is similar to multiple target attributes. In such cases, the users will have to further inspect them. We also see that the correct matches that our heuristics capture correspond to 35% of all the ground truth pairs, which shows that identifying these easy matches can considerably decrease the user workload. Matcher Ensemble. We compare the effectiveness of each individual matcher against the ensemble method we employ in BDIViz. To do so, for each of the 10 datasets mapped to GDC, we examine the top-k (k ∈ {10, 20, 40}) attribute pairs that each matching method and the ensemble output, with the k-values reflecting pool sizes that domain experts evaluate in practices. Table 1 shows the average precision scores across datasets. We see that the ensemble method has significantly higher accuracy than the individual matchers -it is able to identify 93% of the ground truth matches in the top-10 attribute pairs, while the precision of the individual matchers vary between 70.7% and 81.5%. LLM-agent. We evaluated the LLM-agent's performance using different OpenAI LLM models (o3-mini, gpt-4o and gpt-4). First, we assessed how well the agent captures ground truth matches: it incorrectly classifies as non-matches at most 25% of the attribute pairs annotated as matches in the ground truth. We then evaluated the agent's ability to identify non-matches by testing it on the top-200 non-matching attribute pairs with the highest ensemble matching score (hard non-match cases). The results show that the LLM-agent can incorrectly classify up to 38% of them as matches. Similar to the state-of-the art schema matching methods, LLMs are not foolproof, and regardless the choice of model, they make mistakes for challenging schema matching tasks. Nonetheless, they also derive a large number of correct matches and useful explanations. This supports our design decision to combine LLMs with multiple matching methods."
+  },
+  {
+    "type": "title",
+    "order": 35,
+    "text": "USER STUDY AND EVALUATION"
+  },
+  {
+    "type": "paragraph",
+    "order": 36,
+    "text": "We conducted a user study to evaluate the effectiveness of BDIViz for schema matching tasks. This section details the study design, participant information, procedure, and results."
+  },
+  {
+    "type": "title",
+    "order": 37,
+    "text": "Study Participants"
+  },
+  {
+    "type": "paragraph",
+    "order": 38,
+    "text": "We recruited 12 expert participants (6F, 5M, 1 nb/ prefer not to say) from departments related to biomedical data science and through snowball sampling. All participants had an average 2 years of experience working with biomedical datasets and performing schema matching or data harmonization tasks, making them well-qualified to evaluate BDIViz in our study. Participants' ages ranged from 21 to 27 (M = 24.58, SD = 1.67), and the group covered a diverse range of early to mid-career biomedical data professionals."
+  },
+  {
+    "type": "title",
+    "order": 39,
+    "text": "Study Design"
+  },
+  {
+    "type": "paragraph",
+    "order": 40,
+    "text": "We conducted a within-subjects user study to compare the experience of using BDIViz versus traditional schema matching tools for biomedical data integration. Each participant completed two schema matching tasks under the following conditions: 1) using BDIViz as the test condition; 2) using their current tools (e.g., Excel, Python, or R) as the baseline condition, where the same backend-generated matching results were provided in JSON/CSV formats. We chose different but comparable datasets for the two study tasks to ensure similar complexity while avoiding learning effects. To control for order effects, we counterbalanced the sequence of conditions across participants. The entire study session lasted ∼60 minutes, including the pre-study consent process, tutorial, study tasks, post-study questionnaires, and interview. Study Tasks: For the controlled study to be conducted within a realistic timeframe, we carefully selected the following two open-source biomedical datasets, containing approximately 15 attributes each, representing typical biomedical data such as demographics, lab measurements, and clinical observations. Task 1: GDC In this task, we employ a multi-omics dataset by Li et al. [42], which focuses on the proteogenomic characterization of rare kidney tumors, as our source data. After cleaning and curating the dataset, 18 attributes were retained for mapping. The target dataset is derived from the CPTAC-3 cohort available on the GDC portal, comprising 479 attributes [19]. Task 2: PDC In this task, we use a proteomic analysis dataset from Woldmar et al.'s study accessed via PubMed [74]. The dataset was refined to 15 matchable attributes. The target schema is PDC v3.0.0, which contains 452 attributes [50]."
+  },
+  {
+    "type": "paragraph",
+    "order": 41,
+    "text": "The above two chosen datasets are representative of the kind of data integration tasks commonly performed in biomedical research settings, while being accessible to all participants regardless of their specific subdomain expertise. The participants were required to identify correspondences between attributes in source and target schemas and validate proposed matches. Both tasks were carefully selected to have similar complexity levels for a fair comparison between conditions."
+  },
+  {
+    "type": "title",
+    "order": 42,
+    "text": "Study Procedure"
+  },
+  {
+    "type": "paragraph",
+    "order": 43,
+    "text": "We conducted the study in a hybrid format allowing for both remote and in-person participation (4 participating in in-person sessions and 8 participating in remote sessions). For remote participants, the study was conducted via Zoom, with access to BDIViz provided through a Kubernetes cluster. In-person participants used university-provided computers on campus. Regardless of format, all participants had access to their preferred tools (Excel, Python, or R) for the traditional condition to ensure they could work in their familiar environment. Pre-study stage: The participants started with completing a demographic questionnaire about their experience with schema matching and biomedical data. They then received a 5-minute tutorial demo of BDIViz's interface use and key features. This orientation enabled participants to engage with the tool while still preserving the authentic first-time user experience essential for usability assessment. Study stage: During the study, the participants were randomly assigned one of the two conditions (baseline/control condition or the test condition using BDIViz) first to perform schema matching and after a break, assigned the other condition. Each schema matching task was allocated approximately 20 minutes, providing sufficient time for meaningful engagement while respecting participants' time commitments. We incorporated a 5-minute break between tasks to reduce fatigue and minimize potential carryover effects. The order of study tasks was counterbalanced to compensate for the order-effect. In both conditions, participants were asked to: (i) Review the source and target schemas to understand their structure; (ii) Identify potential attribute matches based on names, descriptions, and data types; (iii) Validate or adjust suggested matches using available information; and (iv) Finalize the mapping and generate a list of source attributes and corresponding target attributes. Post-study data collection and feedback stage: At the end of the study, we conducted semi-structured interviews focused on participant experiences, challenges encountered, and suggestions for improving the tool. To capture the full context of user interactions, we also recorded screen activities (with participant consent) during the sessions. These recordings proved valuable to observe and analyze interaction patterns and the transcripts helped identify specific usability issues that might not be apparent from metrics alone."
+  },
+  {
+    "type": "title",
+    "order": 44,
+    "text": "Analysis"
+  },
+  {
+    "type": "paragraph",
+    "order": 45,
+    "text": "To evaluate how BDIViz affects the schema matching processes in biomedical workflows, we employed a mixed-methods approach combining the following: Assessment Metrics: We used NASA Task Load Index (NASA-TLX) completed by the participants after each task. This test measured the cognitive workload across six dimensions and helped assess how BDI-Viz impacted the mental demands of schema matching tasks. Next, to measure the System Usability Score (SUS) that measured BDIViz's usability, participants filled a questionnaire after completing both tasks. We also measured the participants' performance on metics like schema matching accuracy, number of finished/correct matches and task completion time. The correct matches are evaluated against a ground truth established by domain experts. Analysis Methods: We conducted statistical analyses using nonparametric methods (Mann-Whitney U test) due to our sample size constraints (N = 12) and because normality assumptions could not be verified for our data. Effect sizes for these comparisons were calculated using the rank-biserial correlation coefficient (r), with interpretations following Cohen's guidelines: small (0.1 ≤ r < 0.3), medium (0.3 ≤ r < 0.5), and large (r ≥ 0.5). For task completion times, we supplemented the Mann-Whitney U test with survival analysis because completion times were right-censored at the 20-minute maximum time limit. The test employed Kaplan-Meier estimation and log-rank statistic. All statistical tests were conducted with α = 0.05 as the threshold for statistical significance. We report means (M), standard deviations (SD), test statistics (U, z), p-values, and effect sizes (r) for each comparison."
+  },
+  {
+    "type": "title",
+    "order": 46,
+    "text": "Quantitative Results"
+  },
+  {
+    "type": "paragraph",
+    "order": 47,
+    "text": "The NASA TLX analysis (Fig. 7) demonstrates that BDIViz significantly reduces the overall cognitive workload compared to the baseline approach (M = 43.50, SD = 18.28 vs. M = 71.42, SD = 16.12, U = 18, z = -3.12, p = 0.002, r = 0.64). BDIViz particularly excels at reducing frustration, physical demand, mental demand, and the required effort to complete tasks. Participants also reported reduced temporal demand when using BDIViz. Performance measures reveal that BDIViz significantly improves schema matching effectiveness across multiple metrics. The accuracy of matches was substantially higher with BDI-Viz (M = 87.73%, SD = 4.41%) compared to the baseline approach (M = 58.19%, SD = 18.17%), representing a 50.77% improvement. In addition, participants derived more correct matches while completing the task much faster (Log-rank test: χ 2 = 6.12, p = 0.013) (Fig. 8). We saw greater improvements in performance on Task 2, which presents a higher level of ambiguity, making it more challenging than Task 1. This aligns with our goal of supporting users in complex tasks, that requires them to explore matches in greater detail, compare attribute values, and obtain additional context to make a decision. We expect that BDIViz would yield even bigger gains for larger and more challenging schema matching tasks than the ones in our user study. Our final system usability scale (SUS) score for BDIViz was 71.87 showing that BDIViz achieved significantly better user ratings among all questions. Detailed SUS results and analysis are provided in the supplementary material."
+  },
+  {
+    "type": "paragraph",
+    "order": 48,
+    "text": "In summary, these results demonstrate that BDIViz enables users to perform schema matching tasks with substantially higher accuracy and efficiency compared to conventional approaches."
+  },
+  {
+    "type": "title",
+    "order": 49,
+    "text": "Qualitative Results"
+  },
+  {
+    "type": "paragraph",
+    "order": 50,
+    "text": "We conducted a thematic analysis of interview transcripts and observational notes, with two researchers independently coding and refining themes through consensus. This analysis identified user experience patterns, challenges, and comparative insights on BDIViz versus traditional methods, linking emerging themes to quantitative findings for a comprehensive understanding of BDIViz 's impact on schema matching. Identification of easy matches saved time to focus on critical matches. User feedback consistently highlighted the value of BDI-Viz 's strategy to prioritize straightforward matches, enabling experts to quickly validate high-confidence candidates while focusing on ambiguous cases. The interactive heatmap, with its clear color intensity indicating matching confidence, allows users to easily identify matches that need closer examination. As participant 10 (p10) noted, \"(BDIViz) really helps me avoid hesitation about where to start. I can just begin with what I've suggested.\" Similarly, p2 commented that they \"like that the heatmap visualization-it [gave] an overview of the matching score while providing detailed comparisons, and the interface is smooth and intuitive.\" This demonstrates how BDIViz contrasts with traditional methods, where all potential matches demand equal scrutiny, and helps users allocate their cognitive resources more efficiently. Interactive exploration helped nuanced decision making for critical matches. Participants valued interactive features such as expandable nodes that reveal detailed value distributions. P2 noted that they \"especially like the heat visualization-it provides an overview of the matching score along with detailed comparisons.\" When working with complex biomedical attributes that have similar names, these interactive elements allowed users to examine underlying data characteristics for decision making. P10 explained, because their \"workflow involved selecting the highest value, then clicking to check the matching patterns, seeing each attribute's distributions was incredibly helpful.\" LLMs helped with validation. In BDIViz, the LLM generates visually encoded explanations for each matching candidate, allowing users to assess and validate recommendations. The explanations use intuitive icons and color cues to indicate the type of reasoning and suggested decision, aligning with users' thought processes. Participants appreciated this clarity; p10 remarked, \"The second best feature is the agent... They provide the rationale behind each match, offering variant reasoning tracks that align with my own thought process.\" These explanations proved especially useful when users encountered nuanced terminology or attribute names, helping them verify challenging matches. As p2 noted, \"I refer to the agent's suggestions and explanations often-I feel more informed, confident, and comfortable using BDIViz for schema matching.\" Overall, the LLM-driven validation not only highlighted considerations that might otherwise be overlooked but also increased user confidence in the final matching decisions. Extra information helped in knowledge discovery. Biomedical datasets often contain specialized terminology that may be unfamiliar to users. Rather than interrupting their workflow to consult external resources-as is common with expert workflows-participants appreciated having relevant domain knowledge integrated directly into the interface. P5 noted, \"Without BDIViz's help, I have to google and use different tools, which is time-consuming.\" This integration not only improved matching accuracy but also reduced the overall time spent on the task, as reflected in our quantitative analysis. In summary, the results demonstrate BDIViz's capabilities to address the design requirements as well the design considerations (3) for enabling effective and efficient domain-specific schema matching."
+  },
+  {
+    "type": "title",
+    "order": 51,
+    "text": "EXPERT CASE STUDY APPLICATIONS"
+  },
+  {
+    "type": "paragraph",
+    "order": 52,
+    "text": "To further demonstrate how BDIViz generalizes for multiple real-world use cases while also accommodating for large and complex biomedical schemas, we present two use cases provided by our expert co-designers."
+  },
+  {
+    "type": "title",
+    "order": 53,
+    "text": "Using BDIViz for Large-Scale Dataset-to-Schema Matching Tasks for CPTAC"
+  },
+  {
+    "type": "paragraph",
+    "order": 54,
+    "text": "We used BDIViz to harmonize a dataset generated in the context of the Clinical Proteomic Tumor Analysis Consortium (CPTAC) with the GDC schema. The source dataset (referred as Dou) includes data for patients from an endometrial carcinoma study and consists of 179 attributes [12]. Through a manual process, biomedical experts identified correspondences between 19 attributes in Dou and GDC elements [46]. Using BDIViz, within 15 minutes, a biomedical researcher was able to verify the 19 matches as well as identify 10 additional matches that had been missed in the manual schema mapping process. The user reported that it was easy to validate the accepted matches, which included easy matches, for example the attributes FIGO_stage and figo_stage, whose values could be easily aligned (e.g., \"IA\" to \"Stage IA\", \"IB\" to \"Stage IB\") (Fig. 9 (2)). To assess matches with numerical attributes, they leveraged the GDC attribute description and the comparisons of value distributions (Fig. 9 (3A, 3B))."
+  },
+  {
+    "type": "paragraph",
+    "order": 55,
+    "text": "Among the newly-identified mappings was the match from Num_full_term_pregnancies to pregnancy_count. The expert verified that the unique values for the source attribute (1, 2, 3, 4 or more) was consistent with the GDC description, \"The number of times an individual has become pregnant\"(Fig. 9 (4A,4B)). This highlights the ability of BDIViz to address scalability challenges, by matching schemas effectively even for attributes distributed across large datasets. When faced with similar candidate pairs, such as age_at_diagnosis versus age_at_onset, the expert relied on detailed agent explanations to differentiate between them. The system rejected age_at_onset due to its specific reference to the onset of exposure, highlighting BDIViz's ability in facilitating nuanced decision-making (Fig. 9 (1A, 1B)). BDIViz effectively addresses the nuanced semantics common in biomedical attributes. For example, the source attributes Tumor Stage (A/B) and Tumor stage received high similarity scores with the target attribute Stage. By leveraging vertical comparison, i.e., comparing the similarities between the target attribute and the source attributes, and inspecting their value distributions, the expert observed that Tumor Stage (A/B) exhibited peaks at IB and IIIA (corresponding to 1B and 3A from Stage), whereas Tumor stage showed peaks at T2aN0M0 and T2aN2M0, indicating a mismatch. This example underscores BDI-Viz's capability to handle subtle attribute differences."
+  },
+  {
+    "type": "title",
+    "order": 56,
+    "text": "Using"
+  },
+  {
+    "type": "paragraph",
+    "order": 57,
+    "text": "The real-world case studies show that BDIViz is effective at streamlining different schema matching tasks for diverse biomedical datasets and schemas. They also confirm the findings in our user study in that not only does BDIViz makes users more efficient, but it also leads to mappings that are more accurate and complete."
+  },
+  {
+    "type": "title",
+    "order": 58,
+    "text": "DISCUSSION"
+  },
+  {
+    "type": "paragraph",
+    "order": 59,
+    "text": "While we focus on biomedicine, our approach has broader relevance to the HCI and Visualization communities, as discussed below. Designing schema matching tools for data-intensive domains. BDI-Viz tackles the challenges of schema matching in data-intensive domains by integrating interactive heatmaps, value comparisons, and analysis panels that bridge automated matching with expert curation. This design not only benefits biomedical data-with its complex terminologies and large attribute sets-but also applies to other fields such as urban science, that requires the integration of diverse and complex datasets. Designing visualization tools to empower domain experts. BDIViz empowers domain experts to make informed, data-driven decisions by incorporating a user-in-the-loop methodology. Informed by formative studies and co-design sessions, our design aligns closely with natural expert workflows, ensuring that detailed visualizations-such as the heatmap, attribute distributions and value comparisons-support rather than disrupt the matching process. Studying expert workflows to design tools. Our formative study and co-design sessions with experts underscore the importance of understanding user workflows prior to tool development. By aligning BDIViz with the real-world practices of domain experts, we have created a system that complements natural workflows. This user-centered design ensured that the tool is not only usable but also effective, a principle that should guide the development of future domain-specific tools. Using LLMs and Visualization for Schema Matching. Our work demonstrates how combining LLMs with interactive visualization enhances schema matching, particularly in complex domains like biomedicine. LLMs offer strong semantic reasoning, but ambiguity, domain-specific terms, and subtle value differences still demand expert oversight. Visualization enables users to explore, validate, and refine matches, ensuring alignment with domain knowledge. Even as LLMs improve, BDIViz will remain essential for expert validation, adapting to custom attributes, and supporting user corrections. This human-in-theloop approach ensures adaptability to new datasets, evolving schemas, and unforeseen edge cases, making schema matching more transparent, interpretable, and trustworthy for diverse applications."
+  },
+  {
+    "type": "title",
+    "order": 60,
+    "text": "LIMITATIONS AND FUTURE WORK"
+  },
+  {
+    "type": "paragraph",
+    "order": 61,
+    "text": "Our evaluation and case studies have demonstrated BDIViz's effectiveness in streamlining schema matching tasks and improving accuracy. Nonetheless, the system has limitations that present opportunities for future research. First, the performance of BDIViz depends on the effectiveness of the underlying matching methods. Although we mitigate this limitation by combining an ensemble approach with LLM-based validation, it is possible that all methods fail to identify correct matches, requiring users to resort to manual identification. Future work will investigate extensions to BDIViz that better assist users in this manual discovery process, particularly through search mechanisms that help identify false negative matches that automated methods miss entirely."
+  },
+  {
+    "type": "paragraph",
+    "order": 62,
+    "text": "Second, although our heatmap visualization and interactive filters improves scalability over node-link approaches, it could still become visually and cognitively demanding when dealing with very large schemas. As the system is deployed, we plan to explore additional abstractions and interactive exploration techniques. For example, some users have pointed out that they would like to be able to also use a tree-based representation for the source table."
+  },
+  {
+    "type": "paragraph",
+    "order": 63,
+    "text": "Third, the quality of LLM-derived validations and explanations inherently depends on the model's knowledge and reasoning capabilities. Since these models can make errors, their limitations will inevitably be reflected in the information provided by BDIViz. However, with the rapid advances in language model development, we anticipate that these capabilities and reliability will continue to improve, enhancing the system's performance without architectural changes."
+  },
+  {
+    "type": "paragraph",
+    "order": 64,
+    "text": "Fourth, we designed BDIViz to support matching from dataset to dataset and from dataset to a schema. Another important scenario involves the harmonization of multiple datasets to a schema, i.e., data from multiple sources is required to populate the schema."
+  },
+  {
+    "type": "paragraph",
+    "order": 65,
+    "text": "Finally, our evaluation demonstrated the effectiveness and strengths of BDIViz for schema matching in the biomedical domain. While the tool was designed to be general and support arbitrary schemas and datasets, further evaluation in different domains would provide valuable insights into the adaptability of the tool and potential refinements."
+  },
+  {
+    "type": "title",
+    "order": 66,
+    "text": "CONCLUSION"
+  },
+  {
+    "type": "paragraph",
+    "order": 67,
+    "text": "We presented BDIViz, a visual analytics system that addresses critical challenges in biomedical schema matching through user-centered design. Our formative studies with domain experts informed an approach that combines ensemble-based matching algorithms, interactive visualizations, and LLM-based validation. Evaluation demonstrated that BDIViz significantly improves matching accuracy while reducing cognitive load and curation time. Case studies confirmed the system's effectiveness across diverse real-world biomedical schema matching tasks."
+  },
+  {
+    "type": "paragraph",
+    "order": 68,
+    "text": "As biomedical datasets continue to grow in diversity and volume, effective schema matching tools become increasingly critical for data integration. BDIViz transforms the traditionally manual and error-prone matching process into a guided interactive workflow that combines human expertise with computational capabilities. By improving harmonization accuracy and streamlining curation, BDIViz contributes to making biomedical data more interoperable, enabling analyses that advance scientific discovery and biomedical research."
+  },
+  {
+    "type": "caption",
+    "order": 69,
+    "text": "Fig. 2: User-centered design approach. Left: Schema matching requirements (R1-R7) derived from expert interviews, color-coded (red: match discovery, green: value analysis, yellow: filtering). Right: Design considerations developed in iterative co-design sessions with domain experts (DC1-DC5). Colored lines between panels indicate the requirements and their corresponding design considerations."
+  },
+  {
+    "type": "caption",
+    "order": 70,
+    "text": "Fig. 3: The BDIViz interface includes: (1A) a shortcut panel for managing matching candidates, undo/redo, importing datasets, and exporting results as CSV or JSON; (1B) a control panel for filtering candidates; (1C) a timeline graph showing the history of user actions; (2A) an interactive heatmap panel displaying matching candidates with source attributes on the y-axis and target attributes displayed using a space-filling treemap layout on the x-axis; selected matches (cells) expand to show value distributions; (2B) bottom: an UpSet plot, value comparisons, and parallel coordinates for understanding the source-target relationships; (3A) agent explanation panel showing LLM validation results with reasoning (e.g., semantic match, shared tokens/values, historical references); (3B) display of target attribute properties, including node name, category, type, descriptions, and value distributions; and (4) a search bar to filter matches using keywords."
+  },
+  {
+    "type": "caption",
+    "order": 71,
+    "text": "Fig. 4: (1) Interactive Heatmap cells; (2) Expanded view of the value distribution histograms for the source (2A) and target (2B) attributes shown when users click on a cell."
+  },
+  {
+    "type": "caption",
+    "order": 72,
+    "text": "Fig. 5: Agent-derived explanations that take different aspect of matches into account."
+  },
+  {
+    "type": "caption",
+    "order": 73,
+    "text": "Fig. 6: The UpSet Plot Panel displays (1) matcher weights, (2) the weighted average score for each candidate with the color corresponding to heatmap color palette, and (3) the matchers that produced a given candidate -shown as dots connected by line."
+  },
+  {
+    "type": "caption",
+    "order": 74,
+    "text": "Fig. 7: NASA Task Load Index (TLX) Comparison Between BDIViz and Baseline. Box plots show workload scores (0-100) across 5 dimensions."
+  },
+  {
+    "type": "caption",
+    "order": 75,
+    "text": "Fig. 8: Scatter plot comparing the average matching time and accuracy of BDIViz versus Manual methods across two tasks. The x-axis shows the average time (in minutes) per finished matching, while the circle size represents the correct rate (accuracy). Larger markers indicate higher accuracy, demonstrating that BDIViz consistently outperforms Manual curation by achieving faster and more accurate schema matching."
+  },
+  {
+    "type": "caption",
+    "order": 76,
+    "text": "Fig. 9: Case Study 1: Heatmap visualization of curated matching candidates for Dou et al.'s endometrial carcinoma dataset to the GDC schema in the CPTAC-3 study."
+  },
+  {
+    "type": "caption",
+    "order": 77,
+    "text": "BDIViz matcher ensemble average Precision@k score comparison against individual matchers, across 10 different dataset to GDC matching tasks."
+  },
+  {
+    "type": "caption",
+    "order": 78,
+    "text": "expert used BDIViz to integrate datasets from two distinct lung adenocarcinoma (LUAD) studies published on PubMed. The source dataset from Xu et al. comprises 40 attributes[76], while the target dataset from Gillette et al. contains 74 attributes[21]. Within 10 minutes, the expert identified 13 matches; this is in contrast to the 8 attributes previously identified through manual matching."
+  }
+]

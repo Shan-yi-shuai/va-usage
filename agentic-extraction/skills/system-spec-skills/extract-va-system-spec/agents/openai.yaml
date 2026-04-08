@@ -1,0 +1,4 @@
+interface:
+  display_name: "VA Spec Extract"
+  short_description: "Extract a draft VA system spec"
+  default_prompt: "Use $extract-va-system-spec to build a draft SystemSpec from a visual analytics paper."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "VA Case Review"
+  short_description: "Review a VA case study draft"
+  default_prompt: "Use $review-va-case-study to audit a PaperUsageSpec draft from a visual analytics paper."

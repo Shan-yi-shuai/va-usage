@@ -1,0 +1,312 @@
+{
+  "paperName": "BDIViz",
+  "systemName": "BDIViz",
+  "systemSpecPath": "data/agentic/extract-results/BDIViz/system-spec/output/system-spec.json",
+  "workflows": [
+    {
+      "workflowId": "candidate-curation-workflow",
+      "workflowTitle": "Candidate Curation Workflow",
+      "workflowKind": "DecisionSupport",
+      "workflowGoal": "Guide biomedical experts from schema and matcher setup through match exploration and validation to curated harmonization outputs.",
+      "description": "BDIViz presents an intended human-in-the-loop workflow in which automated schema-matching methods first surface candidate correspondences, domain experts then explore and validate those candidates through coordinated evidence views, and the resulting curated set is used to produce harmonized integration outputs.",
+      "targetUsers": [
+        "biomedical researchers",
+        "data scientists",
+        "domain experts"
+      ],
+      "stages": [
+        {
+          "stageId": "setup-and-candidate-generation",
+          "stageIndex": 1,
+          "stageTitle": "Setup And Candidate Generation",
+          "stageGoal": "Load source and target schemas, configure matching behavior, and obtain the candidate match space for curation.",
+          "description": "Experts begin by importing or selecting datasets and schemas, configuring matcher parameters and thresholds, and relying on the system's automated ensemble to derive candidate matches that appear in the heatmap for review.",
+          "usedViews": [
+            {
+              "viewId": "control-panel",
+              "subViewId": "control-panel.filter-controls"
+            },
+            {
+              "viewId": "control-panel",
+              "subViewId": "control-panel.shortcut-panel"
+            },
+            {
+              "viewId": "heatmap-panel",
+              "subViewId": "heatmap-panel.interactive-heatmap"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "control-panel",
+              "subViewId": "control-panel.filter-controls",
+              "capabilityId": "control-panel.filter-controls.configure-matching-parameters"
+            },
+            {
+              "viewId": "control-panel",
+              "subViewId": "control-panel.shortcut-panel",
+              "capabilityId": "control-panel.shortcut-panel.manage-session-actions"
+            },
+            {
+              "viewId": "heatmap-panel",
+              "subViewId": "heatmap-panel.interactive-heatmap",
+              "capabilityId": "heatmap-panel.interactive-heatmap.browse-candidate-matches"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "coord-filter-to-heatmap",
+              "description": "Configured filters and thresholds shape the initial candidate set shown in the heatmap."
+            }
+          ],
+          "expectedOutcome": "An initial candidate-match space is generated and presented for downstream expert review.",
+          "evidence": {
+            "passageIds": [
+              4,
+              11,
+              20,
+              22
+            ],
+            "figureRefs": [
+              "Fig. 1",
+              "Fig. 3"
+            ],
+            "quotes": [
+              "BDIViz leverages automated methods for schema matching to derive candidate matches",
+              "Users can configure the datasets/schemas, matcher parameters as well as modify matching thresholds in the Control Panel",
+              "Users can inspect matcher influence, adjust weights, and refine rankings"
+            ],
+            "reasoning": "The workflow figure and system description jointly support a first stage in which users set up matching conditions and obtain the candidate space for curation.",
+            "confidence": 0.92
+          },
+          "inferenceType": "CrossModalSynthesis"
+        },
+        {
+          "stageId": "explore-and-validate-candidates",
+          "stageIndex": 2,
+          "stageTitle": "Explore And Validate Candidates",
+          "stageGoal": "Investigate candidate matches, compare supporting evidence, and decide which matches to accept or reject.",
+          "description": "Users interactively explore the heatmap, filter or search the candidate space, inspect detailed value and matcher evidence, consult LLM explanations and target-attribute context, and then validate or reject matches through the curation controls.",
+          "usedViews": [
+            {
+              "viewId": "heatmap-panel",
+              "subViewId": "heatmap-panel.interactive-heatmap"
+            },
+            {
+              "viewId": "heatmap-panel",
+              "subViewId": "heatmap-panel.value-distribution-histograms"
+            },
+            {
+              "viewId": "heatmap-panel",
+              "subViewId": "heatmap-panel.value-comparisons-table"
+            },
+            {
+              "viewId": "heatmap-panel",
+              "subViewId": "heatmap-panel.matcher-contributions-upset"
+            },
+            {
+              "viewId": "agent-panel",
+              "subViewId": "agent-panel.match-explanations"
+            },
+            {
+              "viewId": "agent-panel",
+              "subViewId": "agent-panel.target-attribute-properties"
+            },
+            {
+              "viewId": "control-panel",
+              "subViewId": "control-panel.filter-controls"
+            },
+            {
+              "viewId": "control-panel",
+              "subViewId": "control-panel.shortcut-panel"
+            },
+            {
+              "viewId": "search-bar",
+              "subViewId": "search-bar.keyword-search"
+            }
+          ],
+          "usedCapabilities": [
+            {
+              "viewId": "heatmap-panel",
+              "subViewId": "heatmap-panel.interactive-heatmap",
+              "capabilityId": "heatmap-panel.interactive-heatmap.select-candidate-cell"
+            },
+            {
+              "viewId": "heatmap-panel",
+              "subViewId": "heatmap-panel.value-distribution-histograms",
+              "capabilityId": "heatmap-panel.value-distribution-histograms.compare-value-distributions"
+            },
+            {
+              "viewId": "heatmap-panel",
+              "subViewId": "heatmap-panel.value-comparisons-table",
+              "capabilityId": "heatmap-panel.value-comparisons-table.compare-source-target-values"
+            },
+            {
+              "viewId": "heatmap-panel",
+              "subViewId": "heatmap-panel.matcher-contributions-upset",
+              "capabilityId": "heatmap-panel.matcher-contributions-upset.inspect-matcher-support"
+            },
+            {
+              "viewId": "agent-panel",
+              "subViewId": "agent-panel.match-explanations",
+              "capabilityId": "agent-panel.match-explanations.inspect-match-explanations"
+            },
+            {
+              "viewId": "agent-panel",
+              "subViewId": "agent-panel.target-attribute-properties",
+              "capabilityId": "agent-panel.target-attribute-properties.inspect-target-attribute-properties"
+            },
+            {
+              "viewId": "control-panel",
+              "subViewId": "control-panel.filter-controls",
+              "capabilityId": "control-panel.filter-controls.filter-candidates"
+            },
+            {
+              "viewId": "search-bar",
+              "subViewId": "search-bar.keyword-search",
+              "capabilityId": "search-bar.keyword-search.search-matches"
+            },
+            {
+              "viewId": "control-panel",
+              "subViewId": "control-panel.shortcut-panel",
+              "capabilityId": "control-panel.shortcut-panel.accept-reject-candidates"
+            }
+          ],
+          "usedCoordinations": [
+            {
+              "coordinationId": "coord-filter-to-heatmap",
+              "description": "Filtering operations narrow the candidate set during interactive exploration."
+            },
+            {
+              "coordinationId": "coord-search-to-heatmap",
+              "description": "Keyword search focuses the candidate set shown in the heatmap."
+            },
+            {
+              "coordinationId": "coord-heatmap-to-histograms",
+              "description": "Selecting a candidate reveals source-target distribution comparisons."
+            },
+            {
+              "coordinationId": "coord-heatmap-to-value-comparison",
+              "description": "Selecting a candidate reveals the source-target value mapping table."
+            },
+            {
+              "coordinationId": "coord-heatmap-to-explanations",
+              "description": "Selected candidates drive the LLM explanation cards."
+            },
+            {
+              "coordinationId": "coord-heatmap-to-target-properties",
+              "description": "Selected candidates reveal target attribute metadata and context."
+            }
+          ],
+          "expectedOutcome": "Users reach a curated judgment about which candidate matches are valid enough to accept into the harmonization set.",
+          "evidence": {
+            "passageIds": [
+              4,
+              10,
+              20,
+              22
+            ],
+            "figureRefs": [
+              "Fig. 1",
+              "Fig. 3",
+              "Fig. 4",
+              "Fig. 5"
+            ],
+            "quotes": [
+              "As users investigate and validate matches",
+              "allowing users to intuitively explore similarities, filter, and refine matches efficiently, and then accept, or reject candidates",
+              "This view helps users identify, explore, and validate potential matches"
+            ],
+            "reasoning": "The workflow figure and interface walkthrough consistently describe exploration, evidence comparison, explanation support, and accept or reject decisions as the core human-in-the-loop stage.",
+            "confidence": 0.97
+          },
+          "inferenceType": "CrossModalSynthesis"
+        }
+      ],
+      "transitions": [
+        {
+          "sourceStageId": "setup-and-candidate-generation",
+          "targetStageId": "explore-and-validate-candidates",
+          "transitionType": "Next",
+          "rationale": "Once candidate matches have been generated and surfaced, users proceed into interactive exploration and validation of those candidates.",
+          "evidence": {
+            "passageIds": [
+              4,
+              20
+            ],
+            "figureRefs": [
+              "Fig. 1",
+              "Fig. 3"
+            ],
+            "quotes": [
+              "derive candidate matches, which are summarized in an interactive heatmap",
+              "The Interactive Heatmap Panel provides a summary of the matches and enables users to explore and compare them"
+            ],
+            "reasoning": "The intended process moves from automated candidate derivation and setup into user-driven inspection and decision-making.",
+            "confidence": 0.95
+          },
+          "inferenceType": "CrossModalSynthesis"
+        }
+      ],
+      "expectedFinalOutcome": "After users curate and validate the candidate set, the accepted correspondences can be used to derive a harmonized dataset and a mapping specification.",
+      "evidence": {
+        "passageIds": [
+          4,
+          10
+        ],
+        "figureRefs": [
+          "Fig. 1",
+          "Fig. 3"
+        ],
+        "quotes": [
+          "streamlines this process through interactive exploration and validation of matches",
+          "This approach transforms the manual, error-prone process into a guided workflow combining human expertise and computational methods"
+        ],
+        "reasoning": "The paper presents BDIViz as a guided workflow rather than just a collection of views, and Fig. 1 lays out the intended process from candidate generation to final outputs.",
+        "confidence": 0.95
+      },
+      "inferenceType": "CrossModalSynthesis"
+    }
+  ],
+  "paperLevelClaims": [
+    {
+      "claimText": "BDIViz is intended to transform biomedical schema matching from a manual, error-prone process into a guided human-in-the-loop workflow supported by automated matching, interactive evidence views, and LLM-based explanations.",
+      "evidence": {
+        "passageIds": [
+          4,
+          10
+        ],
+        "figureRefs": [
+          "Fig. 1",
+          "Fig. 3"
+        ],
+        "quotes": [
+          "streamlines this process through interactive exploration and validation of matches using visualization and LLM-based support",
+          "This approach transforms the manual, error-prone process into a guided workflow combining human expertise and computational methods"
+        ],
+        "confidence": 0.97
+      },
+      "inferenceType": "CrossModalSynthesis"
+    }
+  ],
+  "evidence": {
+    "passageIds": [
+      3,
+      4,
+      10,
+      11,
+      20,
+      22
+    ],
+    "figureRefs": [
+      "Fig. 1",
+      "Fig. 3"
+    ],
+    "quotes": [
+      "Biomedical data harmonization requires experts to manually match attributes across disparate datasets and schemas",
+      "BDIViz streamlines this process",
+      "guided workflow combining human expertise and computational methods"
+    ],
+    "reasoning": "Workflow extraction is grounded primarily in the intended-workflow figure and then linked to canonical views through the revised system specification.",
+    "confidence": 0.95
+  }
+}

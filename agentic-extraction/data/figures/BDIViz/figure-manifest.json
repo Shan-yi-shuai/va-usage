@@ -1,0 +1,179 @@
+{
+  "paper_name": "BDIViz",
+  "interface_figure_id": "fig_3",
+  "needs_manual_review": false,
+  "interface_selection_reason": "Selected fig_3 as the unique interface figure because it has the highest interface score (1.00); next best score is 0.00.",
+  "figures": [
+    {
+      "fig_id": "fig_1",
+      "caption": "Fig. 1: Biomedical data harmonization requires experts to manually match attributes across disparate datasets and schemas (1A-C).",
+      "image_path": "data/figures/BDIViz/crops/fig_1.png",
+      "primary_role": "intended_workflow",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.0,
+        "intended_workflow": 1.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure shows the numbered step-by-step end-to-end process workflow of the BDIViz system for biomedical data harmonization, explaining how the system operates from input datasets to final harmonized output, which matches the definition of intended_workflow.",
+      "interface_rank": 2,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_2",
+      "caption": "Fig. 2: User-centered design approach. Left: Schema matching requirements (R1-R7) derived from expert interviews, color-coded (red: match discovery, green: value analysis, yellow: filtering). Right: Design considerations developed in iterative co-design sessions with domain experts (DC1-DC5). Colored lines between panels indicate the requirements and their corresponding design considerations.",
+      "image_path": "data/figures/BDIViz/crops/fig_2.png",
+      "primary_role": "other",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.0,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 1.0
+      },
+      "rationale": "This figure illustrates the authors' user-centered design approach, mapping user requirements derived from expert interviews to corresponding system design considerations, which is a background design concept and does not match any other defined figure role.",
+      "interface_rank": 3,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_3",
+      "caption": "Fig. 3: The BDIViz interface includes: (1A) a shortcut panel for managing matching candidates, undo/redo, importing datasets, and exporting results as CSV or JSON; (1B) a control panel for filtering candidates; (1C) a timeline graph showing the history of user actions; (2A) an interactive heatmap panel displaying matching candidates with source attributes on the y-axis and target attributes displayed using a space-filling treemap layout on the x-axis; selected matches (cells) expand to show value distributions; (2B) bottom: an UpSet plot, value comparisons, and parallel coordinates for understanding the source-target relationships; (3A) agent explanation panel showing LLM validation results with reasoning (e.g., semantic match, shared tokens/values, historical references); (3B) display of target attribute properties, including node name, category, type, descriptions, and value distributions; and (4) a search bar to filter matches using keywords.",
+      "image_path": "data/figures/BDIViz/crops/fig_3.png",
+      "primary_role": "interface",
+      "role_scores": {
+        "interface": 1.0,
+        "view": 0.0,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure displays the full complete BDIViz system interface, showing all of its coordinated panels and core components as described in the caption, fitting the definition of the interface role.",
+      "interface_rank": 1,
+      "is_interface_figure": true,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_4",
+      "caption": "Fig. 4: (1) Interactive Heatmap cells; (2) Expanded view of the value distribution histograms for the source (2A) and target (2B) attributes shown when users click on a cell.",
+      "image_path": "data/figures/BDIViz/crops/fig_4.png",
+      "primary_role": "view",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.9,
+        "intended_workflow": 0.05,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure displays partial UI components of the system: the default interactive heatmap cells and the expanded value distribution histogram view that appears when clicking a heatmap cell. It does not show the full complete system interface, so it is classified as a view.",
+      "interface_rank": 4,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_5",
+      "caption": "Fig. 5: Agent-derived explanations that take different aspect of matches into account.",
+      "image_path": "data/figures/BDIViz/crops/fig_5.png",
+      "primary_role": "view",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.9,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 0.1
+      },
+      "rationale": "This figure displays multiple individual explanation panel components (partial UI elements) of the system, not the complete full main system interface. It shows different types of agent-derived match explanations as system components, which fits the definition of view.",
+      "interface_rank": 5,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_6",
+      "caption": "Fig. 6: The UpSet Plot Panel displays (1) matcher weights, (2) the weighted average score for each candidate with the color corresponding to heatmap color palette, and (3) the matchers that produced a given candidate – shown as dots connected by line.",
+      "image_path": "data/figures/BDIViz/crops/fig_6.png",
+      "primary_role": "view",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 1.0,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure shows a single view panel (the UpSet Plot Panel), which is a single interface component, not the complete full system interface, so it is classified as view.",
+      "interface_rank": 6,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_7",
+      "caption": "Fig. 7: NASA Task Load Index (TLX) Comparison Between BDIViz and Baseline. Box plots show workload scores (0-100) across 5 dimensions.",
+      "image_path": "data/figures/BDIViz/crops/fig_7.png",
+      "primary_role": "evaluation",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.0,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 1.0,
+        "other": 0.0
+      },
+      "rationale": "This figure presents experimental evaluation results, showing box plot comparisons of NASA Task Load Index workload scores between the proposed BDIViz system and a baseline method, which matches the definition of an evaluation figure.",
+      "interface_rank": 7,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_8",
+      "caption": "Fig. 8: Scatter plot comparing the average matching time and accuracy of BDIViz versus Manual methods across two tasks. The x-axis shows the average time (in minutes) per finished matching, while the circle size represents the correct rate (accuracy). Larger markers indicate higher accuracy, demonstrating that BDIViz consistently outperforms Manual curation by achieving faster and more accurate schema matching.",
+      "image_path": "data/figures/BDIViz/crops/fig_8.png",
+      "primary_role": "evaluation",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.0,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 1.0,
+        "other": 0.0
+      },
+      "rationale": "This figure presents an experimental performance comparison between BDIViz and manual matching methods, showing matching time and accuracy results across two tasks, which is an evaluation of the system.",
+      "interface_rank": 8,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_9",
+      "caption": "Fig. 9: Case Study 1: Heatmap visualization of curated matching candidates for Dou et al.’s endometrial carcinoma dataset to the GDC schema in the CPTAC-3 study.",
+      "image_path": "data/figures/BDIViz/crops/fig_9.png",
+      "primary_role": "case_study",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.1,
+        "intended_workflow": 0.0,
+        "case_study": 0.9,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure is explicitly presented as part of Case Study 1, showing a concrete analysis walkthrough with visualization of curated matching candidates for a real research dataset, which aligns with the case_study role. It is not the complete full system interface, a workflow diagram, or an evaluation experiment result.",
+      "interface_rank": 9,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    }
+  ]
+}

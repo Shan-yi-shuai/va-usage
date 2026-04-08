@@ -1,0 +1,141 @@
+{
+  "paper_name": "ConceptViz",
+  "interface_figure_id": "fig_1",
+  "needs_manual_review": false,
+  "interface_selection_reason": "Selected fig_1 as the unique interface figure because it has the highest interface score (1.00); next best score is 0.00.",
+  "figures": [
+    {
+      "fig_id": "fig_1",
+      "caption": "Fig. 1: Our system for exploring and interpreting SAE features in LLMs consists of six interconnected views: (A) Concept Query View for building and refining queries, (B) SAE Discovery View for identifying relevant SAE models, (C) Feature Explorer View for browsing SAE features in concept space, (D) Feature Details View for examining semantic meaning of features, (E) Input Activation View for verifying response between features and concepts, and (F) Output Steering View for observing feature causal impact on model outputs.",
+      "image_path": "data/figures/ConceptViz/crops/fig_1.png",
+      "primary_role": "interface",
+      "role_scores": {
+        "interface": 1.0,
+        "view": 0.0,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure displays the complete full system interface of ConceptViz, including all six interconnected coordinated views of the system as described in the caption, which fits the definition of an interface figure.",
+      "interface_rank": 1,
+      "is_interface_figure": true,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_2",
+      "caption": "Fig. 2: SAEs address the polysemanticity problem in LLM neurons by projecting neuron activations into sparse, interpretable features. Each SAE feature corresponds to more specific human-understandable concepts (e.g., Duck, Yellow), enabling clearer semantic distinctions than the original neurons which may activate for multiple unrelated concepts.",
+      "image_path": "data/figures/ConceptViz/crops/fig_2.png",
+      "primary_role": "other",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.0,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 1.0
+      },
+      "rationale": "This figure illustrates the core background concept of how SAEs address the polysemanticity problem in LLM neurons, which is an algorithm/concept explanation that does not fit any of the other categories.",
+      "interface_rank": 2,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_3",
+      "caption": "Fig. 3: Our system’s three technical components: (A) Concept-based SAE Model Retrieval identifies relevant models by matching user queries with feature explanations, computing multi-threshold similarity rankings, and prioritizing consistently high-performing SAEs. (B) Feature Abstraction and Semantic Interpretation provides both global context through hierarchical clustering and topic visualization (B1), and detailed feature understanding through vocabulary projection and activation pattern analysis (B2). (C) Activation Analysis and Steering enables empirical validation through custom input testing and causal verification by manipulating feature activations to observe resulting output changes.",
+      "image_path": "data/figures/ConceptViz/crops/fig_3.png",
+      "primary_role": "other",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.0,
+        "intended_workflow": 0.1,
+        "case_study": 0.0,
+        "evaluation": 0.0,
+        "other": 0.9
+      },
+      "rationale": "This figure is a conceptual illustration of the system's three internal technical components and their algorithmic processing steps, which does not qualify as a full system interface, single UI view, user analysis workflow, concrete case study walkthrough, or evaluation result.",
+      "interface_rank": 3,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_4",
+      "caption": "Fig. 4: Activation-similarity matrix visualization: Left: Well-explained feature with correlation between activation strength and semantic similarity (samples align along diagonal). Right: Poorly explained feature showing discrepancies - high-activation samples with low similarity (upper left) and high-similarity samples with low activation (lower right), revealing explanation limitations.",
+      "image_path": "data/figures/ConceptViz/crops/fig_4.png",
+      "primary_role": "view",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.9,
+        "intended_workflow": 0.0,
+        "case_study": 0.1,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure shows two examples of the activation-similarity matrix visualization component, a single visualization view type, not the full complete system interface, demonstrating how the view presents well-explained and poorly explained features.",
+      "interface_rank": 4,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_5",
+      "caption": "Fig. 5: A user exploring plant-related features: (A) The user queries “plant”, receives an optimized suggestion, then examines SAE relevance rankings with Layer 4 showing higher relevance. (B) While browsing feature clusters, the user identifies a relevant feature near the environmental region. (C) After selecting feature 983, the user examines its vocabulary space and activation matrix, revealing plant-related associations. (D) The user analyzes activations and validates through steering, observing effects on garden text generation.",
+      "image_path": "data/figures/ConceptViz/crops/fig_5.png",
+      "primary_role": "case_study",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.0,
+        "intended_workflow": 0.2,
+        "case_study": 0.9,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure presents a step-by-step concrete walkthrough of a real example of a user exploring plant-related features with the system, matching the definition of a case study.",
+      "interface_rank": 5,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_6",
+      "caption": "Fig. 6: A user investigating superhero-related features: (A) The user identifies feature 6610 within the individuals cluster, referencing superhero characters. (B) Input activation shows strong responses to superhero names, while steering demonstrates control over character generation. (C) Most related features are distant with poor labels, but feature 9638’s proximity captures user interest. (D) Validation reveals feature 9638 activates for",
+      "image_path": "data/figures/ConceptViz/crops/fig_6.png",
+      "primary_role": "case_study",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.1,
+        "intended_workflow": 0.2,
+        "case_study": 0.9,
+        "evaluation": 0.0,
+        "other": 0.0
+      },
+      "rationale": "This figure shows a step-by-step concrete walkthrough of a user's analysis investigation of superhero-related features with the system, which fits the definition of a case study (use example walkthrough). It is not the complete full system interface.",
+      "interface_rank": 6,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    },
+    {
+      "fig_id": "fig_7",
+      "caption": "Fig. 7: The results of the questionnaire regarding the effectiveness and usability of the visual system and workflow.",
+      "image_path": "data/figures/ConceptViz/crops/fig_7.png",
+      "primary_role": "evaluation",
+      "role_scores": {
+        "interface": 0.0,
+        "view": 0.0,
+        "intended_workflow": 0.0,
+        "case_study": 0.0,
+        "evaluation": 1.0,
+        "other": 0.0
+      },
+      "rationale": "This figure displays summarized results from a user questionnaire evaluating the effectiveness and usability of the visual analytics system, which is an evaluation of the system, matching the evaluation role.",
+      "interface_rank": 7,
+      "is_interface_figure": false,
+      "manual_verified": false,
+      "notes": null
+    }
+  ]
+}

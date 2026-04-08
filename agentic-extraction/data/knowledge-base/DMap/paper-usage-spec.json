@@ -1,0 +1,1672 @@
+{
+  "paperName": "DMap",
+  "systemName": "D-Map",
+  "systemSpecPath": "data/agentic/extract-results/DMap/system-spec/output/system-spec.json",
+  "caseStudies": [
+    {
+      "caseId": "case-1-dynamic-diffusion-pattern-analysis",
+      "caseTitle": "Case 1: Dynamic Diffusion Pattern Analysis",
+      "caseStudyKind": "RealWorldCase",
+      "analyst": {
+        "role": "DomainExpert",
+        "domainExpertise": "Expert",
+        "toolExpertise": "Unknown",
+        "description": "The paper frames the case-study topics as relevant to sociology experts."
+      },
+      "scenario": {
+        "domainProblem": "Understand how an influential user's weibos diffuse across communities over time.",
+        "analysisGoal": "Identify major diffusion states, active communities, and high-influence actors in the spreading process.",
+        "datasetContext": "300 weibos from one influential person, with 7,694 reposting weibos from 5,917 unique users.",
+        "stakes": "Understanding when and why communities activate helps explain information propagation patterns around influential accounts.",
+        "initialQuestion": "How do different communities participate in and reshape the diffusion over time?"
+      },
+      "episodes": [
+        {
+          "episodeId": "case-1-dynamic-diffusion-pattern-analysis.trace-staged-diffusion-states",
+          "episodeTitle": "Trace staged diffusion states",
+          "localGoal": "Recover the major temporal states and active communities in the diffusion process.",
+          "strategyCanonical": [
+            "OverviewFirst",
+            "ComparativeAnalysis"
+          ],
+          "strategyText": "Start with temporal overviews, then inspect individual communities when a stage looks distinctive.",
+          "steps": [
+            {
+              "stepId": "case-1-dynamic-diffusion-pattern-analysis.trace-staged-diffusion-states.step-1",
+              "stepIndex": 1,
+              "rawNarrative": "There were two main diffusion states (Figure 10a). The first state included three stages (T1-T3). In the first 15 minutes (T1), the central user posted weibos and mainly affected the direct listeners group C1. Later in one hour (T2), people in the surrounding communities reposted more weibos, while the weibos kept spreading inside C1.",
+              "intentCanonical": [
+                "Explore",
+                "Contextualize"
+              ],
+              "intentText": "Recover the temporal structure of the diffusion process.",
+              "operationCanonical": [
+                "InspectDetails",
+                "CompareAlternatives"
+              ],
+              "operationText": "Read the temporal overview across the timeline and small multiples to separate major states and stages.",
+              "usedViews": [
+                {
+                  "viewId": "timeline-view",
+                  "subViewId": "timeline-view.main"
+                },
+                {
+                  "viewId": "community-radar",
+                  "subViewId": "community-radar.radar"
+                },
+                {
+                  "viewId": "small-multiple-view",
+                  "subViewId": "small-multiple-view.main"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "timeline-view",
+                  "subViewId": "timeline-view.main",
+                  "capabilityId": "timeline-view.main.show-temporal-trends"
+                },
+                {
+                  "viewId": "small-multiple-view",
+                  "subViewId": "small-multiple-view.main",
+                  "capabilityId": "small-multiple-view.main.show-key-timeframes"
+                }
+              ],
+              "observations": [
+                {
+                  "observationType": "TemporalChange",
+                  "description": "The diffusion is organized into two main states, with the first state moving from direct listeners in C1 to surrounding communities.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "timeline-view",
+                      "subViewId": "timeline-view.main"
+                    },
+                    {
+                      "viewId": "community-radar",
+                      "subViewId": "community-radar.radar"
+                    },
+                    {
+                      "viewId": "small-multiple-view",
+                      "subViewId": "small-multiple-view.main"
+                    }
+                  ],
+                  "targetDataDescription": [
+                    "Communities C1 and surrounding communities across stages T1-T3"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      62
+                    ],
+                    "figureRefs": [
+                      "Fig. 10a"
+                    ],
+                    "quotes": [
+                      "There were two main diffusion states",
+                      "The first state included three stages (T1-T3)"
+                    ],
+                    "reasoning": "The case text explicitly segments the diffusion into two states and describes the first state's progression.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": []
+            },
+            {
+              "stepId": "case-1-dynamic-diffusion-pattern-analysis.trace-staged-diffusion-states.step-2",
+              "stepIndex": 2,
+              "rawNarrative": "By selecting C2 (Figure 10b2) in T3, we found that it had the most inner spreading counts as 298. It indicated that people in C2 were active.",
+              "intentCanonical": [
+                "Inspect",
+                "Compare"
+              ],
+              "intentText": "Check which community is driving internal spreading in the first state.",
+              "operationCanonical": [
+                "SelectGroup",
+                "InspectDetails"
+              ],
+              "operationText": "Select community C2 during T3 and inspect its internal spreading count.",
+              "usedViews": [
+                {
+                  "viewId": "d-map",
+                  "subViewId": "d-map.main"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "d-map",
+                  "subViewId": "d-map.main",
+                  "capabilityId": "d-map.main.select-communities"
+                }
+              ],
+              "targetDataDescription": [
+                "Community C2 during stage T3"
+              ],
+              "observations": [
+                {
+                  "observationType": "Comparison",
+                  "description": "C2 has the highest inner spreading count at T3, with 298 internal spreading events.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "d-map",
+                      "subViewId": "d-map.main"
+                    }
+                  ],
+                  "targetDataDescription": [
+                    "Community C2"
+                  ],
+                  "interpretation": "High inner spreading suggests unusually active within-community diffusion.",
+                  "evidence": {
+                    "passageIds": [
+                      62
+                    ],
+                    "figureRefs": [
+                      "Fig. 10b2"
+                    ],
+                    "quotes": [
+                      "it had the most inner spreading counts as 298",
+                      "people in C2 were active"
+                    ],
+                    "reasoning": "The case directly attributes the measured count to C2 and interprets it as activity.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "SubgroupCharacterized",
+                  "description": "C2 functions as an especially active community during the first state's later stage.",
+                  "supportedByViews": [
+                    {
+                      "viewId": "d-map",
+                      "subViewId": "d-map.main"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      62
+                    ],
+                    "figureRefs": [
+                      "Fig. 10b2"
+                    ],
+                    "quotes": [
+                      "people in C2 were active"
+                    ],
+                    "reasoning": "The paper explicitly interprets the high internal count as activity.",
+                    "confidence": 0.96
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ]
+            },
+            {
+              "stepId": "case-1-dynamic-diffusion-pattern-analysis.trace-staged-diffusion-states.step-3",
+              "stepIndex": 3,
+              "rawNarrative": "Afterward, it transited to the second main state, which was also segmented into three important stages (T4-T6). The purple community C3 with high influence reposted weibos from C1, and shortly had burst diffusions in C3 and C4 (T5). Further the information spread in all the communities (T6).",
+              "intentCanonical": [
+                "Explore",
+                "Explain"
+              ],
+              "intentText": "Understand how the second main state broadens the diffusion.",
+              "operationCanonical": [
+                "InspectDetails",
+                "CompareAlternatives"
+              ],
+              "operationText": "Inspect the later temporal stages and compare how the spread expands across communities.",
+              "usedViews": [
+                {
+                  "viewId": "timeline-view",
+                  "subViewId": "timeline-view.main"
+                },
+                {
+                  "viewId": "small-multiple-view",
+                  "subViewId": "small-multiple-view.main"
+                },
+                {
+                  "viewId": "d-map",
+                  "subViewId": "d-map.main"
+                }
+              ],
+              "observations": [
+                {
+                  "observationType": "TemporalChange",
+                  "description": "The second main state begins when high-influence community C3 reposts from C1, bursts through C3 and C4, and then reaches all communities.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "timeline-view",
+                      "subViewId": "timeline-view.main"
+                    },
+                    {
+                      "viewId": "small-multiple-view",
+                      "subViewId": "small-multiple-view.main"
+                    },
+                    {
+                      "viewId": "d-map",
+                      "subViewId": "d-map.main"
+                    }
+                  ],
+                  "targetDataDescription": [
+                    "Stages T4-T6 involving communities C1, C3, and C4"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      62
+                    ],
+                    "figureRefs": [
+                      "Fig. 10a",
+                      "Fig. 10b"
+                    ],
+                    "quotes": [
+                      "The purple community C3 with high influence reposted weibos from C1",
+                      "burst diffusions in C3 and C4"
+                    ],
+                    "reasoning": "The narrative explicitly explains the key trigger and subsequent spread pattern of the second state.",
+                    "confidence": 0.97
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "RelationshipIdentified",
+                  "description": "A delayed, high-influence community can trigger a second burst that shifts the diffusion from local persistence to broad cross-community spread.",
+                  "supportedByViews": [
+                    {
+                      "viewId": "timeline-view",
+                      "subViewId": "timeline-view.main"
+                    },
+                    {
+                      "viewId": "d-map",
+                      "subViewId": "d-map.main"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      62
+                    ],
+                    "quotes": [
+                      "Further the information spread in all the communities"
+                    ],
+                    "reasoning": "The later-stage description links C3's activity to a system-wide spreading phase.",
+                    "confidence": 0.9
+                  },
+                  "inferenceType": "StrongInference"
+                }
+              ]
+            }
+          ],
+          "episodeOutcomeSummary": "The episode reconstructs a two-state diffusion story and identifies C2 and C3 as key communities for explaining its evolution.",
+          "evidence": {
+            "passageIds": [
+              61,
+              62
+            ],
+            "figureRefs": [
+              "Fig. 10"
+            ],
+            "quotes": [
+              "There were two main diffusion states"
+            ],
+            "reasoning": "The first episode is a coherent temporal-analysis phase grounded in the case description and figure.",
+            "confidence": 0.97
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "episodeId": "case-1-dynamic-diffusion-pattern-analysis.explain-community-roles",
+          "episodeTitle": "Explain community roles",
+          "localGoal": "Explain why the communities separate and why the diffusion state changes.",
+          "strategyCanonical": [
+            "DrillDownThenExplain",
+            "EvidenceAccumulation"
+          ],
+          "strategyText": "After finding stage-level patterns, drill into community properties and key actors to explain the observed separation.",
+          "steps": [
+            {
+              "stepId": "case-1-dynamic-diffusion-pattern-analysis.explain-community-roles.step-1",
+              "stepIndex": 1,
+              "rawNarrative": "By further investigating the community property, we could tell the reasons of the communities' separation and behaviors. Besides the large common first-listeners (C1, Figure 10b1), the central user had another long-delayed reposting community (C3).",
+              "intentCanonical": [
+                "Explain",
+                "Inspect"
+              ],
+              "intentText": "Interpret the roles of the major communities.",
+              "operationCanonical": [
+                "InspectDetails",
+                "CompareAlternatives"
+              ],
+              "operationText": "Compare community properties to explain their separation and behavior.",
+              "usedViews": [
+                {
+                  "viewId": "d-map",
+                  "subViewId": "d-map.main"
+                }
+              ],
+              "observations": [
+                {
+                  "observationType": "Cluster",
+                  "description": "C1 behaves as a large first-listener community, while C3 behaves as a long-delayed reposting community.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "d-map",
+                      "subViewId": "d-map.main"
+                    }
+                  ],
+                  "targetDataDescription": [
+                    "Communities C1 and C3"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      62
+                    ],
+                    "figureRefs": [
+                      "Fig. 10b1"
+                    ],
+                    "quotes": [
+                      "large common first-listeners (C1)",
+                      "another long-delayed reposting community (C3)"
+                    ],
+                    "reasoning": "The paper explicitly contrasts the two community roles.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "SubgroupCharacterized",
+                  "description": "The separation between C1 and C3 is behaviorally meaningful: C1 captures immediate listeners, while C3 captures delayed amplification.",
+                  "supportedByViews": [
+                    {
+                      "viewId": "d-map",
+                      "subViewId": "d-map.main"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      62
+                    ],
+                    "quotes": [
+                      "we could tell the reasons of the communities' separation and behaviors"
+                    ],
+                    "reasoning": "The case text uses community-property inspection to explain the separation.",
+                    "confidence": 0.93
+                  },
+                  "inferenceType": "StrongInference"
+                }
+              ]
+            },
+            {
+              "stepId": "case-1-dynamic-diffusion-pattern-analysis.explain-community-roles.step-2",
+              "stepIndex": 2,
+              "rawNarrative": "By clicking the key player in C3 (Figure 10b3), we found he was one of the most influential persons on Sina Weibo, who had much more followers than the central user. Thus, we can be aware of the prominent level of different people, as well as the diffusion state changes over time.",
+              "intentCanonical": [
+                "Inspect",
+                "Explain"
+              ],
+              "intentText": "Explain the cause of the delayed burst diffusion.",
+              "operationCanonical": [
+                "SelectItem",
+                "InspectDetails"
+              ],
+              "operationText": "Click the key player in C3 and inspect the actor's prominence.",
+              "usedViews": [
+                {
+                  "viewId": "d-map",
+                  "subViewId": "d-map.main"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "d-map",
+                  "subViewId": "d-map.main",
+                  "capabilityId": "d-map.main.select-nodes"
+                }
+              ],
+              "targetDataDescription": [
+                "Key player in community C3"
+              ],
+              "observations": [
+                {
+                  "observationType": "Relationship",
+                  "description": "The key player in C3 is more influential than the central user and helps account for C3's delayed but powerful role.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "d-map",
+                      "subViewId": "d-map.main"
+                    }
+                  ],
+                  "targetDataDescription": [
+                    "A key player in C3"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      62
+                    ],
+                    "figureRefs": [
+                      "Fig. 10b3"
+                    ],
+                    "quotes": [
+                      "one of the most influential persons on Sina Weibo",
+                      "had much more followers than the central user"
+                    ],
+                    "reasoning": "The key-player inspection directly grounds the explanation for C3's influence.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "ExplanationFormed",
+                  "description": "The later state change is plausibly driven by a highly prominent actor embedded in C3 rather than by uniform community behavior alone.",
+                  "supportedByViews": [
+                    {
+                      "viewId": "d-map",
+                      "subViewId": "d-map.main"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      62
+                    ],
+                    "quotes": [
+                      "Thus, we can be aware of the prominent level of different people"
+                    ],
+                    "reasoning": "The paper links the key-player inspection to an explanation of the diffusion-state change.",
+                    "confidence": 0.92
+                  },
+                  "inferenceType": "StrongInference"
+                }
+              ]
+            }
+          ],
+          "episodeOutcomeSummary": "The episode explains the temporal state change through distinct community roles and a highly prominent actor in C3.",
+          "evidence": {
+            "passageIds": [
+              62
+            ],
+            "figureRefs": [
+              "Fig. 10b"
+            ],
+            "quotes": [
+              "By further investigating the community property"
+            ],
+            "reasoning": "The episode boundary is supported by a clear move from temporal tracing to explanatory drill-down.",
+            "confidence": 0.93
+          },
+          "inferenceType": "StrongInference"
+        }
+      ],
+      "finalOutcome": {
+        "finalInsights": [
+          {
+            "insightType": "PatternFound",
+            "description": "The case reveals a two-state diffusion process with a delayed high-influence community that helps explain the later system-wide burst.",
+            "evidence": {
+              "passageIds": [
+                62
+              ],
+              "figureRefs": [
+                "Fig. 10"
+              ],
+              "quotes": [
+                "There were two main diffusion states"
+              ],
+              "reasoning": "This is the central synthesized result of Case 1.",
+              "confidence": 0.96
+            },
+            "inferenceType": "StrongInference"
+          }
+        ],
+        "claimedSystemValue": "D-Map helps analysts relate community-level dynamics, influential actors, and temporal state changes in diffusion.",
+        "evidence": {
+          "passageIds": [
+            61,
+            62
+          ],
+          "figureRefs": [
+            "Fig. 10"
+          ],
+          "quotes": [
+            "By exploring the diffusion process, we can have a better understanding"
+          ],
+          "reasoning": "The case frames the system's value as support for understanding community formation and behavior patterns.",
+          "confidence": 0.95
+        },
+        "inferenceType": "StrongInference"
+      },
+      "overallStrategySummary": "The analyst starts from staged temporal overviews, isolates active communities, and then drills into community properties and key players to explain the observed state change.",
+      "caseNarrativeSummary": "Case 1 uses temporal views and D-Map interaction to reconstruct two main diffusion states, identify C2 as an active internal-spreading community, and explain the later burst through a highly influential actor in C3.",
+      "evidence": {
+        "passageIds": [
+          60,
+          61,
+          62
+        ],
+        "figureRefs": [
+          "Fig. 10"
+        ],
+        "quotes": [
+          "Case 1: Dynamic Diffusion Pattern Analysis"
+        ],
+        "reasoning": "The case boundary and narrative are explicit in the case-study section.",
+        "confidence": 0.99
+      },
+      "inferenceType": "Explicit"
+    },
+    {
+      "caseId": "case-2-social-community-behaviors-analysis",
+      "caseTitle": "Case 2: Social Community Behaviors Analysis",
+      "caseStudyKind": "RealWorldCase",
+      "analyst": {
+        "role": "DomainExpert",
+        "domainExpertise": "Expert",
+        "toolExpertise": "Unknown",
+        "description": "The case-study topics are presented as being of interest to sociology experts."
+      },
+      "scenario": {
+        "domainProblem": "Understand how communities behave around a technical-information account on Sina Weibo.",
+        "analysisGoal": "Characterize the main community behavior types, validate their temporal roles, and identify which communities and key players drive diffusion.",
+        "datasetContext": "79,013 weibos from 10,209 users spreading 500 source weibos over three months.",
+        "stakes": "The case aims to distinguish direct reposting, active reposting, and high-influence communities in a large diffusion network.",
+        "initialQuestion": "What distinct social community behaviors can be identified around this central user?"
+      },
+      "episodes": [
+        {
+          "episodeId": "case-2-social-community-behaviors-analysis.profile-major-communities",
+          "episodeTitle": "Profile major communities",
+          "localGoal": "Characterize the largest communities and their local reposting behavior.",
+          "strategyCanonical": [
+            "OverviewFirst",
+            "ComparativeAnalysis"
+          ],
+          "strategyText": "Begin with the map overview, then select major communities one by one to compare behavior patterns.",
+          "steps": [
+            {
+              "stepId": "case-2-social-community-behaviors-analysis.profile-major-communities.step-1",
+              "stepIndex": 1,
+              "rawNarrative": "Seven of the ten communities had remarkable number of people (Figure 11a). The largest two communities consisted of 4,391 (red, C1) and 2913 (blue, C2) participants.",
+              "intentCanonical": [
+                "Browse",
+                "Prioritize"
+              ],
+              "intentText": "Establish which communities deserve detailed analysis.",
+              "operationCanonical": [
+                "InspectDetails"
+              ],
+              "operationText": "Read the overview of community sizes on the map.",
+              "usedViews": [
+                {
+                  "viewId": "d-map",
+                  "subViewId": "d-map.main"
+                }
+              ],
+              "observations": [
+                {
+                  "observationType": "Distribution",
+                  "description": "Seven of ten communities are substantial, and C1 and C2 are the two largest groups.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "d-map",
+                      "subViewId": "d-map.main"
+                    }
+                  ],
+                  "targetDataDescription": [
+                    "Community size distribution"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      65
+                    ],
+                    "figureRefs": [
+                      "Fig. 11a"
+                    ],
+                    "quotes": [
+                      "Seven of the ten communities had remarkable number of people",
+                      "The largest two communities consisted of 4,391 (red, C1) and 2913 (blue, C2)"
+                    ],
+                    "reasoning": "The paper explicitly uses the map overview to establish the major communities.",
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "CandidateIdentified",
+                  "description": "C1 and C2 should be treated as primary targets for detailed community analysis.",
+                  "supportedByViews": [
+                    {
+                      "viewId": "d-map",
+                      "subViewId": "d-map.main"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      65
+                    ],
+                    "quotes": [
+                      "The largest two communities"
+                    ],
+                    "reasoning": "The case immediately follows the overview by investigating major communities in detail.",
+                    "confidence": 0.93
+                  },
+                  "inferenceType": "StrongInference"
+                }
+              ]
+            },
+            {
+              "stepId": "case-2-social-community-behaviors-analysis.profile-major-communities.step-2",
+              "stepIndex": 2,
+              "rawNarrative": "We first investigated the community details by selecting all people in each group. In C1, people tended to repost mainly the weibos directly from the central user (Figure 11e), as the arrow glyphs' directions are uniform.",
+              "intentCanonical": [
+                "Inspect",
+                "Explain"
+              ],
+              "intentText": "Determine the behavior pattern of C1.",
+              "operationCanonical": [
+                "SelectGroup",
+                "InspectDetails"
+              ],
+              "operationText": "Select C1 and inspect its summarized community characteristics.",
+              "usedViews": [
+                {
+                  "viewId": "d-map",
+                  "subViewId": "d-map.main"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "d-map",
+                  "subViewId": "d-map.main",
+                  "capabilityId": "d-map.main.select-communities"
+                }
+              ],
+              "targetDataDescription": [
+                "Community C1"
+              ],
+              "observations": [
+                {
+                  "observationType": "Pattern",
+                  "description": "C1 mainly contains direct reposting from the central user, reflected by uniform arrow-glyph directions.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "d-map",
+                      "subViewId": "d-map.main"
+                    }
+                  ],
+                  "targetDataDescription": [
+                    "Community C1"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      65
+                    ],
+                    "figureRefs": [
+                      "Fig. 11e"
+                    ],
+                    "quotes": [
+                      "people tended to repost mainly the weibos directly from the central user",
+                      "the arrow glyphs' directions are uniform"
+                    ],
+                    "reasoning": "The case explicitly interprets the selected community's visual summary as direct reposting behavior.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "SubgroupCharacterized",
+                  "description": "C1 is a direct-reposting community centered on the original poster.",
+                  "supportedByViews": [
+                    {
+                      "viewId": "d-map",
+                      "subViewId": "d-map.main"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      65
+                    ],
+                    "quotes": [
+                      "people tended to repost mainly the weibos directly from the central user"
+                    ],
+                    "reasoning": "The paper directly labels the behavior pattern for C1.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ]
+            },
+            {
+              "stepId": "case-2-social-community-behaviors-analysis.profile-major-communities.step-3",
+              "stepIndex": 3,
+              "rawNarrative": "Reposting behaviors in C2 were more irregular. They had multiple sources and strong communications inside the community. More interestingly, we found this community had large amounts of interactions with C3 community (pink) (Figure 11f).",
+              "intentCanonical": [
+                "Compare",
+                "Explain"
+              ],
+              "intentText": "Determine why C2 behaves differently from C1.",
+              "operationCanonical": [
+                "SelectGroup",
+                "CompareAlternatives"
+              ],
+              "operationText": "Select C2 and compare its behavior pattern with C1 and with interactions involving C3.",
+              "usedViews": [
+                {
+                  "viewId": "d-map",
+                  "subViewId": "d-map.main"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "d-map",
+                  "subViewId": "d-map.main",
+                  "capabilityId": "d-map.main.select-communities"
+                }
+              ],
+              "targetDataDescription": [
+                "Community C2 and its interaction with C3"
+              ],
+              "observations": [
+                {
+                  "observationType": "Relationship",
+                  "description": "C2 has multiple reposting sources, strong internal communication, and notable interaction with C3.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "d-map",
+                      "subViewId": "d-map.main"
+                    }
+                  ],
+                  "targetDataDescription": [
+                    "Communities C2 and C3"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      65
+                    ],
+                    "figureRefs": [
+                      "Fig. 11f"
+                    ],
+                    "quotes": [
+                      "They had multiple sources and strong communications inside the community",
+                      "large amounts of interactions with C3 community"
+                    ],
+                    "reasoning": "The paper explicitly contrasts C2 with C1 and notes the interaction with C3.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "SubgroupCharacterized",
+                  "description": "C2 is an active reposting community whose behavior depends on both internal communication and interaction with C3.",
+                  "supportedByViews": [
+                    {
+                      "viewId": "d-map",
+                      "subViewId": "d-map.main"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      65
+                    ],
+                    "quotes": [
+                      "Reposting behaviors in C2 were more irregular"
+                    ],
+                    "reasoning": "The community comparison supports treating C2 as a distinct behavior type.",
+                    "confidence": 0.95
+                  },
+                  "inferenceType": "StrongInference"
+                }
+              ]
+            }
+          ],
+          "episodeOutcomeSummary": "The episode establishes the three main community roles by distinguishing the overview scale of C1 and C2 and their contrasting behavior patterns.",
+          "evidence": {
+            "passageIds": [
+              64,
+              65
+            ],
+            "figureRefs": [
+              "Fig. 11"
+            ],
+            "quotes": [
+              "We first investigated the community details"
+            ],
+            "reasoning": "The first part of the case is a coherent community-profiling phase.",
+            "confidence": 0.97
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "episodeId": "case-2-social-community-behaviors-analysis.validate-dynamics-and-influence",
+          "episodeTitle": "Validate dynamics and influence",
+          "localGoal": "Use temporal and structural views to validate the role of C2, C3, and key players in the diffusion process.",
+          "strategyCanonical": [
+            "HypothesisTesting",
+            "EvidenceAccumulation"
+          ],
+          "strategyText": "After profiling communities, validate their roles by cross-checking temporal, hierarchical, and influence evidence.",
+          "steps": [
+            {
+              "stepId": "case-2-social-community-behaviors-analysis.validate-dynamics-and-influence.step-1",
+              "stepIndex": 1,
+              "rawNarrative": "By exploring the we found that the central user posted weibos and mainly affected people in C1 and C2 in the first 8 hours. In 8-16 hours, people in C2 largely reposted C3's weibo, which indicated a second round bursting. The Timeline View and Hierarchical View also confirmed this phenomenon -people in C2 kept active for long (Figure 11d) and participated in second-round reposting (Figure 11c).",
+              "intentCanonical": [
+                "Validate",
+                "Contextualize"
+              ],
+              "intentText": "Validate the temporal sequence behind the community interactions.",
+              "operationCanonical": [
+                "InspectDetails",
+                "CompareAlternatives"
+              ],
+              "operationText": "Cross-check temporal and hierarchical evidence for the sequence of activity across communities.",
+              "usedViews": [
+                {
+                  "viewId": "timeline-view",
+                  "subViewId": "timeline-view.main"
+                },
+                {
+                  "viewId": "hierarchical-view",
+                  "subViewId": "hierarchical-view.main"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "timeline-view",
+                  "subViewId": "timeline-view.main",
+                  "capabilityId": "timeline-view.main.show-temporal-trends"
+                },
+                {
+                  "viewId": "hierarchical-view",
+                  "subViewId": "hierarchical-view.main",
+                  "capabilityId": "hierarchical-view.main.show-reposting-structure"
+                },
+                {
+                  "viewId": "hierarchical-view",
+                  "subViewId": "hierarchical-view.main",
+                  "capabilityId": "hierarchical-view.main.show-community-position"
+                }
+              ],
+              "observations": [
+                {
+                  "observationType": "TemporalChange",
+                  "description": "C1 and C2 dominate the first 8 hours, and then C2 strongly reposts C3 in hours 8-16, creating a second-round burst.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "timeline-view",
+                      "subViewId": "timeline-view.main"
+                    },
+                    {
+                      "viewId": "hierarchical-view",
+                      "subViewId": "hierarchical-view.main"
+                    }
+                  ],
+                  "targetDataDescription": [
+                    "Communities C1, C2, and C3 across the first 16 hours"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      65
+                    ],
+                    "figureRefs": [
+                      "Fig. 11c",
+                      "Fig. 11d"
+                    ],
+                    "quotes": [
+                      "people in C2 largely reposted C3's weibo",
+                      "indicated a second round bursting"
+                    ],
+                    "reasoning": "The temporal and hierarchical views are explicitly named as confirmation sources for the second burst.",
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "RelationshipIdentified",
+                  "description": "C2's activity is not just large in volume; it also sustains and re-amplifies diffusion initiated through C3.",
+                  "supportedByViews": [
+                    {
+                      "viewId": "timeline-view",
+                      "subViewId": "timeline-view.main"
+                    },
+                    {
+                      "viewId": "hierarchical-view",
+                      "subViewId": "hierarchical-view.main"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      65
+                    ],
+                    "quotes": [
+                      "people in C2 kept active for long"
+                    ],
+                    "reasoning": "The second-round burst and sustained activity jointly characterize C2's role.",
+                    "confidence": 0.94
+                  },
+                  "inferenceType": "StrongInference"
+                }
+              ]
+            },
+            {
+              "stepId": "case-2-social-community-behaviors-analysis.validate-dynamics-and-influence.step-2",
+              "stepIndex": 2,
+              "rawNarrative": "In all, C2 people reposted 53,542 times, more active than people in C1 with 10,237 repostings. C3 had a significant influence on others and led to the highest reposting count -10,310 (Figure 11b).",
+              "intentCanonical": [
+                "Compare",
+                "Prioritize"
+              ],
+              "intentText": "Quantify which communities are most active and influential.",
+              "operationCanonical": [
+                "InspectDetails",
+                "CompareAlternatives"
+              ],
+              "operationText": "Read and compare community-level activity and influence counts.",
+              "usedViews": [
+                {
+                  "viewId": "community-radar",
+                  "subViewId": "community-radar.statistics"
+                },
+                {
+                  "viewId": "community-radar",
+                  "subViewId": "community-radar.radar"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "community-radar",
+                  "subViewId": "community-radar.statistics",
+                  "capabilityId": "community-radar.statistics.show-selected-community-stats"
+                },
+                {
+                  "viewId": "community-radar",
+                  "subViewId": "community-radar.radar",
+                  "capabilityId": "community-radar.radar.compare-community-features"
+                }
+              ],
+              "observations": [
+                {
+                  "observationType": "Comparison",
+                  "description": "C2 is much more active than C1 by reposting count, while C3 has the highest influence on others.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "community-radar",
+                      "subViewId": "community-radar.statistics"
+                    }
+                  ],
+                  "targetDataDescription": [
+                    "Communities C1, C2, and C3"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      65
+                    ],
+                    "figureRefs": [
+                      "Fig. 11b"
+                    ],
+                    "quotes": [
+                      "C2 people reposted 53,542 times",
+                      "C3 had a significant influence on others"
+                    ],
+                    "reasoning": "The case text explicitly compares activity and influence across the named communities.",
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "SubgroupCharacterized",
+                  "description": "C2 is the most active community, while C3 is the highest-influence community.",
+                  "supportedByViews": [
+                    {
+                      "viewId": "community-radar",
+                      "subViewId": "community-radar.statistics"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      65
+                    ],
+                    "quotes": [
+                      "more active than people in C1",
+                      "highest reposting count"
+                    ],
+                    "reasoning": "The paper explicitly distinguishes activity from influence in its count-based comparison.",
+                    "confidence": 0.97
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ]
+            },
+            {
+              "stepId": "case-2-social-community-behaviors-analysis.validate-dynamics-and-influence.step-3",
+              "stepIndex": 3,
+              "rawNarrative": "Specifically, we concluded people in C3 had a larger influence on C2 (Figure 11h).",
+              "intentCanonical": [
+                "Explain",
+                "Inspect"
+              ],
+              "intentText": "Explain the inter-community influence structure among the major communities.",
+              "operationCanonical": [
+                "InspectDetails"
+              ],
+              "operationText": "Inspect the detailed inter-community behavior between C3 and C2.",
+              "usedViews": [
+                {
+                  "viewId": "d-map",
+                  "subViewId": "d-map.main"
+                }
+              ],
+              "targetDataDescription": [
+                "Inter-community behavior between C3 and C2"
+              ],
+              "observations": [
+                {
+                  "observationType": "Relationship",
+                  "description": "C3 has stronger influence on C2 than the reverse.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "d-map",
+                      "subViewId": "d-map.main"
+                    }
+                  ],
+                  "targetDataDescription": [
+                    "Communities C2 and C3"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      65
+                    ],
+                    "figureRefs": [
+                      "Fig. 11h"
+                    ],
+                    "quotes": [
+                      "people in C3 had a larger influence on C2"
+                    ],
+                    "reasoning": "The case explicitly states the inter-community influence direction in the detailed behavior view.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "ExplanationFormed",
+                  "description": "C3 acts as a stronger influence source on C2 within the detailed inter-community behavior analysis.",
+                  "supportedByViews": [
+                    {
+                      "viewId": "d-map",
+                      "subViewId": "d-map.main"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      65
+                    ],
+                    "figureRefs": [
+                      "Fig. 11h"
+                    ],
+                    "quotes": [
+                      "people in C3 had a larger influence on C2"
+                    ],
+                    "reasoning": "This insight stays at the same level as the inter-community behavior conclusion instead of bundling the later key-player drill-down.",
+                    "confidence": 0.95
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ]
+            },
+            {
+              "stepId": "case-2-social-community-behaviors-analysis.validate-dynamics-and-influence.step-4",
+              "stepIndex": 4,
+              "rawNarrative": "To further investigate human behaviors, we could identify the key players who impacted people in C3 (Figure 11i).",
+              "intentCanonical": [
+                "Inspect",
+                "Explain"
+              ],
+              "intentText": "Identify the key players who shape behavior inside C3.",
+              "operationCanonical": [
+                "SelectItem",
+                "InspectDetails"
+              ],
+              "operationText": "Inspect the key-player behavior view for actors impacting C3.",
+              "usedViews": [
+                {
+                  "viewId": "d-map",
+                  "subViewId": "d-map.main"
+                }
+              ],
+              "usedCapabilities": [
+                {
+                  "viewId": "d-map",
+                  "subViewId": "d-map.main",
+                  "capabilityId": "d-map.main.select-nodes"
+                }
+              ],
+              "targetDataDescription": [
+                "Key players affecting C3"
+              ],
+              "observations": [
+                {
+                  "observationType": "Relationship",
+                  "description": "Specific key players can be identified as impacting people in C3.",
+                  "basedOnViews": [
+                    {
+                      "viewId": "d-map",
+                      "subViewId": "d-map.main"
+                    }
+                  ],
+                  "targetDataDescription": [
+                    "Key players affecting C3"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      65
+                    ],
+                    "figureRefs": [
+                      "Fig. 11i"
+                    ],
+                    "quotes": [
+                      "identify the key players who impacted people in C3"
+                    ],
+                    "reasoning": "The paper explicitly describes this as a further drill-down into key-player behavior.",
+                    "confidence": 0.98
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "ExplanationFormed",
+                  "description": "Part of C3's influence pattern can be further explained at the actor level through identifiable key players.",
+                  "supportedByViews": [
+                    {
+                      "viewId": "d-map",
+                      "subViewId": "d-map.main"
+                    }
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      65
+                    ],
+                    "figureRefs": [
+                      "Fig. 11i"
+                    ],
+                    "quotes": [
+                      "identify the key players who impacted people in C3"
+                    ],
+                    "reasoning": "The later drill-down adds an actor-level explanation beyond the preceding inter-community conclusion.",
+                    "confidence": 0.94
+                  },
+                  "inferenceType": "StrongInference"
+                }
+              ]
+            }
+          ],
+          "episodeOutcomeSummary": "The episode validates that C2 sustains the second-round burst, that C3 is the key influence source, and that key players help explain the community interaction pattern.",
+          "evidence": {
+            "passageIds": [
+              65,
+              66
+            ],
+            "figureRefs": [
+              "Fig. 11"
+            ],
+            "quotes": [
+              "The Timeline View and Hierarchical View also confirmed this phenomenon"
+            ],
+            "reasoning": "The second half of the case explicitly shifts from local characterization to validation and explanation.",
+            "confidence": 0.97
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "finalOutcome": {
+        "finalInsights": [
+          {
+            "insightType": "PatternFound",
+            "description": "The case identifies three distinct community roles: direct reposting people in C1, active reposting people in C2, and high-influence people in C3.",
+            "evidence": {
+              "passageIds": [
+                66
+              ],
+              "quotes": [
+                "direct reposting people (C1), high influence people (C3) and active reposting people (C2)"
+              ],
+              "reasoning": "The final paragraph of Case 2 explicitly summarizes the three community roles.",
+              "confidence": 0.99
+            },
+            "inferenceType": "Explicit"
+          }
+        ],
+        "claimedSystemValue": "D-Map supports both community characterization and storytelling about dynamic social interactions.",
+        "evidence": {
+          "passageIds": [
+            66
+          ],
+          "quotes": [
+            "We also demonstrate the capability of investigating dynamic diffusion patterns among each community and telling stories about social interactions"
+          ],
+          "reasoning": "The paper explicitly states the claimed value of the system at the end of the case.",
+          "confidence": 0.99
+        },
+        "inferenceType": "Explicit"
+      },
+      "overallStrategySummary": "The analyst profiles the largest communities first, then validates and explains their roles by combining temporal, hierarchical, and influence evidence.",
+      "caseNarrativeSummary": "Case 2 establishes C1 as a direct-reposting community, C2 as a highly active reposting community, and C3 as a high-influence community whose interactions and key players help drive a second burst.",
+      "evidence": {
+        "passageIds": [
+          63,
+          64,
+          65,
+          66
+        ],
+        "figureRefs": [
+          "Fig. 11"
+        ],
+        "quotes": [
+          "Case 2: Social Community Behaviors Analysis"
+        ],
+        "reasoning": "The case boundary and summary are explicit in the case-study section.",
+        "confidence": 0.99
+      },
+      "inferenceType": "Explicit"
+    },
+    {
+      "caseId": "case-3-people-portrait",
+      "caseTitle": "Case 3: People Portrait",
+      "caseStudyKind": "RetrospectiveAnalysis",
+      "analyst": {
+        "role": "Researcher",
+        "domainExpertise": "Expert",
+        "toolExpertise": "Unknown",
+        "description": "The paper uses D-Map to compare many influential accounts and derive broader portrait patterns."
+      },
+      "scenario": {
+        "domainProblem": "Compare diffusion portraits of many influential Sina Weibo accounts.",
+        "analysisGoal": "Identify recurring portrait patterns that distinguish service accounts, businessmen, dual-center users, and domain experts.",
+        "datasetContext": "34 influential accounts, around 500,000 weibos across five years, and about two million participating people.",
+        "stakes": "The comparison is meant to reveal whether an account is influential, badly operated, or characterized by stronger inter-community interaction.",
+        "initialQuestion": "What recurring portrait patterns distinguish different kinds of influential central users?"
+      },
+      "hypotheses": [
+        {
+          "hypothesisId": "case-3-people-portrait.businessman-accounts-maintain-cross-community-influence-by-reposting-earlier-weibos-to-regain-public-attention-while-domain-experts-spread-later-through-key-players-in-multiple-communities",
+          "hypothesisText": "Businessman accounts maintain cross-community influence by reposting earlier weibos to regain public attention, while domain experts spread later through key players in multiple communities.",
+          "status": "Proposed",
+          "inferenceType": "StrongInference"
+        }
+      ],
+      "episodes": [
+        {
+          "episodeId": "case-3-people-portrait.survey-portrait-categories",
+          "episodeTitle": "Survey portrait categories",
+          "localGoal": "Compare the selected portrait examples and derive broad account-type categories.",
+          "strategyCanonical": [
+            "ComparativeAnalysis",
+            "OverviewFirst"
+          ],
+          "strategyText": "Survey a matrix of selected examples, then group recurring structures into account-type categories.",
+          "steps": [
+            {
+              "stepId": "case-3-people-portrait.survey-portrait-categories.step-1",
+              "stepIndex": 1,
+              "rawNarrative": "We find many patterns and select nine of them for illustration (Figure 12). From left to right, the number of detected communities increases. From top to bottom, the influences among communities become larger.",
+              "intentCanonical": [
+                "Browse",
+                "Compare"
+              ],
+              "intentText": "Establish the comparison space across influential accounts.",
+              "operationCanonical": [
+                "CompareAlternatives"
+              ],
+              "operationText": "Survey the selected portrait examples as an ordered comparison matrix.",
+              "observations": [
+                {
+                  "observationType": "Distribution",
+                  "description": "The nine selected portraits are arranged so that community count increases across columns and inter-community influence increases down the rows.",
+                  "targetDataDescription": [
+                    "Nine selected portrait examples in Figure 12"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      69
+                    ],
+                    "figureRefs": [
+                      "Fig. 12"
+                    ],
+                    "quotes": [
+                      "From left to right, the number of detected communities increases",
+                      "From top to bottom, the influences among communities become larger"
+                    ],
+                    "reasoning": "The paper explicitly describes the comparison layout for the portrait examples.",
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": []
+            },
+            {
+              "stepId": "case-3-people-portrait.survey-portrait-categories.step-2",
+              "stepIndex": 2,
+              "rawNarrative": "First, central users with a few communities and weak intercommunity influences usually turn out to be service accounts. Second, central users with larger communities but low inter-community influence are more likely to be businessmen in the social media.",
+              "intentCanonical": [
+                "Compare",
+                "Summarize"
+              ],
+              "intentText": "Assign qualitative account-type labels to weakly connected patterns.",
+              "operationCanonical": [
+                "CompareAlternatives",
+                "Aggregate"
+              ],
+              "operationText": "Compare repeated weakly connected portrait patterns and summarize them as account-type categories.",
+              "observations": [
+                {
+                  "observationType": "Pattern",
+                  "description": "Weakly connected portraits split into at least two account types: service accounts with few communities and businessmen with larger communities but still low inter-community influence.",
+                  "targetDataDescription": [
+                    "Service-account-like and businessman-like portraits"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      70
+                    ],
+                    "figureRefs": [
+                      "Fig. 12a",
+                      "Fig. 12c"
+                    ],
+                    "quotes": [
+                      "a few communities and weak intercommunity influences usually turn out to be service accounts",
+                      "larger communities but low inter-community influence are more likely to be businessmen"
+                    ],
+                    "reasoning": "The paper explicitly maps these portrait structures to account-type interpretations.",
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "SubgroupCharacterized",
+                  "description": "Weak inter-community influence alone is insufficient; community-size structure separates service-account and businessman portraits.",
+                  "evidence": {
+                    "passageIds": [
+                      70
+                    ],
+                    "quotes": [
+                      "First",
+                      "Second"
+                    ],
+                    "reasoning": "The paper explicitly presents two distinct categories under similarly weak cross-community influence.",
+                    "confidence": 0.94
+                  },
+                  "inferenceType": "StrongInference"
+                }
+              ]
+            }
+          ],
+          "episodeOutcomeSummary": "The episode defines the portrait comparison axes and uses them to derive initial categories for service accounts and businessmen.",
+          "evidence": {
+            "passageIds": [
+              69,
+              70
+            ],
+            "figureRefs": [
+              "Fig. 12"
+            ],
+            "quotes": [
+              "We find many patterns and select nine of them for illustration"
+            ],
+            "reasoning": "The first part of the case establishes the comparison setup and the first account-type interpretations.",
+            "confidence": 0.97
+          },
+          "inferenceType": "Explicit"
+        },
+        {
+          "episodeId": "case-3-people-portrait.differentiate-stronger-interaction-patterns",
+          "episodeTitle": "Differentiate stronger interaction patterns",
+          "localGoal": "Describe richer cross-community structures and propose an explanation for their temporal differences.",
+          "strategyCanonical": [
+            "ComparativeAnalysis",
+            "HypothesisGeneration"
+          ],
+          "strategyText": "Use stronger interaction cases to extend the portrait typology and then synthesize a temporal explanation.",
+          "steps": [
+            {
+              "stepId": "case-3-people-portrait.differentiate-stronger-interaction-patterns.step-1",
+              "stepIndex": 1,
+              "rawNarrative": "Third, central users with few number of communities but strong inter-community influences usually have one or some influential key players. Lastly, central users with active inter-community behaviors tend to have more equal-size community. Each community has its key players, and they have connections with each other.",
+              "intentCanonical": [
+                "Compare",
+                "Explain"
+              ],
+              "intentText": "Characterize the stronger interaction structures in the portrait set.",
+              "operationCanonical": [
+                "CompareAlternatives",
+                "Aggregate"
+              ],
+              "operationText": "Compare more connected portraits and summarize the recurring structural signatures.",
+              "observations": [
+                {
+                  "observationType": "Relationship",
+                  "description": "Stronger interaction portraits include dual-center patterns shaped by influential key players and equal-size community patterns with active cross-community links.",
+                  "targetDataDescription": [
+                    "Dual-center and active inter-community portrait patterns"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      70
+                    ],
+                    "figureRefs": [
+                      "Fig. 12d",
+                      "Fig. 12f",
+                      "Fig. 12g",
+                      "Fig. 12i"
+                    ],
+                    "quotes": [
+                      "one or some influential key players",
+                      "Each community has its key players, and they have connections with each other"
+                    ],
+                    "reasoning": "The text explicitly characterizes two stronger-interaction portrait families.",
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "SubgroupCharacterized",
+                  "description": "The more connected portraits separate into key-player-driven dual centers and domain-expert-like multi-community interaction patterns.",
+                  "evidence": {
+                    "passageIds": [
+                      70
+                    ],
+                    "quotes": [
+                      "forms a dual-center pattern",
+                      "likely to be domain experts in particular fields"
+                    ],
+                    "reasoning": "The paper ties stronger interaction structures to distinct social roles.",
+                    "confidence": 0.96
+                  },
+                  "inferenceType": "StrongInference"
+                }
+              ]
+            },
+            {
+              "stepId": "case-3-people-portrait.differentiate-stronger-interaction-patterns.step-2",
+              "stepIndex": 2,
+              "rawNarrative": "The trend of diffusion pattern along the time is also different. For example, the businessman's diffusion pattern keeps almost the same as the beginning along the diffusion time. We build the hypothesis that the businessman keeps influencing the other communities, by reposting his previous weibos to gain the public attention again. Different from the businessman, the domain expert's weibos are reposted by the key players in different communities and diffuse across multiple communities in later stages.",
+              "hypothesisEvents": [
+                {
+                  "hypothesisId": "case-3-people-portrait.businessman-accounts-maintain-cross-community-influence-by-reposting-earlier-weibos-to-regain-public-attention-while-domain-experts-spread-later-through-key-players-in-multiple-communities",
+                  "action": "Propose",
+                  "hypothesisText": "Businessman accounts maintain cross-community influence by reposting earlier weibos to regain public attention, while domain experts spread later through key players in multiple communities.",
+                  "note": "The paper explicitly labels this interpretation as a hypothesis while contrasting businessman and domain-expert diffusion trends.",
+                  "statusAfter": "Proposed",
+                  "evidence": {
+                    "passageIds": [
+                      70
+                    ],
+                    "quotes": [
+                      "We build the hypothesis that the businessman keeps influencing the other communities"
+                    ],
+                    "reasoning": "The hypothesis statement is explicit in the case text.",
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "intentCanonical": [
+                "Explain",
+                "Summarize"
+              ],
+              "intentText": "Explain why businessman and domain-expert portraits evolve differently over time.",
+              "strategyCanonical": [
+                "HypothesisGeneration"
+              ],
+              "strategyText": "Synthesize the portrait comparison into an explanatory temporal hypothesis.",
+              "operationCanonical": [
+                "CompareAlternatives",
+                "Aggregate"
+              ],
+              "operationText": "Compare temporal behavior across portrait types and articulate an explanatory hypothesis.",
+              "observations": [
+                {
+                  "observationType": "TemporalChange",
+                  "description": "Businessman portraits remain temporally similar to their initial state, whereas domain-expert portraits show later-stage multi-community diffusion through key players.",
+                  "targetDataDescription": [
+                    "Businessman and domain-expert portrait patterns over time"
+                  ],
+                  "evidence": {
+                    "passageIds": [
+                      70
+                    ],
+                    "quotes": [
+                      "the businessman's diffusion pattern keeps almost the same as the beginning",
+                      "diffuse across multiple communities in later stages"
+                    ],
+                    "reasoning": "The text explicitly contrasts the temporal dynamics of the two portrait types.",
+                    "confidence": 0.99
+                  },
+                  "inferenceType": "Explicit"
+                }
+              ],
+              "producedInsights": [
+                {
+                  "insightType": "ExplanationFormed",
+                  "description": "Temporal stability versus later-stage cross-community amplification helps distinguish businessman and domain-expert portrait types.",
+                  "evidence": {
+                    "passageIds": [
+                      70
+                    ],
+                    "quotes": [
+                      "The trend of diffusion pattern along the time is also different"
+                    ],
+                    "reasoning": "The case uses temporal behavior as the main explanatory distinction between the two portrait types.",
+                    "confidence": 0.96
+                  },
+                  "inferenceType": "StrongInference"
+                }
+              ]
+            }
+          ],
+          "episodeOutcomeSummary": "The episode extends the portrait typology to stronger interaction patterns and records the paper's explicit hypothesis about temporal differences between businessman and domain-expert diffusion.",
+          "evidence": {
+            "passageIds": [
+              70,
+              71
+            ],
+            "figureRefs": [
+              "Fig. 12"
+            ],
+            "quotes": [
+              "We build the hypothesis"
+            ],
+            "reasoning": "The second phase of the case is a synthesis and explanation stage built on the broader portrait comparison.",
+            "confidence": 0.97
+          },
+          "inferenceType": "Explicit"
+        }
+      ],
+      "finalOutcome": {
+        "finalInsights": [
+          {
+            "insightType": "PatternFound",
+            "description": "The case identifies portrait patterns such as dual-center diffusion, strong-center roles, and strong inter-community interaction, and uses them to judge how different central users operate.",
+            "evidence": {
+              "passageIds": [
+                71
+              ],
+              "quotes": [
+                "We find interesting patterns such as dual-center diffusion",
+                "strong-center role",
+                "strong interactions"
+              ],
+              "reasoning": "The final paragraph explicitly summarizes the outcome of the portrait comparison.",
+              "confidence": 0.99
+            },
+            "inferenceType": "Explicit"
+          }
+        ],
+        "claimedSystemValue": "D-Map supports portraiting and comparing social patterns of central users to judge whether an account is influential or badly operated.",
+        "evidence": {
+          "passageIds": [
+            71
+          ],
+          "quotes": [
+            "This case confirms the capability of portraiting and comparing social patterns of central users"
+          ],
+          "reasoning": "The paper explicitly states the system value at the end of Case 3.",
+          "confidence": 0.99
+        },
+        "inferenceType": "Explicit"
+      },
+      "overallStrategySummary": "The analyst compares a curated matrix of portrait examples, groups them into account-type patterns, and then synthesizes a temporal hypothesis to distinguish businessman and domain-expert diffusion.",
+      "caseNarrativeSummary": "Case 3 uses D-Map portraits from many central users to derive account-type patterns, distinguish stronger and weaker inter-community structures, and propose a temporal explanation for how businessman and domain-expert accounts differ.",
+      "evidence": {
+        "passageIds": [
+          67,
+          68,
+          69,
+          70,
+          71
+        ],
+        "figureRefs": [
+          "Fig. 12"
+        ],
+        "quotes": [
+          "Case 3: People Portrait"
+        ],
+        "reasoning": "The case boundary and outcome summary are explicit in the case-study section.",
+        "confidence": 0.99
+      },
+      "inferenceType": "Explicit"
+    }
+  ],
+  "paperLevelUsageClaims": [
+    "The paper presents three cases that demonstrate dynamic diffusion analysis, community behavior analysis, and people-portrait comparison with D-Map.",
+    "Across the cases, D-Map is used to relate temporal diffusion patterns, community structure, and key-player influence.",
+    "The case-study section claims the system helps sociology-oriented analysts tell stories about social interactions and compare central-user behavior patterns."
+  ],
+  "evidence": {
+    "passageIds": [
+      59
+    ],
+    "quotes": [
+      "We present three cases showing different functional aspects of our system"
+    ],
+    "reasoning": "The case-study section explicitly states that the paper includes three cases covering different functional aspects.",
+    "confidence": 0.99
+  },
+  "inferenceType": "Explicit"
+}

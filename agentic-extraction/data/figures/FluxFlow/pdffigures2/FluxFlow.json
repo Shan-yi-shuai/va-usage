@@ -1,0 +1,201 @@
+[{
+  "caption": "Fig. 5. The FluxFlow visual interface contains four interactively coordinated UI components, including a) a cluster view, b) a MDS view, c) a threads view, and a detail information panel with three subviews: d) a features view, e) a states view and f) a tweets view. Extra information such as the meta-data of a thread or the tweet contents can be assessed through g) informative tooltips and h) context menus. The analyst can also perform flexible exploration of retweeting threads at multiple scales, such as i) aggregating tree branches in the cluster view, and j) zooming the timelines using the time window in the threads view.",
+  "captionBoundary": {
+    "x1": 52.7952995300293,
+    "x2": 565.8065795898438,
+    "y1": 285.093505859375,
+    "y2": 327.8849792480469
+  },
+  "figType": "Figure",
+  "imageText": ["g", "i", "j", "h", "f", "e", "d", "b", "c", "a"],
+  "name": "5",
+  "page": 5,
+  "regionBoundary": {
+    "x1": 51.839999999999996,
+    "x2": 566.4,
+    "y1": 48.96,
+    "y2": 281.28
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/FluxFlow-Figure5-1.png"
+}, {
+  "caption": "Fig. 6. User social network connections overlaid on top of thread timelines: a) user links of one thread in the linear circle view, and b) user links between and within two threads in the volume circle view.",
+  "captionBoundary": {
+    "x1": 46.2047004699707,
+    "x2": 296.58697509765625,
+    "y1": 155.12351989746094,
+    "y2": 178.98602294921875
+  },
+  "figType": "Figure",
+  "imageText": ["b", "a"],
+  "name": "6",
+  "page": 6,
+  "regionBoundary": {
+    "x1": 50.879999999999995,
+    "x2": 290.4,
+    "y1": 48.96,
+    "y2": 148.32
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/FluxFlow-Figure6-1.png"
+}, {
+  "caption": "Fig. 7. Accuracies of OCCRF and OCSVM in correctly detecting rumors in the top-K retweeting threads ranked by the models in datasets (i.e., Acc@K): a) Hurricane Sandy, and b) Boston Bombing.",
+  "captionBoundary": {
+    "x1": 308.82501220703125,
+    "x2": 559.2138061523438,
+    "y1": 132.71849060058594,
+    "y2": 156.58099365234375
+  },
+  "figType": "Figure",
+  "imageText": ["a", "b"],
+  "name": "7",
+  "page": 6,
+  "regionBoundary": {
+    "x1": 307.68,
+    "x2": 560.16,
+    "y1": 48.96,
+    "y2": 131.04
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/FluxFlow-Figure7-1.png"
+}, {
+  "caption": "Fig. 2. Overview of FluxFlow system architecture.",
+  "captionBoundary": {
+    "x1": 46.2047004699707,
+    "x2": 220.4310760498047,
+    "y1": 154.33750915527344,
+    "y2": 159.27099609375
+  },
+  "figType": "Figure",
+  "imageText": ["Hierarchical", "Content", "Clustering", "User", "Interaction", "Graph", "Extraction", "Multidimensional", "Scaling", "Analysis", "Anomalous", "Threads", "Detection", "Twitter", "Data", "Store", "Hadoop", "Visualization", "Reconstruction", "Threads", "Feature", "Extraction", "Data", "Filtering", "Preprocessing", "and", "Storage"],
+  "name": "2",
+  "page": 2,
+  "regionBoundary": {
+    "x1": 53.76,
+    "x2": 288.0,
+    "y1": 52.8,
+    "y2": 145.92
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/FluxFlow-Figure2-1.png"
+}, {
+  "caption": "Fig. 8. Retweeting threads about the topic of “a picture of the Tomb of Unknown Soldier” during the Hurricane Sandy event: a) thread nodes indicating the topic in the cluster view, b) raw tweets shown in the context menu, and c) thread timelines in the threads view.",
+  "captionBoundary": {
+    "x1": 52.7952995300293,
+    "x2": 303.1759338378906,
+    "y1": 283.2904968261719,
+    "y2": 316.62066650390625
+  },
+  "figType": "Figure",
+  "imageText": ["c", "a", "b"],
+  "name": "8",
+  "page": 7,
+  "regionBoundary": {
+    "x1": 56.64,
+    "x2": 296.15999999999997,
+    "y1": 48.96,
+    "y2": 278.4
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/FluxFlow-Figure8-1.png"
+}, {
+  "caption": "Fig. 9. Exploring one thread of interest and its three child nodes with sub-topics: a) the cluster view and b) MDS view.",
+  "captionBoundary": {
+    "x1": 315.4150085449219,
+    "x2": 565.7955932617188,
+    "y1": 173.9805145263672,
+    "y2": 188.37530517578125
+  },
+  "figType": "Figure",
+  "imageText": ["a", "b"],
+  "name": "9",
+  "page": 7,
+  "regionBoundary": {
+    "x1": 325.92,
+    "x2": 549.12,
+    "y1": 48.96,
+    "y2": 171.35999999999999
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/FluxFlow-Figure9-1.png"
+}, {
+  "caption": "Table 1. Anomaly features extracted for a retweeting thread.",
+  "captionBoundary": {
+    "x1": 72.62229919433594,
+    "x2": 283.3517150878906,
+    "y1": 301.2095031738281,
+    "y2": 306.14300537109375
+  },
+  "figType": "Table",
+  "imageText": ["“sweet”", "for", "positive", "emotions)", "Interval", "(C3)", "The", "log", "of", "the", "interval", "between", "adjacent", "tweets", "TimeOfDay", "(C3)", "Time", "of", "the", "day", "when", "the", "original", "tweets", "are", "retweeted", "HasQuestionMark", "(C4)", "Whether", "the", "tweet", "contains", "question", "mark", "Lexical", "emotion", "(C4)", "220", "categories", "in", "psychological", "dictionaries", "(e.g.,", "“nice”,", "period", "of", "time", "(the", "larger", "the", "value", "indicates", "a", "popular", "device)", "similarity", "(C2)", "The", "egonet", "similarity", "between", "the", "user", "and", "other", "users", "ahead", "UserIndegree", "(C2)", "The", "in-degree", "of", "the", "user", "in", "his/her", "egonet", "UserOutdegree", "(C2)", "The", "out-degree", "of", "the", "user", "in", "his/her", "egonet", "RetweetCount", "(C3)", "The", "retweet", "count", "of", "the", "orignal", "tweet", "in", "the", "thread", "DeviceCount", "(C3)", "The", "total", "count", "of", "the", "device", "where", "the", "tweet", "is", "from", "in", "a", "ahead", "in", "the", "thread", "maxInTie", "(C2)", "The", "maximum", "weight", "of", "the", "links", "to", "the", "user", "from", "other", "users", "ahead", "in", "the", "thread", "MentionCount", "(C1)", "The", "number", "of", "mentions", "in", "the", "user’s", "tweets", "of", "a", "time", "window", "UrlCount", "(C1)", "The", "number", "of", "urls", "in", "the", "user’s", "tweets", "of", "a", "time", "window", "HashtagCount", "(C1)", "The", "number", "of", "hashtags", "in", "the", "user’s", "tweets", "of", "a", "time", "window", "maxOutTie", "(C2)", "The", "maximum", "weight", "of", "the", "links", "from", "the", "user", "to", "other", "users", "3", "hours)", "divided", "by", "the", "user’s", "monthly", "average", "UserFriendsCount", "(C1)", "The", "user’s", "friends", "count", "UserFollowersCount", "(C1)", "The", "user’s", "follower", "count", "UserStatusesCount", "(C1)", "The", "user’s", "lifetime", "tweet", "count", "RegistrationAge", "(C1)", "The", "number", "of", "days", "since", "the", "user", "registered", "FriendsFollowerRatio", "(C1)", "The", "ratio", "between", "users’", "friends", "and", "followers", "UserAnomalyScore", "(C1)", "The", "number", "of", "the", "user’s", "interaction", "in", "a", "time", "window", "(e.g.,", "Feature", "(Type)", "Description"],
+  "name": "1",
+  "page": 3,
+  "regionBoundary": {
+    "x1": 51.839999999999996,
+    "x2": 307.2,
+    "y1": 48.96,
+    "y2": 294.24
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/FluxFlow-Table1-1.png"
+}, {
+  "caption": "Fig. 10. An analyst is trying to better understand how the anomaly detection model works using a) visual comparison of threads with different abnormality scores, and b) examination of the MDS projection patterns of the hidden states. In a), the first three are identified rumors with topics about “power outage”, “the Tomb of Unknown Soldier picture” and “shark swimming in the street” respectively.",
+  "captionBoundary": {
+    "x1": 46.2047004699707,
+    "x2": 296.5925598144531,
+    "y1": 247.3564910888672,
+    "y2": 299.614013671875
+  },
+  "figType": "Figure",
+  "imageText": ["b", "a"],
+  "name": "10",
+  "page": 8,
+  "regionBoundary": {
+    "x1": 50.879999999999995,
+    "x2": 290.4,
+    "y1": 48.96,
+    "y2": 244.32
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/FluxFlow-Figure10-1.png"
+}, {
+  "caption": "Fig. 4. Circle packing algorithm with horizontal constants.",
+  "captionBoundary": {
+    "x1": 318.7879943847656,
+    "x2": 520.2479858398438,
+    "y1": 441.3735046386719,
+    "y2": 446.3070068359375
+  },
+  "figType": "Figure",
+  "imageText": ["end", "start←", "i+1,", "bounds←", "[0,0],", "f", "rontchain←{};", "end", "end", "else", "/*", "start", "a", "new", "placment", "block", "*/", "end", "sort", "locations", "ascending", "by", "the", "distance", "to", "(xi,0);", "assign", "(cxi,cyi)", "with", "(lx0,", "ly0)", "to", "place", "Ci;", "update", "bounds", "and", "add", "Ci", "to", "f", "rontchain", "as", "in", "[44];", "add", "the", "placement", "position", "(lx,", "ly)", "to", "locations;", "end", "if", "Cj", "intersects", "with", "[xi−", "ri,xi+", "ri]", "then", "attempt", "to", "place", "Ci", "next", "to", "Cj", "and", "Cj+1", "on", "f", "rontchain;", "else", "/*", "find", "the", "best", "placement", "location", "*/", "locations←{};", "foreach", "circle", "Cj", "in", "f", "rontchain", "do", "compute", "(cxi,cyi)", "to", "place", "Ci", "at", "an", "appropriate", "location;", "update", "bounds", "and", "add", "Ci", "to", "f", "rontchain;", "if", "bounds", "is", "empty", "or", "Ci", "intersects", "with", "bounds", "then", "if", "i−", "start", "≤", "3", "then", "/*", "the", "first", "three", "are", "trivial", "*/", "Data:", "A", "list", "of", "circles", "Ci", ":", "(ri,xi)", "sorted", "ascending", "by", "x-constraint", "xi", "Result:", "A", "list", "of", "layout", "circles", "Ci", ":", "(cxi,cyi,ri)", "start←", "0,", "bounds←", "[0,0],", "f", "rontchain←{};", "foreach", "circle", "Ci", "in", "the", "input", "do"],
+  "name": "4",
+  "page": 4,
+  "regionBoundary": {
+    "x1": 318.71999999999997,
+    "x2": 553.92,
+    "y1": 217.44,
+    "y2": 435.35999999999996
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/FluxFlow-Figure4-1.png"
+}, {
+  "caption": "Fig. 3. The main visual encodings in FluxFlow: a) a thread glyph for aggregating the main information, and three thread timeline visualizations for unfolding the temporal patterns with different perspectives, including b) a volume chart, c) a linear circle view, and d) a volume circle view. The backgrounds are color-coded by eight hidden states generated in the model. In d) the volume circle view, users with low anomaly scores are aggregated into the “gray ribbons” in contrast to c) the linear circle view.",
+  "captionBoundary": {
+    "x1": 46.2047004699707,
+    "x2": 559.2086791992188,
+    "y1": 173.6105194091797,
+    "y2": 206.93426513671875
+  },
+  "figType": "Figure",
+  "imageText": ["User", "Volume", "Ending", "Time", "Starting", "Time", "Anomaly", "Score", "Sentiment", "Score", "Sentiment", "Score:", "Negative", "Positive", "Anomaly", "Score:", "Low", "High", "Hidden", "Variable:", "State", "#1", "State", "#8", "d", "c", "a", "b"],
+  "name": "3",
+  "page": 4,
+  "regionBoundary": {
+    "x1": 57.599999999999994,
+    "x2": 546.24,
+    "y1": 49.92,
+    "y2": 168.0
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/FluxFlow-Figure3-1.png"
+}]

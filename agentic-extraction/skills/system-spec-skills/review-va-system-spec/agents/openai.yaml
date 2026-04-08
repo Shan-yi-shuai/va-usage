@@ -1,0 +1,4 @@
+interface:
+  display_name: "VA Spec Review"
+  short_description: "Review a VA system spec draft"
+  default_prompt: "Use $review-va-system-spec to audit a draft VA SystemSpec and report findings."

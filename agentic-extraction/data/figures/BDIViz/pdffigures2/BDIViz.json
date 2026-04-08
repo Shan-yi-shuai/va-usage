@@ -1,0 +1,181 @@
+[{
+  "caption": "Fig. 6: The UpSet Plot Panel displays (1) matcher weights, (2) the weighted average score for each candidate with the color corresponding to heatmap color palette, and (3) the matchers that produced a given candidate – shown as dots connected by line.",
+  "captionBoundary": {
+    "x1": 44.7130012512207,
+    "x2": 295.3807067871094,
+    "y1": 146.2505340576172,
+    "y2": 179.5770263671875
+  },
+  "figType": "Figure",
+  "imageText": [],
+  "name": "6",
+  "page": 5,
+  "regionBoundary": {
+    "x1": 58.559999999999995,
+    "x2": 280.32,
+    "y1": 48.96,
+    "y2": 144.0
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/BDIViz-Figure6-1.png"
+}, {
+  "caption": "Table 1: BDIViz matcher ensemble average Precision@k score comparison against individual matchers, across 10 different dataset to GDC matching tasks. LLM-agent. We evaluated the LLM-agent’s performance using different OpenAI LLM models (o3-mini, gpt-4o and gpt-4). First, we assessed how well the agent captures ground truth matches: it incorrectly classifies as non-matches at most 25% of the attribute pairs annotated as matches in the ground truth. We then evaluated the agent’s ability to identify non-matches by testing it on the top-200 non-matching attribute pairs with the highest ensemble matching score (hard non-match cases). The results show that the LLM-agent can incorrectly classify up to 38% of them as matches. Similar to the state-of-the art schema matching methods, LLMs are not foolproof, and regardless the choice of model, they make mistakes for challenging schema matching tasks. Nonetheless, they also derive a large number of correct matches and useful explanations. This supports our design decision to combine LLMs with multiple matching methods.",
+  "captionBoundary": {
+    "x1": 307.37298583984375,
+    "x2": 559.5665283203125,
+    "y1": 523.8985595703125,
+    "y2": 687.093994140625
+  },
+  "figType": "Table",
+  "imageText": ["BDIViz", "Ensemble", "0.938", "0.954", "0.965", "ct_learning", "0.780", "0.841", "0.904", "magneto_zs", "0.707", "0.830", "0.873", "magneto_ft", "0.815", "0.869", "0.911", "Matcher", "k", "=", "10", "k", "=", "20", "k", "=", "40"],
+  "name": "1",
+  "page": 5,
+  "regionBoundary": {
+    "x1": 358.56,
+    "x2": 504.0,
+    "y1": 459.35999999999996,
+    "y2": 518.4
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/BDIViz-Table1-1.png"
+}, {
+  "caption": "Fig. 7: NASA Task Load Index (TLX) Comparison Between BDIViz and Baseline. Box plots show workload scores (0-100) across 5 dimensions.",
+  "captionBoundary": {
+    "x1": 316.6199951171875,
+    "x2": 566.9999389648438,
+    "y1": 601.4485473632812,
+    "y2": 615.8469848632812
+  },
+  "figType": "Figure",
+  "imageText": ["0", "20", "40", "60", "80", "100", "BDIViz", "BaselineFrustration", "BDIViz", "BaselineEffort", "BDIViz", "BaselinePerformance", "BDIViz", "BaselineTemporal", "BDIViz", "BaselinePhysical", "BDIViz", "BaselineMental"],
+  "name": "7",
+  "page": 6,
+  "regionBoundary": {
+    "x1": 329.28,
+    "x2": 552.0,
+    "y1": 507.84,
+    "y2": 596.64
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/BDIViz-Figure7-1.png"
+}, {
+  "caption": "Fig. 2: User-centered design approach. Left: Schema matching requirements (R1-R7) derived from expert interviews, color-coded (red: match discovery, green: value analysis, yellow: filtering). Right: Design considerations developed in iterative co-design sessions with domain experts (DC1-DC5). Colored lines between panels indicate the requirements and their corresponding design considerations.",
+  "captionBoundary": {
+    "x1": 316.35699462890625,
+    "x2": 568.3268432617188,
+    "y1": 631.7855224609375,
+    "y2": 684.0419921875
+  },
+  "figType": "Figure",
+  "imageText": [],
+  "name": "2",
+  "page": 2,
+  "regionBoundary": {
+    "x1": 315.84,
+    "x2": 567.36,
+    "y1": 362.88,
+    "y2": 625.4399999999999
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/BDIViz-Figure2-1.png"
+}, {
+  "caption": "Fig. 8: Scatter plot comparing the average matching time and accuracy of BDIViz versus Manual methods across two tasks. The x-axis shows the average time (in minutes) per finished matching, while the circle size represents the correct rate (accuracy). Larger markers indicate higher accuracy, demonstrating that BDIViz consistently outperforms Manual curation by achieving faster and more accurate schema matching.",
+  "captionBoundary": {
+    "x1": 45.0,
+    "x2": 295.5803527832031,
+    "y1": 310.343505859375,
+    "y2": 362.6000061035156
+  },
+  "figType": "Figure",
+  "imageText": [],
+  "name": "8",
+  "page": 7,
+  "regionBoundary": {
+    "x1": 44.64,
+    "x2": 302.4,
+    "y1": 222.72,
+    "y2": 306.24
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/BDIViz-Figure8-1.png"
+}, {
+  "caption": "Fig. 9: Case Study 1: Heatmap visualization of curated matching candidates for Dou et al.’s endometrial carcinoma dataset to the GDC schema in the CPTAC-3 study.",
+  "captionBoundary": {
+    "x1": 307.6199951171875,
+    "x2": 559.3237915039062,
+    "y1": 275.6105041503906,
+    "y2": 299.4729919433594
+  },
+  "figType": "Figure",
+  "imageText": ["3A", "3B", "2", "1A", "1B", "4B", "4A"],
+  "name": "9",
+  "page": 7,
+  "regionBoundary": {
+    "x1": 312.96,
+    "x2": 552.0,
+    "y1": 50.879999999999995,
+    "y2": 263.03999999999996
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/BDIViz-Figure9-1.png"
+}, {
+  "caption": "Fig. 3: The BDIViz interface includes: (1A) a shortcut panel for managing matching candidates, undo/redo, importing datasets, and exporting results as CSV or JSON; (1B) a control panel for filtering candidates; (1C) a timeline graph showing the history of user actions; (2A) an interactive heatmap panel displaying matching candidates with source attributes on the y-axis and target attributes displayed using a space-filling treemap layout on the x-axis; selected matches (cells) expand to show value distributions; (2B) bottom: an UpSet plot, value comparisons, and parallel coordinates for understanding the source-target relationships; (3A) agent explanation panel showing LLM validation results with reasoning (e.g., semantic match, shared tokens/values, historical references); (3B) display of target attribute properties, including node name, category, type, descriptions, and value distributions; and (4) a search bar to filter matches using keywords.",
+  "captionBoundary": {
+    "x1": 44.80099868774414,
+    "x2": 559.1104125976562,
+    "y1": 258.0345153808594,
+    "y2": 319.7560119628906
+  },
+  "figType": "Figure",
+  "imageText": [],
+  "name": "3",
+  "page": 3,
+  "regionBoundary": {
+    "x1": 68.64,
+    "x2": 532.3199999999999,
+    "y1": 48.96,
+    "y2": 253.44
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/BDIViz-Figure3-1.png"
+}, {
+  "caption": "Fig. 4: (1) Interactive Heatmap cells; (2) Expanded view of the value distribution histograms for the source (2A) and target (2B) attributes shown when users click on a cell.",
+  "captionBoundary": {
+    "x1": 54.0,
+    "x2": 304.3804931640625,
+    "y1": 180.41050720214844,
+    "y2": 204.27301025390625
+  },
+  "figType": "Figure",
+  "imageText": [],
+  "name": "4",
+  "page": 4,
+  "regionBoundary": {
+    "x1": 53.76,
+    "x2": 305.28,
+    "y1": 48.96,
+    "y2": 168.0
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/BDIViz-Figure4-1.png"
+}, {
+  "caption": "Fig. 5: Agent-derived explanations that take different aspect of matches into account.",
+  "captionBoundary": {
+    "x1": 316.6199951171875,
+    "x2": 567.0017700195312,
+    "y1": 221.9905242919922,
+    "y2": 236.38897705078125
+  },
+  "figType": "Figure",
+  "imageText": [],
+  "name": "5",
+  "page": 4,
+  "regionBoundary": {
+    "x1": 315.84,
+    "x2": 567.36,
+    "y1": 48.96,
+    "y2": 209.28
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/BDIViz-Figure5-1.png"
+}]

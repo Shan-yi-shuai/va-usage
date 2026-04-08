@@ -1,0 +1,221 @@
+[{
+  "caption": "Figure 8: Visual analysis pipeline, illustrating how to explore users’ D-Map with the augmented trend, hierarchy and high dimensional analysis. Diffusion path, social interactions and people impact can be found.",
+  "captionBoundary": {
+    "x1": 53.998992919921875,
+    "x2": 558.00146484375,
+    "y1": 228.6033172607422,
+    "y2": 241.8929443359375
+  },
+  "figType": "Figure",
+  "imageText": [],
+  "name": "8",
+  "page": 5,
+  "regionBoundary": {
+    "x1": 78.72,
+    "x2": 533.28,
+    "y1": 53.76,
+    "y2": 214.07999999999998
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/DMap-Figure8-1.png"
+}, {
+  "caption": "Figure 9: Weibo sources analysis with (a) reposting people distribution distance and (c) document distance. Interactions including (b) brushing and (c) keyword filtering are supported.",
+  "captionBoundary": {
+    "x1": 53.999996185302734,
+    "x2": 294.046875,
+    "y1": 672.3663330078125,
+    "y2": 695.1149291992188
+  },
+  "figType": "Figure",
+  "imageText": ["(a)", "(b)", "(c)", "Workshop", "Data", "Visualization", "Data", "Problems", "Visualization", "Data", "Papers", "Visualization"],
+  "name": "9",
+  "page": 5,
+  "regionBoundary": {
+    "x1": 60.0,
+    "x2": 300.0,
+    "y1": 535.68,
+    "y2": 657.6
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/DMap-Figure9-1.png"
+}, {
+  "caption": "Figure 10: Dynamic diffusion pattern analysis. (a) Multiple diffusion stages are shown in the small multiples and the timeline. (b) By interactively exploring the communities, we find key players and summarize diffusion patterns.",
+  "captionBoundary": {
+    "x1": 54.0,
+    "x2": 557.9984130859375,
+    "y1": 321.1683349609375,
+    "y2": 334.448974609375
+  },
+  "figType": "Figure",
+  "imageText": [],
+  "name": "10",
+  "page": 6,
+  "regionBoundary": {
+    "x1": 65.75999999999999,
+    "x2": 546.24,
+    "y1": 53.76,
+    "y2": 306.24
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/DMap-Figure10-1.png"
+}, {
+  "caption": "Figure 2: An illustration of the weibo data. People play different roles in one central user’s reposting network with multiple behaviors.",
+  "captionBoundary": {
+    "x1": 54.0,
+    "x2": 294.04608154296875,
+    "y1": 512.6703491210938,
+    "y2": 525.9509887695312
+  },
+  "figType": "Figure",
+  "imageText": ["Community", "Repost", "Community", "Repost", "Origin", "Multi-level", "In", "uenced", "People", "Direct", "Listeners", "Repost", "Long-delay", "Repost", "Long-delay", "Di", "usion", "Key", "Player", "Central", "User"],
+  "name": "2",
+  "page": 2,
+  "regionBoundary": {
+    "x1": 65.75999999999999,
+    "x2": 282.24,
+    "y1": 385.91999999999996,
+    "y2": 496.32
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/DMap-Figure2-1.png"
+}, {
+  "caption": "Figure 3: Conceptual model illustrating the diffusion process. Starting from a central user, information diffuses within and across multiple communities through a series of reposting behaviors.",
+  "captionBoundary": {
+    "x1": 317.9519958496094,
+    "x2": 558.0067749023438,
+    "y1": 251.13035583496094,
+    "y2": 273.87896728515625
+  },
+  "figType": "Figure",
+  "imageText": ["General", "User", "General", "User", "Community3", "Reposting", "Key", "Player", "General", "User", "Community2", "Key", "Player", "General", "User", "Community1", "RepostingCentral", "User", "Information", "Di", "usion", "Path"],
+  "name": "3",
+  "page": 2,
+  "regionBoundary": {
+    "x1": 328.8,
+    "x2": 546.24,
+    "y1": 180.95999999999998,
+    "y2": 236.16
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/DMap-Figure3-1.png"
+}, {
+  "caption": "Figure 11: Community analysis on D-Map. Users can have an overview on the (a) D-Map and (b) Community Radar View. By selecting the community, users can explore the characteristics (e, f). (d) Timeline View, (c) Hierarchical View and (g) Small Multiple View are provided to investigate different aspects of the diffusion process. Users can explore the detailed (h) inter-community behaviors and (i) key player behaviors.",
+  "captionBoundary": {
+    "x1": 53.9979248046875,
+    "x2": 557.9942626953125,
+    "y1": 279.9483337402344,
+    "y2": 302.6969299316406
+  },
+  "figType": "Figure",
+  "imageText": [],
+  "name": "11",
+  "page": 7,
+  "regionBoundary": {
+    "x1": 78.72,
+    "x2": 533.28,
+    "y1": 53.76,
+    "y2": 265.44
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/DMap-Figure11-1.png"
+}, {
+  "caption": "Figure 4: Visual encodings of D-Map of a central user. Each node represents a group of people, participating in the diffusion process by reposting weibos.",
+  "captionBoundary": {
+    "x1": 54.0,
+    "x2": 294.0370178222656,
+    "y1": 337.03533935546875,
+    "y2": 359.783935546875
+  },
+  "figType": "Figure",
+  "imageText": ["Group", "of", "users", "with", "a", "large", "number", "of", "weibos", "Aggregated", "Reposting", "links", "Single", "User", "with", "a", "small", "number", "of", "weibos", "Inside", "hexagon:", "Encoding", "the", "weibo", "count"],
+  "name": "4",
+  "page": 3,
+  "regionBoundary": {
+    "x1": 65.75999999999999,
+    "x2": 282.24,
+    "y1": 53.76,
+    "y2": 322.08
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/DMap-Figure4-1.png"
+}, {
+  "caption": "Figure 5: Color decision for D-Map. Four series of color encode the high-dimensional features of the community. The radar visualization shows the distribution of each dimension of selected communities.",
+  "captionBoundary": {
+    "x1": 317.9519958496094,
+    "x2": 558.0032958984375,
+    "y1": 203.44834899902344,
+    "y2": 226.2059326171875
+  },
+  "figType": "Figure",
+  "imageText": ["Rank", "1", "2", "3+", "Fast", "Di", "usion", "Large", "nums", "of", "Key", "Players", "High", "In", "uence", "Active", "Participating", "Average", "Delay", "Time", "(Invert)", "Average", "Delay", "Rank", "(Invert)", "In", "uence", "People", "Num", "Non-in", "uence", "People", "Num", "(Invert)", "Inter-in", "uence", "People", "Num", "Direct", "Repost", "Count", "All", "Repost", "Count", "Inner", "Reposting", "Count", "Inter", "Reposting", "Count", "Participating", "Time", "Participating", "Time/Person", "27.49624060150376", "People", "Num", "Delay_R", "Delay", "I_Int", "nI_Num", "I_Num", "Repost_Int", "Repost_Inn", "Repost_A", "Repost", "P_Times/P", "P_Times", "P_Num", "0.8", "0.6", "0.4", "0.2", "Delay_R", "1", "Delay", "I_Int", "nI_Num", "Repost_Inn", "Repost_Int", "I_Num", "Repost_A", "Repost", "P_Times/P", "P_Num", "P_Times", "1", "0.8", "0.6", "0.4", "0.2", "Delay_R", "Delay", "I_Int", "nI_Num", "I_Num", "Repost_Inn", "Repost_Int", "Repost_A", "Repost", "P_Times/P", "P_Num", "P_Times", "0.8", "0.6", "0.4", "0.2", "Delay_R", "1", "Delay", "I_Int", "nI_Num", "I_Num", "Repost_Int", "Repost_Inn", "Repost_A", "Repost", "P_Times/P", "P_Times", "P_Num", "1", "0.8", "0.6", "0.4", "0.2"],
+  "name": "5",
+  "page": 3,
+  "regionBoundary": {
+    "x1": 317.76,
+    "x2": 558.24,
+    "y1": 53.76,
+    "y2": 187.2
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/DMap-Figure5-1.png"
+}, {
+  "caption": "Figure 12: People portrait visualization from D-Map. We can differentiate people from multiple dimensions. Two dimensions showing here are the split community number and inter-community influence. We can see from the top-left, where there is merely communications among a few communities, to the bottom-right with the influence pattern in multiple, evenly-distributed communities.",
+  "captionBoundary": {
+    "x1": 54.0,
+    "x2": 557.9942626953125,
+    "y1": 343.2723388671875,
+    "y2": 366.02093505859375
+  },
+  "figType": "Figure",
+  "imageText": ["Active", "Participating", "High", "In!uence", "Large", "nums", "of", "Key", "Players", "Fast", "Di\"usion", "Reposting", "linksUser", "(s)", "Key", "player(s)", "(g)", "(h)", "(i)", "(d)", "(e)", "(f", ")", "(a)", "(b)", "(c)"],
+  "name": "12",
+  "page": 8,
+  "regionBoundary": {
+    "x1": 78.72,
+    "x2": 532.8,
+    "y1": 53.76,
+    "y2": 326.88
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/DMap-Figure12-1.png"
+}, {
+  "caption": "Figure 6: D-Map construction process. With the input of a series of source weibos from a central user and the reposting trees of these source weibos, we can merge them into a graph, compact the layout and reorder nodes in each community based on chronological order.",
+  "captionBoundary": {
+    "x1": 54.0,
+    "x2": 557.994873046875,
+    "y1": 137.7843475341797,
+    "y2": 151.06500244140625
+  },
+  "figType": "Figure",
+  "imageText": ["(a)", "(b)", "(c)", "(d)", "(e)", "Time", "Nodes", "Tune", "Compaction", "Reorder", "Compact", "Layout", "Merge", "Neighbor", "Merge", "Trees", "Reposting", "Trees", "Initial", "Skelenton", "Merged", "Hex", "Map", "Compact", "Map", "Compressed", "Map", "D-Map"],
+  "name": "6",
+  "page": 4,
+  "regionBoundary": {
+    "x1": 78.72,
+    "x2": 533.28,
+    "y1": 53.76,
+    "y2": 121.44
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/DMap-Figure6-1.png"
+}, {
+  "caption": "Figure 7: Merging thresholds for the size control. (a) Set the hex-bin number as 1000. (b) Maximize the number ( 9,000 in this case).",
+  "captionBoundary": {
+    "x1": 54.00019836425781,
+    "x2": 294.033447265625,
+    "y1": 280.5603332519531,
+    "y2": 293.8409729003906
+  },
+  "figType": "Figure",
+  "imageText": ["(a)", "(b)"],
+  "name": "7",
+  "page": 4,
+  "regionBoundary": {
+    "x1": 58.559999999999995,
+    "x2": 288.0,
+    "y1": 157.92,
+    "y2": 265.92
+  },
+  "renderDpi": 150,
+  "renderURL": "rendered/DMap-Figure7-1.png"
+}]
